@@ -1,0 +1,23 @@
+# ninja log v6
+4	313	1769840001596503519	build.ninja	d49a3f41f048318f
+316	1207	1770228252368320236	CMakeFiles/GUI.dir/main.cpp.o	bd9cc2011ebab4a0
+394	1749	1769754459626459672	CMakeFiles/GUI.dir/maintab.cpp.o	39df1c4d3ce045dc
+1392	1585	1770254039708880251	GUI.app/Contents/MacOS/GUI	53dab750debf3d02
+26	78	1770254038343469988	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+316	1223	1770228252368024833	CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o	edede75541b77e44
+26	78	1770254038343469988	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+26	78	1770254038343469988	GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+26	78	1770254038343469988	GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+78	1392	1770254038395163922	CMakeFiles/GUI.dir/mainwindow.cpp.o	4cef1d56af614cb8
+10	55	1770254075418748921	GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+10	55	1770254075418748921	GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+10	55	1770254075418748921	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+10	55	1770254075418748921	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+55	1035	1770254075464381230	CMakeFiles/GUI.dir/mainwindow.cpp.o	4cef1d56af614cb8
+1035	1144	1770254076444159762	GUI.app/Contents/MacOS/GUI	53dab750debf3d02
+26	96	1770254260715290589	GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+26	96	1770254260715290589	GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+26	96	1770254260715290589	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+26	96	1770254260715290589	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+96	1399	1770254260785667043	CMakeFiles/GUI.dir/mainwindow.cpp.o	4cef1d56af614cb8
+1399	1575	1770254262088646721	GUI.app/Contents/MacOS/GUI	53dab750debf3d02
