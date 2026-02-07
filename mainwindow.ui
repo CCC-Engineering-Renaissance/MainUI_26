@@ -41,6 +41,11 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgba(150, 183, 255, 20);</string>
       </property>
@@ -51,7 +56,7 @@
        <number>2</number>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <layout class="QGridLayout" name="gridLayout_3">
@@ -66,7 +71,7 @@
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
-            <pointsize>14</pointsize>
+            <pointsize>30</pointsize>
             <italic>false</italic>
             <bold>true</bold>
             <underline>false</underline>
@@ -105,27 +110,32 @@
             <height>100</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>30</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
-          <property name="styleSheet">
-           <string notr="true">
-font: 14pt &quot;Comic Sans MS&quot;;</string>
-          </property>
           <property name="text">
-           <string>Iceberg Data Analysis</string>
+           <string>Iceberg Data</string>
           </property>
           <property name="icon">
            <iconset theme="QIcon::ThemeIcon::SystemSearch"/>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
+        <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignHCenter">
          <widget class="QLabel" name="label_9">
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
-            <pointsize>16</pointsize>
+            <pointsize>30</pointsize>
+            <italic>true</italic>
             <bold>true</bold>
            </font>
           </property>
@@ -139,8 +149,8 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
-            <pointsize>14</pointsize>
-            <bold>false</bold>
+            <pointsize>30</pointsize>
+            <bold>true</bold>
            </font>
           </property>
           <property name="text">
@@ -162,11 +172,14 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
             <height>100</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>30</pointsize>
+           </font>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
           <property name="text">
            <string>3D Modeling</string>
@@ -190,14 +203,18 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
             <height>100</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>30</pointsize>
+           </font>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
-          <property name="styleSheet">
-           <string notr="true">font: 14pt &quot;Comic Sans MS&quot;;</string>
-          </property>
           <property name="text">
-           <string>Camera Feed / Image Recon</string>
+           <string>Camera Feed 
+Image Recon</string>
           </property>
           <property name="icon">
            <iconset theme="QIcon::ThemeIcon::MediaRecord"/>
@@ -206,6 +223,12 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="1" column="2">
          <widget class="QPushButton" name="floatPushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
             <width>220</width>
@@ -218,12 +241,16 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
             <height>100</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>30</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
           <property name="text">
            <string>Float</string>
@@ -247,15 +274,17 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
             <height>100</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Comic Sans MS</family>
+            <pointsize>30</pointsize>
+           </font>
+          </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
-          <property name="styleSheet">
-           <string notr="true">
-font: 14pt &quot;Comic Sans MS&quot;;</string>
-          </property>
           <property name="text">
-           <string>eDNA Sample Analysis</string>
+           <string>eDNA Analysis</string>
           </property>
           <property name="icon">
            <iconset theme="QIcon::ThemeIcon::MediaFlash"/>
@@ -639,6 +668,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -649,17 +679,30 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="2">
-         <widget class="QSpinBox" name="spinBoxRock"/>
+        <item row="5" column="2" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxRock">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QSpinBox" name="spinBoxSnow"/>
+        <item row="1" column="2" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxSnow">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="3" column="4">
          <widget class="QLabel" name="label_8">
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -670,14 +713,21 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="5">
-         <widget class="QSpinBox" name="spinBoxJonah"/>
+        <item row="1" column="5" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxJonah">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="4" column="1">
          <widget class="QLabel" name="label_4">
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -688,11 +738,22 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="5">
-         <widget class="QSpinBox" name="spinBoxSunstar"/>
+        <item row="2" column="5" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxSunstar">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="3" column="3">
          <widget class="QLCDNumber" name="hairyCrabPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -709,6 +770,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -724,6 +786,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -755,6 +818,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="1" column="3">
          <widget class="QLCDNumber" name="snowCrabPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -807,6 +875,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="5" column="3">
          <widget class="QLCDNumber" name="rockCrabPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -818,11 +891,22 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="5">
-         <widget class="QSpinBox" name="spinBoxBoreal"/>
+        <item row="4" column="5" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxBoreal">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="5" column="6">
          <widget class="QLCDNumber" name="brittlePercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -839,6 +923,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -867,6 +952,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -877,8 +963,14 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
-         <widget class="QSpinBox" name="spinBoxWestern"/>
+        <item row="3" column="2" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxWestern">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="0" column="2" alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop">
          <widget class="QLabel" name="label_13">
@@ -893,20 +985,39 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="5">
-         <widget class="QSpinBox" name="spinBoxGreen"/>
+        <item row="3" column="5" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxGreen">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
-        <item row="2" column="2">
-         <widget class="QSpinBox" name="spinBoxAcadian"/>
+        <item row="2" column="2" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxAcadian">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
-        <item row="4" column="2">
-         <widget class="QSpinBox" name="spinBoxUrchin"/>
+        <item row="4" column="2" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxUrchin">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="2" column="1">
          <widget class="QLabel" name="label_2">
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -919,6 +1030,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="4" column="6">
          <widget class="QLCDNumber" name="borealPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -935,6 +1051,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -950,6 +1067,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="font">
            <font>
             <family>Comic Sans MS</family>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="frameShape">
@@ -962,6 +1080,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="3" column="6">
          <widget class="QLCDNumber" name="greenCrabPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -975,6 +1098,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="2" column="6">
          <widget class="QLCDNumber" name="sunstarPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -988,6 +1116,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="2" column="3">
          <widget class="QLCDNumber" name="acadianCrabPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -1001,6 +1134,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="1" column="6">
          <widget class="QLCDNumber" name="jonahCrabPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -1014,6 +1152,11 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
         </item>
         <item row="4" column="3">
          <widget class="QLCDNumber" name="urchinPercent">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
           </property>
@@ -1025,8 +1168,14 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="5">
-         <widget class="QSpinBox" name="spinBoxBrittle"/>
+        <item row="5" column="5" alignment="Qt::AlignmentFlag::AlignHCenter">
+         <widget class="QSpinBox" name="spinBoxBrittle">
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item row="0" column="4">
          <widget class="QPushButton" name="pushButtonCalcPercent">

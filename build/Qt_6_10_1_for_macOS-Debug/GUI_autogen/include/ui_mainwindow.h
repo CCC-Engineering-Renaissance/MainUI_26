@@ -142,6 +142,9 @@ public:
         stackedWidget->setObjectName("stackedWidget");
         sizePolicy1.setHeightForWidth(stackedWidget->sizePolicy().hasHeightForWidth());
         stackedWidget->setSizePolicy(sizePolicy1);
+        QFont font;
+        font.setPointSize(20);
+        stackedWidget->setFont(font);
         stackedWidget->setStyleSheet(QString::fromUtf8("background-color: rgba(150, 183, 255, 20);"));
         stackedWidget->setFrameShape(QFrame::Shape::Box);
         stackedWidget->setLineWidth(2);
@@ -156,15 +159,15 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(closeProgramButton->sizePolicy().hasHeightForWidth());
         closeProgramButton->setSizePolicy(sizePolicy2);
-        QFont font;
-        font.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font.setPointSize(14);
-        font.setBold(true);
-        font.setItalic(false);
-        font.setUnderline(false);
-        font.setStrikeOut(false);
-        font.setKerning(true);
-        closeProgramButton->setFont(font);
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font1.setPointSize(30);
+        font1.setBold(true);
+        font1.setItalic(false);
+        font1.setUnderline(false);
+        font1.setStrikeOut(false);
+        font1.setKerning(true);
+        closeProgramButton->setFont(font1);
         closeProgramButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit));
         closeProgramButton->setIcon(icon1);
@@ -176,9 +179,13 @@ public:
         icebergPushButton->setObjectName("icebergPushButton");
         icebergPushButton->setMinimumSize(QSize(220, 140));
         icebergPushButton->setBaseSize(QSize(220, 100));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font2.setPointSize(30);
+        font2.setBold(false);
+        font2.setItalic(false);
+        icebergPushButton->setFont(font2);
         icebergPushButton->setAutoFillBackground(false);
-        icebergPushButton->setStyleSheet(QString::fromUtf8("\n"
-"font: 14pt \"Comic Sans MS\";"));
         QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::SystemSearch));
         icebergPushButton->setIcon(icon2);
 
@@ -186,21 +193,22 @@ public:
 
         label_9 = new QLabel(mainMenu);
         label_9->setObjectName("label_9");
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font1.setPointSize(16);
-        font1.setBold(true);
-        label_9->setFont(font1);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font3.setPointSize(30);
+        font3.setBold(true);
+        font3.setItalic(true);
+        label_9->setFont(font3);
 
-        gridLayout_3->addWidget(label_9, 2, 1, 1, 1);
+        gridLayout_3->addWidget(label_9, 2, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         pushButton = new QPushButton(mainMenu);
         pushButton->setObjectName("pushButton");
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font2.setPointSize(14);
-        font2.setBold(false);
-        pushButton->setFont(font2);
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font4.setPointSize(30);
+        font4.setBold(true);
+        pushButton->setFont(font4);
 
         gridLayout_3->addWidget(pushButton, 2, 0, 1, 1);
 
@@ -208,8 +216,11 @@ public:
         modelingPushButton->setObjectName("modelingPushButton");
         modelingPushButton->setMinimumSize(QSize(220, 140));
         modelingPushButton->setBaseSize(QSize(220, 100));
+        QFont font5;
+        font5.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font5.setPointSize(30);
+        modelingPushButton->setFont(font5);
         modelingPushButton->setAutoFillBackground(false);
-        modelingPushButton->setStyleSheet(QString::fromUtf8("font: 14pt \"Comic Sans MS\";"));
         QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::CameraVideo));
         modelingPushButton->setIcon(icon3);
 
@@ -219,8 +230,8 @@ public:
         cameraFeedPushButton->setObjectName("cameraFeedPushButton");
         cameraFeedPushButton->setMinimumSize(QSize(220, 140));
         cameraFeedPushButton->setBaseSize(QSize(220, 100));
+        cameraFeedPushButton->setFont(font5);
         cameraFeedPushButton->setAutoFillBackground(false);
-        cameraFeedPushButton->setStyleSheet(QString::fromUtf8("font: 14pt \"Comic Sans MS\";"));
         QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::MediaRecord));
         cameraFeedPushButton->setIcon(icon4);
 
@@ -228,11 +239,15 @@ public:
 
         floatPushButton = new QPushButton(mainMenu);
         floatPushButton->setObjectName("floatPushButton");
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(floatPushButton->sizePolicy().hasHeightForWidth());
+        floatPushButton->setSizePolicy(sizePolicy3);
         floatPushButton->setMinimumSize(QSize(220, 140));
         floatPushButton->setBaseSize(QSize(220, 100));
+        floatPushButton->setFont(font2);
         floatPushButton->setAutoFillBackground(false);
-        floatPushButton->setStyleSheet(QString::fromUtf8("\n"
-"font: 14pt \"Comic Sans MS\";"));
         QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::SoftwareUpdateAvailable));
         floatPushButton->setIcon(icon5);
 
@@ -242,9 +257,8 @@ public:
         ednaPushButton->setObjectName("ednaPushButton");
         ednaPushButton->setMinimumSize(QSize(220, 140));
         ednaPushButton->setBaseSize(QSize(220, 100));
+        ednaPushButton->setFont(font5);
         ednaPushButton->setAutoFillBackground(false);
-        ednaPushButton->setStyleSheet(QString::fromUtf8("\n"
-"font: 14pt \"Comic Sans MS\";"));
         QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::MediaFlash));
         ednaPushButton->setIcon(icon6);
 
@@ -264,38 +278,38 @@ public:
         gridLayout->setObjectName("gridLayout");
         botCamButton = new QPushButton(droneMap);
         botCamButton->setObjectName("botCamButton");
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font3.setKerning(true);
-        botCamButton->setFont(font3);
+        QFont font6;
+        font6.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font6.setKerning(true);
+        botCamButton->setFont(font6);
         botCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
 
         gridLayout->addWidget(botCamButton, 2, 1, 1, 1);
 
         frontCamButton = new QPushButton(droneMap);
         frontCamButton->setObjectName("frontCamButton");
-        frontCamButton->setFont(font3);
+        frontCamButton->setFont(font6);
         frontCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
 
         gridLayout->addWidget(frontCamButton, 0, 1, 1, 1);
 
         backCamButton = new QPushButton(droneMap);
         backCamButton->setObjectName("backCamButton");
-        backCamButton->setFont(font3);
+        backCamButton->setFont(font6);
         backCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
 
         gridLayout->addWidget(backCamButton, 3, 1, 1, 1);
 
         leftCamButton = new QPushButton(droneMap);
         leftCamButton->setObjectName("leftCamButton");
-        leftCamButton->setFont(font3);
+        leftCamButton->setFont(font6);
         leftCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
 
         gridLayout->addWidget(leftCamButton, 2, 0, 1, 1);
 
         rightCamButton = new QPushButton(droneMap);
         rightCamButton->setObjectName("rightCamButton");
-        rightCamButton->setFont(font3);
+        rightCamButton->setFont(font6);
         rightCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
 
         gridLayout->addWidget(rightCamButton, 2, 2, 1, 1);
@@ -305,9 +319,7 @@ public:
 
         camName = new QLabel(cameraPage);
         camName->setObjectName("camName");
-        QFont font4;
-        font4.setPointSize(20);
-        camName->setFont(font4);
+        camName->setFont(font);
         camName->setFrameShape(QFrame::Shape::Box);
         camName->setLineWidth(2);
 
@@ -322,9 +334,9 @@ public:
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         latencyLabel = new QLabel(frame_6);
         latencyLabel->setObjectName("latencyLabel");
-        QFont font5;
-        font5.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        latencyLabel->setFont(font5);
+        QFont font7;
+        font7.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        latencyLabel->setFont(font7);
         latencyLabel->setFrameShape(QFrame::Shape::Box);
         latencyLabel->setFrameShadow(QFrame::Shadow::Plain);
 
@@ -332,7 +344,7 @@ public:
 
         timeLabel = new QLabel(frame_6);
         timeLabel->setObjectName("timeLabel");
-        timeLabel->setFont(font5);
+        timeLabel->setFont(font7);
         timeLabel->setFrameShape(QFrame::Shape::Box);
 
         horizontalLayout_3->addWidget(timeLabel);
@@ -361,14 +373,14 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName("comboBox");
-        comboBox->setFont(font5);
+        comboBox->setFont(font7);
         comboBox->setEditable(false);
 
         horizontalLayout->addWidget(comboBox);
 
         scanCrabButton = new QPushButton(frame_5);
         scanCrabButton->setObjectName("scanCrabButton");
-        scanCrabButton->setFont(font5);
+        scanCrabButton->setFont(font7);
 
         horizontalLayout->addWidget(scanCrabButton);
 
@@ -384,7 +396,7 @@ public:
         homePageButton->setObjectName("homePageButton");
         homePageButton->setMinimumSize(QSize(40, 30));
         homePageButton->setMaximumSize(QSize(40, 30));
-        homePageButton->setFont(font5);
+        homePageButton->setFont(font7);
         homePageButton->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton->setAutoRaise(true);
@@ -400,7 +412,7 @@ public:
         homePageButton_2->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_2->setMinimumSize(QSize(40, 30));
         homePageButton_2->setMaximumSize(QSize(40, 30));
-        homePageButton_2->setFont(font5);
+        homePageButton_2->setFont(font7);
         homePageButton_2->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_2->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_2->setAutoRaise(true);
@@ -413,7 +425,7 @@ public:
         homePageButton_3->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_3->setMinimumSize(QSize(40, 30));
         homePageButton_3->setMaximumSize(QSize(40, 30));
-        homePageButton_3->setFont(font5);
+        homePageButton_3->setFont(font7);
         homePageButton_3->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_3->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_3->setAutoRaise(true);
@@ -425,47 +437,55 @@ public:
         gridLayout_4->setObjectName("gridLayout_4");
         label_11 = new QLabel(ednaPage);
         label_11->setObjectName("label_11");
-        label_11->setFont(font5);
+        QFont font8;
+        font8.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font8.setPointSize(20);
+        label_11->setFont(font8);
         label_11->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_11, 5, 4, 1, 1);
 
         spinBoxRock = new QSpinBox(ednaPage);
         spinBoxRock->setObjectName("spinBoxRock");
+        spinBoxRock->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxRock, 5, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxRock, 5, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxSnow = new QSpinBox(ednaPage);
         spinBoxSnow->setObjectName("spinBoxSnow");
+        spinBoxSnow->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxSnow, 1, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxSnow, 1, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_8 = new QLabel(ednaPage);
         label_8->setObjectName("label_8");
-        label_8->setFont(font5);
+        label_8->setFont(font8);
         label_8->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_8, 3, 4, 1, 1);
 
         spinBoxJonah = new QSpinBox(ednaPage);
         spinBoxJonah->setObjectName("spinBoxJonah");
+        spinBoxJonah->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxJonah, 1, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxJonah, 1, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_4 = new QLabel(ednaPage);
         label_4->setObjectName("label_4");
-        label_4->setFont(font5);
+        label_4->setFont(font8);
         label_4->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_4, 4, 1, 1, 1);
 
         spinBoxSunstar = new QSpinBox(ednaPage);
         spinBoxSunstar->setObjectName("spinBoxSunstar");
+        spinBoxSunstar->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxSunstar, 2, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxSunstar, 2, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         hairyCrabPercent = new QLCDNumber(ednaPage);
         hairyCrabPercent->setObjectName("hairyCrabPercent");
+        hairyCrabPercent->setFont(font);
         hairyCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         hairyCrabPercent->setSmallDecimalPoint(true);
         hairyCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -474,33 +494,34 @@ public:
 
         label_3 = new QLabel(ednaPage);
         label_3->setObjectName("label_3");
-        label_3->setFont(font5);
+        label_3->setFont(font8);
         label_3->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_3, 3, 1, 1, 1);
 
         label = new QLabel(ednaPage);
         label->setObjectName("label");
-        label->setFont(font5);
+        label->setFont(font8);
         label->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label, 1, 4, 1, 1);
 
         label_12 = new QLabel(ednaPage);
         label_12->setObjectName("label_12");
-        QFont font6;
-        font6.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font6.setPointSize(30);
-        font6.setBold(false);
-        font6.setItalic(true);
-        font6.setUnderline(false);
-        label_12->setFont(font6);
+        QFont font9;
+        font9.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font9.setPointSize(30);
+        font9.setBold(false);
+        font9.setItalic(true);
+        font9.setUnderline(false);
+        label_12->setFont(font9);
         label_12->setFrameShape(QFrame::Shape::NoFrame);
 
         gridLayout_4->addWidget(label_12, 0, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
         snowCrabPercent = new QLCDNumber(ednaPage);
         snowCrabPercent->setObjectName("snowCrabPercent");
+        snowCrabPercent->setFont(font);
         snowCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         snowCrabPercent->setSmallDecimalPoint(true);
         snowCrabPercent->setMode(QLCDNumber::Mode::Dec);
@@ -512,7 +533,7 @@ public:
         homePageButton_4->setObjectName("homePageButton_4");
         homePageButton_4->setMinimumSize(QSize(40, 30));
         homePageButton_4->setMaximumSize(QSize(40, 30));
-        homePageButton_4->setFont(font5);
+        homePageButton_4->setFont(font7);
         homePageButton_4->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_4->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_4->setAutoRaise(true);
@@ -522,6 +543,7 @@ public:
 
         rockCrabPercent = new QLCDNumber(ednaPage);
         rockCrabPercent->setObjectName("rockCrabPercent");
+        rockCrabPercent->setFont(font);
         rockCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         rockCrabPercent->setSmallDecimalPoint(true);
         rockCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -530,11 +552,13 @@ public:
 
         spinBoxBoreal = new QSpinBox(ednaPage);
         spinBoxBoreal->setObjectName("spinBoxBoreal");
+        spinBoxBoreal->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxBoreal, 4, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxBoreal, 4, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         brittlePercent = new QLCDNumber(ednaPage);
         brittlePercent->setObjectName("brittlePercent");
+        brittlePercent->setFont(font);
         brittlePercent->setFrameShadow(QFrame::Shadow::Plain);
         brittlePercent->setSmallDecimalPoint(true);
         brittlePercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -543,62 +567,64 @@ public:
 
         label_10 = new QLabel(ednaPage);
         label_10->setObjectName("label_10");
-        label_10->setFont(font5);
+        label_10->setFont(font8);
         label_10->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_10, 4, 4, 1, 1);
 
         label_14 = new QLabel(ednaPage);
         label_14->setObjectName("label_14");
-        QFont font7;
-        font7.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font7.setPointSize(30);
-        label_14->setFont(font7);
+        label_14->setFont(font5);
 
         gridLayout_4->addWidget(label_14, 0, 3, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_5 = new QLabel(ednaPage);
         label_5->setObjectName("label_5");
-        label_5->setFont(font5);
+        label_5->setFont(font8);
         label_5->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_5, 5, 1, 1, 1);
 
         spinBoxWestern = new QSpinBox(ednaPage);
         spinBoxWestern->setObjectName("spinBoxWestern");
+        spinBoxWestern->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxWestern, 3, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxWestern, 3, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_13 = new QLabel(ednaPage);
         label_13->setObjectName("label_13");
-        label_13->setFont(font7);
+        label_13->setFont(font5);
 
         gridLayout_4->addWidget(label_13, 0, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
         spinBoxGreen = new QSpinBox(ednaPage);
         spinBoxGreen->setObjectName("spinBoxGreen");
+        spinBoxGreen->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxGreen, 3, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxGreen, 3, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxAcadian = new QSpinBox(ednaPage);
         spinBoxAcadian->setObjectName("spinBoxAcadian");
+        spinBoxAcadian->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxAcadian, 2, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxAcadian, 2, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxUrchin = new QSpinBox(ednaPage);
         spinBoxUrchin->setObjectName("spinBoxUrchin");
+        spinBoxUrchin->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxUrchin, 4, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxUrchin, 4, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_2 = new QLabel(ednaPage);
         label_2->setObjectName("label_2");
-        label_2->setFont(font5);
+        label_2->setFont(font8);
         label_2->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_2, 2, 1, 1, 1);
 
         borealPercent = new QLCDNumber(ednaPage);
         borealPercent->setObjectName("borealPercent");
+        borealPercent->setFont(font);
         borealPercent->setFrameShadow(QFrame::Shadow::Plain);
         borealPercent->setSmallDecimalPoint(true);
         borealPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -607,20 +633,21 @@ public:
 
         label_6 = new QLabel(ednaPage);
         label_6->setObjectName("label_6");
-        label_6->setFont(font5);
+        label_6->setFont(font8);
         label_6->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_6, 1, 1, 1, 1);
 
         label_7 = new QLabel(ednaPage);
         label_7->setObjectName("label_7");
-        label_7->setFont(font5);
+        label_7->setFont(font8);
         label_7->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_7, 2, 4, 1, 1);
 
         greenCrabPercent = new QLCDNumber(ednaPage);
         greenCrabPercent->setObjectName("greenCrabPercent");
+        greenCrabPercent->setFont(font);
         greenCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         greenCrabPercent->setSmallDecimalPoint(true);
         greenCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -629,6 +656,7 @@ public:
 
         sunstarPercent = new QLCDNumber(ednaPage);
         sunstarPercent->setObjectName("sunstarPercent");
+        sunstarPercent->setFont(font);
         sunstarPercent->setFrameShadow(QFrame::Shadow::Plain);
         sunstarPercent->setSmallDecimalPoint(true);
         sunstarPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -637,6 +665,7 @@ public:
 
         acadianCrabPercent = new QLCDNumber(ednaPage);
         acadianCrabPercent->setObjectName("acadianCrabPercent");
+        acadianCrabPercent->setFont(font);
         acadianCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         acadianCrabPercent->setSmallDecimalPoint(true);
         acadianCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -645,6 +674,7 @@ public:
 
         jonahCrabPercent = new QLCDNumber(ednaPage);
         jonahCrabPercent->setObjectName("jonahCrabPercent");
+        jonahCrabPercent->setFont(font);
         jonahCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         jonahCrabPercent->setSmallDecimalPoint(true);
         jonahCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -653,6 +683,7 @@ public:
 
         urchinPercent = new QLCDNumber(ednaPage);
         urchinPercent->setObjectName("urchinPercent");
+        urchinPercent->setFont(font);
         urchinPercent->setFrameShadow(QFrame::Shadow::Plain);
         urchinPercent->setSmallDecimalPoint(true);
         urchinPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -661,14 +692,12 @@ public:
 
         spinBoxBrittle = new QSpinBox(ednaPage);
         spinBoxBrittle->setObjectName("spinBoxBrittle");
+        spinBoxBrittle->setFont(font);
 
-        gridLayout_4->addWidget(spinBoxBrittle, 5, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxBrittle, 5, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         pushButtonCalcPercent = new QPushButton(ednaPage);
         pushButtonCalcPercent->setObjectName("pushButtonCalcPercent");
-        QFont font8;
-        font8.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font8.setPointSize(20);
         pushButtonCalcPercent->setFont(font8);
 
         gridLayout_4->addWidget(pushButtonCalcPercent, 0, 4, 1, 1);
@@ -681,7 +710,7 @@ public:
         homePageButton_5->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_5->setMinimumSize(QSize(40, 30));
         homePageButton_5->setMaximumSize(QSize(40, 30));
-        homePageButton_5->setFont(font5);
+        homePageButton_5->setFont(font7);
         homePageButton_5->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_5->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_5->setAutoRaise(true);
@@ -694,7 +723,7 @@ public:
         homePageButton_6->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_6->setMinimumSize(QSize(40, 30));
         homePageButton_6->setMaximumSize(QSize(40, 30));
-        homePageButton_6->setFont(font5);
+        homePageButton_6->setFont(font7);
         homePageButton_6->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_6->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_6->setAutoRaise(true);
@@ -715,7 +744,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(0);
         comboBox->setCurrentIndex(0);
 
 
@@ -726,13 +755,14 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainTab", nullptr));
         closeProgramButton->setText(QCoreApplication::translate("MainWindow", "Close Program", nullptr));
-        icebergPushButton->setText(QCoreApplication::translate("MainWindow", "Iceberg Data Analysis", nullptr));
+        icebergPushButton->setText(QCoreApplication::translate("MainWindow", "Iceberg Data", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "MATE ROV 2026", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
         modelingPushButton->setText(QCoreApplication::translate("MainWindow", "3D Modeling", nullptr));
-        cameraFeedPushButton->setText(QCoreApplication::translate("MainWindow", "Camera Feed / Image Recon", nullptr));
+        cameraFeedPushButton->setText(QCoreApplication::translate("MainWindow", "Camera Feed \n"
+"Image Recon", nullptr));
         floatPushButton->setText(QCoreApplication::translate("MainWindow", "Float", nullptr));
-        ednaPushButton->setText(QCoreApplication::translate("MainWindow", "eDNA Sample Analysis", nullptr));
+        ednaPushButton->setText(QCoreApplication::translate("MainWindow", "eDNA Analysis", nullptr));
         botCamButton->setText(QCoreApplication::translate("MainWindow", "Bottom", nullptr));
         frontCamButton->setText(QCoreApplication::translate("MainWindow", "Front", nullptr));
         backCamButton->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));

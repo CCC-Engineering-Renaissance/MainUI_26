@@ -130,11 +130,30 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
     /// Assigns the percentage frequency to an object
 
     double snowPercent = (snowInput/sumOfInputs) * 100;
+    double acadianPercent = (acadianInput/sumOfInputs) * 100;
+    double westernPercent = (westernInput/sumOfInputs) * 100;
+    double seaUrchinPercent = (urchinInput/sumOfInputs) * 100;
+    double rockPercent = (rockInput/sumOfInputs) * 100;
+    double jonahPercent = (jonahInput/sumOfInputs) * 100;
+    double spinySunstarPercent = (sunstarInput/sumOfInputs) * 100;
+    double greenPercent = (greenInput/sumOfInputs) * 100;
+    double borealStarPercent = (borealInput/sumOfInputs) * 100;
+    double brittleStarPercent = (brittleInput/sumOfInputs) * 100;
 
     /// Displays that percent in the box
 
     ui->snowCrabPercent->display(snowPercent);
+    ui->acadianCrabPercent->display(acadianPercent);
+    ui->hairyCrabPercent->display(westernPercent);
+    ui->urchinPercent->display(seaUrchinPercent);
+    ui->rockCrabPercent->display(rockPercent);
+    ui->jonahCrabPercent->display(jonahPercent);
+    ui->sunstarPercent->display(spinySunstarPercent);
+    ui->greenCrabPercent->display(greenPercent);
+    ui->borealPercent->display(borealStarPercent);
+    ui->brittlePercent->display(brittleStarPercent);
 
+    /// IT WORKS LETS GOOOOOO
 
 }
 
