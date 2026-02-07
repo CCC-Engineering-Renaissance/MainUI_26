@@ -112,7 +112,29 @@ void MainWindow::on_closeProgramButton_clicked()
 
 void MainWindow::on_pushButtonCalcPercent_clicked()
 {
+    /// Assigns the number of times an animal has been seen to an object
+
     int snowInput = ui->spinBoxSnow->value();
-    ui->spinBoxSnow->display(snowInput);
+    int acadianInput = ui->spinBoxAcadian->value();
+    int westernInput = ui->spinBoxWestern->value();
+    int urchinInput = ui->spinBoxUrchin->value();
+    int rockInput = ui->spinBoxRock->value();
+    int jonahInput = ui->spinBoxJonah->value();
+    int sunstarInput = ui->spinBoxSunstar->value();
+    int greenInput = ui->spinBoxGreen->value();
+    int borealInput = ui->spinBoxBoreal->value();
+    int brittleInput = ui->spinBoxBrittle->value();
+    double sumOfInputs = snowInput+acadianInput+westernInput+urchinInput+rockInput+
+                      jonahInput+sunstarInput+greenInput+borealInput+brittleInput;
+
+    /// Assigns the percentage frequency to an object
+
+    double snowPercent = (snowInput/sumOfInputs) * 100;
+
+    /// Displays that percent in the box
+
+    ui->snowCrabPercent->display(snowPercent);
+
+
 }
 

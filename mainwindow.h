@@ -51,8 +51,6 @@ private slots:
 
     void on_homePageButton_6_clicked();
 
-    void updateTimeLabel();
-
     void on_pushButtonCalcPercent_clicked();
 
 private:

@@ -505,7 +505,6 @@ public:
         snowCrabPercent->setSmallDecimalPoint(true);
         snowCrabPercent->setMode(QLCDNumber::Mode::Dec);
         snowCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
-        snowCrabPercent->setProperty("value", QVariant(10.500000000000000));
 
         gridLayout_4->addWidget(snowCrabPercent, 1, 3, 1, 1);
 

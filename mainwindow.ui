@@ -767,9 +767,6 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
           <property name="segmentStyle">
            <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
-          <property name="value" stdset="0">
-           <double>10.500000000000000</double>
-          </property>
          </widget>
         </item>
         <item row="0" column="0">
