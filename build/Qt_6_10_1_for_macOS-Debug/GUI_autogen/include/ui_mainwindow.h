@@ -22,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolButton>
@@ -72,23 +73,42 @@ public:
     QWidget *icebergPage;
     QToolButton *homePageButton_3;
     QWidget *ednaPage;
+    QGridLayout *gridLayout_4;
+    QLabel *label_11;
+    QSpinBox *spinBox_5;
+    QSpinBox *spinBox;
     QLabel *label_8;
-    QFrame *frame;
-    QLCDNumber *lcdNumber;
-    QLabel *label_2;
-    QFrame *frame_2;
-    QLCDNumber *lcdNumber_2;
-    QLabel *label_3;
-    QLabel *label_7;
-    QFrame *frame_3;
-    QLCDNumber *lcdNumber_3;
-    QLabel *label_5;
-    QLabel *label_6;
-    QFrame *frame_4;
-    QLCDNumber *lcdNumber_4;
+    QSpinBox *spinBox_6;
     QLabel *label_4;
+    QSpinBox *spinBox_7;
+    QLCDNumber *lcdNumber_3;
+    QLabel *label_3;
     QLabel *label;
+    QLabel *label_12;
+    QLCDNumber *lcdNumber;
     QToolButton *homePageButton_4;
+    QLCDNumber *lcdNumber_6;
+    QSpinBox *spinBox_9;
+    QLCDNumber *lcdNumber_11;
+    QLabel *label_10;
+    QLabel *label_14;
+    QLabel *label_5;
+    QSpinBox *spinBox_3;
+    QLabel *label_13;
+    QSpinBox *spinBox_8;
+    QSpinBox *spinBox_2;
+    QSpinBox *spinBox_4;
+    QLabel *label_2;
+    QLCDNumber *lcdNumber_10;
+    QLabel *label_6;
+    QLabel *label_7;
+    QLCDNumber *lcdNumber_9;
+    QLCDNumber *lcdNumber_8;
+    QLCDNumber *lcdNumber_2;
+    QLCDNumber *lcdNumber_7;
+    QLCDNumber *lcdNumber_4;
+    QSpinBox *spinBox_10;
+    QPushButton *pushButton_2;
     QWidget *floatPage;
     QToolButton *homePageButton_5;
     QWidget *settingsPage;
@@ -401,88 +421,90 @@ public:
         stackedWidget->addWidget(icebergPage);
         ednaPage = new QWidget();
         ednaPage->setObjectName("ednaPage");
+        gridLayout_4 = new QGridLayout(ednaPage);
+        gridLayout_4->setObjectName("gridLayout_4");
+        label_11 = new QLabel(ednaPage);
+        label_11->setObjectName("label_11");
+        label_11->setFont(font5);
+        label_11->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_11, 5, 4, 1, 1);
+
+        spinBox_5 = new QSpinBox(ednaPage);
+        spinBox_5->setObjectName("spinBox_5");
+
+        gridLayout_4->addWidget(spinBox_5, 5, 2, 1, 1);
+
+        spinBox = new QSpinBox(ednaPage);
+        spinBox->setObjectName("spinBox");
+
+        gridLayout_4->addWidget(spinBox, 1, 2, 1, 1);
+
         label_8 = new QLabel(ednaPage);
         label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(10, 170, 111, 61));
-        QFont font6;
-        font6.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font6.setPointSize(20);
-        font6.setBold(true);
-        label_8->setFont(font6);
-        frame = new QFrame(ednaPage);
-        frame->setObjectName("frame");
-        frame->setGeometry(QRect(140, 160, 120, 80));
-        frame->setFrameShape(QFrame::Shape::WinPanel);
-        frame->setFrameShadow(QFrame::Shadow::Plain);
-        frame->setLineWidth(1);
-        lcdNumber = new QLCDNumber(frame);
-        lcdNumber->setObjectName("lcdNumber");
-        lcdNumber->setGeometry(QRect(-80, 10, 161, 61));
-        lcdNumber->setFrameShape(QFrame::Shape::NoFrame);
-        label_2 = new QLabel(frame);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(80, 10, 58, 61));
-        QFont font7;
-        font7.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font7.setPointSize(35);
-        label_2->setFont(font7);
-        frame_2 = new QFrame(ednaPage);
-        frame_2->setObjectName("frame_2");
-        frame_2->setGeometry(QRect(140, 270, 120, 80));
-        frame_2->setFrameShape(QFrame::Shape::WinPanel);
-        frame_2->setFrameShadow(QFrame::Shadow::Plain);
-        frame_2->setLineWidth(1);
-        lcdNumber_2 = new QLCDNumber(frame_2);
-        lcdNumber_2->setObjectName("lcdNumber_2");
-        lcdNumber_2->setGeometry(QRect(-80, 10, 161, 61));
-        lcdNumber_2->setFrameShape(QFrame::Shape::NoFrame);
-        label_3 = new QLabel(frame_2);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(80, 10, 58, 61));
-        label_3->setFont(font7);
-        label_7 = new QLabel(ednaPage);
-        label_7->setObjectName("label_7");
-        label_7->setGeometry(QRect(10, 280, 111, 61));
-        label_7->setFont(font6);
-        frame_3 = new QFrame(ednaPage);
-        frame_3->setObjectName("frame_3");
-        frame_3->setGeometry(QRect(500, 160, 120, 80));
-        frame_3->setFrameShape(QFrame::Shape::WinPanel);
-        frame_3->setFrameShadow(QFrame::Shadow::Plain);
-        frame_3->setLineWidth(1);
-        lcdNumber_3 = new QLCDNumber(frame_3);
-        lcdNumber_3->setObjectName("lcdNumber_3");
-        lcdNumber_3->setGeometry(QRect(-80, 10, 161, 61));
-        lcdNumber_3->setFrameShape(QFrame::Shape::NoFrame);
-        label_5 = new QLabel(frame_3);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(80, 10, 58, 61));
-        label_5->setFont(font7);
-        label_6 = new QLabel(ednaPage);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(370, 170, 111, 61));
-        label_6->setFont(font6);
-        frame_4 = new QFrame(ednaPage);
-        frame_4->setObjectName("frame_4");
-        frame_4->setGeometry(QRect(500, 270, 120, 80));
-        frame_4->setFrameShape(QFrame::Shape::WinPanel);
-        frame_4->setFrameShadow(QFrame::Shadow::Plain);
-        frame_4->setLineWidth(1);
-        lcdNumber_4 = new QLCDNumber(frame_4);
-        lcdNumber_4->setObjectName("lcdNumber_4");
-        lcdNumber_4->setGeometry(QRect(-80, 10, 161, 61));
-        lcdNumber_4->setFrameShape(QFrame::Shape::NoFrame);
-        label_4 = new QLabel(frame_4);
+        label_8->setFont(font5);
+        label_8->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_8, 3, 4, 1, 1);
+
+        spinBox_6 = new QSpinBox(ednaPage);
+        spinBox_6->setObjectName("spinBox_6");
+
+        gridLayout_4->addWidget(spinBox_6, 1, 5, 1, 1);
+
+        label_4 = new QLabel(ednaPage);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(80, 10, 58, 61));
-        label_4->setFont(font7);
+        label_4->setFont(font5);
+        label_4->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_4, 4, 1, 1, 1);
+
+        spinBox_7 = new QSpinBox(ednaPage);
+        spinBox_7->setObjectName("spinBox_7");
+
+        gridLayout_4->addWidget(spinBox_7, 2, 5, 1, 1);
+
+        lcdNumber_3 = new QLCDNumber(ednaPage);
+        lcdNumber_3->setObjectName("lcdNumber_3");
+        lcdNumber_3->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_3, 3, 3, 1, 1);
+
+        label_3 = new QLabel(ednaPage);
+        label_3->setObjectName("label_3");
+        label_3->setFont(font5);
+        label_3->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_3, 3, 1, 1, 1);
+
         label = new QLabel(ednaPage);
         label->setObjectName("label");
-        label->setGeometry(QRect(370, 280, 111, 61));
-        label->setFont(font6);
+        label->setFont(font5);
+        label->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label, 1, 4, 1, 1);
+
+        label_12 = new QLabel(ednaPage);
+        label_12->setObjectName("label_12");
+        QFont font6;
+        font6.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font6.setPointSize(30);
+        font6.setBold(false);
+        font6.setItalic(true);
+        font6.setUnderline(false);
+        label_12->setFont(font6);
+        label_12->setFrameShape(QFrame::Shape::NoFrame);
+
+        gridLayout_4->addWidget(label_12, 0, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+
+        lcdNumber = new QLCDNumber(ednaPage);
+        lcdNumber->setObjectName("lcdNumber");
+        lcdNumber->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber, 1, 3, 1, 1);
+
         homePageButton_4 = new QToolButton(ednaPage);
         homePageButton_4->setObjectName("homePageButton_4");
-        homePageButton_4->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_4->setMinimumSize(QSize(40, 30));
         homePageButton_4->setMaximumSize(QSize(40, 30));
         homePageButton_4->setFont(font5);
@@ -490,6 +512,146 @@ public:
         homePageButton_4->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_4->setAutoRaise(true);
         homePageButton_4->setArrowType(Qt::ArrowType::LeftArrow);
+
+        gridLayout_4->addWidget(homePageButton_4, 0, 0, 1, 1);
+
+        lcdNumber_6 = new QLCDNumber(ednaPage);
+        lcdNumber_6->setObjectName("lcdNumber_6");
+        lcdNumber_6->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_6, 5, 3, 1, 1);
+
+        spinBox_9 = new QSpinBox(ednaPage);
+        spinBox_9->setObjectName("spinBox_9");
+
+        gridLayout_4->addWidget(spinBox_9, 4, 5, 1, 1);
+
+        lcdNumber_11 = new QLCDNumber(ednaPage);
+        lcdNumber_11->setObjectName("lcdNumber_11");
+        lcdNumber_11->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_11, 5, 6, 1, 1);
+
+        label_10 = new QLabel(ednaPage);
+        label_10->setObjectName("label_10");
+        label_10->setFont(font5);
+        label_10->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_10, 4, 4, 1, 1);
+
+        label_14 = new QLabel(ednaPage);
+        label_14->setObjectName("label_14");
+        QFont font7;
+        font7.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font7.setPointSize(30);
+        label_14->setFont(font7);
+
+        gridLayout_4->addWidget(label_14, 0, 3, 1, 1, Qt::AlignmentFlag::AlignHCenter);
+
+        label_5 = new QLabel(ednaPage);
+        label_5->setObjectName("label_5");
+        label_5->setFont(font5);
+        label_5->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_5, 5, 1, 1, 1);
+
+        spinBox_3 = new QSpinBox(ednaPage);
+        spinBox_3->setObjectName("spinBox_3");
+
+        gridLayout_4->addWidget(spinBox_3, 3, 2, 1, 1);
+
+        label_13 = new QLabel(ednaPage);
+        label_13->setObjectName("label_13");
+        label_13->setFont(font7);
+
+        gridLayout_4->addWidget(label_13, 0, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+
+        spinBox_8 = new QSpinBox(ednaPage);
+        spinBox_8->setObjectName("spinBox_8");
+
+        gridLayout_4->addWidget(spinBox_8, 3, 5, 1, 1);
+
+        spinBox_2 = new QSpinBox(ednaPage);
+        spinBox_2->setObjectName("spinBox_2");
+
+        gridLayout_4->addWidget(spinBox_2, 2, 2, 1, 1);
+
+        spinBox_4 = new QSpinBox(ednaPage);
+        spinBox_4->setObjectName("spinBox_4");
+
+        gridLayout_4->addWidget(spinBox_4, 4, 2, 1, 1);
+
+        label_2 = new QLabel(ednaPage);
+        label_2->setObjectName("label_2");
+        label_2->setFont(font5);
+        label_2->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_2, 2, 1, 1, 1);
+
+        lcdNumber_10 = new QLCDNumber(ednaPage);
+        lcdNumber_10->setObjectName("lcdNumber_10");
+        lcdNumber_10->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_10, 4, 6, 1, 1);
+
+        label_6 = new QLabel(ednaPage);
+        label_6->setObjectName("label_6");
+        label_6->setFont(font5);
+        label_6->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_6, 1, 1, 1, 1);
+
+        label_7 = new QLabel(ednaPage);
+        label_7->setObjectName("label_7");
+        label_7->setFont(font5);
+        label_7->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_4->addWidget(label_7, 2, 4, 1, 1);
+
+        lcdNumber_9 = new QLCDNumber(ednaPage);
+        lcdNumber_9->setObjectName("lcdNumber_9");
+        lcdNumber_9->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_9, 3, 6, 1, 1);
+
+        lcdNumber_8 = new QLCDNumber(ednaPage);
+        lcdNumber_8->setObjectName("lcdNumber_8");
+        lcdNumber_8->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_8, 2, 6, 1, 1);
+
+        lcdNumber_2 = new QLCDNumber(ednaPage);
+        lcdNumber_2->setObjectName("lcdNumber_2");
+        lcdNumber_2->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_2, 2, 3, 1, 1);
+
+        lcdNumber_7 = new QLCDNumber(ednaPage);
+        lcdNumber_7->setObjectName("lcdNumber_7");
+        lcdNumber_7->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_7, 1, 6, 1, 1);
+
+        lcdNumber_4 = new QLCDNumber(ednaPage);
+        lcdNumber_4->setObjectName("lcdNumber_4");
+        lcdNumber_4->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_4->addWidget(lcdNumber_4, 4, 3, 1, 1);
+
+        spinBox_10 = new QSpinBox(ednaPage);
+        spinBox_10->setObjectName("spinBox_10");
+
+        gridLayout_4->addWidget(spinBox_10, 5, 5, 1, 1);
+
+        pushButton_2 = new QPushButton(ednaPage);
+        pushButton_2->setObjectName("pushButton_2");
+        QFont font8;
+        font8.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font8.setPointSize(20);
+        pushButton_2->setFont(font8);
+
+        gridLayout_4->addWidget(pushButton_2, 0, 4, 1, 1);
+
         stackedWidget->addWidget(ednaPage);
         floatPage = new QWidget();
         floatPage->setObjectName("floatPage");
@@ -532,7 +694,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(4);
         comboBox->setCurrentIndex(0);
 
 
@@ -567,15 +729,21 @@ public:
         homePageButton->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_2->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_3->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "Organism 1", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
-        label_7->setText(QCoreApplication::translate("MainWindow", "Organism 2", nullptr));
-        label_5->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "Organism 3", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Organism 4", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "Daisy Brittle Star", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "European Green Crab", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "Sea Urchin", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Western Atlantic Hairy Hermit Crab", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Jonah Crab", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow", "Species Name", nullptr));
         homePageButton_4->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "Boreal Sea Star", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "Rock Crab", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "#", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Acadian Hermit Crab", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "Snow Crab", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "Spiny Sunstar", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Calculate Percentage", nullptr));
         homePageButton_5->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_6->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));

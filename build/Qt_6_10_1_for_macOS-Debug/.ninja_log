@@ -21,3 +21,9 @@
 26	96	1770254260715290589	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
 96	1399	1770254260785667043	CMakeFiles/GUI.dir/mainwindow.cpp.o	4cef1d56af614cb8
 1399	1575	1770254262088646721	GUI.app/Contents/MacOS/GUI	53dab750debf3d02
+98	147	1770305770272052716	GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+98	147	1770305770272052716	GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+98	147	1770305770272052716	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/timestamp	c0cd29cf4ee0f8d7
+98	147	1770305770272052716	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/mocs_compilation.cpp	c0cd29cf4ee0f8d7
+147	1503	1770305770321219373	CMakeFiles/GUI.dir/mainwindow.cpp.o	4cef1d56af614cb8
+1503	1708	1770305771677200820	GUI.app/Contents/MacOS/GUI	53dab750debf3d02
