@@ -650,10 +650,10 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="5" column="2">
-         <widget class="QSpinBox" name="spinBox_5"/>
+         <widget class="QSpinBox" name="spinBoxRock"/>
         </item>
         <item row="1" column="2">
-         <widget class="QSpinBox" name="spinBox"/>
+         <widget class="QSpinBox" name="spinBoxSnow"/>
         </item>
         <item row="3" column="4">
          <widget class="QLabel" name="label_8">
@@ -671,7 +671,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="1" column="5">
-         <widget class="QSpinBox" name="spinBox_6"/>
+         <widget class="QSpinBox" name="spinBoxJonah"/>
         </item>
         <item row="4" column="1">
          <widget class="QLabel" name="label_4">
@@ -689,12 +689,18 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="2" column="5">
-         <widget class="QSpinBox" name="spinBox_7"/>
+         <widget class="QSpinBox" name="spinBoxSunstar"/>
         </item>
         <item row="3" column="3">
-         <widget class="QLCDNumber" name="lcdNumber_3">
+         <widget class="QLCDNumber" name="hairyCrabPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
@@ -748,9 +754,21 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="1" column="3">
-         <widget class="QLCDNumber" name="lcdNumber">
+         <widget class="QLCDNumber" name="snowCrabPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="mode">
+           <enum>QLCDNumber::Mode::Dec</enum>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
+          </property>
+          <property name="value" stdset="0">
+           <double>10.500000000000000</double>
           </property>
          </widget>
         </item>
@@ -791,19 +809,31 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="5" column="3">
-         <widget class="QLCDNumber" name="lcdNumber_6">
+         <widget class="QLCDNumber" name="rockCrabPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
         <item row="4" column="5">
-         <widget class="QSpinBox" name="spinBox_9"/>
+         <widget class="QSpinBox" name="spinBoxBoreal"/>
         </item>
         <item row="5" column="6">
-         <widget class="QLCDNumber" name="lcdNumber_11">
+         <widget class="QLCDNumber" name="brittlePercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
@@ -851,7 +881,7 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="3" column="2">
-         <widget class="QSpinBox" name="spinBox_3"/>
+         <widget class="QSpinBox" name="spinBoxWestern"/>
         </item>
         <item row="0" column="2" alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop">
          <widget class="QLabel" name="label_13">
@@ -867,13 +897,13 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="3" column="5">
-         <widget class="QSpinBox" name="spinBox_8"/>
+         <widget class="QSpinBox" name="spinBoxGreen"/>
         </item>
         <item row="2" column="2">
-         <widget class="QSpinBox" name="spinBox_2"/>
+         <widget class="QSpinBox" name="spinBoxAcadian"/>
         </item>
         <item row="4" column="2">
-         <widget class="QSpinBox" name="spinBox_4"/>
+         <widget class="QSpinBox" name="spinBoxUrchin"/>
         </item>
         <item row="2" column="1">
          <widget class="QLabel" name="label_2">
@@ -891,9 +921,15 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="4" column="6">
-         <widget class="QLCDNumber" name="lcdNumber_10">
+         <widget class="QLCDNumber" name="borealPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
@@ -928,45 +964,75 @@ font: 14pt &quot;Comic Sans MS&quot;;</string>
          </widget>
         </item>
         <item row="3" column="6">
-         <widget class="QLCDNumber" name="lcdNumber_9">
+         <widget class="QLCDNumber" name="greenCrabPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
         <item row="2" column="6">
-         <widget class="QLCDNumber" name="lcdNumber_8">
+         <widget class="QLCDNumber" name="sunstarPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
         <item row="2" column="3">
-         <widget class="QLCDNumber" name="lcdNumber_2">
+         <widget class="QLCDNumber" name="acadianCrabPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
         <item row="1" column="6">
-         <widget class="QLCDNumber" name="lcdNumber_7">
+         <widget class="QLCDNumber" name="jonahCrabPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
         <item row="4" column="3">
-         <widget class="QLCDNumber" name="lcdNumber_4">
+         <widget class="QLCDNumber" name="urchinPercent">
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="smallDecimalPoint">
+           <bool>true</bool>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Flat</enum>
           </property>
          </widget>
         </item>
         <item row="5" column="5">
-         <widget class="QSpinBox" name="spinBox_10"/>
+         <widget class="QSpinBox" name="spinBoxBrittle"/>
         </item>
         <item row="0" column="4">
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButtonCalcPercent">
           <property name="font">
            <font>
             <family>Comic Sans MS</family>

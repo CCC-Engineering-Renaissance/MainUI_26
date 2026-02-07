@@ -15,14 +15,18 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 protected:
+
     void keyPressEvent(QKeyEvent *event) override;
+
 public:
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 
 
 private slots:
+
     void on_cameraFeedPushButton_clicked();
 
     void on_modelingPushButton_clicked();
@@ -49,7 +53,10 @@ private slots:
 
     void updateTimeLabel();
 
+    void on_pushButtonCalcPercent_clicked();
+
 private:
+
     Ui::MainWindow *ui;
 
 };

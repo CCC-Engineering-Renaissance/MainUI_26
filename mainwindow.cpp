@@ -12,6 +12,9 @@
 #include <QDateTime>
 #include <QTime>
 #include <QString>
+#include <QSpinBox>
+#include <QLCDNumber>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -26,6 +29,7 @@ MainWindow::~MainWindow()
 }
 
     /// User can press escape at any screen to go back to the main menu
+
 void MainWindow::keyPressEvent(QKeyEvent *event){
     ///See if user pressed esc
     if(event->key() == Qt::Key_Escape){
@@ -104,22 +108,11 @@ void MainWindow::on_closeProgramButton_clicked()
 }
 
 
-/// Time Display
-void MainWindow::updateTimeLabel() {
-    // Get the current time
-    QTime time = QTime::currentTime();
-    // Set the time to a string
-    QString timeString = time.toString("hh:mm:ss");
-    // Set label text to current time
-    ui->timeLabel->setText(timeString);
+/// eDNA Percentage Calculator Function
+
+void MainWindow::on_pushButtonCalcPercent_clicked()
+{
+    int snowInput = ui->spinBoxSnow->value();
+    ui->spinBoxSnow->display(snowInput);
 }
 
-// /// Timer for Time display Updates
-// QTimer *timer = new QTimer();
-// // Connect the timer's timeout() signal to a lambda function that updates the label
-// QObject::connect(timer, &QTimer::timeout, [&label]() {
-//     updateTimeLabel(timeLabel);
-// });
-
-// // Start the timer to trigger every 1000 milliseconds (1 second)
-// timer->start(1000);

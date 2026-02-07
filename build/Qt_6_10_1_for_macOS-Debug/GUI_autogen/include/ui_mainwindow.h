@@ -75,40 +75,40 @@ public:
     QWidget *ednaPage;
     QGridLayout *gridLayout_4;
     QLabel *label_11;
-    QSpinBox *spinBox_5;
-    QSpinBox *spinBox;
+    QSpinBox *spinBoxRock;
+    QSpinBox *spinBoxSnow;
     QLabel *label_8;
-    QSpinBox *spinBox_6;
+    QSpinBox *spinBoxJonah;
     QLabel *label_4;
-    QSpinBox *spinBox_7;
-    QLCDNumber *lcdNumber_3;
+    QSpinBox *spinBoxSunstar;
+    QLCDNumber *hairyCrabPercent;
     QLabel *label_3;
     QLabel *label;
     QLabel *label_12;
-    QLCDNumber *lcdNumber;
+    QLCDNumber *snowCrabPercent;
     QToolButton *homePageButton_4;
-    QLCDNumber *lcdNumber_6;
-    QSpinBox *spinBox_9;
-    QLCDNumber *lcdNumber_11;
+    QLCDNumber *rockCrabPercent;
+    QSpinBox *spinBoxBoreal;
+    QLCDNumber *brittlePercent;
     QLabel *label_10;
     QLabel *label_14;
     QLabel *label_5;
-    QSpinBox *spinBox_3;
+    QSpinBox *spinBoxWestern;
     QLabel *label_13;
-    QSpinBox *spinBox_8;
-    QSpinBox *spinBox_2;
-    QSpinBox *spinBox_4;
+    QSpinBox *spinBoxGreen;
+    QSpinBox *spinBoxAcadian;
+    QSpinBox *spinBoxUrchin;
     QLabel *label_2;
-    QLCDNumber *lcdNumber_10;
+    QLCDNumber *borealPercent;
     QLabel *label_6;
     QLabel *label_7;
-    QLCDNumber *lcdNumber_9;
-    QLCDNumber *lcdNumber_8;
-    QLCDNumber *lcdNumber_2;
-    QLCDNumber *lcdNumber_7;
-    QLCDNumber *lcdNumber_4;
-    QSpinBox *spinBox_10;
-    QPushButton *pushButton_2;
+    QLCDNumber *greenCrabPercent;
+    QLCDNumber *sunstarPercent;
+    QLCDNumber *acadianCrabPercent;
+    QLCDNumber *jonahCrabPercent;
+    QLCDNumber *urchinPercent;
+    QSpinBox *spinBoxBrittle;
+    QPushButton *pushButtonCalcPercent;
     QWidget *floatPage;
     QToolButton *homePageButton_5;
     QWidget *settingsPage;
@@ -430,15 +430,15 @@ public:
 
         gridLayout_4->addWidget(label_11, 5, 4, 1, 1);
 
-        spinBox_5 = new QSpinBox(ednaPage);
-        spinBox_5->setObjectName("spinBox_5");
+        spinBoxRock = new QSpinBox(ednaPage);
+        spinBoxRock->setObjectName("spinBoxRock");
 
-        gridLayout_4->addWidget(spinBox_5, 5, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxRock, 5, 2, 1, 1);
 
-        spinBox = new QSpinBox(ednaPage);
-        spinBox->setObjectName("spinBox");
+        spinBoxSnow = new QSpinBox(ednaPage);
+        spinBoxSnow->setObjectName("spinBoxSnow");
 
-        gridLayout_4->addWidget(spinBox, 1, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxSnow, 1, 2, 1, 1);
 
         label_8 = new QLabel(ednaPage);
         label_8->setObjectName("label_8");
@@ -447,10 +447,10 @@ public:
 
         gridLayout_4->addWidget(label_8, 3, 4, 1, 1);
 
-        spinBox_6 = new QSpinBox(ednaPage);
-        spinBox_6->setObjectName("spinBox_6");
+        spinBoxJonah = new QSpinBox(ednaPage);
+        spinBoxJonah->setObjectName("spinBoxJonah");
 
-        gridLayout_4->addWidget(spinBox_6, 1, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxJonah, 1, 5, 1, 1);
 
         label_4 = new QLabel(ednaPage);
         label_4->setObjectName("label_4");
@@ -459,16 +459,18 @@ public:
 
         gridLayout_4->addWidget(label_4, 4, 1, 1, 1);
 
-        spinBox_7 = new QSpinBox(ednaPage);
-        spinBox_7->setObjectName("spinBox_7");
+        spinBoxSunstar = new QSpinBox(ednaPage);
+        spinBoxSunstar->setObjectName("spinBoxSunstar");
 
-        gridLayout_4->addWidget(spinBox_7, 2, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxSunstar, 2, 5, 1, 1);
 
-        lcdNumber_3 = new QLCDNumber(ednaPage);
-        lcdNumber_3->setObjectName("lcdNumber_3");
-        lcdNumber_3->setFrameShadow(QFrame::Shadow::Plain);
+        hairyCrabPercent = new QLCDNumber(ednaPage);
+        hairyCrabPercent->setObjectName("hairyCrabPercent");
+        hairyCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
+        hairyCrabPercent->setSmallDecimalPoint(true);
+        hairyCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_3, 3, 3, 1, 1);
+        gridLayout_4->addWidget(hairyCrabPercent, 3, 3, 1, 1);
 
         label_3 = new QLabel(ednaPage);
         label_3->setObjectName("label_3");
@@ -497,11 +499,15 @@ public:
 
         gridLayout_4->addWidget(label_12, 0, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
-        lcdNumber = new QLCDNumber(ednaPage);
-        lcdNumber->setObjectName("lcdNumber");
-        lcdNumber->setFrameShadow(QFrame::Shadow::Plain);
+        snowCrabPercent = new QLCDNumber(ednaPage);
+        snowCrabPercent->setObjectName("snowCrabPercent");
+        snowCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
+        snowCrabPercent->setSmallDecimalPoint(true);
+        snowCrabPercent->setMode(QLCDNumber::Mode::Dec);
+        snowCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
+        snowCrabPercent->setProperty("value", QVariant(10.500000000000000));
 
-        gridLayout_4->addWidget(lcdNumber, 1, 3, 1, 1);
+        gridLayout_4->addWidget(snowCrabPercent, 1, 3, 1, 1);
 
         homePageButton_4 = new QToolButton(ednaPage);
         homePageButton_4->setObjectName("homePageButton_4");
@@ -515,22 +521,26 @@ public:
 
         gridLayout_4->addWidget(homePageButton_4, 0, 0, 1, 1);
 
-        lcdNumber_6 = new QLCDNumber(ednaPage);
-        lcdNumber_6->setObjectName("lcdNumber_6");
-        lcdNumber_6->setFrameShadow(QFrame::Shadow::Plain);
+        rockCrabPercent = new QLCDNumber(ednaPage);
+        rockCrabPercent->setObjectName("rockCrabPercent");
+        rockCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
+        rockCrabPercent->setSmallDecimalPoint(true);
+        rockCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_6, 5, 3, 1, 1);
+        gridLayout_4->addWidget(rockCrabPercent, 5, 3, 1, 1);
 
-        spinBox_9 = new QSpinBox(ednaPage);
-        spinBox_9->setObjectName("spinBox_9");
+        spinBoxBoreal = new QSpinBox(ednaPage);
+        spinBoxBoreal->setObjectName("spinBoxBoreal");
 
-        gridLayout_4->addWidget(spinBox_9, 4, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxBoreal, 4, 5, 1, 1);
 
-        lcdNumber_11 = new QLCDNumber(ednaPage);
-        lcdNumber_11->setObjectName("lcdNumber_11");
-        lcdNumber_11->setFrameShadow(QFrame::Shadow::Plain);
+        brittlePercent = new QLCDNumber(ednaPage);
+        brittlePercent->setObjectName("brittlePercent");
+        brittlePercent->setFrameShadow(QFrame::Shadow::Plain);
+        brittlePercent->setSmallDecimalPoint(true);
+        brittlePercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_11, 5, 6, 1, 1);
+        gridLayout_4->addWidget(brittlePercent, 5, 6, 1, 1);
 
         label_10 = new QLabel(ednaPage);
         label_10->setObjectName("label_10");
@@ -555,10 +565,10 @@ public:
 
         gridLayout_4->addWidget(label_5, 5, 1, 1, 1);
 
-        spinBox_3 = new QSpinBox(ednaPage);
-        spinBox_3->setObjectName("spinBox_3");
+        spinBoxWestern = new QSpinBox(ednaPage);
+        spinBoxWestern->setObjectName("spinBoxWestern");
 
-        gridLayout_4->addWidget(spinBox_3, 3, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxWestern, 3, 2, 1, 1);
 
         label_13 = new QLabel(ednaPage);
         label_13->setObjectName("label_13");
@@ -566,20 +576,20 @@ public:
 
         gridLayout_4->addWidget(label_13, 0, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
-        spinBox_8 = new QSpinBox(ednaPage);
-        spinBox_8->setObjectName("spinBox_8");
+        spinBoxGreen = new QSpinBox(ednaPage);
+        spinBoxGreen->setObjectName("spinBoxGreen");
 
-        gridLayout_4->addWidget(spinBox_8, 3, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxGreen, 3, 5, 1, 1);
 
-        spinBox_2 = new QSpinBox(ednaPage);
-        spinBox_2->setObjectName("spinBox_2");
+        spinBoxAcadian = new QSpinBox(ednaPage);
+        spinBoxAcadian->setObjectName("spinBoxAcadian");
 
-        gridLayout_4->addWidget(spinBox_2, 2, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxAcadian, 2, 2, 1, 1);
 
-        spinBox_4 = new QSpinBox(ednaPage);
-        spinBox_4->setObjectName("spinBox_4");
+        spinBoxUrchin = new QSpinBox(ednaPage);
+        spinBoxUrchin->setObjectName("spinBoxUrchin");
 
-        gridLayout_4->addWidget(spinBox_4, 4, 2, 1, 1);
+        gridLayout_4->addWidget(spinBoxUrchin, 4, 2, 1, 1);
 
         label_2 = new QLabel(ednaPage);
         label_2->setObjectName("label_2");
@@ -588,11 +598,13 @@ public:
 
         gridLayout_4->addWidget(label_2, 2, 1, 1, 1);
 
-        lcdNumber_10 = new QLCDNumber(ednaPage);
-        lcdNumber_10->setObjectName("lcdNumber_10");
-        lcdNumber_10->setFrameShadow(QFrame::Shadow::Plain);
+        borealPercent = new QLCDNumber(ednaPage);
+        borealPercent->setObjectName("borealPercent");
+        borealPercent->setFrameShadow(QFrame::Shadow::Plain);
+        borealPercent->setSmallDecimalPoint(true);
+        borealPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_10, 4, 6, 1, 1);
+        gridLayout_4->addWidget(borealPercent, 4, 6, 1, 1);
 
         label_6 = new QLabel(ednaPage);
         label_6->setObjectName("label_6");
@@ -608,49 +620,59 @@ public:
 
         gridLayout_4->addWidget(label_7, 2, 4, 1, 1);
 
-        lcdNumber_9 = new QLCDNumber(ednaPage);
-        lcdNumber_9->setObjectName("lcdNumber_9");
-        lcdNumber_9->setFrameShadow(QFrame::Shadow::Plain);
+        greenCrabPercent = new QLCDNumber(ednaPage);
+        greenCrabPercent->setObjectName("greenCrabPercent");
+        greenCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
+        greenCrabPercent->setSmallDecimalPoint(true);
+        greenCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_9, 3, 6, 1, 1);
+        gridLayout_4->addWidget(greenCrabPercent, 3, 6, 1, 1);
 
-        lcdNumber_8 = new QLCDNumber(ednaPage);
-        lcdNumber_8->setObjectName("lcdNumber_8");
-        lcdNumber_8->setFrameShadow(QFrame::Shadow::Plain);
+        sunstarPercent = new QLCDNumber(ednaPage);
+        sunstarPercent->setObjectName("sunstarPercent");
+        sunstarPercent->setFrameShadow(QFrame::Shadow::Plain);
+        sunstarPercent->setSmallDecimalPoint(true);
+        sunstarPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_8, 2, 6, 1, 1);
+        gridLayout_4->addWidget(sunstarPercent, 2, 6, 1, 1);
 
-        lcdNumber_2 = new QLCDNumber(ednaPage);
-        lcdNumber_2->setObjectName("lcdNumber_2");
-        lcdNumber_2->setFrameShadow(QFrame::Shadow::Plain);
+        acadianCrabPercent = new QLCDNumber(ednaPage);
+        acadianCrabPercent->setObjectName("acadianCrabPercent");
+        acadianCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
+        acadianCrabPercent->setSmallDecimalPoint(true);
+        acadianCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_2, 2, 3, 1, 1);
+        gridLayout_4->addWidget(acadianCrabPercent, 2, 3, 1, 1);
 
-        lcdNumber_7 = new QLCDNumber(ednaPage);
-        lcdNumber_7->setObjectName("lcdNumber_7");
-        lcdNumber_7->setFrameShadow(QFrame::Shadow::Plain);
+        jonahCrabPercent = new QLCDNumber(ednaPage);
+        jonahCrabPercent->setObjectName("jonahCrabPercent");
+        jonahCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
+        jonahCrabPercent->setSmallDecimalPoint(true);
+        jonahCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_7, 1, 6, 1, 1);
+        gridLayout_4->addWidget(jonahCrabPercent, 1, 6, 1, 1);
 
-        lcdNumber_4 = new QLCDNumber(ednaPage);
-        lcdNumber_4->setObjectName("lcdNumber_4");
-        lcdNumber_4->setFrameShadow(QFrame::Shadow::Plain);
+        urchinPercent = new QLCDNumber(ednaPage);
+        urchinPercent->setObjectName("urchinPercent");
+        urchinPercent->setFrameShadow(QFrame::Shadow::Plain);
+        urchinPercent->setSmallDecimalPoint(true);
+        urchinPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
 
-        gridLayout_4->addWidget(lcdNumber_4, 4, 3, 1, 1);
+        gridLayout_4->addWidget(urchinPercent, 4, 3, 1, 1);
 
-        spinBox_10 = new QSpinBox(ednaPage);
-        spinBox_10->setObjectName("spinBox_10");
+        spinBoxBrittle = new QSpinBox(ednaPage);
+        spinBoxBrittle->setObjectName("spinBoxBrittle");
 
-        gridLayout_4->addWidget(spinBox_10, 5, 5, 1, 1);
+        gridLayout_4->addWidget(spinBoxBrittle, 5, 5, 1, 1);
 
-        pushButton_2 = new QPushButton(ednaPage);
-        pushButton_2->setObjectName("pushButton_2");
+        pushButtonCalcPercent = new QPushButton(ednaPage);
+        pushButtonCalcPercent->setObjectName("pushButtonCalcPercent");
         QFont font8;
         font8.setFamilies({QString::fromUtf8("Comic Sans MS")});
         font8.setPointSize(20);
-        pushButton_2->setFont(font8);
+        pushButtonCalcPercent->setFont(font8);
 
-        gridLayout_4->addWidget(pushButton_2, 0, 4, 1, 1);
+        gridLayout_4->addWidget(pushButtonCalcPercent, 0, 4, 1, 1);
 
         stackedWidget->addWidget(ednaPage);
         floatPage = new QWidget();
@@ -743,7 +765,7 @@ public:
         label_2->setText(QCoreApplication::translate("MainWindow", "Acadian Hermit Crab", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "Snow Crab", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "Spiny Sunstar", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Calculate Percentage", nullptr));
+        pushButtonCalcPercent->setText(QCoreApplication::translate("MainWindow", "Calculate Percentage", nullptr));
         homePageButton_5->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_6->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
