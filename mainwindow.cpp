@@ -14,6 +14,9 @@
 #include <QString>
 #include <QSpinBox>
 #include <QLCDNumber>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QPixmap>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -21,6 +24,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //image setup
+    QLabel *imageLabel = new QLabel(this);
+    QPixmap pixmap(":/images/rov_logo_complete.png");
+    imageLabel->setPixmap(pixmap);
 }
 
 MainWindow::~MainWindow()
