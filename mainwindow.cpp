@@ -24,16 +24,17 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui->setupUi(this);    resize(1200, 800);
+    setMinimumSize(900, 600);
 
     //image setup
-    QPixmap pixmap(":/images/rov_logo_complete.png");
+    QPixmap pixmap(":/images/images/rov_logo_complete.png");
     //ui->crush_label->setPixmap(pixmap);
     if(pixmap.isNull()){
         ui->crush_label->setText("Error: Logo not found!");
     }else{
-        int maxWidth = 200;
-        int maxHeight = 400;
+        int maxWidth = 250;
+        int maxHeight = 250;
         QPixmap scaledPixmap = pixmap.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         ui->crush_label->setPixmap(scaledPixmap);
         ui->crush_label->setAlignment(Qt::AlignCenter);

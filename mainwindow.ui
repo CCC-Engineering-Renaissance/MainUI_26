@@ -2,19 +2,28 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModality::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>662</height>
+    <width>1938</width>
+    <height>1115</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainTab</string>
@@ -32,14 +41,29 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>900</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>1600</width>
+        <height>1000</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -47,7 +71,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgba(150, 183, 255, 20);</string>
+       <string notr="true">background-color:  rgb(11, 20, 83)</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::Box</enum>
@@ -59,237 +83,572 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="mainMenu">
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="2" column="2">
-         <widget class="QPushButton" name="closeProgramButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-            <italic>false</italic>
-            <bold>true</bold>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-            <kerning>true</kerning>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Close Program</string>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="icebergPushButton">
-          <property name="minimumSize">
-           <size>
-            <width>220</width>
-            <height>140</height>
-           </size>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>220</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-            <italic>false</italic>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Iceberg Data</string>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::SystemSearch"/>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignHCenter">
-         <widget class="QLabel" name="label_9">
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>MATE ROV 2026</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButton">
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Settings</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="modelingPushButton">
-          <property name="minimumSize">
-           <size>
-            <width>220</width>
-            <height>140</height>
-           </size>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>220</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>3D Modeling</string>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::CameraVideo"/>
-          </property>
-         </widget>
-        </item>
+       <property name="styleSheet">
+        <string notr="true">#mainMenu {
+	
+	border-image: url(:/images/images/bubbles_and_animals.png);
+}</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_13">
         <item row="0" column="0">
-         <widget class="QPushButton" name="cameraFeedPushButton">
-          <property name="minimumSize">
-           <size>
-            <width>220</width>
-            <height>140</height>
-           </size>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>220</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Camera Feed 
-Image Recon</string>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::MediaRecord"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="floatPushButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>220</width>
-            <height>140</height>
-           </size>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>220</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-            <italic>false</italic>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Float</string>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::SoftwareUpdateAvailable"/>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_22">
+            <property name="spacing">
+             <number>70</number>
+            </property>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="modelingPushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Aileron</family>
+                <pointsize>25</pointsize>
+               </font>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    background-color: rgb(44,181,222); /* A nice green color */
+    color: rgb(255, 255, 255);             
+    border-radius: 125px;       /* This curves the corners! */
+    padding: 5px;              /* Gives the text some breathing room */
+	border: 5px solid white;	
+	border-color: rgb(152, 199, 65);
+}
+</string>
+              </property>
+              <property name="text">
+               <string>3D Modeling</string>
+              </property>
+              <property name="icon">
+               <iconset theme="QIcon::ThemeIcon::CameraVideo"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="icebergPushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>220</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Aileron</family>
+                <pointsize>25</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    background-color: rgb(44,181,222); /* A nice green color */
+    color: rgb(255, 255, 255);             
+    border-radius: 125px;       /* This curves the corners! */
+    padding: 5px;              /* Gives the text some breathing room */
+	border: 5px solid white;	
+	border-color: rgb(152, 199, 65);
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Iceberg Data</string>
+              </property>
+              <property name="icon">
+               <iconset theme="QIcon::ThemeIcon::SystemSearch"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <property name="spacing">
+             <number>50</number>
+            </property>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ednaPushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>220</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Aileron</family>
+                <pointsize>25</pointsize>
+               </font>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    background-color: rgb(44,181,222); /* A nice green color */
+    color: rgb(255, 255, 255);             
+    border-radius: 125px;       /* This curves the corners! */
+    padding: 5px;              /* Gives the text some breathing room */
+	border: 5px solid white;	
+	border-color: rgb(152, 199, 65);
+}
+</string>
+              </property>
+              <property name="text">
+               <string>eDNA</string>
+              </property>
+              <property name="icon">
+               <iconset theme="QIcon::ThemeIcon::MediaFlash"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="crush_label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: transparent;
+border: none;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="floatPushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>220</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Aileron</family>
+                <pointsize>25</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    background-color: rgb(44,181,222); /* A nice green color */
+    color: rgb(255, 255, 255);             
+    border-radius: 125px;       /* This curves the corners! */
+    padding: 5px;              /* Gives the text some breathing room */
+	border: 5px solid white;	
+	border-color: rgb(152, 199, 65);
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Float</string>
+              </property>
+              <property name="icon">
+               <iconset theme="QIcon::ThemeIcon::SoftwareUpdateAvailable"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cameraFeedPushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="sizeIncrement">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>250</width>
+                <height>250</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Aileron</family>
+                <pointsize>25</pointsize>
+               </font>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    background-color: rgb(44,181,222); /* A nice green color */
+    color: rgb(255, 255, 255);             
+    border-radius: 125px;       /* This curves the corners! */
+    padding: 5px;              /* Gives the text some breathing room */
+	border: 5px solid white;	
+	border-color: rgb(152, 199, 65);
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Video Feed</string>
+              </property>
+              <property name="icon">
+               <iconset theme="QIcon::ThemeIcon::MediaRecord"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_7">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="ednaPushButton">
-          <property name="minimumSize">
-           <size>
-            <width>220</width>
-            <height>140</height>
-           </size>
-          </property>
-          <property name="baseSize">
-           <size>
-            <width>220</width>
-            <height>100</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-            <pointsize>30</pointsize>
-           </font>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>eDNA Analysis</string>
-          </property>
-          <property name="icon">
-           <iconset theme="QIcon::ThemeIcon::MediaFlash"/>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_23">
+          <item>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Aileron</family>
+              <pointsize>30</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: rgb(44,181,222); /* A nice green color */
+    color: rgb(0, 0, 0);              /* White text */
+    border-radius: 10px;       /* This curves the corners! */
+    padding: 5px;              /* Gives the text some breathing room */
+	border: 5px solid white;	
+	border-color: rgb(152, 199, 65);
+}
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_31">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Policy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>1350</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="closeProgramButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Aileron</family>
+              <pointsize>30</pointsize>
+              <italic>false</italic>
+              <bold>true</bold>
+              <underline>false</underline>
+              <strikeout>false</strikeout>
+              <kerning>true</kerning>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: rgb(44,181,222); /* A nice green color */
+    color: rgb(0, 0, 0);              /* White text */
+    border-radius: 10px;       /* This curves the corners! */
+    padding: 5px;              /* Gives the text some breathing room */
+	border: 5px solid white;	
+	border-color: rgb(152, 199, 65);
+}
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::ApplicationExit"/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>50</width>
+              <height>50</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_30">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
@@ -307,6 +666,22 @@ Image Recon</string>
            <number>2</number>
           </property>
           <layout class="QGridLayout" name="gridLayout">
+           <item row="2" column="0">
+            <widget class="QPushButton" name="leftCamButton">
+             <property name="font">
+              <font>
+               <family>Comic Sans MS</family>
+               <kerning>true</kerning>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">selection-color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Left</string>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="1">
             <widget class="QPushButton" name="botCamButton">
              <property name="font">
@@ -320,6 +695,22 @@ Image Recon</string>
              </property>
              <property name="text">
               <string>Bottom</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QPushButton" name="rightCamButton">
+             <property name="font">
+              <font>
+               <family>Comic Sans MS</family>
+               <kerning>true</kerning>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">selection-color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="text">
+              <string>Right</string>
              </property>
             </widget>
            </item>
@@ -352,38 +743,6 @@ Image Recon</string>
              </property>
              <property name="text">
               <string>Back</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="leftCamButton">
-             <property name="font">
-              <font>
-               <family>Comic Sans MS</family>
-               <kerning>true</kerning>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">selection-color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Left</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QPushButton" name="rightCamButton">
-             <property name="font">
-              <font>
-               <family>Comic Sans MS</family>
-               <kerning>true</kerning>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">selection-color: rgb(255, 255, 255);</string>
-             </property>
-             <property name="text">
-              <string>Right</string>
              </property>
             </widget>
            </item>
@@ -454,22 +813,6 @@ Image Recon</string>
             </widget>
            </item>
           </layout>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="3">
-         <widget class="QGraphicsView" name="graphicsView">
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>3</number>
-          </property>
-          <property name="midLineWidth">
-           <number>0</number>
-          </property>
          </widget>
         </item>
         <item row="3" column="0" colspan="2">
@@ -568,6 +911,22 @@ Image Recon</string>
           </property>
           <property name="arrowType">
            <enum>Qt::ArrowType::LeftArrow</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QGraphicsView" name="graphicsView">
+          <property name="frameShape">
+           <enum>QFrame::Shape::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>3</number>
+          </property>
+          <property name="midLineWidth">
+           <number>0</number>
           </property>
          </widget>
         </item>
@@ -1283,19 +1642,6 @@ Image Recon</string>
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>839</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="defaultUp">
-    <bool>true</bool>
-   </property>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">

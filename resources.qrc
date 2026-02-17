@@ -1,6 +1,9 @@
 <RCC>
     <qresource prefix="/images">
-        <file>rov_logo_complete.png</file>
+        <file>images/crush_background.jpg</file>
+        <file>images/rov_logo_complete.png</file>
+        <file>images/mate_sea.png</file>
+        <file>images/bubbles_and_animals.png</file>
     </qresource>
     <qresource prefix="/font">
         <file>fonts/aileron.black.otf</file>
