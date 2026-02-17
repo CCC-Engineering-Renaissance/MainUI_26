@@ -17,6 +17,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QPixmap>
+#include <QFontDatabase>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -26,9 +27,29 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //image setup
-    QLabel *imageLabel = new QLabel(this);
     QPixmap pixmap(":/images/rov_logo_complete.png");
-    imageLabel->setPixmap(pixmap);
+    //ui->crush_label->setPixmap(pixmap);
+    if(pixmap.isNull()){
+        ui->crush_label->setText("Error: Logo not found!");
+    }else{
+        int maxWidth = 200;
+        int maxHeight = 400;
+        QPixmap scaledPixmap = pixmap.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        ui->crush_label->setPixmap(scaledPixmap);
+        ui->crush_label->setAlignment(Qt::AlignCenter);
+    }
+
+    //font correction
+    int fontId = QFontDatabase::addApplicationFont(":/font/fonts/aileron.black.otf");
+
+    // 2. Check if it worked
+    if (fontId == -1) {
+        qDebug() << "Warning: Custom font failed to load from resources!";
+    } else {
+        // 3. Get the official "Family Name" so you know exactly what to call it in your CSS
+        QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+        qDebug() << "Success! The font family name is:" << fontFamily;
+    }
 }
 
 MainWindow::~MainWindow()

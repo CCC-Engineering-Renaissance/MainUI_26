@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>rov_logo_complete.png</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>fonts/aileron.black.otf</file>
+    </qresource>
+</RCC>
