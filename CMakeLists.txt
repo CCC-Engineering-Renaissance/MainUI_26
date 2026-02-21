@@ -14,23 +14,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia MultimediaWidgets)
 
 
-# 1. Define where the files are in your source code
-set(COLMAP_SOURCE_DIR "${CMAKE_SOURCE_DIR}/tools/COLMAP")
-
-# 2. Define where they should go in your build output
-if(APPLE)
-    set(COLMAP_DEST_DIR "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents/Resources/colmap")
-else()
-    set(COLMAP_DEST_DIR "${CMAKE_BINARY_DIR}/tools/colmap")
-endif()
-
-# 3. Copy the folder after your app finishes building
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${COLMAP_SOURCE_DIR}
-    ${COLMAP_DEST_DIR}
-    COMMENT "Copying COLMAP to build directory..."
-)
 
 
 set(PROJECT_SOURCES
