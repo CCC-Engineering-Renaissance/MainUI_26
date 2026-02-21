@@ -8,6 +8,7 @@
 #include <QProgressBar>
 #include <QPushButton>
 #include <QTextEdit>
+#include <QScrollBar>
 
 PhotogrammetryWidget::PhotogrammetryWidget(QWidget *parent)
     : QWidget(parent), m_runner(new ColmapRunner(this)) {
