@@ -499,7 +499,8 @@
 		"/Users/polar/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"/Users/polar/Qt/6.10.1/macos/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"/Users/polar/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
-		"/Users/polar/Qt/6.10.1/macos/lib/cmake/Qt6/macos/Info.plist.app.in"
+		"/Users/polar/Qt/6.10.1/macos/lib/cmake/Qt6/macos/Info.plist.app.in",
+		"/Users/polar/Qt/GUI/resources.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "/Users/polar/Qt/GUI",
 	"CROSS_CONFIG" : false,
@@ -507,6 +508,12 @@
 	"DEP_FILE_RULE_NAME" : "GUI_autogen/timestamp",
 	"HEADERS" : 
 	[
+		[
+			"/Users/polar/Qt/GUI/ColmapUtils.h",
+			"MU",
+			"EWIEGA46WW/moc_ColmapUtils.cpp",
+			null
+		],
 		[
 			"/Users/polar/Qt/GUI/mainwindow.h",
 			"MU",
