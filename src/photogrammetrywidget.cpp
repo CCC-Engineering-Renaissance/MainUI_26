@@ -9,10 +9,13 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <QScrollBar>
+#include <QTCore>
+
 
 PhotogrammetryWidget::PhotogrammetryWidget(QWidget *parent)
     : QWidget(parent), m_runner(new ColmapRunner(this)) {
   setupUI();
+    QString base = QCoreApplication::applicationDirPath();
 
   // Wire up runner signals
   connect(m_runner, &ColmapRunner::stepStarted, this,
@@ -28,10 +31,9 @@ PhotogrammetryWidget::PhotogrammetryWidget(QWidget *parent)
 
   // Point to your COLMAP binary and working paths
   // In production you'd make these configurable in the UI or a settings file
-  m_runner->setColmapPath("./colmap/colmap.exe");
-
-  m_runner->setWorkspacePath("./workspace");
-  m_runner->setImagePath("./workspace/images");
+  m_runner->setColmapPath(base + "./tools/COLMAP.bat");
+  m_runner->setWorkspacePath(base + "./workspace");
+  m_runner->setImagePath(base + "./workspace/images");
 }
 
 void PhotogrammetryWidget::setupUI() {
