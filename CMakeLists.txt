@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 3.16)
 
 project(GUI VERSION 0.1 LANGUAGES CXX)
@@ -12,8 +13,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia MultimediaWidgets)
-
-
 
 
 set(PROJECT_SOURCES
@@ -65,6 +64,7 @@ set_target_properties(GUI PROPERTIES
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    OUTPUT_NAME "MainUI_26"
 )
 
 include(GNUInstallDirs)
@@ -77,10 +77,3 @@ install(TARGETS GUI
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GUI)
 endif()
-
-add_custom_command(TARGET MainUI_26 POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/COLMAP
-        $<TARGET_FILE_DIR:MainUI_26>/COLMAP
-
-)
