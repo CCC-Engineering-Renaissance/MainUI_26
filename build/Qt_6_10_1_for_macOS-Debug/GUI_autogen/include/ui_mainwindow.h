@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
@@ -20,11 +19,10 @@
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -38,36 +36,50 @@ public:
     QVBoxLayout *verticalLayout_2;
     QStackedWidget *stackedWidget;
     QWidget *mainMenu;
-    QGridLayout *gridLayout_3;
-    QPushButton *closeProgramButton;
-    QPushButton *icebergPushButton;
-    QLabel *label_9;
-    QPushButton *pushButton;
+    QGridLayout *gridLayout_13;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_22;
+    QSpacerItem *horizontalSpacer;
     QPushButton *modelingPushButton;
-    QPushButton *cameraFeedPushButton;
-    QPushButton *floatPushButton;
+    QPushButton *icebergPushButton;
+    QSpacerItem *horizontalSpacer_2;
+    QHBoxLayout *horizontalLayout_5;
+    QSpacerItem *horizontalSpacer_3;
     QPushButton *ednaPushButton;
+    QLabel *crush_label;
+    QPushButton *floatPushButton;
+    QSpacerItem *horizontalSpacer_4;
+    QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer_6;
+    QPushButton *cameraFeedPushButton;
+    QSpacerItem *horizontalSpacer_7;
+    QHBoxLayout *horizontalLayout_23;
+    QSpacerItem *horizontalSpacer_8;
+    QPushButton *pushButton;
+    QSpacerItem *horizontalSpacer_31;
+    QPushButton *closeProgramButton;
+    QSpacerItem *horizontalSpacer_30;
     QWidget *cameraPage;
     QGridLayout *gridLayout_2;
-    QFrame *droneMap;
-    QGridLayout *gridLayout;
-    QPushButton *botCamButton;
-    QPushButton *frontCamButton;
-    QPushButton *backCamButton;
-    QPushButton *leftCamButton;
-    QPushButton *rightCamButton;
+    QToolButton *homePageButton;
     QLabel *camName;
     QFrame *frame_6;
     QHBoxLayout *horizontalLayout_3;
     QLabel *latencyLabel;
     QLabel *timeLabel;
-    QGraphicsView *graphicsView;
     QFrame *frame_5;
-    QHBoxLayout *horizontalLayout;
-    QComboBox *comboBox;
-    QPushButton *scanCrabButton;
-    QLCDNumber *lcdNumber_5;
-    QToolButton *homePageButton;
+    QGridLayout *gridLayout_3;
+    QLabel *label_9;
+    QLCDNumber *lcdNumber_3;
+    QGraphicsView *graphicsView;
+    QFrame *droneMap;
+    QGridLayout *gridLayout;
+    QPushButton *leftCamButton;
+    QPushButton *botCamButton;
+    QPushButton *rightCamButton;
+    QPushButton *frontCamButton;
+    QPushButton *backCamButton;
+    QSpacerItem *horizontalSpacer_5;
     QWidget *modelingPage;
     QToolButton *homePageButton_2;
     QWidget *icebergPage;
@@ -113,45 +125,271 @@ public:
     QToolButton *homePageButton_5;
     QWidget *settingsPage;
     QToolButton *homePageButton_6;
-    QMenuBar *menubar;
-    QToolBar *toolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(839, 662);
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
+        MainWindow->setWindowModality(Qt::WindowModality::NonModal);
+        MainWindow->resize(1200, 800);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMinimumSize(QSize(1200, 800));
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::WeatherStorm));
         MainWindow->setWindowIcon(icon);
         MainWindow->setAnimated(false);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        QSizePolicy sizePolicy1(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(centralwidget->sizePolicy().hasHeightForWidth());
-        centralwidget->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(centralwidget->sizePolicy().hasHeightForWidth());
+        centralwidget->setSizePolicy(sizePolicy);
+        centralwidget->setAutoFillBackground(false);
         verticalLayout_2 = new QVBoxLayout(centralwidget);
         verticalLayout_2->setObjectName("verticalLayout_2");
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName("stackedWidget");
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(stackedWidget->sizePolicy().hasHeightForWidth());
         stackedWidget->setSizePolicy(sizePolicy1);
+        stackedWidget->setMinimumSize(QSize(900, 600));
+        stackedWidget->setMaximumSize(QSize(1600, 1000));
         QFont font;
         font.setPointSize(20);
         stackedWidget->setFont(font);
-        stackedWidget->setStyleSheet(QString::fromUtf8("background-color: rgba(150, 183, 255, 20);"));
+        stackedWidget->setStyleSheet(QString::fromUtf8("#stackedWidget{\n"
+"	border-image: url(:/images/images/bubbles_and_animals.png);\n"
+"}\n"
+"\n"
+""));
         stackedWidget->setFrameShape(QFrame::Shape::Box);
         stackedWidget->setLineWidth(2);
         mainMenu = new QWidget();
         mainMenu->setObjectName("mainMenu");
-        gridLayout_3 = new QGridLayout(mainMenu);
-        gridLayout_3->setObjectName("gridLayout_3");
+        mainMenu->setStyleSheet(QString::fromUtf8("#mainMenu {\n"
+"	\n"
+"	border-image: url(:/images/images/bubbles_and_animals.png);\n"
+"}"));
+        gridLayout_13 = new QGridLayout(mainMenu);
+        gridLayout_13->setObjectName("gridLayout_13");
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
+        horizontalLayout_22 = new QHBoxLayout();
+        horizontalLayout_22->setSpacing(70);
+        horizontalLayout_22->setObjectName("horizontalLayout_22");
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_22->addItem(horizontalSpacer);
+
+        modelingPushButton = new QPushButton(mainMenu);
+        modelingPushButton->setObjectName("modelingPushButton");
+        sizePolicy1.setHeightForWidth(modelingPushButton->sizePolicy().hasHeightForWidth());
+        modelingPushButton->setSizePolicy(sizePolicy1);
+        modelingPushButton->setMinimumSize(QSize(250, 250));
+        modelingPushButton->setMaximumSize(QSize(250, 250));
+        modelingPushButton->setBaseSize(QSize(250, 250));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Aileron")});
+        font1.setPointSize(25);
+        modelingPushButton->setFont(font1);
+        modelingPushButton->setAutoFillBackground(false);
+        modelingPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(44,181,222); /* A nice green color */\n"
+"    color: rgb(255, 255, 255);             \n"
+"    border-radius: 125px;       /* This curves the corners! */\n"
+"    padding: 5px;              /* Gives the text some breathing room */\n"
+"	border: 5px solid white;	\n"
+"	border-color: rgb(152, 199, 65);\n"
+"}\n"
+""));
+        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::CameraVideo));
+        modelingPushButton->setIcon(icon1);
+
+        horizontalLayout_22->addWidget(modelingPushButton);
+
+        icebergPushButton = new QPushButton(mainMenu);
+        icebergPushButton->setObjectName("icebergPushButton");
+        sizePolicy1.setHeightForWidth(icebergPushButton->sizePolicy().hasHeightForWidth());
+        icebergPushButton->setSizePolicy(sizePolicy1);
+        icebergPushButton->setMinimumSize(QSize(250, 250));
+        icebergPushButton->setMaximumSize(QSize(250, 250));
+        icebergPushButton->setBaseSize(QSize(220, 100));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Aileron")});
+        font2.setPointSize(25);
+        font2.setBold(false);
+        font2.setItalic(false);
+        icebergPushButton->setFont(font2);
+        icebergPushButton->setAutoFillBackground(false);
+        icebergPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(44,181,222); /* A nice green color */\n"
+"    color: rgb(255, 255, 255);             \n"
+"    border-radius: 125px;       /* This curves the corners! */\n"
+"    padding: 5px;              /* Gives the text some breathing room */\n"
+"	border: 5px solid white;	\n"
+"	border-color: rgb(152, 199, 65);\n"
+"}\n"
+""));
+        QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::SystemSearch));
+        icebergPushButton->setIcon(icon2);
+
+        horizontalLayout_22->addWidget(icebergPushButton);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_22->addItem(horizontalSpacer_2);
+
+
+        verticalLayout->addLayout(horizontalLayout_22);
+
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setSpacing(50);
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_3);
+
+        ednaPushButton = new QPushButton(mainMenu);
+        ednaPushButton->setObjectName("ednaPushButton");
+        sizePolicy1.setHeightForWidth(ednaPushButton->sizePolicy().hasHeightForWidth());
+        ednaPushButton->setSizePolicy(sizePolicy1);
+        ednaPushButton->setMinimumSize(QSize(250, 250));
+        ednaPushButton->setMaximumSize(QSize(250, 250));
+        ednaPushButton->setBaseSize(QSize(220, 100));
+        ednaPushButton->setFont(font1);
+        ednaPushButton->setAutoFillBackground(false);
+        ednaPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(44,181,222); /* A nice green color */\n"
+"    color: rgb(255, 255, 255);             \n"
+"    border-radius: 125px;       /* This curves the corners! */\n"
+"    padding: 5px;              /* Gives the text some breathing room */\n"
+"	border: 5px solid white;	\n"
+"	border-color: rgb(152, 199, 65);\n"
+"}\n"
+""));
+        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::MediaFlash));
+        ednaPushButton->setIcon(icon3);
+
+        horizontalLayout_5->addWidget(ednaPushButton);
+
+        crush_label = new QLabel(mainMenu);
+        crush_label->setObjectName("crush_label");
+        sizePolicy1.setHeightForWidth(crush_label->sizePolicy().hasHeightForWidth());
+        crush_label->setSizePolicy(sizePolicy1);
+        crush_label->setMinimumSize(QSize(250, 250));
+        crush_label->setMaximumSize(QSize(250, 250));
+        crush_label->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
+"border: none;"));
+
+        horizontalLayout_5->addWidget(crush_label);
+
+        floatPushButton = new QPushButton(mainMenu);
+        floatPushButton->setObjectName("floatPushButton");
+        sizePolicy1.setHeightForWidth(floatPushButton->sizePolicy().hasHeightForWidth());
+        floatPushButton->setSizePolicy(sizePolicy1);
+        floatPushButton->setMinimumSize(QSize(250, 250));
+        floatPushButton->setMaximumSize(QSize(250, 250));
+        floatPushButton->setBaseSize(QSize(220, 100));
+        floatPushButton->setFont(font2);
+        floatPushButton->setAutoFillBackground(false);
+        floatPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(44,181,222); /* A nice green color */\n"
+"    color: rgb(255, 255, 255);             \n"
+"    border-radius: 125px;       /* This curves the corners! */\n"
+"    padding: 5px;              /* Gives the text some breathing room */\n"
+"	border: 5px solid white;	\n"
+"	border-color: rgb(152, 199, 65);\n"
+"}\n"
+""));
+        QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::SoftwareUpdateAvailable));
+        floatPushButton->setIcon(icon4);
+
+        horizontalLayout_5->addWidget(floatPushButton);
+
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_4);
+
+
+        verticalLayout->addLayout(horizontalLayout_5);
+
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_6);
+
+        cameraFeedPushButton = new QPushButton(mainMenu);
+        cameraFeedPushButton->setObjectName("cameraFeedPushButton");
+        sizePolicy1.setHeightForWidth(cameraFeedPushButton->sizePolicy().hasHeightForWidth());
+        cameraFeedPushButton->setSizePolicy(sizePolicy1);
+        cameraFeedPushButton->setMinimumSize(QSize(250, 250));
+        cameraFeedPushButton->setMaximumSize(QSize(250, 250));
+        cameraFeedPushButton->setSizeIncrement(QSize(0, 0));
+        cameraFeedPushButton->setBaseSize(QSize(250, 250));
+        cameraFeedPushButton->setFont(font1);
+        cameraFeedPushButton->setAutoFillBackground(false);
+        cameraFeedPushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(44,181,222); /* A nice green color */\n"
+"    color: rgb(255, 255, 255);             \n"
+"    border-radius: 125px;       /* This curves the corners! */\n"
+"    padding: 5px;              /* Gives the text some breathing room */\n"
+"	border: 5px solid white;	\n"
+"	border-color: rgb(152, 199, 65);\n"
+"}\n"
+""));
+        QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::MediaRecord));
+        cameraFeedPushButton->setIcon(icon5);
+
+        horizontalLayout_4->addWidget(cameraFeedPushButton);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_7);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
+
+
+        gridLayout_13->addLayout(verticalLayout, 0, 0, 1, 1);
+
+        horizontalLayout_23 = new QHBoxLayout();
+        horizontalLayout_23->setObjectName("horizontalLayout_23");
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_23->addItem(horizontalSpacer_8);
+
+        pushButton = new QPushButton(mainMenu);
+        pushButton->setObjectName("pushButton");
+        pushButton->setMinimumSize(QSize(100, 100));
+        pushButton->setMaximumSize(QSize(100, 100));
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Aileron")});
+        font3.setPointSize(30);
+        font3.setBold(true);
+        pushButton->setFont(font3);
+        pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(44,181,222); /* A nice green color */\n"
+"    color: rgb(0, 0, 0);              /* White text */\n"
+"    border-radius: 10px;       /* This curves the corners! */\n"
+"    padding: 5px;              /* Gives the text some breathing room */\n"
+"	border: 5px solid white;	\n"
+"	border-color: rgb(152, 199, 65);\n"
+"}\n"
+""));
+        QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::DocumentProperties));
+        pushButton->setIcon(icon6);
+        pushButton->setIconSize(QSize(40, 40));
+
+        horizontalLayout_23->addWidget(pushButton);
+
+        horizontalSpacer_31 = new QSpacerItem(1350, 20, QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_23->addItem(horizontalSpacer_31);
+
         closeProgramButton = new QPushButton(mainMenu);
         closeProgramButton->setObjectName("closeProgramButton");
         QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
@@ -159,167 +397,67 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(closeProgramButton->sizePolicy().hasHeightForWidth());
         closeProgramButton->setSizePolicy(sizePolicy2);
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font1.setPointSize(30);
-        font1.setBold(true);
-        font1.setItalic(false);
-        font1.setUnderline(false);
-        font1.setStrikeOut(false);
-        font1.setKerning(true);
-        closeProgramButton->setFont(font1);
-        closeProgramButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit));
-        closeProgramButton->setIcon(icon1);
-        closeProgramButton->setIconSize(QSize(20, 20));
-
-        gridLayout_3->addWidget(closeProgramButton, 2, 2, 1, 1);
-
-        icebergPushButton = new QPushButton(mainMenu);
-        icebergPushButton->setObjectName("icebergPushButton");
-        icebergPushButton->setMinimumSize(QSize(220, 140));
-        icebergPushButton->setBaseSize(QSize(220, 100));
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font2.setPointSize(30);
-        font2.setBold(false);
-        font2.setItalic(false);
-        icebergPushButton->setFont(font2);
-        icebergPushButton->setAutoFillBackground(false);
-        QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::SystemSearch));
-        icebergPushButton->setIcon(icon2);
-
-        gridLayout_3->addWidget(icebergPushButton, 0, 2, 1, 1);
-
-        label_9 = new QLabel(mainMenu);
-        label_9->setObjectName("label_9");
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font3.setPointSize(30);
-        font3.setBold(true);
-        font3.setItalic(true);
-        label_9->setFont(font3);
-
-        gridLayout_3->addWidget(label_9, 2, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
-
-        pushButton = new QPushButton(mainMenu);
-        pushButton->setObjectName("pushButton");
+        closeProgramButton->setMinimumSize(QSize(100, 100));
+        closeProgramButton->setMaximumSize(QSize(100, 100));
         QFont font4;
-        font4.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font4.setFamilies({QString::fromUtf8("Aileron")});
         font4.setPointSize(30);
         font4.setBold(true);
-        pushButton->setFont(font4);
+        font4.setItalic(false);
+        font4.setUnderline(false);
+        font4.setStrikeOut(false);
+        font4.setKerning(true);
+        closeProgramButton->setFont(font4);
+        closeProgramButton->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        closeProgramButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(44,181,222); /* A nice green color */\n"
+"    color: rgb(0, 0, 0);              /* White text */\n"
+"    border-radius: 10px;       /* This curves the corners! */\n"
+"    padding: 5px;              /* Gives the text some breathing room */\n"
+"	border: 5px solid white;	\n"
+"	border-color: rgb(152, 199, 65);\n"
+"}\n"
+""));
+        QIcon icon7(QIcon::fromTheme(QIcon::ThemeIcon::ApplicationExit));
+        closeProgramButton->setIcon(icon7);
+        closeProgramButton->setIconSize(QSize(50, 50));
 
-        gridLayout_3->addWidget(pushButton, 2, 0, 1, 1);
+        horizontalLayout_23->addWidget(closeProgramButton);
 
-        modelingPushButton = new QPushButton(mainMenu);
-        modelingPushButton->setObjectName("modelingPushButton");
-        modelingPushButton->setMinimumSize(QSize(220, 140));
-        modelingPushButton->setBaseSize(QSize(220, 100));
-        QFont font5;
-        font5.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font5.setPointSize(30);
-        modelingPushButton->setFont(font5);
-        modelingPushButton->setAutoFillBackground(false);
-        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::CameraVideo));
-        modelingPushButton->setIcon(icon3);
+        horizontalSpacer_30 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        gridLayout_3->addWidget(modelingPushButton, 0, 1, 1, 1);
+        horizontalLayout_23->addItem(horizontalSpacer_30);
 
-        cameraFeedPushButton = new QPushButton(mainMenu);
-        cameraFeedPushButton->setObjectName("cameraFeedPushButton");
-        cameraFeedPushButton->setMinimumSize(QSize(220, 140));
-        cameraFeedPushButton->setBaseSize(QSize(220, 100));
-        cameraFeedPushButton->setFont(font5);
-        cameraFeedPushButton->setAutoFillBackground(false);
-        QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::MediaRecord));
-        cameraFeedPushButton->setIcon(icon4);
 
-        gridLayout_3->addWidget(cameraFeedPushButton, 0, 0, 1, 1);
-
-        floatPushButton = new QPushButton(mainMenu);
-        floatPushButton->setObjectName("floatPushButton");
-        QSizePolicy sizePolicy3(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(floatPushButton->sizePolicy().hasHeightForWidth());
-        floatPushButton->setSizePolicy(sizePolicy3);
-        floatPushButton->setMinimumSize(QSize(220, 140));
-        floatPushButton->setBaseSize(QSize(220, 100));
-        floatPushButton->setFont(font2);
-        floatPushButton->setAutoFillBackground(false);
-        QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::SoftwareUpdateAvailable));
-        floatPushButton->setIcon(icon5);
-
-        gridLayout_3->addWidget(floatPushButton, 1, 2, 1, 1);
-
-        ednaPushButton = new QPushButton(mainMenu);
-        ednaPushButton->setObjectName("ednaPushButton");
-        ednaPushButton->setMinimumSize(QSize(220, 140));
-        ednaPushButton->setBaseSize(QSize(220, 100));
-        ednaPushButton->setFont(font5);
-        ednaPushButton->setAutoFillBackground(false);
-        QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::MediaFlash));
-        ednaPushButton->setIcon(icon6);
-
-        gridLayout_3->addWidget(ednaPushButton, 1, 0, 1, 1);
+        gridLayout_13->addLayout(horizontalLayout_23, 1, 0, 1, 1);
 
         stackedWidget->addWidget(mainMenu);
         cameraPage = new QWidget();
         cameraPage->setObjectName("cameraPage");
+        cameraPage->setStyleSheet(QString::fromUtf8(""));
         gridLayout_2 = new QGridLayout(cameraPage);
         gridLayout_2->setObjectName("gridLayout_2");
-        droneMap = new QFrame(cameraPage);
-        droneMap->setObjectName("droneMap");
-        droneMap->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
-        droneMap->setFrameShape(QFrame::Shape::Box);
-        droneMap->setLineWidth(2);
-        gridLayout = new QGridLayout(droneMap);
-        gridLayout->setObjectName("gridLayout");
-        botCamButton = new QPushButton(droneMap);
-        botCamButton->setObjectName("botCamButton");
-        QFont font6;
-        font6.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font6.setKerning(true);
-        botCamButton->setFont(font6);
-        botCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
+        homePageButton = new QToolButton(cameraPage);
+        homePageButton->setObjectName("homePageButton");
+        homePageButton->setMinimumSize(QSize(40, 30));
+        homePageButton->setMaximumSize(QSize(40, 30));
+        QFont font5;
+        font5.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        homePageButton->setFont(font5);
+        homePageButton->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
+        homePageButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
+        homePageButton->setAutoRaise(true);
+        homePageButton->setArrowType(Qt::ArrowType::LeftArrow);
 
-        gridLayout->addWidget(botCamButton, 2, 1, 1, 1);
-
-        frontCamButton = new QPushButton(droneMap);
-        frontCamButton->setObjectName("frontCamButton");
-        frontCamButton->setFont(font6);
-        frontCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(frontCamButton, 0, 1, 1, 1);
-
-        backCamButton = new QPushButton(droneMap);
-        backCamButton->setObjectName("backCamButton");
-        backCamButton->setFont(font6);
-        backCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(backCamButton, 3, 1, 1, 1);
-
-        leftCamButton = new QPushButton(droneMap);
-        leftCamButton->setObjectName("leftCamButton");
-        leftCamButton->setFont(font6);
-        leftCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(leftCamButton, 2, 0, 1, 1);
-
-        rightCamButton = new QPushButton(droneMap);
-        rightCamButton->setObjectName("rightCamButton");
-        rightCamButton->setFont(font6);
-        rightCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(rightCamButton, 2, 2, 1, 1);
-
-
-        gridLayout_2->addWidget(droneMap, 3, 2, 1, 1);
+        gridLayout_2->addWidget(homePageButton, 0, 0, 1, 1);
 
         camName = new QLabel(cameraPage);
         camName->setObjectName("camName");
-        camName->setFont(font);
+        QFont font6;
+        font6.setFamilies({QString::fromUtf8("Aileron")});
+        font6.setPointSize(20);
+        font6.setBold(false);
+        camName->setFont(font6);
         camName->setFrameShape(QFrame::Shape::Box);
         camName->setLineWidth(2);
 
@@ -335,7 +473,7 @@ public:
         latencyLabel = new QLabel(frame_6);
         latencyLabel->setObjectName("latencyLabel");
         QFont font7;
-        font7.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font7.setFamilies({QString::fromUtf8("Aileron")});
         latencyLabel->setFont(font7);
         latencyLabel->setFrameShape(QFrame::Shape::Box);
         latencyLabel->setFrameShadow(QFrame::Shadow::Plain);
@@ -350,7 +488,39 @@ public:
         horizontalLayout_3->addWidget(timeLabel);
 
 
-        gridLayout_2->addWidget(frame_6, 0, 2, 1, 1);
+        gridLayout_2->addWidget(frame_6, 0, 3, 1, 1);
+
+        frame_5 = new QFrame(cameraPage);
+        frame_5->setObjectName("frame_5");
+        frame_5->setStyleSheet(QString::fromUtf8(""));
+        frame_5->setFrameShape(QFrame::Shape::Box);
+        frame_5->setFrameShadow(QFrame::Shadow::Plain);
+        frame_5->setLineWidth(4);
+        gridLayout_3 = new QGridLayout(frame_5);
+        gridLayout_3->setObjectName("gridLayout_3");
+        label_9 = new QLabel(frame_5);
+        label_9->setObjectName("label_9");
+        QFont font8;
+        font8.setFamilies({QString::fromUtf8("Aileron")});
+        font8.setPointSize(20);
+        font8.setItalic(true);
+        font8.setUnderline(false);
+        label_9->setFont(font8);
+        label_9->setFrameShape(QFrame::Shape::Box);
+
+        gridLayout_3->addWidget(label_9, 0, 0, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+
+        lcdNumber_3 = new QLCDNumber(frame_5);
+        lcdNumber_3->setObjectName("lcdNumber_3");
+        lcdNumber_3->setFont(font7);
+        lcdNumber_3->setStyleSheet(QString::fromUtf8(""));
+        lcdNumber_3->setLineWidth(1);
+        lcdNumber_3->setMidLineWidth(2);
+
+        gridLayout_3->addWidget(lcdNumber_3, 1, 0, 1, 1);
+
+
+        gridLayout_2->addWidget(frame_5, 3, 0, 1, 2);
 
         graphicsView = new QGraphicsView(cameraPage);
         graphicsView->setObjectName("graphicsView");
@@ -359,50 +529,80 @@ public:
         graphicsView->setLineWidth(3);
         graphicsView->setMidLineWidth(0);
 
-        gridLayout_2->addWidget(graphicsView, 1, 0, 1, 3);
+        gridLayout_2->addWidget(graphicsView, 1, 0, 1, 4);
 
-        frame_5 = new QFrame(cameraPage);
-        frame_5->setObjectName("frame_5");
-        frame_5->setFrameShape(QFrame::Shape::Box);
-        frame_5->setFrameShadow(QFrame::Shadow::Plain);
-        frame_5->setLineWidth(2);
-        horizontalLayout = new QHBoxLayout(frame_5);
-        horizontalLayout->setObjectName("horizontalLayout");
-        comboBox = new QComboBox(frame_5);
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->setObjectName("comboBox");
-        comboBox->setFont(font7);
-        comboBox->setEditable(false);
+        droneMap = new QFrame(cameraPage);
+        droneMap->setObjectName("droneMap");
+        droneMap->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
+        droneMap->setFrameShape(QFrame::Shape::Box);
+        droneMap->setFrameShadow(QFrame::Shadow::Plain);
+        droneMap->setLineWidth(4);
+        gridLayout = new QGridLayout(droneMap);
+        gridLayout->setObjectName("gridLayout");
+        leftCamButton = new QPushButton(droneMap);
+        leftCamButton->setObjectName("leftCamButton");
+        QFont font9;
+        font9.setFamilies({QString::fromUtf8("Aileron")});
+        font9.setPointSize(15);
+        leftCamButton->setFont(font9);
+        leftCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
 
-        horizontalLayout->addWidget(comboBox);
+        gridLayout->addWidget(leftCamButton, 2, 0, 1, 1);
 
-        scanCrabButton = new QPushButton(frame_5);
-        scanCrabButton->setObjectName("scanCrabButton");
-        scanCrabButton->setFont(font7);
+        botCamButton = new QPushButton(droneMap);
+        botCamButton->setObjectName("botCamButton");
+        botCamButton->setFont(font9);
+        botCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
 
-        horizontalLayout->addWidget(scanCrabButton);
+        gridLayout->addWidget(botCamButton, 2, 1, 1, 1);
 
-        lcdNumber_5 = new QLCDNumber(frame_5);
-        lcdNumber_5->setObjectName("lcdNumber_5");
+        rightCamButton = new QPushButton(droneMap);
+        rightCamButton->setObjectName("rightCamButton");
+        rightCamButton->setFont(font9);
+        rightCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
 
-        horizontalLayout->addWidget(lcdNumber_5);
+        gridLayout->addWidget(rightCamButton, 2, 2, 1, 1);
+
+        frontCamButton = new QPushButton(droneMap);
+        frontCamButton->setObjectName("frontCamButton");
+        frontCamButton->setFont(font9);
+        frontCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(frontCamButton, 0, 1, 1, 1);
+
+        backCamButton = new QPushButton(droneMap);
+        backCamButton->setObjectName("backCamButton");
+        backCamButton->setFont(font9);
+        backCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(backCamButton, 3, 1, 1, 1);
 
 
-        gridLayout_2->addWidget(frame_5, 3, 0, 1, 2);
+        gridLayout_2->addWidget(droneMap, 3, 3, 1, 1);
 
-        homePageButton = new QToolButton(cameraPage);
-        homePageButton->setObjectName("homePageButton");
-        homePageButton->setMinimumSize(QSize(40, 30));
-        homePageButton->setMaximumSize(QSize(40, 30));
-        homePageButton->setFont(font7);
-        homePageButton->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
-        homePageButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
-        homePageButton->setAutoRaise(true);
-        homePageButton->setArrowType(Qt::ArrowType::LeftArrow);
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Minimum);
 
-        gridLayout_2->addWidget(homePageButton, 0, 0, 1, 1);
+        gridLayout_2->addItem(horizontalSpacer_5, 3, 2, 1, 1);
 
         stackedWidget->addWidget(cameraPage);
         modelingPage = new QWidget();
@@ -412,7 +612,7 @@ public:
         homePageButton_2->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_2->setMinimumSize(QSize(40, 30));
         homePageButton_2->setMaximumSize(QSize(40, 30));
-        homePageButton_2->setFont(font7);
+        homePageButton_2->setFont(font5);
         homePageButton_2->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_2->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_2->setAutoRaise(true);
@@ -425,7 +625,7 @@ public:
         homePageButton_3->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_3->setMinimumSize(QSize(40, 30));
         homePageButton_3->setMaximumSize(QSize(40, 30));
-        homePageButton_3->setFont(font7);
+        homePageButton_3->setFont(font5);
         homePageButton_3->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_3->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_3->setAutoRaise(true);
@@ -433,14 +633,17 @@ public:
         stackedWidget->addWidget(icebergPage);
         ednaPage = new QWidget();
         ednaPage->setObjectName("ednaPage");
+        ednaPage->setStyleSheet(QString::fromUtf8("#ednaPage{\n"
+"	border-image: url(:/images/images/bubbles_and_animals.png);\n"
+"}"));
         gridLayout_4 = new QGridLayout(ednaPage);
         gridLayout_4->setObjectName("gridLayout_4");
         label_11 = new QLabel(ednaPage);
         label_11->setObjectName("label_11");
-        QFont font8;
-        font8.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font8.setPointSize(20);
-        label_11->setFont(font8);
+        QFont font10;
+        font10.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font10.setPointSize(20);
+        label_11->setFont(font10);
         label_11->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_11, 5, 4, 1, 1);
@@ -459,7 +662,7 @@ public:
 
         label_8 = new QLabel(ednaPage);
         label_8->setObjectName("label_8");
-        label_8->setFont(font8);
+        label_8->setFont(font10);
         label_8->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_8, 3, 4, 1, 1);
@@ -472,7 +675,7 @@ public:
 
         label_4 = new QLabel(ednaPage);
         label_4->setObjectName("label_4");
-        label_4->setFont(font8);
+        label_4->setFont(font10);
         label_4->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_4, 4, 1, 1, 1);
@@ -494,27 +697,20 @@ public:
 
         label_3 = new QLabel(ednaPage);
         label_3->setObjectName("label_3");
-        label_3->setFont(font8);
+        label_3->setFont(font10);
         label_3->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_3, 3, 1, 1, 1);
 
         label = new QLabel(ednaPage);
         label->setObjectName("label");
-        label->setFont(font8);
+        label->setFont(font10);
         label->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label, 1, 4, 1, 1);
 
         label_12 = new QLabel(ednaPage);
         label_12->setObjectName("label_12");
-        QFont font9;
-        font9.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font9.setPointSize(30);
-        font9.setBold(false);
-        font9.setItalic(true);
-        font9.setUnderline(false);
-        label_12->setFont(font9);
         label_12->setFrameShape(QFrame::Shape::NoFrame);
 
         gridLayout_4->addWidget(label_12, 0, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
@@ -533,7 +729,7 @@ public:
         homePageButton_4->setObjectName("homePageButton_4");
         homePageButton_4->setMinimumSize(QSize(40, 30));
         homePageButton_4->setMaximumSize(QSize(40, 30));
-        homePageButton_4->setFont(font7);
+        homePageButton_4->setFont(font5);
         homePageButton_4->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_4->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_4->setAutoRaise(true);
@@ -567,20 +763,23 @@ public:
 
         label_10 = new QLabel(ednaPage);
         label_10->setObjectName("label_10");
-        label_10->setFont(font8);
+        label_10->setFont(font10);
         label_10->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_10, 4, 4, 1, 1);
 
         label_14 = new QLabel(ednaPage);
         label_14->setObjectName("label_14");
-        label_14->setFont(font5);
+        QFont font11;
+        font11.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font11.setPointSize(30);
+        label_14->setFont(font11);
 
         gridLayout_4->addWidget(label_14, 0, 3, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_5 = new QLabel(ednaPage);
         label_5->setObjectName("label_5");
-        label_5->setFont(font8);
+        label_5->setFont(font10);
         label_5->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_5, 5, 1, 1, 1);
@@ -593,7 +792,7 @@ public:
 
         label_13 = new QLabel(ednaPage);
         label_13->setObjectName("label_13");
-        label_13->setFont(font5);
+        label_13->setFont(font11);
 
         gridLayout_4->addWidget(label_13, 0, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
@@ -617,7 +816,7 @@ public:
 
         label_2 = new QLabel(ednaPage);
         label_2->setObjectName("label_2");
-        label_2->setFont(font8);
+        label_2->setFont(font10);
         label_2->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_2, 2, 1, 1, 1);
@@ -633,14 +832,14 @@ public:
 
         label_6 = new QLabel(ednaPage);
         label_6->setObjectName("label_6");
-        label_6->setFont(font8);
+        label_6->setFont(font10);
         label_6->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_6, 1, 1, 1, 1);
 
         label_7 = new QLabel(ednaPage);
         label_7->setObjectName("label_7");
-        label_7->setFont(font8);
+        label_7->setFont(font10);
         label_7->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_7, 2, 4, 1, 1);
@@ -698,7 +897,7 @@ public:
 
         pushButtonCalcPercent = new QPushButton(ednaPage);
         pushButtonCalcPercent->setObjectName("pushButtonCalcPercent");
-        pushButtonCalcPercent->setFont(font8);
+        pushButtonCalcPercent->setFont(font10);
 
         gridLayout_4->addWidget(pushButtonCalcPercent, 0, 4, 1, 1);
 
@@ -710,7 +909,7 @@ public:
         homePageButton_5->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_5->setMinimumSize(QSize(40, 30));
         homePageButton_5->setMaximumSize(QSize(40, 30));
-        homePageButton_5->setFont(font7);
+        homePageButton_5->setFont(font5);
         homePageButton_5->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_5->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_5->setAutoRaise(true);
@@ -723,7 +922,7 @@ public:
         homePageButton_6->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_6->setMinimumSize(QSize(40, 30));
         homePageButton_6->setMaximumSize(QSize(40, 30));
-        homePageButton_6->setFont(font7);
+        homePageButton_6->setFont(font5);
         homePageButton_6->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_6->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_6->setAutoRaise(true);
@@ -733,19 +932,10 @@ public:
         verticalLayout_2->addWidget(stackedWidget);
 
         MainWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 839, 30));
-        menubar->setDefaultUp(true);
-        MainWindow->setMenuBar(menubar);
-        toolBar = new QToolBar(MainWindow);
-        toolBar->setObjectName("toolBar");
-        MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
-        comboBox->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -754,30 +944,24 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainTab", nullptr));
-        closeProgramButton->setText(QCoreApplication::translate("MainWindow", "Close Program", nullptr));
-        icebergPushButton->setText(QCoreApplication::translate("MainWindow", "Iceberg Data", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "MATE ROV 2026", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
         modelingPushButton->setText(QCoreApplication::translate("MainWindow", "3D Modeling", nullptr));
-        cameraFeedPushButton->setText(QCoreApplication::translate("MainWindow", "Camera Feed \n"
-"Image Recon", nullptr));
+        icebergPushButton->setText(QCoreApplication::translate("MainWindow", "Iceberg Data", nullptr));
+        ednaPushButton->setText(QCoreApplication::translate("MainWindow", "eDNA", nullptr));
+        crush_label->setText(QString());
         floatPushButton->setText(QCoreApplication::translate("MainWindow", "Float", nullptr));
-        ednaPushButton->setText(QCoreApplication::translate("MainWindow", "eDNA Analysis", nullptr));
-        botCamButton->setText(QCoreApplication::translate("MainWindow", "Bottom", nullptr));
-        frontCamButton->setText(QCoreApplication::translate("MainWindow", "Front", nullptr));
-        backCamButton->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        leftCamButton->setText(QCoreApplication::translate("MainWindow", "Left", nullptr));
-        rightCamButton->setText(QCoreApplication::translate("MainWindow", "Right", nullptr));
+        cameraFeedPushButton->setText(QCoreApplication::translate("MainWindow", "Video Feed", nullptr));
+        pushButton->setText(QString());
+        closeProgramButton->setText(QString());
+        homePageButton->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         camName->setText(QCoreApplication::translate("MainWindow", "Camera :  PlaceHolder", nullptr));
         latencyLabel->setText(QCoreApplication::translate("MainWindow", "Latency: 0ms", nullptr));
         timeLabel->setText(QCoreApplication::translate("MainWindow", "Current Time", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "European Green Crab", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Native Rock Crab", nullptr));
-        comboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Native Jonah Crab", nullptr));
-
-        comboBox->setCurrentText(QCoreApplication::translate("MainWindow", "European Green Crab", nullptr));
-        scanCrabButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        homePageButton->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "European Green Crab Count", nullptr));
+        leftCamButton->setText(QCoreApplication::translate("MainWindow", "Left", nullptr));
+        botCamButton->setText(QCoreApplication::translate("MainWindow", "Bottom", nullptr));
+        rightCamButton->setText(QCoreApplication::translate("MainWindow", "Right", nullptr));
+        frontCamButton->setText(QCoreApplication::translate("MainWindow", "Front", nullptr));
+        backCamButton->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         homePageButton_2->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_3->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "Daisy Brittle Star", nullptr));
@@ -797,7 +981,6 @@ public:
         pushButtonCalcPercent->setText(QCoreApplication::translate("MainWindow", "Calculate Percentage", nullptr));
         homePageButton_5->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_6->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-        toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 
 };

@@ -1141,6 +1141,7 @@ GUI_autogen/timestamp: \
 	/Users/polar/Qt/6.10.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/Users/polar/Qt/6.10.1/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
 	/Users/polar/Qt/GUI/CMakeLists.txt \
+	/Users/polar/Qt/GUI/ColmapUtils.h \
 	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/.qtc/package-manager/auto-setup.cmake \
 	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/.qtc/package-manager/maintenance_tool_provider.cmake \
 	/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
@@ -1149,6 +1150,7 @@ GUI_autogen/timestamp: \
 	/Users/polar/Qt/GUI/main.cpp \
 	/Users/polar/Qt/GUI/mainwindow.cpp \
 	/Users/polar/Qt/GUI/mainwindow.h \
+	/Users/polar/Qt/GUI/resources.qrc \
 	/Users/polar/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeCXXInformation.cmake \
 	/Users/polar/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/Users/polar/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake \
