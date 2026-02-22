@@ -18,7 +18,6 @@
 #include <QVBoxLayout>
 #include <QPixmap>
 #include <QFontDatabase>
-#include "ColmapUtils.h"
 
 
 MainWindow::MainWindow(QWidget *parent)

@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
@@ -24,7 +23,6 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -63,6 +61,17 @@ public:
     QSpacerItem *horizontalSpacer_30;
     QWidget *cameraPage;
     QGridLayout *gridLayout_2;
+    QToolButton *homePageButton;
+    QLabel *camName;
+    QFrame *frame_6;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *latencyLabel;
+    QLabel *timeLabel;
+    QFrame *frame_5;
+    QGridLayout *gridLayout_3;
+    QLabel *label_9;
+    QLCDNumber *lcdNumber_3;
+    QGraphicsView *graphicsView;
     QFrame *droneMap;
     QGridLayout *gridLayout;
     QPushButton *leftCamButton;
@@ -70,18 +79,7 @@ public:
     QPushButton *rightCamButton;
     QPushButton *frontCamButton;
     QPushButton *backCamButton;
-    QLabel *camName;
-    QFrame *frame_6;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *latencyLabel;
-    QLabel *timeLabel;
-    QFrame *frame_5;
-    QHBoxLayout *horizontalLayout;
-    QComboBox *comboBox;
-    QPushButton *scanCrabButton;
-    QLCDNumber *lcdNumber_5;
-    QToolButton *homePageButton;
-    QGraphicsView *graphicsView;
+    QSpacerItem *horizontalSpacer_5;
     QWidget *modelingPage;
     QToolButton *homePageButton_2;
     QWidget *icebergPage;
@@ -127,14 +125,13 @@ public:
     QToolButton *homePageButton_5;
     QWidget *settingsPage;
     QToolButton *homePageButton_6;
-    QToolBar *toolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->setWindowModality(Qt::WindowModality::NonModal);
-        MainWindow->resize(1938, 1115);
+        MainWindow->resize(1200, 800);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -163,7 +160,11 @@ public:
         QFont font;
         font.setPointSize(20);
         stackedWidget->setFont(font);
-        stackedWidget->setStyleSheet(QString::fromUtf8("background-color:  rgb(11, 20, 83)"));
+        stackedWidget->setStyleSheet(QString::fromUtf8("#stackedWidget{\n"
+"	border-image: url(:/images/images/bubbles_and_animals.png);\n"
+"}\n"
+"\n"
+""));
         stackedWidget->setFrameShape(QFrame::Shape::Box);
         stackedWidget->setLineWidth(2);
         mainMenu = new QWidget();
@@ -433,59 +434,30 @@ public:
         stackedWidget->addWidget(mainMenu);
         cameraPage = new QWidget();
         cameraPage->setObjectName("cameraPage");
+        cameraPage->setStyleSheet(QString::fromUtf8(""));
         gridLayout_2 = new QGridLayout(cameraPage);
         gridLayout_2->setObjectName("gridLayout_2");
-        droneMap = new QFrame(cameraPage);
-        droneMap->setObjectName("droneMap");
-        droneMap->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
-        droneMap->setFrameShape(QFrame::Shape::Box);
-        droneMap->setLineWidth(2);
-        gridLayout = new QGridLayout(droneMap);
-        gridLayout->setObjectName("gridLayout");
-        leftCamButton = new QPushButton(droneMap);
-        leftCamButton->setObjectName("leftCamButton");
+        homePageButton = new QToolButton(cameraPage);
+        homePageButton->setObjectName("homePageButton");
+        homePageButton->setMinimumSize(QSize(40, 30));
+        homePageButton->setMaximumSize(QSize(40, 30));
         QFont font5;
         font5.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font5.setKerning(true);
-        leftCamButton->setFont(font5);
-        leftCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
+        homePageButton->setFont(font5);
+        homePageButton->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
+        homePageButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
+        homePageButton->setAutoRaise(true);
+        homePageButton->setArrowType(Qt::ArrowType::LeftArrow);
 
-        gridLayout->addWidget(leftCamButton, 2, 0, 1, 1);
-
-        botCamButton = new QPushButton(droneMap);
-        botCamButton->setObjectName("botCamButton");
-        botCamButton->setFont(font5);
-        botCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(botCamButton, 2, 1, 1, 1);
-
-        rightCamButton = new QPushButton(droneMap);
-        rightCamButton->setObjectName("rightCamButton");
-        rightCamButton->setFont(font5);
-        rightCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(rightCamButton, 2, 2, 1, 1);
-
-        frontCamButton = new QPushButton(droneMap);
-        frontCamButton->setObjectName("frontCamButton");
-        frontCamButton->setFont(font5);
-        frontCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(frontCamButton, 0, 1, 1, 1);
-
-        backCamButton = new QPushButton(droneMap);
-        backCamButton->setObjectName("backCamButton");
-        backCamButton->setFont(font5);
-        backCamButton->setStyleSheet(QString::fromUtf8("selection-color: rgb(255, 255, 255);"));
-
-        gridLayout->addWidget(backCamButton, 3, 1, 1, 1);
-
-
-        gridLayout_2->addWidget(droneMap, 3, 2, 1, 1);
+        gridLayout_2->addWidget(homePageButton, 0, 0, 1, 1);
 
         camName = new QLabel(cameraPage);
         camName->setObjectName("camName");
-        camName->setFont(font);
+        QFont font6;
+        font6.setFamilies({QString::fromUtf8("Aileron")});
+        font6.setPointSize(20);
+        font6.setBold(false);
+        camName->setFont(font6);
         camName->setFrameShape(QFrame::Shape::Box);
         camName->setLineWidth(2);
 
@@ -500,9 +472,9 @@ public:
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         latencyLabel = new QLabel(frame_6);
         latencyLabel->setObjectName("latencyLabel");
-        QFont font6;
-        font6.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        latencyLabel->setFont(font6);
+        QFont font7;
+        font7.setFamilies({QString::fromUtf8("Aileron")});
+        latencyLabel->setFont(font7);
         latencyLabel->setFrameShape(QFrame::Shape::Box);
         latencyLabel->setFrameShadow(QFrame::Shadow::Plain);
 
@@ -510,56 +482,45 @@ public:
 
         timeLabel = new QLabel(frame_6);
         timeLabel->setObjectName("timeLabel");
-        timeLabel->setFont(font6);
+        timeLabel->setFont(font7);
         timeLabel->setFrameShape(QFrame::Shape::Box);
 
         horizontalLayout_3->addWidget(timeLabel);
 
 
-        gridLayout_2->addWidget(frame_6, 0, 2, 1, 1);
+        gridLayout_2->addWidget(frame_6, 0, 3, 1, 1);
 
         frame_5 = new QFrame(cameraPage);
         frame_5->setObjectName("frame_5");
+        frame_5->setStyleSheet(QString::fromUtf8(""));
         frame_5->setFrameShape(QFrame::Shape::Box);
         frame_5->setFrameShadow(QFrame::Shadow::Plain);
-        frame_5->setLineWidth(2);
-        horizontalLayout = new QHBoxLayout(frame_5);
-        horizontalLayout->setObjectName("horizontalLayout");
-        comboBox = new QComboBox(frame_5);
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->setObjectName("comboBox");
-        comboBox->setFont(font6);
-        comboBox->setEditable(false);
+        frame_5->setLineWidth(4);
+        gridLayout_3 = new QGridLayout(frame_5);
+        gridLayout_3->setObjectName("gridLayout_3");
+        label_9 = new QLabel(frame_5);
+        label_9->setObjectName("label_9");
+        QFont font8;
+        font8.setFamilies({QString::fromUtf8("Aileron")});
+        font8.setPointSize(20);
+        font8.setItalic(true);
+        font8.setUnderline(false);
+        label_9->setFont(font8);
+        label_9->setFrameShape(QFrame::Shape::Box);
 
-        horizontalLayout->addWidget(comboBox);
+        gridLayout_3->addWidget(label_9, 0, 0, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
-        scanCrabButton = new QPushButton(frame_5);
-        scanCrabButton->setObjectName("scanCrabButton");
-        scanCrabButton->setFont(font6);
+        lcdNumber_3 = new QLCDNumber(frame_5);
+        lcdNumber_3->setObjectName("lcdNumber_3");
+        lcdNumber_3->setFont(font7);
+        lcdNumber_3->setStyleSheet(QString::fromUtf8(""));
+        lcdNumber_3->setLineWidth(1);
+        lcdNumber_3->setMidLineWidth(2);
 
-        horizontalLayout->addWidget(scanCrabButton);
-
-        lcdNumber_5 = new QLCDNumber(frame_5);
-        lcdNumber_5->setObjectName("lcdNumber_5");
-
-        horizontalLayout->addWidget(lcdNumber_5);
+        gridLayout_3->addWidget(lcdNumber_3, 1, 0, 1, 1);
 
 
         gridLayout_2->addWidget(frame_5, 3, 0, 1, 2);
-
-        homePageButton = new QToolButton(cameraPage);
-        homePageButton->setObjectName("homePageButton");
-        homePageButton->setMinimumSize(QSize(40, 30));
-        homePageButton->setMaximumSize(QSize(40, 30));
-        homePageButton->setFont(font6);
-        homePageButton->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
-        homePageButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
-        homePageButton->setAutoRaise(true);
-        homePageButton->setArrowType(Qt::ArrowType::LeftArrow);
-
-        gridLayout_2->addWidget(homePageButton, 0, 0, 1, 1);
 
         graphicsView = new QGraphicsView(cameraPage);
         graphicsView->setObjectName("graphicsView");
@@ -568,7 +529,80 @@ public:
         graphicsView->setLineWidth(3);
         graphicsView->setMidLineWidth(0);
 
-        gridLayout_2->addWidget(graphicsView, 1, 0, 1, 3);
+        gridLayout_2->addWidget(graphicsView, 1, 0, 1, 4);
+
+        droneMap = new QFrame(cameraPage);
+        droneMap->setObjectName("droneMap");
+        droneMap->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
+        droneMap->setFrameShape(QFrame::Shape::Box);
+        droneMap->setFrameShadow(QFrame::Shadow::Plain);
+        droneMap->setLineWidth(4);
+        gridLayout = new QGridLayout(droneMap);
+        gridLayout->setObjectName("gridLayout");
+        leftCamButton = new QPushButton(droneMap);
+        leftCamButton->setObjectName("leftCamButton");
+        QFont font9;
+        font9.setFamilies({QString::fromUtf8("Aileron")});
+        font9.setPointSize(15);
+        leftCamButton->setFont(font9);
+        leftCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(leftCamButton, 2, 0, 1, 1);
+
+        botCamButton = new QPushButton(droneMap);
+        botCamButton->setObjectName("botCamButton");
+        botCamButton->setFont(font9);
+        botCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(botCamButton, 2, 1, 1, 1);
+
+        rightCamButton = new QPushButton(droneMap);
+        rightCamButton->setObjectName("rightCamButton");
+        rightCamButton->setFont(font9);
+        rightCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(rightCamButton, 2, 2, 1, 1);
+
+        frontCamButton = new QPushButton(droneMap);
+        frontCamButton->setObjectName("frontCamButton");
+        frontCamButton->setFont(font9);
+        frontCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(frontCamButton, 0, 1, 1, 1);
+
+        backCamButton = new QPushButton(droneMap);
+        backCamButton->setObjectName("backCamButton");
+        backCamButton->setFont(font9);
+        backCamButton->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
+"	border-width: 4px;\n"
+"	border-style: ridge;\n"
+"	border-color: rgb(152, 199, 65);\n"
+"	selection-color: rgb(255, 255, 255);"));
+
+        gridLayout->addWidget(backCamButton, 3, 1, 1, 1);
+
+
+        gridLayout_2->addWidget(droneMap, 3, 3, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_5, 3, 2, 1, 1);
 
         stackedWidget->addWidget(cameraPage);
         modelingPage = new QWidget();
@@ -578,7 +612,7 @@ public:
         homePageButton_2->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_2->setMinimumSize(QSize(40, 30));
         homePageButton_2->setMaximumSize(QSize(40, 30));
-        homePageButton_2->setFont(font6);
+        homePageButton_2->setFont(font5);
         homePageButton_2->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_2->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_2->setAutoRaise(true);
@@ -591,7 +625,7 @@ public:
         homePageButton_3->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_3->setMinimumSize(QSize(40, 30));
         homePageButton_3->setMaximumSize(QSize(40, 30));
-        homePageButton_3->setFont(font6);
+        homePageButton_3->setFont(font5);
         homePageButton_3->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_3->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_3->setAutoRaise(true);
@@ -599,14 +633,17 @@ public:
         stackedWidget->addWidget(icebergPage);
         ednaPage = new QWidget();
         ednaPage->setObjectName("ednaPage");
+        ednaPage->setStyleSheet(QString::fromUtf8("#ednaPage{\n"
+"	border-image: url(:/images/images/bubbles_and_animals.png);\n"
+"}"));
         gridLayout_4 = new QGridLayout(ednaPage);
         gridLayout_4->setObjectName("gridLayout_4");
         label_11 = new QLabel(ednaPage);
         label_11->setObjectName("label_11");
-        QFont font7;
-        font7.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font7.setPointSize(20);
-        label_11->setFont(font7);
+        QFont font10;
+        font10.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font10.setPointSize(20);
+        label_11->setFont(font10);
         label_11->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_11, 5, 4, 1, 1);
@@ -625,7 +662,7 @@ public:
 
         label_8 = new QLabel(ednaPage);
         label_8->setObjectName("label_8");
-        label_8->setFont(font7);
+        label_8->setFont(font10);
         label_8->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_8, 3, 4, 1, 1);
@@ -638,7 +675,7 @@ public:
 
         label_4 = new QLabel(ednaPage);
         label_4->setObjectName("label_4");
-        label_4->setFont(font7);
+        label_4->setFont(font10);
         label_4->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_4, 4, 1, 1, 1);
@@ -660,27 +697,20 @@ public:
 
         label_3 = new QLabel(ednaPage);
         label_3->setObjectName("label_3");
-        label_3->setFont(font7);
+        label_3->setFont(font10);
         label_3->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_3, 3, 1, 1, 1);
 
         label = new QLabel(ednaPage);
         label->setObjectName("label");
-        label->setFont(font7);
+        label->setFont(font10);
         label->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label, 1, 4, 1, 1);
 
         label_12 = new QLabel(ednaPage);
         label_12->setObjectName("label_12");
-        QFont font8;
-        font8.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font8.setPointSize(30);
-        font8.setBold(false);
-        font8.setItalic(true);
-        font8.setUnderline(false);
-        label_12->setFont(font8);
         label_12->setFrameShape(QFrame::Shape::NoFrame);
 
         gridLayout_4->addWidget(label_12, 0, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
@@ -699,7 +729,7 @@ public:
         homePageButton_4->setObjectName("homePageButton_4");
         homePageButton_4->setMinimumSize(QSize(40, 30));
         homePageButton_4->setMaximumSize(QSize(40, 30));
-        homePageButton_4->setFont(font6);
+        homePageButton_4->setFont(font5);
         homePageButton_4->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_4->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_4->setAutoRaise(true);
@@ -733,23 +763,23 @@ public:
 
         label_10 = new QLabel(ednaPage);
         label_10->setObjectName("label_10");
-        label_10->setFont(font7);
+        label_10->setFont(font10);
         label_10->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_10, 4, 4, 1, 1);
 
         label_14 = new QLabel(ednaPage);
         label_14->setObjectName("label_14");
-        QFont font9;
-        font9.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        font9.setPointSize(30);
-        label_14->setFont(font9);
+        QFont font11;
+        font11.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        font11.setPointSize(30);
+        label_14->setFont(font11);
 
         gridLayout_4->addWidget(label_14, 0, 3, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_5 = new QLabel(ednaPage);
         label_5->setObjectName("label_5");
-        label_5->setFont(font7);
+        label_5->setFont(font10);
         label_5->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_5, 5, 1, 1, 1);
@@ -762,7 +792,7 @@ public:
 
         label_13 = new QLabel(ednaPage);
         label_13->setObjectName("label_13");
-        label_13->setFont(font9);
+        label_13->setFont(font11);
 
         gridLayout_4->addWidget(label_13, 0, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
@@ -786,7 +816,7 @@ public:
 
         label_2 = new QLabel(ednaPage);
         label_2->setObjectName("label_2");
-        label_2->setFont(font7);
+        label_2->setFont(font10);
         label_2->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_2, 2, 1, 1, 1);
@@ -802,14 +832,14 @@ public:
 
         label_6 = new QLabel(ednaPage);
         label_6->setObjectName("label_6");
-        label_6->setFont(font7);
+        label_6->setFont(font10);
         label_6->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_6, 1, 1, 1, 1);
 
         label_7 = new QLabel(ednaPage);
         label_7->setObjectName("label_7");
-        label_7->setFont(font7);
+        label_7->setFont(font10);
         label_7->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_7, 2, 4, 1, 1);
@@ -867,7 +897,7 @@ public:
 
         pushButtonCalcPercent = new QPushButton(ednaPage);
         pushButtonCalcPercent->setObjectName("pushButtonCalcPercent");
-        pushButtonCalcPercent->setFont(font7);
+        pushButtonCalcPercent->setFont(font10);
 
         gridLayout_4->addWidget(pushButtonCalcPercent, 0, 4, 1, 1);
 
@@ -879,7 +909,7 @@ public:
         homePageButton_5->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_5->setMinimumSize(QSize(40, 30));
         homePageButton_5->setMaximumSize(QSize(40, 30));
-        homePageButton_5->setFont(font6);
+        homePageButton_5->setFont(font5);
         homePageButton_5->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_5->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_5->setAutoRaise(true);
@@ -892,7 +922,7 @@ public:
         homePageButton_6->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_6->setMinimumSize(QSize(40, 30));
         homePageButton_6->setMaximumSize(QSize(40, 30));
-        homePageButton_6->setFont(font6);
+        homePageButton_6->setFont(font5);
         homePageButton_6->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_6->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_6->setAutoRaise(true);
@@ -902,14 +932,10 @@ public:
         verticalLayout_2->addWidget(stackedWidget);
 
         MainWindow->setCentralWidget(centralwidget);
-        toolBar = new QToolBar(MainWindow);
-        toolBar->setObjectName("toolBar");
-        MainWindow->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
-        comboBox->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -926,21 +952,16 @@ public:
         cameraFeedPushButton->setText(QCoreApplication::translate("MainWindow", "Video Feed", nullptr));
         pushButton->setText(QString());
         closeProgramButton->setText(QString());
+        homePageButton->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+        camName->setText(QCoreApplication::translate("MainWindow", "Camera :  PlaceHolder", nullptr));
+        latencyLabel->setText(QCoreApplication::translate("MainWindow", "Latency: 0ms", nullptr));
+        timeLabel->setText(QCoreApplication::translate("MainWindow", "Current Time", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "European Green Crab Count", nullptr));
         leftCamButton->setText(QCoreApplication::translate("MainWindow", "Left", nullptr));
         botCamButton->setText(QCoreApplication::translate("MainWindow", "Bottom", nullptr));
         rightCamButton->setText(QCoreApplication::translate("MainWindow", "Right", nullptr));
         frontCamButton->setText(QCoreApplication::translate("MainWindow", "Front", nullptr));
         backCamButton->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        camName->setText(QCoreApplication::translate("MainWindow", "Camera :  PlaceHolder", nullptr));
-        latencyLabel->setText(QCoreApplication::translate("MainWindow", "Latency: 0ms", nullptr));
-        timeLabel->setText(QCoreApplication::translate("MainWindow", "Current Time", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "European Green Crab", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Native Rock Crab", nullptr));
-        comboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Native Jonah Crab", nullptr));
-
-        comboBox->setCurrentText(QCoreApplication::translate("MainWindow", "European Green Crab", nullptr));
-        scanCrabButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        homePageButton->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_2->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_3->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "Daisy Brittle Star", nullptr));
@@ -960,7 +981,6 @@ public:
         pushButtonCalcPercent->setText(QCoreApplication::translate("MainWindow", "Calculate Percentage", nullptr));
         homePageButton_5->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
         homePageButton_6->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-        toolBar->setWindowTitle(QCoreApplication::translate("MainWindow", "toolBar", nullptr));
     } // retranslateUi
 
 };

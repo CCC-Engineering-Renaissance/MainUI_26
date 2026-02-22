@@ -73,6 +73,22 @@ build CMakeFiles/GUI.dir/mainwindow.cpp.obj: CXX_COMPILER__GUI_unscanned_Debug C
   OBJECT_DIR = CMakeFiles\GUI.dir
   OBJECT_FILE_DIR = CMakeFiles\GUI.dir
 
+build CMakeFiles/GUI.dir/src/colmaprunner.cpp.obj: CXX_COMPILER__GUI_unscanned_Debug C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/src/colmaprunner.cpp || cmake_object_order_depends_target_GUI
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\GUI.dir\src\colmaprunner.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/fortu/Documents/MATE_ROV/MainUI_26/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/GUI_autogen/include -isystem C:/Qt/6.10.1/mingw_64/include/QtCore -isystem C:/Qt/6.10.1/mingw_64/include -isystem C:/Qt/6.10.1/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.1/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.1/mingw_64/include/QtGui -isystem C:/Qt/6.10.1/mingw_64/include/QtMultimedia -isystem C:/Qt/6.10.1/mingw_64/include/QtNetwork -isystem C:/Qt/6.10.1/mingw_64/include/QtMultimediaWidgets
+  OBJECT_DIR = CMakeFiles\GUI.dir
+  OBJECT_FILE_DIR = CMakeFiles\GUI.dir\src
+
+build CMakeFiles/GUI.dir/src/photogrammetrywidget.cpp.obj: CXX_COMPILER__GUI_unscanned_Debug C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/src/photogrammetrywidget.cpp || cmake_object_order_depends_target_GUI
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\GUI.dir\src\photogrammetrywidget.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/fortu/Documents/MATE_ROV/MainUI_26/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/GUI_autogen/include -isystem C:/Qt/6.10.1/mingw_64/include/QtCore -isystem C:/Qt/6.10.1/mingw_64/include -isystem C:/Qt/6.10.1/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.10.1/mingw_64/include/QtWidgets -isystem C:/Qt/6.10.1/mingw_64/include/QtGui -isystem C:/Qt/6.10.1/mingw_64/include/QtMultimedia -isystem C:/Qt/6.10.1/mingw_64/include/QtNetwork -isystem C:/Qt/6.10.1/mingw_64/include/QtMultimediaWidgets
+  OBJECT_DIR = CMakeFiles\GUI.dir
+  OBJECT_FILE_DIR = CMakeFiles\GUI.dir\src
+
 build CMakeFiles/GUI.dir/GUI_autogen/EWIEGA46WW/qrc_resources.cpp.obj: CXX_COMPILER__GUI_unscanned_Debug C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/GUI_autogen/EWIEGA46WW/qrc_resources.cpp || cmake_object_order_depends_target_GUI
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_NEEDS_QMAIN -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\GUI.dir\GUI_autogen\EWIEGA46WW\qrc_resources.cpp.obj.d
@@ -87,18 +103,18 @@ build CMakeFiles/GUI.dir/GUI_autogen/EWIEGA46WW/qrc_resources.cpp.obj: CXX_COMPI
 
 
 #############################################
-# Link the executable GUI.exe
+# Link the executable MainUI_26.exe
 
-build GUI.exe: CXX_EXECUTABLE_LINKER__GUI_Debug CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.obj CMakeFiles/GUI.dir/main.cpp.obj CMakeFiles/GUI.dir/mainwindow.cpp.obj CMakeFiles/GUI.dir/GUI_autogen/EWIEGA46WW/qrc_resources.cpp.obj | C$:/Qt/6.10.1/mingw_64/lib/libQt6MultimediaWidgets.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Multimedia.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Network.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.1/mingw_64/lib/libQt6EntryPoint.a || GUI_autogen GUI_autogen_timestamp_deps
+build MainUI_26.exe: CXX_EXECUTABLE_LINKER__GUI_Debug CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.obj CMakeFiles/GUI.dir/main.cpp.obj CMakeFiles/GUI.dir/mainwindow.cpp.obj CMakeFiles/GUI.dir/src/colmaprunner.cpp.obj CMakeFiles/GUI.dir/src/photogrammetrywidget.cpp.obj CMakeFiles/GUI.dir/GUI_autogen/EWIEGA46WW/qrc_resources.cpp.obj | C$:/Qt/6.10.1/mingw_64/lib/libQt6MultimediaWidgets.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Multimedia.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Network.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Gui.a C$:/Qt/6.10.1/mingw_64/lib/libQt6Core.a C$:/Qt/6.10.1/mingw_64/lib/libQt6EntryPoint.a || GUI_autogen GUI_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.10.1/mingw_64/lib/libQt6MultimediaWidgets.a  C:/Qt/6.10.1/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.10.1/mingw_64/lib/libQt6Multimedia.a  C:/Qt/6.10.1/mingw_64/lib/libQt6Network.a  -lws2_32  C:/Qt/6.10.1/mingw_64/lib/libQt6Gui.a  C:/Qt/6.10.1/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.10.1/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\GUI.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = GUI.exe
-  TARGET_IMPLIB = libGUI.dll.a
-  TARGET_PDB = GUI.exe.dbg
+  TARGET_FILE = MainUI_26.exe
+  TARGET_IMPLIB = libMainUI_26.dll.a
+  TARGET_PDB = MainUI_26.exe.dbg
 
 
 #############################################
@@ -193,7 +209,7 @@ build GUI_autogen/timestamp GUI_autogen/mocs_compilation.cpp | ${cmake_ninja_wor
 #############################################
 # Custom command for GUI_autogen\EWIEGA46WW\qrc_resources.cpp
 
-build GUI_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}GUI_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/resources.qrc CMakeFiles/GUI_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/rov_logo_complete.png C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/bubbles_and_animals.png C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/mate_sea.png C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/crush_background.jpg C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/fonts/aileron.black.otf C$:/Qt/6.10.1/mingw_64/bin/rcc.exe C$:/Qt/6.10.1/mingw_64/bin/rcc.exe || GUI_autogen GUI_autogen_timestamp_deps
+build GUI_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}GUI_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/resources.qrc CMakeFiles/GUI_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/rov_logo_complete.png C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/bubbles_and_animals.png C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/mate_sea.png C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/crush_background.jpg C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/images/camera_background.jpg C$:/Users/fortu/Documents/MATE_ROV/MainUI_26/fonts/aileron.black.otf C$:/Qt/6.10.1/mingw_64/bin/rcc.exe C$:/Qt/6.10.1/mingw_64/bin/rcc.exe || GUI_autogen GUI_autogen_timestamp_deps
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\fortu\Documents\MATE_ROV\MainUI_26\build\Desktop_Qt_6_10_1_MinGW_64_bit-Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc C:/Users/fortu/Documents/MATE_ROV/MainUI_26/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/CMakeFiles/GUI_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json Debug"
   DESC = Automatic RCC for resources.qrc
   restat = 1
@@ -207,7 +223,7 @@ build CMakeFiles/GUI_autogen GUI_autogen/include/ui_mainwindow.h | ${cmake_ninja
 # =============================================================================
 # Target aliases.
 
-build GUI: phony GUI.exe
+build GUI: phony MainUI_26.exe
 
 # =============================================================================
 # Folder targets.
@@ -217,7 +233,7 @@ build GUI: phony GUI.exe
 #############################################
 # Folder: C:/Users/fortu/Documents/MATE_ROV/MainUI_26/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug
 
-build all: phony GUI.exe
+build all: phony MainUI_26.exe
 
 # =============================================================================
 # Built-in targets
