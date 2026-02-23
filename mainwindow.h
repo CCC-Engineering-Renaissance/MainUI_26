@@ -1,9 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+#include <QLabel>
 #include <QMainWindow>
 #include <QMediaPlayer>
-#include <QLabel>
+#include <QTimer>
+#include <opencv2/opencv.hpp>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -15,15 +20,11 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 protected:
-
     void keyPressEvent(QKeyEvent *event) override;
 
 public:
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-
 
 private slots:
 
@@ -53,9 +54,18 @@ private slots:
 
     void on_pushButtonCalcPercent_clicked();
 
-private:
+    void startFrontCamera();
 
+    void stopCamera();
+
+    void updateFrame();
+
+private:
     Ui::MainWindow *ui;
 
+    cv::VideoCapture cap;
+    QTimer *timer;
+    QGraphicsScene *scene;
+    QGraphicsPixmapItem *pixmapItem;
 };
 #endif // MAINWINDOW_H

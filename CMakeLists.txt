@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia MultimediaWidgets)
-
+find_package(OpenCV REQUIRED)
 
 
 
@@ -32,6 +32,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(GUI
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        Info.plist
+        Info.plist
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET GUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -51,6 +53,8 @@ else()
     endif()
 endif()
 
+
+target_link_libraries(GUI PRIVATE ${OpenCV_LIBS})
 target_link_libraries(GUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(GUI PRIVATE Qt6::Widgets Qt6::Multimedia Qt6::MultimediaWidgets)
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -78,9 +82,7 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GUI)
 endif()
 
-add_custom_command(TARGET MainUI_26 POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/COLMAP
-        $<TARGET_FILE_DIR:MainUI_26>/COLMAP
-
+set_target_properties(GUI PROPERTIES
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
 )

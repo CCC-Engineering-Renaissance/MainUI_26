@@ -4,7 +4,6 @@
         <file>images/rov_logo_complete.png</file>
         <file>images/mate_sea.png</file>
         <file>images/bubbles_and_animals.png</file>
-        <file>images/camera_background.jpg</file>
     </qresource>
     <qresource prefix="/font">
         <file>fonts/aileron.black.otf</file>
