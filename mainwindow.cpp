@@ -18,6 +18,11 @@
 #include <QVBoxLayout>
 #include <QPixmap>
 #include <QFontDatabase>
+#include <QGraphicsScene>
+#include <QGraphicsVideoItem>
+#include <QCamera>
+#include <QMediaCaptureSession>
+#include <QMediaDevices>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -185,5 +190,39 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
 
     /// IT WORKS LETS GOOOOOO
 
+}
+
+
+void MainWindow::on_frontCamButton_clicked()
+{
+    // 1. Create the Canvas (Scene)
+    m_scene = new QGraphicsScene(this);
+
+    // 2. Assign the canvas to the physical box you made in Qt Designer
+    // (Assuming you named the QGraphicsView "graphicsView" in Designer)
+    ui->graphicsView->setScene(m_scene);
+
+    // 3. Create the Video Item (The actual video player)
+    m_videoItem = new QGraphicsVideoItem();
+
+    // 4. Add the video to the canvas
+    m_scene->addItem(m_videoItem);
+
+    // Make the video fill the graphics view area
+    m_videoItem->setSize(ui->graphicsView->size());
+
+    // --- Now setup the hardware ---
+
+    QCameraDevice defaultCam = QMediaDevices::defaultVideoInput();
+    if (defaultCam.isNull()) return;
+
+    m_camera.reset(new QCamera(defaultCam));
+    m_captureSession.reset(new QMediaCaptureSession);
+
+    // Pipe the video into the ITEM (not the View)
+    m_captureSession->setCamera(m_camera.data());
+    m_captureSession->setVideoOutput(m_videoItem);
+
+    m_camera->start();
 }
 

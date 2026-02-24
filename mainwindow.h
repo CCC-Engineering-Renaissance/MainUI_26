@@ -4,6 +4,14 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QLabel>
+#include <QCamera>
+#include <QMediaCaptureSession>
+#include <QVideoWidget>
+#include <QScopedPointer>
+#include <QGraphicsScene>
+#include <QGraphicsVideoItem>
+#include <QCamera>
+#include <QMediaCaptureSession>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -53,9 +61,15 @@ private slots:
 
     void on_pushButtonCalcPercent_clicked();
 
+    void on_frontCamButton_clicked();
+
 private:
 
     Ui::MainWindow *ui;
+    QGraphicsScene *m_scene = nullptr;
+    QGraphicsVideoItem *m_videoItem = nullptr;
+    QScopedPointer<QCamera> m_camera;
+    QScopedPointer<QMediaCaptureSession> m_captureSession;
 
 };
 #endif // MAINWINDOW_H
