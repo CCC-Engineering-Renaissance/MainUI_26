@@ -1,0 +1,9 @@
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/GUI.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/edit_cache.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/rebuild_cache.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/list_install_components.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/install.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/install/local.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/install/strip.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/GUI_autogen_timestamp_deps.dir
+/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/CMakeFiles/GUI_autogen.dir

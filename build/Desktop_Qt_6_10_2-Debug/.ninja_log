@@ -1,0 +1,21 @@
+# ninja log v7
+1	172	1772001268942761468	GUI_autogen/timestamp	c47f9f46f743a8b
+1	172	1772001268942761468	GUI_autogen/mocs_compilation.cpp	c47f9f46f743a8b
+1	172	1772001268942761468	/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/GUI_autogen/timestamp	c47f9f46f743a8b
+1	172	1772001268942761468	/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/GUI_autogen/mocs_compilation.cpp	c47f9f46f743a8b
+172	1732	1772001270490742629	GUI_autogen/EWIEGA46WW/qrc_resources.cpp	78dc448d06bc6d6a
+172	1732	1772001270490742629	/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/GUI_autogen/EWIEGA46WW/qrc_resources.cpp	78dc448d06bc6d6a
+1732	2346	1772001270507989681	CMakeFiles/GUI.dir/GUI_autogen/EWIEGA46WW/qrc_resources.cpp.o	e6a44556797d7c6c
+1732	2578	1772001270507634164	CMakeFiles/GUI.dir/main.cpp.o	3543a0dfca4b4bbb
+1732	2730	1772001270506742434	CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o	996372cbbe705d
+2	179	1772001385014265646	GUI_autogen/timestamp	c47f9f46f743a8b
+2	179	1772001385014265646	GUI_autogen/mocs_compilation.cpp	c47f9f46f743a8b
+2	179	1772001385014265646	/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/GUI_autogen/timestamp	c47f9f46f743a8b
+2	179	1772001385014265646	/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/GUI_autogen/mocs_compilation.cpp	c47f9f46f743a8b
+179	1855	1772001386661243526	GUI_autogen/EWIEGA46WW/qrc_resources.cpp	78dc448d06bc6d6a
+179	1855	1772001386661243526	/home/jlu/Projects/MainUI_26/build/Desktop_Qt_6_10_2-Debug/GUI_autogen/EWIEGA46WW/qrc_resources.cpp	78dc448d06bc6d6a
+1855	2484	1772001386695297549	CMakeFiles/GUI.dir/GUI_autogen/EWIEGA46WW/qrc_resources.cpp.o	7577d03eebfecd11
+1855	2659	1772001386695101551	CMakeFiles/GUI.dir/main.cpp.o	45befdfd18bdfb4c
+1855	2845	1772001386694243083	CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o	5667ef126d2bb40a
+1855	3106	1772001386695206758	CMakeFiles/GUI.dir/mainwindow.cpp.o	848070ac7994b323
+3106	3298	1772001387945226282	GUI	188f80b529c3d4e6
