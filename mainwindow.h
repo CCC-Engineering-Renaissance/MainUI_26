@@ -1,17 +1,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QMediaPlayer>
-#include <QLabel>
 #include <QCamera>
-#include <QMediaCaptureSession>
-#include <QVideoWidget>
-#include <QScopedPointer>
 #include <QGraphicsScene>
 #include <QGraphicsVideoItem>
-#include <QCamera>
+#include <QLabel>
+#include <QMainWindow>
 #include <QMediaCaptureSession>
+#include <QMediaPlayer>
+#include <QScopedPointer>
+#include <QVideoWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,15 +21,11 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 protected:
-
     void keyPressEvent(QKeyEvent *event) override;
 
 public:
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-
 
 private slots:
 
@@ -64,12 +58,10 @@ private slots:
     void on_frontCamButton_clicked();
 
 private:
-
     Ui::MainWindow *ui;
     QGraphicsScene *m_scene = nullptr;
     QGraphicsVideoItem *m_videoItem = nullptr;
     QScopedPointer<QCamera> m_camera;
     QScopedPointer<QMediaCaptureSession> m_captureSession;
-
 };
 #endif // MAINWINDOW_H

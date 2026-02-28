@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia MultimediaWidgets)
-
+find_package(Qt6 REQUIRED COMPONENTS Core Multimedia Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -31,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(GUI
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        Info.plist
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET GUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -50,6 +51,7 @@ else()
     endif()
 endif()
 
+target_link_libraries(GUI PRIVATE Qt6::Core Qt6::Multimedia Qt6::Widgets)
 target_link_libraries(GUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(GUI PRIVATE Qt6::Widgets Qt6::Multimedia Qt6::MultimediaWidgets)
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -58,11 +60,13 @@ target_link_libraries(GUI PRIVATE Qt6::Widgets Qt6::Multimedia Qt6::MultimediaWi
 if(${QT_VERSION} VERSION_LESS 6.1.0)
   set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.GUI)
 endif()
+
 set_target_properties(GUI PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
     WIN32_EXECUTABLE TRUE
     OUTPUT_NAME "MainUI_26"
 )
@@ -77,3 +81,4 @@ install(TARGETS GUI
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GUI)
 endif()
+
