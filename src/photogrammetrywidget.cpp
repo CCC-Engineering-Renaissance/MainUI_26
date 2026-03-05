@@ -8,7 +8,7 @@
 #include <QProgressBar>
 #include <QPushButton>
 #include <QScrollBar>
-#include <QTCore>
+#include <QtCore>
 #include <QTextEdit>
 
 PhotogrammetryWidget::PhotogrammetryWidget(QWidget *parent)
