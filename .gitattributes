@@ -1,0 +1,5 @@
+tools/win64/* filter=lfs diff=lfs merge=lfs -text
+tools/linux/bin/* filter=lfs diff=lfs merge=lfs -text
+tools/linux/lib/* filter=lfs diff=lfs merge=lfs -text
+tools/macos/bin/* filter=lfs diff=lfs merge=lfs -text
+tools/macos/lib/* filter=lfs diff=lfs merge=lfs -text

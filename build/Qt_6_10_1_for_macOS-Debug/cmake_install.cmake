@@ -38,13 +38,13 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/GUI.app" USE_SOURCE_PERMISSIONS)
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./GUI.app/Contents/MacOS/GUI" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./GUI.app/Contents/MacOS/GUI")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/MainUI_26.app" USE_SOURCE_PERMISSIONS)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26")
     execute_process(COMMAND /usr/bin/install_name_tool
       -delete_rpath "/Users/polar/Qt/6.10.1/macos/lib"
       -add_rpath "@executable_path/../Frameworks"
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./GUI.app/Contents/MacOS/GUI")
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26")
   endif()
 endif()
 

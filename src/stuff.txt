@@ -1,0 +1,704 @@
+#pragma once
+#include <QObject>
+
+#include <QProcess>
+#include <QString>
+
+class ColmapRunner : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit ColmapRunner(QObject *parent = nullptr);
+
+    void setColmapPath(const QString &path);    // path to colmap.exe
+    void setWorkspacePath(const QString &path); // where db + sparse/ will be written
+    void setImagePath(const QString &path);     // where your images are
+
+    void runFullPipeline(); // runs all steps sequentially
+    void cancel();
+
+signals:
+    void stepStarted(const QString &stepName);
+    void progressOutput(const QString &line); // raw stdout/stderr per line
+    void stepFinished(const QString &stepName, bool success);
+    void pipelineFinished(bool success);
+    void errorOccurred(const QString &error);
+
+private slots:
+    void onProcessOutput();
+    void onProcessFinished(int exitCode, QProcess::ExitStatus status);
+
+private:
+    void runNextStep();
+    void startStep(const QString &stepName, const QStringList &args);
+
+    QProcess *m_process;
+    QString m_colmapPath;
+    QString m_workspacePath;
+    QString m_imagePath;
+
+    QList<QPair<QString, QStringList>> m_steps; // name + args for each step
+    int m_currentStep = 0;
+    bool m_cancelled = false;
+};
+#include "colmaprunner.h"
+
+#include <QDir>
+
+ColmapRunner::ColmapRunner(QObject *parent)
+    : QObject(parent)
+
+    , m_process(new QProcess(this))
+{
+    connect(m_process, &QProcess::readyReadStandardOutput, this, &ColmapRunner::onProcessOutput);
+
+    connect(m_process, &QProcess::readyReadStandardError, this, &ColmapRunner::onProcessOutput);
+    connect(m_process,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this,
+            &ColmapRunner::onProcessFinished);
+}
+
+void ColmapRunner::setColmapPath(const QString &path)
+{
+    m_colmapPath = path;
+}
+void ColmapRunner::setWorkspacePath(const QString &path)
+{
+    m_workspacePath = path;
+}
+
+void ColmapRunner::setImagePath(const QString &path)
+{
+    m_imagePath = path;
+}
+
+void ColmapRunner::runFullPipeline()
+{
+    m_cancelled = false;
+    m_currentStep = 0;
+
+    QString dbPath = m_workspacePath + "/database.db";
+    QString sparsePath = m_workspacePath + "/sparse";
+    QDir().mkpath(sparsePath);
+
+    // Define the pipeline steps
+    m_steps = {{"Feature Extraction",
+                {"feature_extractor", "--database_path", dbPath, "--image_path", m_imagePath}},
+               {"Feature Matching",
+                {"exhaustive_matcher", // or sequential_matcher for ordered image sets
+                 "--database_path",
+                 dbPath}},
+               {"Sparse Reconstruction",
+                {"mapper",
+                 "--database_path",
+                 dbPath,
+                 "--image_path",
+                 m_imagePath,
+                 "--output_path",
+                 sparsePath}}
+
+    };
+
+    runNextStep();
+}
+
+void ColmapRunner::runNextStep()
+{
+    if (m_cancelled || m_currentStep >= m_steps.size()) {
+        emit pipelineFinished(!m_cancelled);
+        return;
+    }
+
+    auto [name, args] = m_steps[m_currentStep];
+    startStep(name, args);
+}
+
+void ColmapRunner::startStep(const QString &stepName, const QStringList &args)
+{
+    emit stepStarted(stepName);
+
+    m_process->start(m_colmapPath, args);
+
+    if (!m_process->waitForStarted(3000)) {
+        emit errorOccurred("Failed to start COLMAP. Check path: " + m_colmapPath);
+        emit pipelineFinished(false);
+    }
+}
+
+void ColmapRunner::onProcessOutput()
+{
+    // Read both stdout and stderr
+    QString out = QString::fromUtf8(m_process->readAllStandardOutput());
+    QString err = QString::fromUtf8(m_process->readAllStandardError());
+
+    if (!out.isEmpty())
+        for (const QString &line : out.split('\n', Qt::SkipEmptyParts))
+            emit progressOutput(line);
+
+    if (!err.isEmpty())
+        for (const QString &line : err.split('\n', Qt::SkipEmptyParts))
+            emit progressOutput("[stderr] " + line);
+}
+
+void ColmapRunner::onProcessFinished(int exitCode, QProcess::ExitStatus status)
+{
+    auto [name, args] = m_steps[m_currentStep];
+    bool success = (status == QProcess::NormalExit && exitCode == 0);
+
+    emit stepFinished(name, success);
+
+    if (!success) {
+        emit errorOccurred(QString("Step '%1' failed with exit code %2").arg(name).arg(exitCode));
+        emit pipelineFinished(false);
+        return;
+    }
+
+    m_currentStep++;
+
+    runNextStep();
+}
+
+void ColmapRunner::cancel()
+{
+    m_cancelled = true;
+    if (m_process->state() != QProcess::NotRunning)
+        m_process->kill();
+}
+#pragma once
+#include <QWidget>
+#include "colmaprunner.h"
+
+class QTextEdit;
+class QPushButton;
+class QProgressBar;
+class QLabel;
+
+class PhotogrammetryWidget : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit PhotogrammetryWidget(QWidget *parent = nullptr);
+
+private slots:
+    void onRunClicked();
+    void onCancelClicked();
+    void onStepStarted(const QString &step);
+    void onProgressOutput(const QString &line);
+
+    void onStepFinished(const QString &step, bool success);
+    void onPipelineFinished(bool success);
+    void onError(const QString &error);
+
+private:
+    void setupUI();
+    void setRunning(bool running);
+
+    ColmapRunner *m_runner;
+
+    QPushButton *m_runButton;
+    QPushButton *m_cancelButton;
+
+    QProgressBar *m_progressBar;
+    QLabel *m_statusLabel;
+    QTextEdit *m_logOutput;
+};
+#include "photogrammetrywidget.h"
+
+#include <QVBoxLayout>
+
+#include <QHBoxLayout>
+
+#include <QLabel>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QScrollBar>
+#include <QtCore>
+#include <QTextEdit>
+
+PhotogrammetryWidget::PhotogrammetryWidget(QWidget *parent)
+    : QWidget(parent)
+    , m_runner(new ColmapRunner(this))
+{
+    setupUI();
+    QString base = QCoreApplication::applicationDirPath();
+
+    // Wire up runner signals
+    connect(m_runner, &ColmapRunner::stepStarted, this, &PhotogrammetryWidget::onStepStarted);
+    connect(m_runner, &ColmapRunner::progressOutput, this, &PhotogrammetryWidget::onProgressOutput);
+    connect(m_runner, &ColmapRunner::stepFinished, this, &PhotogrammetryWidget::onStepFinished);
+    connect(m_runner,
+            &ColmapRunner::pipelineFinished,
+            this,
+            &PhotogrammetryWidget::onPipelineFinished);
+    connect(m_runner, &ColmapRunner::errorOccurred, this, &PhotogrammetryWidget::onError);
+
+    // Point to your COLMAP binary and working paths
+    // In production you'd make these configurable in the UI or a settings file
+    m_runner->setColmapPath(base + "./tools/COLMAP.bat");
+    m_runner->setWorkspacePath(base + "./workspace");
+    m_runner->setImagePath(base + "./workspace/images");
+}
+
+void PhotogrammetryWidget::setupUI()
+{
+    auto *mainLayout = new QVBoxLayout(this);
+
+    m_statusLabel = new QLabel("Ready", this);
+    mainLayout->addWidget(m_statusLabel);
+
+    m_progressBar = new QProgressBar(this);
+    m_progressBar->setRange(0, 3); // 3 steps
+    m_progressBar->setValue(0);
+    mainLayout->addWidget(m_progressBar);
+
+    m_logOutput = new QTextEdit(this);
+    m_logOutput->setReadOnly(true);
+    m_logOutput->setFontFamily("Courier"); // monospace for log output
+
+    mainLayout->addWidget(m_logOutput);
+
+    auto *buttonLayout = new QHBoxLayout();
+    m_runButton = new QPushButton("Run Photogrammetry", this);
+    m_cancelButton = new QPushButton("Cancel", this);
+    m_cancelButton->setEnabled(false);
+    buttonLayout->addWidget(m_runButton);
+    buttonLayout->addWidget(m_cancelButton);
+    mainLayout->addLayout(buttonLayout);
+
+    connect(m_runButton, &QPushButton::clicked, this, &PhotogrammetryWidget::onRunClicked);
+    connect(m_cancelButton, &QPushButton::clicked, this, &PhotogrammetryWidget::onCancelClicked);
+}
+
+void PhotogrammetryWidget::onRunClicked()
+{
+    m_logOutput->clear();
+
+    m_progressBar->setValue(0);
+
+    setRunning(true);
+    m_runner->runFullPipeline();
+}
+
+void PhotogrammetryWidget::onCancelClicked()
+{
+    m_runner->cancel();
+    setRunning(false);
+    m_statusLabel->setText("Cancelled.");
+}
+
+void PhotogrammetryWidget::onStepStarted(const QString &step)
+{
+    m_statusLabel->setText("Running: " + step);
+    m_logOutput->append("\n=== " + step + " ===");
+}
+
+void PhotogrammetryWidget::onProgressOutput(const QString &line)
+{
+    m_logOutput->append(line);
+    // Auto-scroll to bottom
+    m_logOutput->verticalScrollBar()->setValue(m_logOutput->verticalScrollBar()->maximum());
+}
+
+void PhotogrammetryWidget::onStepFinished(const QString &step, bool success)
+{
+    m_progressBar->setValue(m_progressBar->value() + 1);
+    m_logOutput->append(success ? "✓ " + step + " complete." : "✗ " + step + " failed.");
+}
+
+void PhotogrammetryWidget::onPipelineFinished(bool success)
+{
+    setRunning(false);
+    m_statusLabel->setText(success ? "Pipeline complete!" : "Pipeline failed. Check log.");
+}
+
+void PhotogrammetryWidget::onError(const QString &error)
+{
+    m_logOutput->append("\n[ERROR] " + error);
+}
+
+void PhotogrammetryWidget::setRunning(bool running)
+{
+    m_runButton->setEnabled(!running);
+    m_cancelButton->setEnabled(running);
+}
+#include "mainwindow.h"
+#include <QCamera>
+#include <QCoreApplication>
+#include <QDateTime>
+#include <QFontDatabase>
+#include <QGraphicsProxyWidget>
+#include <QGraphicsScene>
+#include <QGraphicsVideoItem>
+#include <QKeyEvent>
+#include <QLCDNumber>
+#include <QLabel>
+#include <QMediaCaptureSession>
+#include <QMediaDevices>
+#include <QMediaPlayer>
+#include <QPixmap>
+#include <QSpinBox>
+#include <QStackedLayout>
+#include <QString>
+#include <QTabBar>
+#include <QTime>
+#include <QPermissions>
+#include <QVBoxLayout>
+#include <QVideoWidget>
+#include <QWidget>
+#include "./ui_mainwindow.h"
+#include "ImageManager.h"
+#include <QProcess>
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+    , m_pipeline(new ColmapPipeline(this))
+    , m_imageManager(nullptr)  // created when user picks a workspace
+{
+    ui->setupUi(this);
+    resize(1200, 800);
+    setMinimumSize(900, 600);
+    setupConnections();
+    setRunning(false);
+
+    //image setup
+    QPixmap pixmap(":/images/images/rov_logo_complete.png");
+    //ui->crush_label->setPixmap(pixmap);
+    if (pixmap.isNull()) {
+        ui->crush_label->setText("Error: Logo not found!");
+    } else {
+        int maxWidth = 250;
+        int maxHeight = 250;
+        QPixmap scaledPixmap = pixmap.scaled(maxWidth,
+                                             maxHeight,
+                                             Qt::KeepAspectRatio,
+                                             Qt::SmoothTransformation);
+        ui->crush_label->setPixmap(scaledPixmap);
+        ui->crush_label->setAlignment(Qt::AlignCenter);
+    }
+
+    //font correction
+    int fontId = QFontDatabase::addApplicationFont(":/font/fonts/aileron.black.otf");
+
+    // 2. Check if it worked
+    if (fontId == -1) {
+        qDebug() << "Warning: Custom font failed to load from resources!";
+    } else {
+        // 3. Get the official "Family Name" so you know exactly what to call it in your CSS
+        QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+        qDebug() << "Success! The font family name is:" << fontFamily;
+    }
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+/// User can press escape at any screen to go back to the main menu
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    ///See if user pressed esc
+    if (event->key() == Qt::Key_Escape) {
+        if (ui->stackedWidget->currentIndex() != 0) {
+            ui->stackedWidget->setCurrentIndex(0);
+        }
+    } else {
+        QMainWindow::keyPressEvent(event);
+    }
+}
+/// Main menu button logic
+
+void MainWindow::on_cameraFeedPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_modelingPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::on_icebergPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_ednaPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+void MainWindow::on_floatPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+}
+
+void MainWindow::on_homePageButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_homePageButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_homePageButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_homePageButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_homePageButton_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_homePageButton_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_closeProgramButton_clicked()
+{
+    close();
+}
+
+/// eDNA Percentage Calculator Function
+
+void MainWindow::on_pushButtonCalcPercent_clicked()
+{
+    /// Assigns the number of times an animal has been seen to an object
+
+    int snowInput = ui->spinBoxSnow->value();
+    int acadianInput = ui->spinBoxAcadian->value();
+    int westernInput = ui->spinBoxWestern->value();
+    int urchinInput = ui->spinBoxUrchin->value();
+    int rockInput = ui->spinBoxRock->value();
+    int jonahInput = ui->spinBoxJonah->value();
+    int sunstarInput = ui->spinBoxSunstar->value();
+    int greenInput = ui->spinBoxGreen->value();
+    int borealInput = ui->spinBoxBoreal->value();
+    int brittleInput = ui->spinBoxBrittle->value();
+    double sumOfInputs = snowInput + acadianInput + westernInput + urchinInput + rockInput
+                         + jonahInput + sunstarInput + greenInput + borealInput + brittleInput;
+
+    /// Assigns the percentage frequency to an object
+
+    double snowPercent = (snowInput / sumOfInputs) * 100;
+    double acadianPercent = (acadianInput / sumOfInputs) * 100;
+    double westernPercent = (westernInput / sumOfInputs) * 100;
+    double seaUrchinPercent = (urchinInput / sumOfInputs) * 100;
+    double rockPercent = (rockInput / sumOfInputs) * 100;
+    double jonahPercent = (jonahInput / sumOfInputs) * 100;
+    double spinySunstarPercent = (sunstarInput / sumOfInputs) * 100;
+    double greenPercent = (greenInput / sumOfInputs) * 100;
+    double borealStarPercent = (borealInput / sumOfInputs) * 100;
+    double brittleStarPercent = (brittleInput / sumOfInputs) * 100;
+
+    /// Displays that percent in the box
+
+    ui->snowCrabPercent->display(snowPercent);
+    ui->acadianCrabPercent->display(acadianPercent);
+    ui->hairyCrabPercent->display(westernPercent);
+    ui->urchinPercent->display(seaUrchinPercent);
+    ui->rockCrabPercent->display(rockPercent);
+    ui->jonahCrabPercent->display(jonahPercent);
+    ui->sunstarPercent->display(spinySunstarPercent);
+    ui->greenCrabPercent->display(greenPercent);
+    ui->borealPercent->display(borealStarPercent);
+    ui->brittlePercent->display(brittleStarPercent);
+
+    /// IT WORKS LETS GOOOOOO
+}
+
+void MainWindow::on_frontCamButton_clicked()
+{
+    QCameraPermission cameraPermission;
+
+    switch (qApp->checkPermission(cameraPermission)) {
+    case Qt::PermissionStatus::Undetermined:
+        qApp->requestPermission(cameraPermission, this, &MainWindow::on_frontCamButton_clicked);
+        return;
+    case Qt::PermissionStatus::Denied:
+        qDebug() << "Camera permission was denied.";
+        return;
+    case Qt::PermissionStatus::Granted:
+        break;
+    }
+
+    // 1. Create the Canvas (Scene)
+    m_scene = new QGraphicsScene(this);
+
+    // 2. Assign the canvas to the physical box you made in Qt Designer
+    // (Assuming you named the QGraphicsView "graphicsView" in Designer)
+    ui->graphicsView->setScene(m_scene);
+
+    // 3. Create the Video Item (The actual video player)
+    m_videoItem = new QGraphicsVideoItem();
+
+    // 4. Add the video to the canvas
+    m_scene->addItem(m_videoItem);
+
+    // Make the video fill the graphics view area
+    m_videoItem->setSize(ui->graphicsView->size());
+
+    // --- Now setup the hardware ---
+
+    QCameraDevice defaultCam = QMediaDevices::defaultVideoInput();
+    if (defaultCam.isNull())
+        return;
+
+    m_camera.reset(new QCamera(defaultCam));
+    m_captureSession.reset(new QMediaCaptureSession);
+
+    // Pipe the video into the ITEM (not the View)
+    m_captureSession->setCamera(m_camera.data());
+    m_captureSession->setVideoOutput(m_videoItem);
+
+    m_camera->start();
+}
+
+void ImageManager::extractFramesFromVideo(const QString& videoPath, int everyNthFrame) {
+    QProcess* ffmpeg = new QProcess(this);
+    QString outputPattern = m_imageDir.filePath("frame_%04d.jpg");
+
+    // Extract every Nth frame
+    QString filter = QString("select=not(mod(n\\,%1))").arg(everyNthFrame);
+
+    ffmpeg->start("ffmpeg", {
+                                "-i", videoPath,
+                                "-vf", filter,
+                                "-vsync", "vfn",
+                                "-q:v", "2",          // high quality JPEG
+                                outputPattern
+                            });
+
+    connect(ffmpeg, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [this, ffmpeg](int exitCode, QProcess::ExitStatus) {
+                ffmpeg->deleteLater();
+                if (exitCode == 0) {
+                    emit imagesUpdated(imageCount());
+                }
+            });
+}
+
+void MainWindow::setupConnections() {
+    // buttons (assuming you name them in Qt Designer)
+    connect(ui->btnImportImages, &QPushButton::clicked, this, &MainWindow::onImportImages);
+    connect(ui->btnImportVideo,  &QPushButton::clicked, this, &MainWindow::onImportVideo);
+    connect(ui->btnRun,          &QPushButton::clicked, this, &MainWindow::onRunPipeline);
+    connect(ui->btnCancel,       &QPushButton::clicked, this, &MainWindow::onCancelPipeline);
+
+    // pipeline signals
+    connect(m_pipeline, &ColmapPipeline::stepStarted,     this, &MainWindow::onStepStarted);
+    connect(m_pipeline, &ColmapPipeline::stepFinished,    this, &MainWindow::onStepFinished);
+    connect(m_pipeline, &ColmapPipeline::pipelineFinished,this, &MainWindow::onPipelineFinished);
+    connect(m_pipeline, &ColmapPipeline::progressUpdated, this, &MainWindow::onProgressUpdated);
+    connect(m_pipeline, &ColmapPipeline::logOutput,       this, &MainWindow::onLogOutput);
+
+    // image manager
+    connect(m_imageManager, &ImageManager::imagesUpdated, [this](int count) {
+        refreshThumbnails();
+        ui->statusbar->showMessage(QString("%1 images loaded").arg(count));
+    });
+}
+
+cmake_minimum_required(VERSION 3.16)
+
+project(GUI VERSION 0.1 LANGUAGES CXX)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia MultimediaWidgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Multimedia Widgets)
+
+set(PROJECT_SOURCES
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
+        resources.qrc
+
+
+
+
+)
+
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(GUI
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
+        Info.plist
+        ColmapPipeline.h
+        ColmapPipeline.cpp
+        ImageManager.h
+        ImageManager.cpp
+
+
+    )
+# Define target properties for Android with Qt 6 as:
+#    set_property(TARGET GUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
+# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+else()
+    if(ANDROID)
+        add_library(GUI SHARED
+            ${PROJECT_SOURCES}
+        )
+# Define properties for Android with Qt 5 after find_package() calls as:
+#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+    else()
+        add_executable(GUI
+            ${PROJECT_SOURCES}
+        )
+    endif()
+endif()
+
+target_link_libraries(GUI PRIVATE Qt6::Core Qt6::Multimedia Qt6::Widgets)
+target_link_libraries(GUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(GUI PRIVATE Qt6::Widgets Qt6::Multimedia Qt6::MultimediaWidgets)
+# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
+# If you are developing for iOS or macOS you should consider setting an
+# explicit, fixed bundle identifier manually though.
+if(${QT_VERSION} VERSION_LESS 6.1.0)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.GUI)
+endif()
+
+set_target_properties(GUI PROPERTIES
+    ${BUNDLE_ID_OPTION}
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
+    WIN32_EXECUTABLE TRUE
+    OUTPUT_NAME "MainUI_26"
+)
+
+include(GNUInstallDirs)
+install(TARGETS GUI
+    BUNDLE DESTINATION .
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(GUI)
+endif()
+

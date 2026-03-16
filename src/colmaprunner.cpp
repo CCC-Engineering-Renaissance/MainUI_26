@@ -1,0 +1,166 @@
+#include "colmaprunner.h"
+#include <QCoreApplication>
+#include <QDir>
+#include <QFile>
+
+ColmapRunner::ColmapRunner(QObject *parent)
+    : QObject(parent), m_process(new QProcess(this)) {
+  connect(m_process, &QProcess::readyReadStandardOutput, this,
+          &ColmapRunner::onProcessOutput);
+  connect(m_process, &QProcess::readyReadStandardError, this,
+          &ColmapRunner::onProcessOutput);
+  connect(m_process,
+          QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+          &ColmapRunner::onProcessFinished);
+}
+
+void ColmapRunner::setColmapPath(const QString &path) { m_colmapPath = path; }
+void ColmapRunner::setWorkspacePath(const QString &path) { m_workspacePath = path; }
+void ColmapRunner::setImagePath(const QString &path) { m_imagePath = path; }
+void ColmapRunner::setDenseEnabled(bool enabled) { m_denseEnabled = enabled; }
+
+void ColmapRunner::runFullPipeline() {
+  m_cancelled = false;
+  m_currentStep = 0;
+
+  QString dbPath     = m_workspacePath + "/database.db";
+  QString sparsePath = m_workspacePath + "/sparse";
+  QString densePath  = m_workspacePath + "/dense";
+  QDir().mkpath(sparsePath);
+  QDir().mkpath(densePath);
+  QFile::remove(dbPath);
+
+  m_steps = {
+    {"Feature Extraction", "",
+     {"feature_extractor",
+      "--database_path", dbPath,
+      "--image_path", m_imagePath,
+      "--ImageReader.single_camera", "1",
+      "--ImageReader.camera_model", "OPENCV",
+      "--SiftExtraction.max_num_features", "8192"}},
+
+    {"Feature Matching", "",
+     {"sequential_matcher",
+      "--database_path", dbPath,
+      "--SequentialMatching.overlap", "10",
+      "--SequentialMatching.loop_detection", "1"}},
+
+    {"Sparse Reconstruction", "",
+     {"mapper",
+      "--database_path", dbPath,
+      "--image_path", m_imagePath,
+      "--output_path", sparsePath}},
+  };
+
+#if defined(Q_OS_WIN)
+  if (m_denseEnabled) {
+    m_steps.append({"Image Undistortion", "",
+                    {"image_undistorter",
+                     "--image_path",  m_imagePath,
+                     "--input_path",  sparsePath + "/0",
+                     "--output_path", densePath,
+                     "--output_type", "COLMAP"}});
+
+    m_steps.append({"Dense Stereo (CUDA)", "",
+                    {"patch_match_stereo",
+                     "--workspace_path",   densePath,
+                     "--workspace_format", "COLMAP",
+                     "--PatchMatchStereo.geom_consistency", "1"}});
+
+    m_steps.append({"Stereo Fusion", "",
+                    {"stereo_fusion",
+                     "--workspace_path",   densePath,
+                     "--workspace_format", "COLMAP",
+                     "--input_type",       "geometric",
+                     "--output_path",      densePath + "/fused.ply"}});
+  }
+#endif
+
+  runNextStep();
+}
+
+void ColmapRunner::runNextStep() {
+  if (m_cancelled || m_currentStep >= m_steps.size()) {
+    emit pipelineFinished(!m_cancelled);
+    return;
+  }
+  startStep(m_steps[m_currentStep]);
+}
+
+void ColmapRunner::startStep(const PipelineStep &step) {
+  emit stepStarted(step.name);
+
+  QString base = QCoreApplication::applicationDirPath();
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+  env.insert("QT_QPA_PLATFORM", "offscreen");
+  env.insert("OPENBLAS_NUM_THREADS", "1");
+
+#if defined(Q_OS_MACOS)
+  QString toolsBase = base + "/tools/macos";
+  QString libVar    = "DYLD_LIBRARY_PATH";
+#elif defined(Q_OS_WIN)
+  QString toolsBase = base + "/tools/win64";
+  QString libVar    = "";
+#else
+  QString toolsBase = base + "/tools/linux";
+  QString libVar    = "LD_LIBRARY_PATH";
+#endif
+
+#ifndef Q_OS_WIN
+  QString libPath = toolsBase + "/lib";
+  if (QDir(libPath).exists()) {
+    QString existing = env.value(libVar);
+    env.insert(libVar, libPath + (existing.isEmpty() ? "" : ":" + existing));
+  }
+#endif
+
+  QString pluginPath = toolsBase + "/plugins";
+  if (QDir(pluginPath).exists())
+    env.insert("QT_PLUGIN_PATH", pluginPath);
+
+  m_process->setProcessEnvironment(env);
+
+  QString exe = step.exe.isEmpty() ? m_colmapPath : step.exe;
+  m_process->start(exe, step.args);
+
+  if (!m_process->waitForStarted(5000)) {
+    emit errorOccurred("Failed to start: " + exe);
+    emit pipelineFinished(false);
+  }
+}
+
+void ColmapRunner::onProcessOutput() {
+  QString out = QString::fromUtf8(m_process->readAllStandardOutput());
+  QString err = QString::fromUtf8(m_process->readAllStandardError());
+
+  if (!out.isEmpty())
+    for (const QString &line : out.split('\n', Qt::SkipEmptyParts))
+      emit progressOutput(line);
+
+  if (!err.isEmpty())
+    for (const QString &line : err.split('\n', Qt::SkipEmptyParts))
+      emit progressOutput("[stderr] " + line);
+}
+
+void ColmapRunner::onProcessFinished(int exitCode, QProcess::ExitStatus status) {
+  const QString &name = m_steps[m_currentStep].name;
+  bool success = (status == QProcess::NormalExit && exitCode == 0);
+
+  emit stepFinished(name, success);
+
+  if (!success) {
+    emit errorOccurred(
+        QString("Step '%1' failed with exit code %2").arg(name).arg(exitCode));
+    emit pipelineFinished(false);
+    return;
+  }
+
+  m_currentStep++;
+  runNextStep();
+}
+
+void ColmapRunner::cancel() {
+  m_cancelled = true;
+  if (m_process->state() != QProcess::NotRunning)
+    m_process->kill();
+}

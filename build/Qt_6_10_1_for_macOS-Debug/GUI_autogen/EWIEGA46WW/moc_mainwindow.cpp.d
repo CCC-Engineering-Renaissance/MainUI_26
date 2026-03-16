@@ -725,6 +725,7 @@
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/limits.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QScopedPointer \
   /Users/polar/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q20iterator.h \
@@ -867,7 +868,9 @@
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qimage.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qkeysequence.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpainterpath.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpalette.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpen.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpicture.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixelformat.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixmap.h \
@@ -881,16 +884,33 @@
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qtransform.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QCamera \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaCaptureSession \
   /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer \
   /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qaudio.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qcamera.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qcameradevice.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediacapturesession.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qmediaplayer.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtvideo.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qvideoframe.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimedia.framework/Versions/A/Headers/qvideoframeformat.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimediaWidgets.framework/Versions/A/Headers/QGraphicsVideoItem \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimediaWidgets.framework/Versions/A/Headers/QVideoWidget \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimediaWidgets.framework/Versions/A/Headers/qgraphicsvideoitem.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimediaWidgets.framework/Versions/A/Headers/qtmultimediawidgetsexports.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimediaWidgets.framework/Versions/A/Headers/qtmultimediawidgetsglobal.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtMultimediaWidgets.framework/Versions/A/Headers/qvideowidget.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsScene \
   /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
   /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsitem.h \
+  /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsscene.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qmainwindow.h \
   /Users/polar/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
