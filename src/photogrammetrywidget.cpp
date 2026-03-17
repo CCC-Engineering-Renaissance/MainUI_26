@@ -18,6 +18,7 @@
 #include <QScrollBar>
 #include <QSplitter>
 #include <QTextEdit>
+#include <QInputDialog>
 #include <QUrl>
 #include <QVBoxLayout>
 
@@ -47,6 +48,36 @@ PhotogrammetryWidget::PhotogrammetryWidget(QWidget *parent)
   m_runner->setColmapPath(detectColmapPath());
   m_runner->setWorkspacePath(m_workspacePath);
   m_runner->setImagePath(m_imagePath);
+
+  // Scale / measure tool connections
+  connect(m_viewer, &ModelViewer::scalePointsPicked,
+          this, &PhotogrammetryWidget::onScalePointsPicked);
+
+  connect(m_viewer, &ModelViewer::scaleApplied,
+          [this](float w, float h, float d) {
+              m_statusLabel->setText(
+                  QString("Scale set \u2014 W:%1 m  H:%2 m  D:%3 m")
+                  .arg(w,0,'f',3).arg(h,0,'f',3).arg(d,0,'f',3));
+              m_scaleButton->setChecked(false);
+          });
+
+  connect(m_viewer, &ModelViewer::measurementReady,
+          [this](float total, float dx, float dy, float dz) {
+              m_statusLabel->setText(
+                  QString("A\u2192B: %1 m    \u0394X:%2  \u0394Y:%3  \u0394Z:%4")
+                  .arg(total,0,'f',3).arg(dx,0,'f',3).arg(dy,0,'f',3).arg(dz,0,'f',3));
+              m_measureButton->setChecked(false);
+          });
+
+  connect(m_scaleButton, &QPushButton::toggled, [this](bool on) {
+      if (on) { m_measureButton->setChecked(false); m_viewer->enterScaleMode(); }
+      else      m_viewer->exitPickMode();
+  });
+
+  connect(m_measureButton, &QPushButton::toggled, [this](bool on) {
+      if (on) { m_scaleButton->setChecked(false); m_viewer->enterMeasureMode(); }
+      else      m_viewer->exitPickMode();
+  });
 
   // Load any images already sitting in the workspace
   refreshThumbnails();
@@ -91,12 +122,18 @@ void PhotogrammetryWidget::setupUI() {
   m_cancelButton->setEnabled(false);
   m_runButton->setEnabled(false);
 
+  m_scaleButton   = new QPushButton("Set Scale", this);
+  m_measureButton = new QPushButton("Measure",   this);
+  m_scaleButton->setCheckable(true);
+  m_measureButton->setCheckable(true);
+  m_scaleButton->setToolTip("Click two points of known distance to set real-world scale");
+  m_measureButton->setToolTip("Click two points to measure the distance between them");
+
   m_denseCheckBox = new QCheckBox("Dense Reconstruction", this);
 #if defined(Q_OS_WIN)
   m_denseCheckBox->setToolTip("Runs CUDA-accelerated patch_match_stereo + stereo_fusion after sparse reconstruction.\nRequires an NVIDIA GPU with CUDA.");
 #else
-  m_denseCheckBox->setEnabled(false);
-  m_denseCheckBox->setToolTip("Dense reconstruction requires a CUDA-capable NVIDIA GPU.\nNot available on this platform.");
+  m_denseCheckBox->setToolTip("Runs CPU-based dense reconstruction via OpenMVS DensifyPointCloud.\nSlower than CUDA but works on any hardware.");
 #endif
 
   buttonLayout->addWidget(m_importImagesButton);
@@ -104,6 +141,8 @@ void PhotogrammetryWidget::setupUI() {
   buttonLayout->addWidget(m_clearButton);
   buttonLayout->addWidget(m_denseCheckBox);
   buttonLayout->addStretch();
+  buttonLayout->addWidget(m_scaleButton);
+  buttonLayout->addWidget(m_measureButton);
   buttonLayout->addWidget(m_loadPlyButton);
   buttonLayout->addWidget(m_resetCameraButton);
   buttonLayout->addWidget(m_runButton);
@@ -276,6 +315,11 @@ void PhotogrammetryWidget::onClearImagesClicked() {
   QFile::remove(m_workspacePath + "/database.db");
   QFile::remove(m_workspacePath + "/model.ply");
 
+  // Remove OpenMVS artifacts so stale depth maps can't corrupt a future run
+  QDir wsDir(m_workspacePath);
+  for (const QString &f : wsDir.entryList({"depth*.dmap", "scene*.mvs", "dense*.mvs", "*.ply"}, QDir::Files))
+    wsDir.remove(f);
+
   m_viewer->clear();
   refreshThumbnails();
   m_statusLabel->setText("Workspace cleared");
@@ -388,10 +432,13 @@ void PhotogrammetryWidget::onLoadPlyClicked() {
 // ─── Model Conversion & Loading ─────────────────────────────────────────────
 
 void PhotogrammetryWidget::convertAndLoadModel() {
-#if defined(Q_OS_WIN)
-  // On Windows, stereo_fusion writes dense/fused.ply directly — load it and return.
   if (m_denseCheckBox->isChecked()) {
+#if defined(Q_OS_WIN)
     QString densePly = m_workspacePath + "/dense/fused.ply";
+#else
+    // OpenMVS DensifyPointCloud outputs a PLY alongside the .mvs file
+    QString densePly = m_workspacePath + "/dense.ply";
+#endif
     if (QFile::exists(densePly)) {
       m_logOutput->append("\n=== Loading Dense Model ===");
       m_viewer->loadPLY(densePly);
@@ -401,9 +448,8 @@ void PhotogrammetryWidget::convertAndLoadModel() {
                           "Dense model loaded into viewer.");
       return;
     }
-    m_logOutput->append("[WARN] dense/fused.ply not found — falling back to sparse.");
+    m_logOutput->append("[WARN] Dense output not found — falling back to sparse.");
   }
-#endif
 
   // Find the sparse reconstruction output — COLMAP puts it in sparse/0/
   QString sparsePath = m_workspacePath + "/sparse/0";
@@ -483,6 +529,17 @@ void PhotogrammetryWidget::convertAndLoadModel() {
     converter->deleteLater();
     m_statusLabel->setText("Failed to start model converter");
   }
+}
+
+void PhotogrammetryWidget::onScalePointsPicked(float /*measuredModelDist*/) {
+  bool ok;
+  double val = QInputDialog::getDouble(
+      this, "Set Scale",
+      "Real-world distance between the two selected points (metres):",
+      0.1, 0.001, 10000.0, 4, &ok);
+  if (ok && val > 0)
+    m_viewer->applyScale(static_cast<float>(val));
+  m_scaleButton->setChecked(false);
 }
 
 void PhotogrammetryWidget::setRunning(bool running) {

@@ -38,6 +38,7 @@ private slots:
   // viewer
   void onResetCameraClicked();
   void onLoadPlyClicked();
+  void onScalePointsPicked(float measuredModelDist);
 
 private:
   void setupUI();
@@ -61,6 +62,8 @@ private:
   QPushButton *m_cancelButton;
   QPushButton *m_resetCameraButton;
   QPushButton *m_loadPlyButton;
+  QPushButton *m_scaleButton;
+  QPushButton *m_measureButton;
   QCheckBox   *m_denseCheckBox;
   QProgressBar *m_progressBar;
   QLabel *m_statusLabel;

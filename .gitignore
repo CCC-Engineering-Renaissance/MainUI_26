@@ -47,3 +47,9 @@ desktop.ini
 # IDE
 .vscode/
 *.swp
+
+# Runtime logs written by child processes
+*.log
+
+# Embedded COLMAP source (use as submodule or keep separate)
+colmap/
