@@ -131,7 +131,14 @@ void ColmapRunner::startStep(const PipelineStep &step) {
   QString libVar = "LD_LIBRARY_PATH";
 #endif
 
-#ifndef Q_OS_WIN
+#ifdef Q_OS_WIN
+  // On Windows, prepend the tools directory to PATH so the loader finds
+  // bundled DLLs (CUDA runtime, cuBLAS, etc.) alongside colmap.exe.
+  {
+    QString existingPath = env.value("PATH");
+    env.insert("PATH", toolsBase + ";" + existingPath);
+  }
+#else
   QString libPath = toolsBase + "/lib";
   if (QDir(libPath).exists()) {
     QString existing = env.value(libVar);
@@ -154,7 +161,9 @@ void ColmapRunner::startStep(const PipelineStep &step) {
   m_process->start(exe, step.args);
 
   if (!m_process->waitForStarted(5000)) {
-    emit errorOccurred("Failed to start: " + exe);
+    emit errorOccurred(
+        QString("Failed to start '%1': %2")
+            .arg(exe, m_process->errorString()));
     emit pipelineFinished(false);
   }
 }
