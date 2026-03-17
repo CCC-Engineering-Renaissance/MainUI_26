@@ -19,6 +19,7 @@
 #include <QSplitter>
 #include <QTextEdit>
 #include <QInputDialog>
+#include <QStandardPaths>
 #include <QUrl>
 #include <QVBoxLayout>
 
@@ -87,9 +88,21 @@ QString PhotogrammetryWidget::detectColmapPath() {
   QString base = QCoreApplication::applicationDirPath();
 
 #ifdef Q_OS_WIN
+  // 1. Bundled copy next to the application
   QString winPath = base + "/tools/win64/colmap.exe";
   if (QFileInfo::exists(winPath))
     return winPath;
+
+  // 2. Common user install locations
+  for (const QString &dir : {
+           QString("C:/Program Files/COLMAP"),
+           QString("C:/Program Files (x86)/COLMAP"),
+           base  // placed directly alongside the exe
+       }) {
+    QString p = dir + "/colmap.exe";
+    if (QFileInfo::exists(p))
+      return p;
+  }
 #elif defined(Q_OS_MACOS)
   QString macPath = base + "/tools/macos/bin/colmap";
   if (QFileInfo::exists(macPath))
@@ -100,7 +113,23 @@ QString PhotogrammetryWidget::detectColmapPath() {
     return linuxPath;
 #endif
 
-  return "colmap";
+  // 3. Anywhere on PATH
+  QString onPath = QStandardPaths::findExecutable("colmap");
+  if (!onPath.isEmpty())
+    return onPath;
+
+  // 4. Nothing found — ask the user
+  QString chosen = QFileDialog::getOpenFileName(
+      this,
+      "Locate COLMAP executable",
+      QString(),
+#ifdef Q_OS_WIN
+      "COLMAP (colmap.exe)"
+#else
+      "COLMAP (colmap)"
+#endif
+  );
+  return chosen.isEmpty() ? "colmap" : chosen;
 }
 
 
