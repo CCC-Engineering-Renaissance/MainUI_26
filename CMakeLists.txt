@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     Multimedia
     MultimediaWidgets
+    Network
     OpenGL
     OpenGLWidgets
 )
@@ -23,6 +24,8 @@ set(PROJECT_SOURCES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    camerareceiver.h
+    camerareceiver.cpp
     resources.qrc
     src/colmaprunner.h
     src/colmaprunner.cpp
@@ -47,6 +50,7 @@ target_link_libraries(GUI PRIVATE
     Qt6::Widgets
     Qt6::Multimedia
     Qt6::MultimediaWidgets
+    Qt6::Network
     Qt6::OpenGL
     Qt6::OpenGLWidgets
 )

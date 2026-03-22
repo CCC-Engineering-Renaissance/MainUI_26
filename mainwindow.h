@@ -1,15 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QCamera>
+#include "camerareceiver.h"
+
+#include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
-#include <QGraphicsVideoItem>
 #include <QLabel>
 #include <QMainWindow>
-#include <QMediaCaptureSession>
-#include <QMediaPlayer>
-#include <QScopedPointer>
-#include <QVideoWidget>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,29 +26,54 @@ public:
   ~MainWindow();
 
 private slots:
+  // ── Main menu navigation ──────────────────────────────────────────────
   void on_cameraFeedPushButton_clicked();
   void on_modelingPushButton_clicked();
   void on_icebergPushButton_clicked();
   void on_ednaPushButton_clicked();
   void on_floatPushButton_clicked();
+
+  // ── Home (back) buttons ───────────────────────────────────────────────
   void on_homePageButton_clicked();
   void on_homePageButton_2_clicked();
   void on_homePageButton_3_clicked();
   void on_homePageButton_4_clicked();
   void on_homePageButton_5_clicked();
   void on_homePageButton_6_clicked();
+
+  // ── Misc ──────────────────────────────────────────────────────────────
   void on_closeProgramButton_clicked();
   void on_pushButtonCalcPercent_clicked();
+
+  // ── Camera view buttons ───────────────────────────────────────────────
   void on_frontCamButton_clicked();
+  void on_leftCamButton_clicked();
+  void on_rightCamButton_clicked();
+  void on_botCamButton_clicked();
+  void on_backCamButton_clicked();
+
+  // ── Camera receiver callbacks ─────────────────────────────────────────
+  void onCameraFrame(const QImage &image);
+  void onCameraConnected();
+  void onCameraDisconnected();
+  void onFpsUpdated(int fps);
+
+  // ── Clock ─────────────────────────────────────────────────────────────
+  void updateClock();
 
 private:
   Ui::MainWindow *ui;
 
-  // Camera
-  QGraphicsScene *m_scene = nullptr;
-  QGraphicsVideoItem *m_videoItem = nullptr;
-  QScopedPointer<QCamera> m_camera;
-  QScopedPointer<QMediaCaptureSession> m_captureSession;
+  // Camera network stream
+  CameraReceiver       *m_cameraReceiver = nullptr;
+  QGraphicsScene       *m_scene          = nullptr;
+  QGraphicsPixmapItem  *m_pixmapItem     = nullptr;
+
+  // Clock timer (updates timeLabel every second)
+  QTimer *m_clockTimer = nullptr;
+
+  // Helper: highlight the active camera button
+  void setActiveCamButton(const QString &name);
 };
 
 #endif // MAINWINDOW_H
