@@ -38,13 +38,17 @@ void ColmapRunner::runFullPipeline() {
        {"feature_extractor", "--database_path", dbPath, "--image_path",
         m_imagePath, "--ImageReader.single_camera", "1",
         "--ImageReader.camera_model", "PINHOLE",
-        "--SiftExtraction.max_num_features", "8192"}},
+        "--SiftExtraction.max_num_features", "8192",
+        "--SiftExtraction.use_gpu", "1",
+        "--SiftExtraction.gpu_index", "0"}},
 
       {"Feature Matching",
        "",
        {"sequential_matcher", "--database_path", dbPath,
         "--SequentialMatching.overlap", "10",
-        "--SequentialMatching.loop_detection", "1"}},
+        "--SequentialMatching.loop_detection", "1",
+        "--SiftMatching.use_gpu", "1",
+        "--SiftMatching.gpu_index", "0"}},
 
       {"Sparse Reconstruction",
        "",
@@ -64,7 +68,9 @@ void ColmapRunner::runFullPipeline() {
                     "",
                     {"patch_match_stereo", "--workspace_path", densePath,
                      "--workspace_format", "COLMAP",
-                     "--PatchMatchStereo.geom_consistency", "1"}});
+                     "--PatchMatchStereo.geom_consistency", "1",
+                     "--PatchMatchStereo.use_gpu", "1",
+                     "--PatchMatchStereo.gpu_index", "0"}});
 
     m_steps.append({"Stereo Fusion",
                     "",
@@ -115,6 +121,15 @@ void ColmapRunner::runNextStep() {
 void ColmapRunner::startStep(const PipelineStep &step) {
   emit stepStarted(step.name);
 
+  if (step.name == "Sparse Reconstruction") {
+    emit progressOutput(
+        "[info] COLMAP mapper is CPU-only. GPU acceleration applies to SIFT "
+        "extraction/matching and dense stereo.");
+  } else if (step.name == "Stereo Fusion") {
+    emit progressOutput(
+        "[info] stereo_fusion is CPU-bound even when dense stereo used CUDA.");
+  }
+
   QString base = QCoreApplication::applicationDirPath();
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
   env.insert("QT_QPA_PLATFORM", "offscreen");
@@ -158,6 +173,7 @@ void ColmapRunner::startStep(const PipelineStep &step) {
   m_process->setProcessEnvironment(env);
 
   QString exe = step.exe.isEmpty() ? m_colmapPath : step.exe;
+  emit progressOutput(QString("[cmd] %1 %2").arg(exe, step.args.join(' ')));
   m_process->start(exe, step.args);
 
   if (!m_process->waitForStarted(5000)) {

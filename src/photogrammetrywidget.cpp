@@ -160,7 +160,7 @@ void PhotogrammetryWidget::setupUI() {
 
   m_denseCheckBox = new QCheckBox("Dense Reconstruction", this);
 #if defined(Q_OS_WIN)
-  m_denseCheckBox->setToolTip("Runs CUDA-accelerated patch_match_stereo + stereo_fusion after sparse reconstruction.\nRequires an NVIDIA GPU with CUDA.");
+  m_denseCheckBox->setToolTip("Enables CUDA for COLMAP dense stereo on Windows.\nFeature extraction/matching and patch_match_stereo use the GPU when CUDA is available.\nSparse mapper and stereo_fusion remain CPU-bound.");
 #else
   m_denseCheckBox->setToolTip("Runs CPU-based dense reconstruction via OpenMVS DensifyPointCloud.\nSlower than CUDA but works on any hardware.");
 #endif
