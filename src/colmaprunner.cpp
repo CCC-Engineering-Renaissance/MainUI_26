@@ -105,6 +105,11 @@ void ColmapRunner::runFullPipeline() {
     QStringList denseStereoArgs = {
         "patch_match_stereo", "--workspace_path", densePath,
         "--workspace_format", "COLMAP",
+        "--PatchMatchStereo.max_image_size", "2000",
+        "--PatchMatchStereo.num_iterations", "3",
+        "--PatchMatchStereo.window_radius", "4",
+        "--PatchMatchStereo.window_step", "2",
+        "--PatchMatchStereo.filter", "1",
         "--PatchMatchStereo.geom_consistency", "1"};
     maybeAppendOption(denseStereoArgs, "patch_match_stereo",
                       "--PatchMatchStereo.use_gpu", "1");
