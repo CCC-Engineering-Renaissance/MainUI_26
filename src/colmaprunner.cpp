@@ -59,9 +59,12 @@ void ColmapRunner::runFullPipeline() {
   QString dbPath = m_workspacePath + "/database.db";
   QString sparsePath = m_workspacePath + "/sparse";
   QString densePath = m_workspacePath + "/dense";
+  QDir(sparsePath).removeRecursively();
+  QDir(densePath).removeRecursively();
   QDir().mkpath(sparsePath);
   QDir().mkpath(densePath);
   QFile::remove(dbPath);
+  QFile::remove(m_workspacePath + "/model.ply");
 
   QStringList featureArgs = {
       "feature_extractor", "--database_path", dbPath, "--image_path",
