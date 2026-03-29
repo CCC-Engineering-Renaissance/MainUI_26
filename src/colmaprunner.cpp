@@ -2,6 +2,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QProcessEnvironment>
 
 ColmapRunner::ColmapRunner(QObject *parent)
@@ -192,11 +193,21 @@ void ColmapRunner::startStep(const PipelineStep &step) {
 #endif
 
 #ifdef Q_OS_WIN
-  // On Windows, prepend the tools directory to PATH so the loader finds
-  // bundled DLLs (CUDA runtime, cuBLAS, etc.) alongside colmap.exe.
+  // On Windows, prefer the actual COLMAP executable directory first so an
+  // externally selected build does not accidentally load mismatched DLLs from
+  // the app bundle.
   {
+    QString exe = step.exe.isEmpty() ? m_colmapPath : step.exe;
+    QString exeDir = QFileInfo(exe).absolutePath();
     QString existingPath = env.value("PATH");
-    env.insert("PATH", toolsBase + ";" + existingPath);
+    QStringList pathEntries;
+    if (!exeDir.isEmpty())
+      pathEntries << QDir::toNativeSeparators(exeDir);
+    if (QDir(toolsBase).exists())
+      pathEntries << QDir::toNativeSeparators(toolsBase);
+    if (!existingPath.isEmpty())
+      pathEntries << existingPath;
+    env.insert("PATH", pathEntries.join(';'));
   }
 #else
   QString libPath = toolsBase + "/lib";
