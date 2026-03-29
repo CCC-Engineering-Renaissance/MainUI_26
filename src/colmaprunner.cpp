@@ -2,6 +2,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QProcessEnvironment>
 
 ColmapRunner::ColmapRunner(QObject *parent)
     : QObject(parent), m_process(new QProcess(this)) {
@@ -21,6 +22,35 @@ void ColmapRunner::setWorkspacePath(const QString &path) {
 void ColmapRunner::setImagePath(const QString &path) { m_imagePath = path; }
 void ColmapRunner::setDenseEnabled(bool enabled) { m_denseEnabled = enabled; }
 
+bool ColmapRunner::supportsOption(const QString &command, const QString &option) {
+  const QString cacheKey = command + "|" + option;
+  if (m_supportedOptions.contains(cacheKey))
+    return true;
+  if (m_unsupportedOptions.contains(cacheKey))
+    return false;
+
+  QProcess probe;
+  probe.setProcessChannelMode(QProcess::MergedChannels);
+  probe.start(m_colmapPath, {command, "-h"});
+  if (!probe.waitForStarted(5000) || !probe.waitForFinished(5000)) {
+    m_unsupportedOptions.insert(cacheKey);
+    return false;
+  }
+
+  const QString output = QString::fromUtf8(probe.readAll());
+  const bool supported = output.contains(option);
+  (supported ? m_supportedOptions : m_unsupportedOptions).insert(cacheKey);
+  return supported;
+}
+
+void ColmapRunner::maybeAppendOption(QStringList &args, const QString &command,
+                                     const QString &option,
+                                     const QString &value) {
+  if (supportsOption(command, option)) {
+    args << option << value;
+  }
+}
+
 void ColmapRunner::runFullPipeline() {
   m_cancelled = false;
   m_currentStep = 0;
@@ -32,23 +62,33 @@ void ColmapRunner::runFullPipeline() {
   QDir().mkpath(densePath);
   QFile::remove(dbPath);
 
+  QStringList featureArgs = {
+      "feature_extractor", "--database_path", dbPath, "--image_path",
+      m_imagePath, "--ImageReader.single_camera", "1",
+      "--ImageReader.camera_model", "PINHOLE",
+      "--SiftExtraction.max_num_features", "8192"};
+  maybeAppendOption(featureArgs, "feature_extractor",
+                    "--SiftExtraction.use_gpu", "1");
+  maybeAppendOption(featureArgs, "feature_extractor",
+                    "--SiftExtraction.gpu_index", "0");
+
+  QStringList matchingArgs = {
+      "sequential_matcher", "--database_path", dbPath,
+      "--SequentialMatching.overlap", "10",
+      "--SequentialMatching.loop_detection", "1"};
+  maybeAppendOption(matchingArgs, "sequential_matcher",
+                    "--SiftMatching.use_gpu", "1");
+  maybeAppendOption(matchingArgs, "sequential_matcher",
+                    "--SiftMatching.gpu_index", "0");
+
   m_steps = {
       {"Feature Extraction",
        "",
-       {"feature_extractor", "--database_path", dbPath, "--image_path",
-        m_imagePath, "--ImageReader.single_camera", "1",
-        "--ImageReader.camera_model", "PINHOLE",
-        "--SiftExtraction.max_num_features", "8192",
-        "--SiftExtraction.use_gpu", "1",
-        "--SiftExtraction.gpu_index", "0"}},
+       featureArgs},
 
       {"Feature Matching",
        "",
-       {"sequential_matcher", "--database_path", dbPath,
-        "--SequentialMatching.overlap", "10",
-        "--SequentialMatching.loop_detection", "1",
-        "--SiftMatching.use_gpu", "1",
-        "--SiftMatching.gpu_index", "0"}},
+       matchingArgs},
 
       {"Sparse Reconstruction",
        "",
@@ -58,6 +98,15 @@ void ColmapRunner::runFullPipeline() {
 
 #if defined(Q_OS_WIN)
   if (m_denseEnabled) {
+    QStringList denseStereoArgs = {
+        "patch_match_stereo", "--workspace_path", densePath,
+        "--workspace_format", "COLMAP",
+        "--PatchMatchStereo.geom_consistency", "1"};
+    maybeAppendOption(denseStereoArgs, "patch_match_stereo",
+                      "--PatchMatchStereo.use_gpu", "1");
+    maybeAppendOption(denseStereoArgs, "patch_match_stereo",
+                      "--PatchMatchStereo.gpu_index", "0");
+
     m_steps.append({"Image Undistortion",
                     "",
                     {"image_undistorter", "--image_path", m_imagePath,
@@ -66,11 +115,7 @@ void ColmapRunner::runFullPipeline() {
 
     m_steps.append({"Dense Stereo (CUDA)",
                     "",
-                    {"patch_match_stereo", "--workspace_path", densePath,
-                     "--workspace_format", "COLMAP",
-                     "--PatchMatchStereo.geom_consistency", "1",
-                     "--PatchMatchStereo.use_gpu", "1",
-                     "--PatchMatchStereo.gpu_index", "0"}});
+                    denseStereoArgs});
 
     m_steps.append({"Stereo Fusion",
                     "",

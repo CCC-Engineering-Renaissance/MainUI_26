@@ -1,6 +1,7 @@
 #pragma once
 #include <QObject>
 #include <QProcess>
+#include <QSet>
 #include <QString>
 #include <QStringList>
 
@@ -39,6 +40,9 @@ private:
     QStringList args;
   };
 
+  bool supportsOption(const QString &command, const QString &option);
+  void maybeAppendOption(QStringList &args, const QString &command,
+                         const QString &option, const QString &value);
   void runNextStep();
   void startStep(const PipelineStep &step);
 
@@ -48,6 +52,8 @@ private:
   QString m_imagePath;
 
   QList<PipelineStep> m_steps;
+  QSet<QString> m_supportedOptions;
+  QSet<QString> m_unsupportedOptions;
   int m_currentStep = 0;
   bool m_cancelled = false;
   bool m_denseEnabled = false;
