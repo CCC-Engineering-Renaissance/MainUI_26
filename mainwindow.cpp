@@ -23,7 +23,7 @@
 #include <QVideoWidget>
 #include <QWidget>
 #include "./ui_mainwindow.h"
-
+//hello
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
