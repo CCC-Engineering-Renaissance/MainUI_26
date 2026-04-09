@@ -9,6 +9,10 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QTimer>
+#include <QChart>
+#include <QChartView>
+#include <QValueAxis>
+#include <QLineSeries>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -83,6 +87,11 @@ private:
   // Helpers
   void setActiveCamButton(const QString &name);
   void updateModeButton();
+
+  // Helper for float charts
+  void setupPressureChart();
+  void setupDepthChart();
+  void setupFloatDataTable();
 };
 
 #endif // MAINWINDOW_H

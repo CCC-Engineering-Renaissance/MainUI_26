@@ -16,6 +16,10 @@
 #include <QString>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QChart>
+#include <QtCharts/QValueAxis>
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Construction / destruction
@@ -28,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     resize(1200, 800);
     setMinimumSize(900, 600);
+
+    ui->stackedWidget->setCurrentIndex(0);
 
     // ── Photogrammetry widget ─────────────────────────────────────────────
     QWidget *modelingPage = ui->stackedWidget->widget(2);
@@ -102,6 +108,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_clockTimer, &QTimer::timeout, this, &MainWindow::updateClock);
     m_clockTimer->start();
     updateClock(); // show immediately
+
+    // ── Call Float Chart Functions ───────────────────────────────────────────────────────
+    setupPressureChart();
+    setupDepthChart();
 }
 
 MainWindow::~MainWindow()
@@ -151,6 +161,78 @@ void MainWindow::on_modelingPushButton_clicked()  { ui->stackedWidget->setCurren
 void MainWindow::on_icebergPushButton_clicked()   { ui->stackedWidget->setCurrentIndex(3); }
 void MainWindow::on_ednaPushButton_clicked()      { ui->stackedWidget->setCurrentIndex(4); }
 void MainWindow::on_floatPushButton_clicked()     { ui->stackedWidget->setCurrentIndex(5); }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Float Page logic
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::setupPressureChart() {
+
+    auto series = new QLineSeries();
+
+    // Add static data points
+    series->append(0, 5);
+    series->append(5, 10);
+    series->append(10, 5);
+
+    // Create chart
+    auto chart = new QChart();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+
+    chart->setTitle("Pressure Chart");
+
+    chart->setTheme(QChart::ChartThemeBlueCerulean);
+
+    chart->axes(Qt::Horizontal).first()->setRange(0, 10);
+    chart->axes(Qt::Vertical).first()->setRange(0, 10);
+    chart->axes(Qt::Horizontal).back()->setTitleText("Time (seconds)");
+    chart->axes(Qt::Vertical).back()->setTitleText("Pressure (kpa)");
+
+    QPen pen(Qt::red);
+    pen.setWidth(3);
+    series->setPen(pen);
+    series->setVisible(true);
+
+    // Attach to the UI widget (Promoted QChartView)
+    ui->pressureChart->setChart(chart);
+}
+
+void MainWindow::setupDepthChart() {
+
+    auto series = new QLineSeries();
+
+    // Add static data points
+    series->append(1, 5);
+    series->append(2, 10);
+    series->append(3, 5);
+
+    // Create chart
+    auto chart = new QChart();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+
+    chart->setTitle("Depth Chart");
+
+    chart->setTheme(QChart::ChartThemeBlueCerulean);
+
+    chart->axes(Qt::Horizontal).first()->setRange(0, 10);
+    chart->axes(Qt::Vertical).first()->setRange(0, 10);
+    chart->axes(Qt::Horizontal).back()->setTitleText("Time (seconds)");
+    chart->axes(Qt::Vertical).back()->setTitleText("Depth (meters)");
+
+    QPen pen(Qt::red);
+    pen.setWidth(3);
+    series->setPen(pen);
+    series->setVisible(true);
+
+    // Attach to the UI widget (Promoted QChartView)
+    ui->depthChart->setChart(chart);
+}
+
+void MainWindow::setupFloatDataTable(){
+
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Home (back) buttons
