@@ -17,6 +17,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Network
     OpenGL
     OpenGLWidgets
+    Charts
 )
 
 set(PROJECT_SOURCES
@@ -53,6 +54,7 @@ target_link_libraries(GUI PRIVATE
     Qt6::Network
     Qt6::OpenGL
     Qt6::OpenGLWidgets
+    Qt6::Charts
 )
 
 target_include_directories(GUI PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
