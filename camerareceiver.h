@@ -47,9 +47,11 @@ public:
   /** Gracefully disconnect from the Pi. */
   void disconnectFromHost();
 
-  /** Send a camera-switch command ("front" | "left" | "right" | "bot" |
-   * "back"). */
+  /** Send a camera-switch command ("front" | "left" | "right" | "bot" | "back"). */
   void switchCamera(const QString &cameraName);
+
+  /** Send a mode command: "live" (2048x1536 @ 30fps) or "hq" (4656x3496 @ 10fps). */
+  void setMode(const QString &modeName);
 
   bool isConnected() const;
 

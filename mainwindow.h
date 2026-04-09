@@ -7,6 +7,7 @@
 #include <QGraphicsScene>
 #include <QLabel>
 #include <QMainWindow>
+#include <QPushButton>
 #include <QTimer>
 
 QT_BEGIN_NAMESPACE
@@ -52,6 +53,9 @@ private slots:
   void on_botCamButton_clicked();
   void on_backCamButton_clicked();
 
+  // ── Resolution / FPS mode toggle ──────────────────────────────────────
+  void onModeToggleClicked();
+
   // ── Camera receiver callbacks ─────────────────────────────────────────
   void onCameraFrame(const QImage &image);
   void onCameraConnected();
@@ -72,8 +76,13 @@ private:
   // Clock timer (updates timeLabel every second)
   QTimer *m_clockTimer = nullptr;
 
-  // Helper: highlight the active camera button
+  // Current capture mode ("live" or "hq")
+  QString      m_currentMode   = "live";
+  QPushButton *m_modeButton    = nullptr;
+
+  // Helpers
   void setActiveCamButton(const QString &name);
+  void updateModeButton();
 };
 
 #endif // MAINWINDOW_H

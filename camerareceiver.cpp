@@ -62,6 +62,19 @@ void CameraReceiver::switchCamera(const QString &cameraName)
     qDebug() << "CameraReceiver: sent" << cmd.trimmed();
 }
 
+void CameraReceiver::setMode(const QString &modeName)
+{
+    if (m_commandSocket->state() != QAbstractSocket::ConnectedState) {
+        qDebug() << "CameraReceiver: command socket not connected – cannot set mode";
+        return;
+    }
+    const QByteArray cmd =
+        QStringLiteral("MODE:%1\n").arg(modeName.toLower()).toUtf8();
+    m_commandSocket->write(cmd);
+    m_commandSocket->flush();
+    qDebug() << "CameraReceiver: sent" << cmd.trimmed();
+}
+
 bool CameraReceiver::isConnected() const
 {
     return m_streamSocket->state() == QAbstractSocket::ConnectedState;

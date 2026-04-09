@@ -11,6 +11,7 @@
 #include <QLCDNumber>
 #include <QLabel>
 #include <QPixmap>
+#include <QPushButton>
 #include <QSpinBox>
 #include <QString>
 #include <QVBoxLayout>
@@ -58,12 +59,30 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     // ── Camera graphics scene ─────────────────────────────────────────────
-    // Set up scene + pixmap item once here; they persist for the session.
     m_scene      = new QGraphicsScene(this);
     m_pixmapItem = new QGraphicsPixmapItem();
     m_scene->addItem(m_pixmapItem);
     ui->graphicsView->setScene(m_scene);
     ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
+
+    // ── Mode toggle button (added programmatically to the camera page) ────
+    // Placed in the top-right corner of the camera page layout so it doesn't
+    // require modifying the .ui file.
+    m_modeButton = new QPushButton(ui->cameraPage);
+    m_modeButton->setFixedSize(160, 36);
+    m_modeButton->move(ui->cameraPage->width() - 170, 4);
+    m_modeButton->setStyleSheet(
+        "background-color: rgb(44,181,222);"
+        "color: white;"
+        "border-width: 3px;"
+        "border-style: ridge;"
+        "border-color: rgb(152,199,65);"
+        "border-radius: 6px;"
+        "font-size: 13px;"
+        "font-weight: bold;"
+    );
+    updateModeButton();
+    connect(m_modeButton, &QPushButton::clicked, this, &MainWindow::onModeToggleClicked);
 
     // ── Camera receiver ───────────────────────────────────────────────────
     m_cameraReceiver = new CameraReceiver(this);
@@ -139,8 +158,10 @@ void MainWindow::on_floatPushButton_clicked()     { ui->stackedWidget->setCurren
 
 void MainWindow::on_homePageButton_clicked()
 {
-    // Camera page → main menu: disconnect stream
+    // Camera page → main menu: disconnect stream and reset mode
     m_cameraReceiver->disconnectFromHost();
+    m_currentMode = "live";
+    updateModeButton();
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -276,6 +297,55 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
 // ─────────────────────────────────────────────────────────────────────────────
 // Private helpers
 // ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Mode toggle
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::onModeToggleClicked()
+{
+    m_currentMode = (m_currentMode == "live") ? "hq" : "live";
+    m_cameraReceiver->setMode(m_currentMode);
+    updateModeButton();
+}
+
+void MainWindow::updateModeButton()
+{
+    if (!m_modeButton) return;
+
+    if (m_currentMode == "live") {
+        m_modeButton->setText("Live  2048x1536 @ 30fps");
+        m_modeButton->setToolTip(
+            "Currently: Live streaming mode\nClick to switch to HQ photogrammetry mode");
+    } else {
+        m_modeButton->setText("HQ  4656x3496 @ 10fps");
+        m_modeButton->setToolTip(
+            "Currently: High-quality photogrammetry mode\nClick to switch to Live streaming mode");
+        // Tint the button gold when in HQ mode so it's obviously different
+        m_modeButton->setStyleSheet(
+            "background-color: rgb(210,160,20);"
+            "color: white;"
+            "border-width: 3px;"
+            "border-style: ridge;"
+            "border-color: rgb(255,220,80);"
+            "border-radius: 6px;"
+            "font-size: 13px;"
+            "font-weight: bold;"
+        );
+        return;
+    }
+    // Reset to normal style for live mode
+    m_modeButton->setStyleSheet(
+        "background-color: rgb(44,181,222);"
+        "color: white;"
+        "border-width: 3px;"
+        "border-style: ridge;"
+        "border-color: rgb(152,199,65);"
+        "border-radius: 6px;"
+        "font-size: 13px;"
+        "font-weight: bold;"
+    );
+}
 
 /**
  * Highlights the active camera button with a bright border and dims the rest.
