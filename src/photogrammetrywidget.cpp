@@ -20,8 +20,23 @@
 #include <QTextEdit>
 #include <QInputDialog>
 #include <QStandardPaths>
+#include <QSysInfo>
 #include <QUrl>
 #include <QVBoxLayout>
+
+namespace {
+// Probe a candidate `colmap` binary to confirm it's actually COLMAP.
+// Fedora's `geomorph` package installs /usr/bin/colmap (POV-Ray color-map
+// tool) which collides with the name we want.
+bool isRealColmap(const QString &path) {
+  QProcess probe;
+  probe.setProcessChannelMode(QProcess::MergedChannels);
+  probe.start(path, {"help"});
+  if (!probe.waitForStarted(2000) || !probe.waitForFinished(3000))
+    return false;
+  return probe.readAll().contains("Structure-from-Motion");
+}
+}
 
 PhotogrammetryWidget::PhotogrammetryWidget(QWidget *parent)
     : QWidget(parent), m_runner(new ColmapRunner(this)) {
@@ -105,7 +120,9 @@ QString PhotogrammetryWidget::detectColmapPath() {
   }
 #elif defined(Q_OS_MACOS)
   QString macPath = base + "/tools/macos/bin/colmap";
-  if (QFileInfo::exists(macPath))
+  // Bundled macOS binary is arm64-only; skip it on Intel Macs.
+  if (QFileInfo::exists(macPath) &&
+      QSysInfo::currentCpuArchitecture() == "arm64")
     return macPath;
 #else
   QString linuxPath = base + "/tools/linux/bin/colmap";
@@ -113,9 +130,10 @@ QString PhotogrammetryWidget::detectColmapPath() {
     return linuxPath;
 #endif
 
-  // 3. Anywhere on PATH
+  // 3. Anywhere on PATH — but verify it's actually COLMAP, not a namesake
+  //    like Fedora's `geomorph` /usr/bin/colmap.
   QString onPath = QStandardPaths::findExecutable("colmap");
-  if (!onPath.isEmpty())
+  if (!onPath.isEmpty() && isRealColmap(onPath))
     return onPath;
 
   // 4. Nothing found — ask the user
@@ -394,6 +412,35 @@ void PhotogrammetryWidget::onRunClicked() {
     m_statusLabel->setText("Need at least 3 images to reconstruct");
     return;
   }
+
+#if !defined(Q_OS_WIN)
+  // Dense on Linux/macOS goes through OpenMVS — bail early with a clear
+  // message if the binaries aren't installed, instead of failing mid-pipeline
+  // after sparse has already finished.
+  if (m_denseCheckBox->isChecked()) {
+    QStringList missing;
+    if (QStandardPaths::findExecutable("InterfaceCOLMAP").isEmpty())
+      missing << "InterfaceCOLMAP";
+    if (QStandardPaths::findExecutable("DensifyPointCloud").isEmpty())
+      missing << "DensifyPointCloud";
+    if (!missing.isEmpty()) {
+      QMessageBox box(this);
+      box.setIcon(QMessageBox::Warning);
+      box.setWindowTitle("OpenMVS tools missing");
+      box.setText("Dense reconstruction needs OpenMVS binaries on PATH but "
+                  "these were not found:\n\n  • " +
+                  missing.join("\n  • ") +
+                  "\n\nInstall OpenMVS, or run sparse reconstruction only?");
+      auto *sparseBtn = box.addButton("Run sparse only",
+                                      QMessageBox::AcceptRole);
+      box.addButton(QMessageBox::Cancel);
+      box.exec();
+      if (box.clickedButton() != sparseBtn)
+        return;
+      m_denseCheckBox->setChecked(false);
+    }
+  }
+#endif
 
   m_logOutput->clear();
   m_progressBar->setValue(0);
