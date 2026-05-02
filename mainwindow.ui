@@ -84,7 +84,7 @@
        <number>2</number>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <property name="styleSheet">
@@ -1085,23 +1085,42 @@ border: none;</string>
       </widget>
       <widget class="QWidget" name="icebergPage">
        <layout class="QGridLayout" name="gridLayout_6">
-        <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
-         <widget class="QLabel" name="label_16">
+        <item row="3" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth2">
           <property name="font">
            <font>
             <family>Aileron</family>
-            <pointsize>31</pointsize>
-            <italic>false</italic>
-            <underline>true</underline>
            </font>
           </property>
-          <property name="text">
-           <string>Iceberg Analysis</string>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="QLabel" name="label_17">
+        <item row="6" column="1">
+         <widget class="QLabel" name="lcdkeeldepth5">
+          <property name="font">
+           <font>
+            <family>Academy Engraved LET</family>
+            <pointsize>27</pointsize>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::Box</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="text">
+           <string>Keel Depth #5</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="lcdkeeldepth2">
           <property name="font">
            <font>
             <family>Aileron</family>
@@ -1118,8 +1137,55 @@ border: none;</string>
           <property name="lineWidth">
            <number>2</number>
           </property>
+          <property name="midLineWidth">
+           <number>0</number>
+          </property>
           <property name="text">
-           <string>Keel Depth #4</string>
+           <string>Keel Depth #2</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth1">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+           </font>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Filled</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="lcdkeeldepth1">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+            <pointsize>27</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="midLineWidth">
+           <number>13</number>
+          </property>
+          <property name="text">
+           <string>Keel Depth #1</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1162,8 +1228,23 @@ border: none;</string>
           </property>
          </widget>
         </item>
+        <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+         <widget class="QLabel" name="label_16">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+            <pointsize>31</pointsize>
+            <italic>false</italic>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="text">
+           <string>Iceberg Analysis</string>
+          </property>
+         </widget>
+        </item>
         <item row="4" column="1">
-         <widget class="QLabel" name="label_19">
+         <widget class="QLabel" name="lcdkeeldepth3">
           <property name="font">
            <font>
             <family>Aileron</family>
@@ -1188,8 +1269,42 @@ border: none;</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_18">
+        <item row="4" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth3">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+           </font>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth5">
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth4">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+           </font>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="lcdkeeldepth4">
           <property name="font">
            <font>
             <family>Aileron</family>
@@ -1206,105 +1321,175 @@ border: none;</string>
           <property name="lineWidth">
            <number>2</number>
           </property>
-          <property name="midLineWidth">
-           <number>13</number>
-          </property>
           <property name="text">
-           <string>Keel Depth #1</string>
+           <string>Keel Depth #4</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="2" column="3" rowspan="4">
-         <widget class="QFrame" name="frame_2">
+        <item row="2" column="3" rowspan="5">
+         <widget class="QFrame" name="Qframe">
           <property name="frameShape">
            <enum>QFrame::Shape::StyledPanel</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Raised</enum>
           </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLabel" name="label_20">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="midLineWidth">
-           <number>0</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #2</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QLCDNumber" name="lcdNumber_2">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::SegmentStyle::Filled</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QLCDNumber" name="lcdNumber_4">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QLCDNumber" name="lcdNumber_5">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
-         <widget class="QLCDNumber" name="lcdNumber_6">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
+          <widget class="QGraphicsView" name="tacticalview">
+           <property name="geometry">
+            <rect>
+             <x>50</x>
+             <y>60</y>
+             <width>256</width>
+             <height>192</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QProgressBar" name="ProgThreat1">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>340</y>
+             <width>271</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+          <widget class="QProgressBar" name="ProgThreat2">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>380</y>
+             <width>271</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+          <widget class="QProgressBar" name="ProgThreat3">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>420</y>
+             <width>271</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+          <widget class="QProgressBar" name="ProgThreat4">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>460</y>
+             <width>271</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_17">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>320</y>
+             <width>121</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Platform #1 Threat</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_18">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>360</y>
+             <width>131</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Platform #2 Threat</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_19">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>400</y>
+             <width>131</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Platform #3 Threat</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_20">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>440</y>
+             <width>121</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Platform #4 Threat</string>
+           </property>
+          </widget>
+          <widget class="QProgressBar" name="progThreatSubsea">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>500</y>
+             <width>271</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_21">
+           <property name="geometry">
+            <rect>
+             <x>80</x>
+             <y>480</y>
+             <width>131</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Subsea Asset Threat</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="btnRecordDepth">
+           <property name="geometry">
+            <rect>
+             <x>90</x>
+             <y>570</y>
+             <width>171</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>PushButton</string>
+           </property>
+          </widget>
          </widget>
         </item>
        </layout>
