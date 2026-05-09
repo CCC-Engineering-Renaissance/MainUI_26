@@ -14,5 +14,8 @@
 
     <key>NSCameraUsageDescription</key>
     <string>This thing needs camera access to display the video feed.</string>
+
+    <key>NSHighResolutionCapable</key>
+    <true/>
 </dict>
 </plist>

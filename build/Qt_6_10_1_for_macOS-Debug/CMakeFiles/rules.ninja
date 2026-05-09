@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Users/polar/Qt/Tools/CMake/CMake.app/Contents/bin/cmake --regenerate-during-build -S/Users/polar/Qt/GUI -B/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug
+  command = /Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/bin/cmake --regenerate-during-build -S/Users/tylerbarbery/Projects/MainUI_26 -B/Users/tylerbarbery/Projects/MainUI_26/build/Qt_6_10_1_for_macOS-Debug
   description = Re-running CMake...
   generator = 1
 
@@ -51,7 +51,7 @@ rule RERUN_CMAKE
 # Rule for cleaning additional files.
 
 rule CLEAN_ADDITIONAL
-  command = /Users/polar/Qt/Tools/CMake/CMake.app/Contents/bin/cmake -DCONFIG=$CONFIG -P CMakeFiles/clean_additional.cmake
+  command = /Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/bin/cmake -DCONFIG=$CONFIG -P CMakeFiles/clean_additional.cmake
   description = Cleaning additional files...
 
 
@@ -59,7 +59,7 @@ rule CLEAN_ADDITIONAL
 # Rule for cleaning all built files.
 
 rule CLEAN
-  command = /Users/polar/Qt/Tools/Ninja/ninja $FILE_ARG -t clean $TARGETS
+  command = /Users/tylerbarbery/Qt/Tools/Ninja/ninja $FILE_ARG -t clean $TARGETS
   description = Cleaning all built files...
 
 
@@ -67,6 +67,6 @@ rule CLEAN
 # Rule for printing all primary targets available.
 
 rule HELP
-  command = /Users/polar/Qt/Tools/Ninja/ninja -t targets
+  command = /Users/tylerbarbery/Qt/Tools/Ninja/ninja -t targets
   description = All primary targets available:
 

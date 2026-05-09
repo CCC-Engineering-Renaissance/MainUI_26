@@ -83,14 +83,14 @@ else()
     set(TOOLS_SUBDIR "linux")
 endif()
 
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tools/${TOOLS_SUBDIR}")
-    add_custom_command(TARGET GUI POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_CURRENT_SOURCE_DIR}/tools/${TOOLS_SUBDIR}"
-            "$<TARGET_FILE_DIR:GUI>/tools/${TOOLS_SUBDIR}"
-        COMMENT "Bundling COLMAP tools for ${TOOLS_SUBDIR}"
-    )
-endif()
+ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tools/${TOOLS_SUBDIR}")
+     add_custom_command(TARGET GUI POST_BUILD
+         COMMAND ${CMAKE_COMMAND} -E copy_directory
+             "${CMAKE_CURRENT_SOURCE_DIR}/tools/${TOOLS_SUBDIR}"
+             "$<TARGET_FILE_DIR:GUI>/tools/${TOOLS_SUBDIR}"
+         COMMENT "Bundling COLMAP tools for ${TOOLS_SUBDIR}"
+     )
+ endif()
 
 include(GNUInstallDirs)
 if(APPLE)

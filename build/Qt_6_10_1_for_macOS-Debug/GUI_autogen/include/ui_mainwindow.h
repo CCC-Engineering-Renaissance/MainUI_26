@@ -9,6 +9,7 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <QtCharts/QChartView>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
@@ -16,13 +17,16 @@
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -88,17 +92,31 @@ public:
     QToolButton *homePageButton_2;
     QWidget *icebergPage;
     QGridLayout *gridLayout_6;
-    QLabel *label_16;
-    QLabel *label_17;
+    QLCDNumber *lcdKeelDepth2;
+    QLabel *lcdkeeldepth5;
+    QLabel *lcdkeeldepth2;
+    QLCDNumber *lcdKeelDepth1;
+    QLabel *lcdkeeldepth1;
     QToolButton *homePageButton_3;
-    QLabel *label_19;
+    QLabel *label_16;
+    QLabel *lcdkeeldepth3;
+    QLCDNumber *lcdKeelDepth3;
+    QLCDNumber *lcdKeelDepth5;
+    QLCDNumber *lcdKeelDepth4;
+    QLabel *lcdkeeldepth4;
+    QFrame *Qframe;
+    QGraphicsView *tacticalview;
+    QProgressBar *ProgThreat1;
+    QProgressBar *ProgThreat2;
+    QProgressBar *ProgThreat3;
+    QProgressBar *ProgThreat4;
+    QLabel *label_17;
     QLabel *label_18;
-    QFrame *frame_2;
+    QLabel *label_19;
     QLabel *label_20;
-    QLCDNumber *lcdNumber_2;
-    QLCDNumber *lcdNumber_4;
-    QLCDNumber *lcdNumber_5;
-    QLCDNumber *lcdNumber_6;
+    QProgressBar *progThreatSubsea;
+    QLabel *label_21;
+    QPushButton *btnRecordDepth;
     QWidget *ednaPage;
     QGridLayout *gridLayout_4;
     QSpinBox *spinBoxRock;
@@ -137,7 +155,15 @@ public:
     QSpinBox *spinBoxJonah;
     QLabel *label_12;
     QWidget *floatPage;
+    QGridLayout *gridLayout_7;
+    QFrame *frame_3;
+    QVBoxLayout *verticalLayout_3;
+    QChartView *depthChart;
+    QChartView *pressureChart;
     QToolButton *homePageButton_5;
+    QFrame *frame_4;
+    QVBoxLayout *verticalLayout_4;
+    QTableView *floatDataTable;
     QWidget *settingsPage;
     QToolButton *homePageButton_6;
 
@@ -689,30 +715,58 @@ public:
         icebergPage->setObjectName("icebergPage");
         gridLayout_6 = new QGridLayout(icebergPage);
         gridLayout_6->setObjectName("gridLayout_6");
-        label_16 = new QLabel(icebergPage);
-        label_16->setObjectName("label_16");
+        lcdKeelDepth2 = new QLCDNumber(icebergPage);
+        lcdKeelDepth2->setObjectName("lcdKeelDepth2");
+        lcdKeelDepth2->setFont(font5);
+        lcdKeelDepth2->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_6->addWidget(lcdKeelDepth2, 3, 2, 1, 1);
+
+        lcdkeeldepth5 = new QLabel(icebergPage);
+        lcdkeeldepth5->setObjectName("lcdkeeldepth5");
         QFont font14;
-        font14.setFamilies({QString::fromUtf8("Aileron")});
-        font14.setPointSize(31);
-        font14.setItalic(false);
-        font14.setUnderline(true);
-        label_16->setFont(font14);
+        font14.setFamilies({QString::fromUtf8("Academy Engraved LET")});
+        font14.setPointSize(27);
+        lcdkeeldepth5->setFont(font14);
+        lcdkeeldepth5->setFrameShape(QFrame::Shape::Box);
+        lcdkeeldepth5->setLineWidth(2);
+        lcdkeeldepth5->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout_6->addWidget(label_16, 0, 1, 1, 1, Qt::AlignmentFlag::AlignRight);
+        gridLayout_6->addWidget(lcdkeeldepth5, 6, 1, 1, 1);
 
-        label_17 = new QLabel(icebergPage);
-        label_17->setObjectName("label_17");
+        lcdkeeldepth2 = new QLabel(icebergPage);
+        lcdkeeldepth2->setObjectName("lcdkeeldepth2");
         QFont font15;
         font15.setFamilies({QString::fromUtf8("Aileron")});
         font15.setPointSize(27);
         font15.setItalic(true);
-        label_17->setFont(font15);
-        label_17->setFrameShape(QFrame::Shape::Box);
-        label_17->setFrameShadow(QFrame::Shadow::Plain);
-        label_17->setLineWidth(2);
-        label_17->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        lcdkeeldepth2->setFont(font15);
+        lcdkeeldepth2->setFrameShape(QFrame::Shape::Box);
+        lcdkeeldepth2->setFrameShadow(QFrame::Shadow::Plain);
+        lcdkeeldepth2->setLineWidth(2);
+        lcdkeeldepth2->setMidLineWidth(0);
+        lcdkeeldepth2->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        gridLayout_6->addWidget(label_17, 5, 1, 1, 1);
+        gridLayout_6->addWidget(lcdkeeldepth2, 3, 1, 1, 1);
+
+        lcdKeelDepth1 = new QLCDNumber(icebergPage);
+        lcdKeelDepth1->setObjectName("lcdKeelDepth1");
+        lcdKeelDepth1->setFont(font5);
+        lcdKeelDepth1->setFrameShadow(QFrame::Shadow::Plain);
+        lcdKeelDepth1->setSegmentStyle(QLCDNumber::SegmentStyle::Filled);
+
+        gridLayout_6->addWidget(lcdKeelDepth1, 2, 2, 1, 1);
+
+        lcdkeeldepth1 = new QLabel(icebergPage);
+        lcdkeeldepth1->setObjectName("lcdkeeldepth1");
+        lcdkeeldepth1->setFont(font15);
+        lcdkeeldepth1->setFrameShape(QFrame::Shape::Box);
+        lcdkeeldepth1->setFrameShadow(QFrame::Shadow::Plain);
+        lcdkeeldepth1->setLineWidth(2);
+        lcdkeeldepth1->setMidLineWidth(13);
+        lcdkeeldepth1->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout_6->addWidget(lcdkeeldepth1, 2, 1, 1, 1);
 
         homePageButton_3 = new QToolButton(icebergPage);
         homePageButton_3->setObjectName("homePageButton_3");
@@ -726,73 +780,105 @@ public:
 
         gridLayout_6->addWidget(homePageButton_3, 0, 0, 1, 1);
 
-        label_19 = new QLabel(icebergPage);
-        label_19->setObjectName("label_19");
-        label_19->setFont(font15);
-        label_19->setFrameShape(QFrame::Shape::Box);
-        label_19->setFrameShadow(QFrame::Shadow::Plain);
-        label_19->setLineWidth(2);
-        label_19->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_16 = new QLabel(icebergPage);
+        label_16->setObjectName("label_16");
+        QFont font16;
+        font16.setFamilies({QString::fromUtf8("Aileron")});
+        font16.setPointSize(31);
+        font16.setItalic(false);
+        font16.setUnderline(true);
+        label_16->setFont(font16);
 
-        gridLayout_6->addWidget(label_19, 4, 1, 1, 1);
+        gridLayout_6->addWidget(label_16, 0, 1, 1, 1, Qt::AlignmentFlag::AlignRight);
 
-        label_18 = new QLabel(icebergPage);
+        lcdkeeldepth3 = new QLabel(icebergPage);
+        lcdkeeldepth3->setObjectName("lcdkeeldepth3");
+        lcdkeeldepth3->setFont(font15);
+        lcdkeeldepth3->setFrameShape(QFrame::Shape::Box);
+        lcdkeeldepth3->setFrameShadow(QFrame::Shadow::Plain);
+        lcdkeeldepth3->setLineWidth(2);
+        lcdkeeldepth3->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout_6->addWidget(lcdkeeldepth3, 4, 1, 1, 1);
+
+        lcdKeelDepth3 = new QLCDNumber(icebergPage);
+        lcdKeelDepth3->setObjectName("lcdKeelDepth3");
+        lcdKeelDepth3->setFont(font5);
+        lcdKeelDepth3->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_6->addWidget(lcdKeelDepth3, 4, 2, 1, 1);
+
+        lcdKeelDepth5 = new QLCDNumber(icebergPage);
+        lcdKeelDepth5->setObjectName("lcdKeelDepth5");
+        lcdKeelDepth5->setFrameShadow(QFrame::Shadow::Plain);
+        lcdKeelDepth5->setLineWidth(1);
+
+        gridLayout_6->addWidget(lcdKeelDepth5, 6, 2, 1, 1);
+
+        lcdKeelDepth4 = new QLCDNumber(icebergPage);
+        lcdKeelDepth4->setObjectName("lcdKeelDepth4");
+        lcdKeelDepth4->setFont(font5);
+        lcdKeelDepth4->setFrameShadow(QFrame::Shadow::Plain);
+
+        gridLayout_6->addWidget(lcdKeelDepth4, 5, 2, 1, 1);
+
+        lcdkeeldepth4 = new QLabel(icebergPage);
+        lcdkeeldepth4->setObjectName("lcdkeeldepth4");
+        lcdkeeldepth4->setFont(font15);
+        lcdkeeldepth4->setFrameShape(QFrame::Shape::Box);
+        lcdkeeldepth4->setFrameShadow(QFrame::Shadow::Plain);
+        lcdkeeldepth4->setLineWidth(2);
+        lcdkeeldepth4->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        gridLayout_6->addWidget(lcdkeeldepth4, 5, 1, 1, 1);
+
+        Qframe = new QFrame(icebergPage);
+        Qframe->setObjectName("Qframe");
+        Qframe->setFrameShape(QFrame::Shape::StyledPanel);
+        Qframe->setFrameShadow(QFrame::Shadow::Raised);
+        tacticalview = new QGraphicsView(Qframe);
+        tacticalview->setObjectName("tacticalview");
+        tacticalview->setGeometry(QRect(50, 60, 256, 192));
+        ProgThreat1 = new QProgressBar(Qframe);
+        ProgThreat1->setObjectName("ProgThreat1");
+        ProgThreat1->setGeometry(QRect(80, 340, 271, 23));
+        ProgThreat1->setValue(24);
+        ProgThreat2 = new QProgressBar(Qframe);
+        ProgThreat2->setObjectName("ProgThreat2");
+        ProgThreat2->setGeometry(QRect(80, 380, 271, 23));
+        ProgThreat2->setValue(24);
+        ProgThreat3 = new QProgressBar(Qframe);
+        ProgThreat3->setObjectName("ProgThreat3");
+        ProgThreat3->setGeometry(QRect(80, 420, 271, 23));
+        ProgThreat3->setValue(24);
+        ProgThreat4 = new QProgressBar(Qframe);
+        ProgThreat4->setObjectName("ProgThreat4");
+        ProgThreat4->setGeometry(QRect(80, 460, 271, 23));
+        ProgThreat4->setValue(24);
+        label_17 = new QLabel(Qframe);
+        label_17->setObjectName("label_17");
+        label_17->setGeometry(QRect(80, 320, 121, 16));
+        label_18 = new QLabel(Qframe);
         label_18->setObjectName("label_18");
-        label_18->setFont(font15);
-        label_18->setFrameShape(QFrame::Shape::Box);
-        label_18->setFrameShadow(QFrame::Shadow::Plain);
-        label_18->setLineWidth(2);
-        label_18->setMidLineWidth(13);
-        label_18->setAlignment(Qt::AlignmentFlag::AlignCenter);
-
-        gridLayout_6->addWidget(label_18, 2, 1, 1, 1);
-
-        frame_2 = new QFrame(icebergPage);
-        frame_2->setObjectName("frame_2");
-        frame_2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_2->setFrameShadow(QFrame::Shadow::Raised);
-
-        gridLayout_6->addWidget(frame_2, 2, 3, 4, 1);
-
-        label_20 = new QLabel(icebergPage);
+        label_18->setGeometry(QRect(80, 360, 131, 16));
+        label_19 = new QLabel(Qframe);
+        label_19->setObjectName("label_19");
+        label_19->setGeometry(QRect(80, 400, 131, 16));
+        label_20 = new QLabel(Qframe);
         label_20->setObjectName("label_20");
-        label_20->setFont(font15);
-        label_20->setFrameShape(QFrame::Shape::Box);
-        label_20->setFrameShadow(QFrame::Shadow::Plain);
-        label_20->setLineWidth(2);
-        label_20->setMidLineWidth(0);
-        label_20->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_20->setGeometry(QRect(80, 440, 121, 16));
+        progThreatSubsea = new QProgressBar(Qframe);
+        progThreatSubsea->setObjectName("progThreatSubsea");
+        progThreatSubsea->setGeometry(QRect(80, 500, 271, 23));
+        progThreatSubsea->setValue(24);
+        label_21 = new QLabel(Qframe);
+        label_21->setObjectName("label_21");
+        label_21->setGeometry(QRect(80, 480, 131, 16));
+        btnRecordDepth = new QPushButton(Qframe);
+        btnRecordDepth->setObjectName("btnRecordDepth");
+        btnRecordDepth->setGeometry(QRect(90, 570, 171, 91));
 
-        gridLayout_6->addWidget(label_20, 3, 1, 1, 1);
-
-        lcdNumber_2 = new QLCDNumber(icebergPage);
-        lcdNumber_2->setObjectName("lcdNumber_2");
-        lcdNumber_2->setFont(font5);
-        lcdNumber_2->setFrameShadow(QFrame::Shadow::Plain);
-        lcdNumber_2->setSegmentStyle(QLCDNumber::SegmentStyle::Filled);
-
-        gridLayout_6->addWidget(lcdNumber_2, 2, 2, 1, 1);
-
-        lcdNumber_4 = new QLCDNumber(icebergPage);
-        lcdNumber_4->setObjectName("lcdNumber_4");
-        lcdNumber_4->setFont(font5);
-        lcdNumber_4->setFrameShadow(QFrame::Shadow::Plain);
-
-        gridLayout_6->addWidget(lcdNumber_4, 3, 2, 1, 1);
-
-        lcdNumber_5 = new QLCDNumber(icebergPage);
-        lcdNumber_5->setObjectName("lcdNumber_5");
-        lcdNumber_5->setFont(font5);
-        lcdNumber_5->setFrameShadow(QFrame::Shadow::Plain);
-
-        gridLayout_6->addWidget(lcdNumber_5, 4, 2, 1, 1);
-
-        lcdNumber_6 = new QLCDNumber(icebergPage);
-        lcdNumber_6->setObjectName("lcdNumber_6");
-        lcdNumber_6->setFont(font5);
-        lcdNumber_6->setFrameShadow(QFrame::Shadow::Plain);
-
-        gridLayout_6->addWidget(lcdNumber_6, 5, 2, 1, 1);
+        gridLayout_6->addWidget(Qframe, 2, 3, 5, 1);
 
         stackedWidget->addWidget(icebergPage);
         ednaPage = new QWidget();
@@ -804,19 +890,19 @@ public:
         gridLayout_4->setObjectName("gridLayout_4");
         spinBoxRock = new QSpinBox(ednaPage);
         spinBoxRock->setObjectName("spinBoxRock");
-        QFont font16;
-        font16.setFamilies({QString::fromUtf8("Aileron")});
-        font16.setPointSize(30);
-        spinBoxRock->setFont(font16);
+        QFont font17;
+        font17.setFamilies({QString::fromUtf8("Aileron")});
+        font17.setPointSize(30);
+        spinBoxRock->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxRock, 5, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         borealPercent = new QLCDNumber(ednaPage);
         borealPercent->setObjectName("borealPercent");
-        QFont font17;
-        font17.setFamilies({QString::fromUtf8("Aileron")});
-        font17.setPointSize(20);
-        borealPercent->setFont(font17);
+        QFont font18;
+        font18.setFamilies({QString::fromUtf8("Aileron")});
+        font18.setPointSize(20);
+        borealPercent->setFont(font18);
         borealPercent->setFrameShadow(QFrame::Shadow::Plain);
         borealPercent->setSmallDecimalPoint(true);
         borealPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -825,20 +911,20 @@ public:
 
         spinBoxUrchin = new QSpinBox(ednaPage);
         spinBoxUrchin->setObjectName("spinBoxUrchin");
-        spinBoxUrchin->setFont(font16);
+        spinBoxUrchin->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxUrchin, 4, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_10 = new QLabel(ednaPage);
         label_10->setObjectName("label_10");
-        label_10->setFont(font17);
+        label_10->setFont(font18);
         label_10->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_10, 4, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         rockCrabPercent = new QLCDNumber(ednaPage);
         rockCrabPercent->setObjectName("rockCrabPercent");
-        rockCrabPercent->setFont(font17);
+        rockCrabPercent->setFont(font18);
         rockCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         rockCrabPercent->setSmallDecimalPoint(true);
         rockCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -847,13 +933,13 @@ public:
 
         spinBoxSnow = new QSpinBox(ednaPage);
         spinBoxSnow->setObjectName("spinBoxSnow");
-        spinBoxSnow->setFont(font16);
+        spinBoxSnow->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxSnow, 1, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         jonahCrabPercent = new QLCDNumber(ednaPage);
         jonahCrabPercent->setObjectName("jonahCrabPercent");
-        jonahCrabPercent->setFont(font17);
+        jonahCrabPercent->setFont(font18);
         jonahCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         jonahCrabPercent->setSmallDecimalPoint(true);
         jonahCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -862,7 +948,7 @@ public:
 
         sunstarPercent = new QLCDNumber(ednaPage);
         sunstarPercent->setObjectName("sunstarPercent");
-        sunstarPercent->setFont(font17);
+        sunstarPercent->setFont(font18);
         sunstarPercent->setFrameShadow(QFrame::Shadow::Plain);
         sunstarPercent->setSmallDecimalPoint(true);
         sunstarPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -871,39 +957,39 @@ public:
 
         spinBoxBrittle = new QSpinBox(ednaPage);
         spinBoxBrittle->setObjectName("spinBoxBrittle");
-        spinBoxBrittle->setFont(font16);
+        spinBoxBrittle->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxBrittle, 5, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label = new QLabel(ednaPage);
         label->setObjectName("label");
-        label->setFont(font17);
+        label->setFont(font18);
         label->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label, 1, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxWestern = new QSpinBox(ednaPage);
         spinBoxWestern->setObjectName("spinBoxWestern");
-        spinBoxWestern->setFont(font16);
+        spinBoxWestern->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxWestern, 3, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxAcadian = new QSpinBox(ednaPage);
         spinBoxAcadian->setObjectName("spinBoxAcadian");
-        spinBoxAcadian->setFont(font16);
+        spinBoxAcadian->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxAcadian, 2, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_8 = new QLabel(ednaPage);
         label_8->setObjectName("label_8");
-        label_8->setFont(font17);
+        label_8->setFont(font18);
         label_8->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_8, 3, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_5 = new QLabel(ednaPage);
         label_5->setObjectName("label_5");
-        label_5->setFont(font17);
+        label_5->setFont(font18);
         label_5->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_5, 5, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
@@ -915,10 +1001,10 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(snowCrabPercent->sizePolicy().hasHeightForWidth());
         snowCrabPercent->setSizePolicy(sizePolicy4);
-        QFont font18;
-        font18.setFamilies({QString::fromUtf8("Aileron")});
-        font18.setPointSize(26);
-        snowCrabPercent->setFont(font18);
+        QFont font19;
+        font19.setFamilies({QString::fromUtf8("Aileron")});
+        font19.setPointSize(26);
+        snowCrabPercent->setFont(font19);
         snowCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         snowCrabPercent->setSmallDecimalPoint(true);
         snowCrabPercent->setMode(QLCDNumber::Mode::Dec);
@@ -928,7 +1014,7 @@ public:
 
         brittlePercent = new QLCDNumber(ednaPage);
         brittlePercent->setObjectName("brittlePercent");
-        brittlePercent->setFont(font17);
+        brittlePercent->setFont(font18);
         brittlePercent->setFrameShadow(QFrame::Shadow::Plain);
         brittlePercent->setSmallDecimalPoint(true);
         brittlePercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -937,38 +1023,38 @@ public:
 
         label_14 = new QLabel(ednaPage);
         label_14->setObjectName("label_14");
-        QFont font19;
-        font19.setFamilies({QString::fromUtf8("Aileron")});
-        font19.setPointSize(30);
-        font19.setItalic(true);
-        label_14->setFont(font19);
+        QFont font20;
+        font20.setFamilies({QString::fromUtf8("Aileron")});
+        font20.setPointSize(30);
+        font20.setItalic(true);
+        label_14->setFont(font20);
 
         gridLayout_4->addWidget(label_14, 0, 3, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_3 = new QLabel(ednaPage);
         label_3->setObjectName("label_3");
-        label_3->setFont(font17);
+        label_3->setFont(font18);
         label_3->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_3, 3, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_2 = new QLabel(ednaPage);
         label_2->setObjectName("label_2");
-        label_2->setFont(font17);
+        label_2->setFont(font18);
         label_2->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_2, 2, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_11 = new QLabel(ednaPage);
         label_11->setObjectName("label_11");
-        label_11->setFont(font17);
+        label_11->setFont(font18);
         label_11->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_11, 5, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter);
 
         acadianCrabPercent = new QLCDNumber(ednaPage);
         acadianCrabPercent->setObjectName("acadianCrabPercent");
-        acadianCrabPercent->setFont(font17);
+        acadianCrabPercent->setFont(font18);
         acadianCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         acadianCrabPercent->setSmallDecimalPoint(true);
         acadianCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -977,21 +1063,21 @@ public:
 
         label_6 = new QLabel(ednaPage);
         label_6->setObjectName("label_6");
-        label_6->setFont(font17);
+        label_6->setFont(font18);
         label_6->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_6, 1, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_7 = new QLabel(ednaPage);
         label_7->setObjectName("label_7");
-        label_7->setFont(font17);
+        label_7->setFont(font18);
         label_7->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_7, 2, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         urchinPercent = new QLCDNumber(ednaPage);
         urchinPercent->setObjectName("urchinPercent");
-        urchinPercent->setFont(font17);
+        urchinPercent->setFont(font18);
         urchinPercent->setFrameShadow(QFrame::Shadow::Plain);
         urchinPercent->setSmallDecimalPoint(true);
         urchinPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1000,7 +1086,7 @@ public:
 
         hairyCrabPercent = new QLCDNumber(ednaPage);
         hairyCrabPercent->setObjectName("hairyCrabPercent");
-        hairyCrabPercent->setFont(font17);
+        hairyCrabPercent->setFont(font18);
         hairyCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         hairyCrabPercent->setSmallDecimalPoint(true);
         hairyCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1009,7 +1095,7 @@ public:
 
         greenCrabPercent = new QLCDNumber(ednaPage);
         greenCrabPercent->setObjectName("greenCrabPercent");
-        greenCrabPercent->setFont(font17);
+        greenCrabPercent->setFont(font18);
         greenCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         greenCrabPercent->setSmallDecimalPoint(true);
         greenCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1018,23 +1104,23 @@ public:
 
         spinBoxBoreal = new QSpinBox(ednaPage);
         spinBoxBoreal->setObjectName("spinBoxBoreal");
-        spinBoxBoreal->setFont(font16);
+        spinBoxBoreal->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxBoreal, 4, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxSunstar = new QSpinBox(ednaPage);
         spinBoxSunstar->setObjectName("spinBoxSunstar");
-        spinBoxSunstar->setFont(font16);
+        spinBoxSunstar->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxSunstar, 2, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         pushButtonCalcPercent = new QPushButton(ednaPage);
         pushButtonCalcPercent->setObjectName("pushButtonCalcPercent");
-        QFont font20;
-        font20.setFamilies({QString::fromUtf8("Aileron")});
-        font20.setPointSize(20);
-        font20.setItalic(false);
-        pushButtonCalcPercent->setFont(font20);
+        QFont font21;
+        font21.setFamilies({QString::fromUtf8("Aileron")});
+        font21.setPointSize(20);
+        font21.setItalic(false);
+        pushButtonCalcPercent->setFont(font21);
         pushButtonCalcPercent->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
 "	border-width: 4px;\n"
 "	border-style: ridge;\n"
@@ -1045,20 +1131,20 @@ public:
 
         label_13 = new QLabel(ednaPage);
         label_13->setObjectName("label_13");
-        label_13->setFont(font19);
+        label_13->setFont(font20);
 
         gridLayout_4->addWidget(label_13, 0, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
         label_4 = new QLabel(ednaPage);
         label_4->setObjectName("label_4");
-        label_4->setFont(font17);
+        label_4->setFont(font18);
         label_4->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_4, 4, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxGreen = new QSpinBox(ednaPage);
         spinBoxGreen->setObjectName("spinBoxGreen");
-        spinBoxGreen->setFont(font16);
+        spinBoxGreen->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxGreen, 3, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
@@ -1076,17 +1162,17 @@ public:
 
         spinBoxJonah = new QSpinBox(ednaPage);
         spinBoxJonah->setObjectName("spinBoxJonah");
-        spinBoxJonah->setFont(font16);
+        spinBoxJonah->setFont(font17);
 
         gridLayout_4->addWidget(spinBoxJonah, 1, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_12 = new QLabel(ednaPage);
         label_12->setObjectName("label_12");
-        QFont font21;
-        font21.setFamilies({QString::fromUtf8("Aileron")});
-        font21.setPointSize(33);
-        font21.setItalic(true);
-        label_12->setFont(font21);
+        QFont font22;
+        font22.setFamilies({QString::fromUtf8("Aileron")});
+        font22.setPointSize(33);
+        font22.setItalic(true);
+        label_12->setFont(font22);
         label_12->setFrameShape(QFrame::Shape::NoFrame);
         label_12->setTextFormat(Qt::TextFormat::AutoText);
 
@@ -1095,9 +1181,41 @@ public:
         stackedWidget->addWidget(ednaPage);
         floatPage = new QWidget();
         floatPage->setObjectName("floatPage");
+        gridLayout_7 = new QGridLayout(floatPage);
+        gridLayout_7->setObjectName("gridLayout_7");
+        frame_3 = new QFrame(floatPage);
+        frame_3->setObjectName("frame_3");
+        frame_3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_3->setFrameShadow(QFrame::Shadow::Raised);
+        verticalLayout_3 = new QVBoxLayout(frame_3);
+        verticalLayout_3->setObjectName("verticalLayout_3");
+        depthChart = new QChartView(frame_3);
+        depthChart->setObjectName("depthChart");
+
+        verticalLayout_3->addWidget(depthChart);
+
+        pressureChart = new QChartView(frame_3);
+        pressureChart->setObjectName("pressureChart");
+        pressureChart->setFocusPolicy(Qt::FocusPolicy::TabFocus);
+        pressureChart->setFrameShape(QFrame::Shape::NoFrame);
+        pressureChart->setFrameShadow(QFrame::Shadow::Plain);
+        pressureChart->setMidLineWidth(0);
+        QBrush brush(QColor(39, 76, 98, 255));
+        brush.setStyle(Qt::BrushStyle::SolidPattern);
+        pressureChart->setBackgroundBrush(brush);
+        QBrush brush1(QColor(0, 0, 0, 255));
+        brush1.setStyle(Qt::BrushStyle::NoBrush);
+        pressureChart->setForegroundBrush(brush1);
+        pressureChart->setInteractive(false);
+        pressureChart->setRenderHints(QPainter::RenderHint::Antialiasing);
+
+        verticalLayout_3->addWidget(pressureChart);
+
+
+        gridLayout_7->addWidget(frame_3, 1, 1, 1, 1);
+
         homePageButton_5 = new QToolButton(floatPage);
         homePageButton_5->setObjectName("homePageButton_5");
-        homePageButton_5->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_5->setMinimumSize(QSize(40, 30));
         homePageButton_5->setMaximumSize(QSize(40, 30));
         homePageButton_5->setFont(font13);
@@ -1105,6 +1223,23 @@ public:
         homePageButton_5->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_5->setAutoRaise(true);
         homePageButton_5->setArrowType(Qt::ArrowType::LeftArrow);
+
+        gridLayout_7->addWidget(homePageButton_5, 0, 0, 1, 1);
+
+        frame_4 = new QFrame(floatPage);
+        frame_4->setObjectName("frame_4");
+        frame_4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_4->setFrameShadow(QFrame::Shadow::Raised);
+        verticalLayout_4 = new QVBoxLayout(frame_4);
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        floatDataTable = new QTableView(frame_4);
+        floatDataTable->setObjectName("floatDataTable");
+
+        verticalLayout_4->addWidget(floatDataTable);
+
+
+        gridLayout_7->addWidget(frame_4, 1, 2, 1, 1);
+
         stackedWidget->addWidget(floatPage);
         settingsPage = new QWidget();
         settingsPage->setObjectName("settingsPage");
@@ -1126,7 +1261,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1155,12 +1290,19 @@ public:
         label_15->setText(QCoreApplication::translate("MainWindow", "Current Keel Depth", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "Store Value", nullptr));
         homePageButton_2->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-        label_16->setText(QCoreApplication::translate("MainWindow", "Iceberg Analysis", nullptr));
-        label_17->setText(QCoreApplication::translate("MainWindow", "Keel Depth #4", nullptr));
+        lcdkeeldepth5->setText(QCoreApplication::translate("MainWindow", "Keel Depth #5", nullptr));
+        lcdkeeldepth2->setText(QCoreApplication::translate("MainWindow", "Keel Depth #2", nullptr));
+        lcdkeeldepth1->setText(QCoreApplication::translate("MainWindow", "Keel Depth #1", nullptr));
         homePageButton_3->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
-        label_19->setText(QCoreApplication::translate("MainWindow", "Keel Depth #3", nullptr));
-        label_18->setText(QCoreApplication::translate("MainWindow", "Keel Depth #1", nullptr));
-        label_20->setText(QCoreApplication::translate("MainWindow", "Keel Depth #2", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "Iceberg Analysis", nullptr));
+        lcdkeeldepth3->setText(QCoreApplication::translate("MainWindow", "Keel Depth #3", nullptr));
+        lcdkeeldepth4->setText(QCoreApplication::translate("MainWindow", "Keel Depth #4", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "Platform #1 Threat", nullptr));
+        label_18->setText(QCoreApplication::translate("MainWindow", "Platform #2 Threat", nullptr));
+        label_19->setText(QCoreApplication::translate("MainWindow", "Platform #3 Threat", nullptr));
+        label_20->setText(QCoreApplication::translate("MainWindow", "Platform #4 Threat", nullptr));
+        label_21->setText(QCoreApplication::translate("MainWindow", "Subsea Asset Threat", nullptr));
+        btnRecordDepth->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "Boreal Sea Star", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Jonah Crab", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "European Green Crab", nullptr));

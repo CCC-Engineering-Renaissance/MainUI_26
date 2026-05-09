@@ -69,7 +69,9 @@ private slots:
   // ── Clock ─────────────────────────────────────────────────────────────
   void updateClock();
 
-private:
+  void on_btnRecordDepth_clicked();
+
+  private:
   Ui::MainWindow *ui;
 
   // Camera network stream
@@ -92,6 +94,17 @@ private:
   void setupPressureChart();
   void setupDepthChart();
   void setupFloatDataTable();
-};
+
+  // Tactical Map (Task 2.2)
+  QGraphicsScene       *m_tacticalScene = nullptr;
+  QGraphicsEllipseItem *m_icebergMarker = nullptr;
+
+  QGraphicsLineItem    *m_headingVector = nullptr;
+  QGraphicsPolygonItem *m_icebergPerimeter = nullptr;
+
+  int m_currentDepthIndex = 0;
+  double m_maxKeelDepth = 0.0;
+
+void updateIcebergTracking(double iceX, double iceY, double headingDeg, double maxKeelDepth, QVector<QPointF> perimeterPoints);};
 
 #endif // MAINWINDOW_H

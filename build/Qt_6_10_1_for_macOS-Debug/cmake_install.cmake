@@ -1,4 +1,4 @@
-# Install script for directory: /Users/polar/Qt/GUI
+# Install script for directory: /Users/tylerbarbery/Projects/MainUI_26
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,11 +38,11 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/MainUI_26.app" USE_SOURCE_PERMISSIONS)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/Users/tylerbarbery/Projects/MainUI_26/build/Qt_6_10_1_for_macOS-Debug/MainUI_26.app" USE_SOURCE_PERMISSIONS)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26")
     execute_process(COMMAND /usr/bin/install_name_tool
-      -delete_rpath "/Users/polar/Qt/6.10.1/macos/lib"
+      -delete_rpath "/Users/tylerbarbery/Qt/6.10.1/macos/lib"
       -add_rpath "@executable_path/../Frameworks"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26")
   endif()
@@ -63,6 +63,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/Users/polar/Qt/GUI/build/Qt_6_10_1_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/tylerbarbery/Projects/MainUI_26/build/Qt_6_10_1_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

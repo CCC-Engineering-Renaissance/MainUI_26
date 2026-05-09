@@ -33,6 +33,22 @@ MainWindow::MainWindow(QWidget *parent)
     resize(1200, 800);
     setMinimumSize(900, 600);
 
+    m_tacticalScene = new QGraphicsScene(this);
+    ui->tacticalview->setScene(m_tacticalScene);
+
+    // 1. Plot all 4 Platforms
+    m_tacticalScene->addEllipse(50, 50, 15, 15, QPen(Qt::black), QBrush(Qt::darkGray));   // Plat 1
+    m_tacticalScene->addEllipse(-100, 80, 15, 15, QPen(Qt::black), QBrush(Qt::darkGray)); // Plat 2
+    m_tacticalScene->addEllipse(120, -60, 15, 15, QPen(Qt::black), QBrush(Qt::darkGray)); // Plat 3
+    m_tacticalScene->addEllipse(-80, -90, 15, 15, QPen(Qt::black), QBrush(Qt::darkGray)); // Plat 4
+
+    // 2. Initialize the dynamic tracking items
+    m_icebergMarker = m_tacticalScene->addEllipse(0, 0, 30, 30, QPen(Qt::blue), QBrush(Qt::cyan));
+    m_headingVector = m_tacticalScene->addLine(0, 0, 0, 0, QPen(Qt::red, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    m_icebergPerimeter = m_tacticalScene->addPolygon(QPolygonF(), QPen(Qt::cyan, 1, Qt::DashLine));
+    // ------------------------------------------------------
+
+
     ui->stackedWidget->setCurrentIndex(0);
 
     // ── Photogrammetry widget ─────────────────────────────────────────────
@@ -456,3 +472,94 @@ void MainWindow::setActiveCamButton(const QString &name)
     ui->botCamButton->setStyleSheet(  name == "bot"    ? activeStyle : inactiveStyle);
     ui->backCamButton->setStyleSheet( name == "back"   ? activeStyle : inactiveStyle);
 }
+void MainWindow::updateIcebergTracking(double iceX, double iceY, double headingDeg, double maxKeelDepth, QVector<QPointF> perimeterPoints)
+{
+    // 1. Update the visual map position
+    m_icebergMarker->setPos(iceX, -iceY);
+
+    // Update Heading Arrow (Vector length of 80 pixels so it's easier to see)
+    double rads = qDegreesToRadians(headingDeg);
+    double endX = iceX + (80 * qCos(rads));
+    double endY = -iceY - (80 * qSin(rads));
+    m_headingVector->setLine(iceX, -iceY, endX, endY);
+
+    // --- NEW: Draw the Perimeter Polygon ---
+    QPolygonF poly;
+    for (int i = 0; i < perimeterPoints.size(); ++i) {
+        // We invert the Y coordinate here because Qt's Y-axis goes down
+        poly << QPointF(perimeterPoints[i].x(), -perimeterPoints[i].y());
+    }
+    m_icebergPerimeter->setPolygon(poly);
+    // ---------------------------------------
+
+    // 2. Calculate Distance to Platforms for Threat Level
+    QPointF platforms[4] = { QPointF(50, -50), QPointF(-100, -80), QPointF(120, 60), QPointF(-80, 90) };
+    QProgressBar* threatBars[4] = { ui->ProgThreat1, ui->ProgThreat2, ui->ProgThreat3, ui->ProgThreat4 };
+
+    double threatRadius = 150.0;
+
+    for(int i = 0; i < 4; i++) {
+        double dist = qSqrt(qPow(platforms[i].x() - iceX, 2) + qPow(platforms[i].y() - (-iceY), 2));
+
+        int threatPercent = 0;
+        if (dist < threatRadius) {
+            threatPercent = 100 - static_cast<int>((dist / threatRadius) * 100);
+        }
+        threatBars[i]->setValue(threatPercent);
+    }
+
+    // 3. Subsea Asset Threat
+    double subseaAssetDepth = 85.0;
+
+    if (maxKeelDepth >= subseaAssetDepth) {
+        ui->progThreatSubsea->setValue(100);
+        ui->progThreatSubsea->setStyleSheet("QProgressBar::chunk { background-color: red; }");
+    } else {
+        ui->progThreatSubsea->setValue(0);
+        ui->progThreatSubsea->setStyleSheet("QProgressBar::chunk { background-color: green; }");
+    }
+}
+
+void MainWindow::on_btnRecordDepth_clicked()
+
+    {
+        // Prevent errors if the pilot clicks more than 5 times
+        if (m_currentDepthIndex >= 5) {
+            return;
+        }
+
+        // 1. Fetch the live depth from your sensor backend
+        //double currentLiveDepth = m_cameraReceiver->getLiveDepth();
+        // TEMPORARY: Hardcoded dummy value for testing the UI
+        double currentLiveDepth = 42.5;
+
+
+        // 2. Update the max depth if this new reading is deeper
+        if (currentLiveDepth > m_maxKeelDepth) {
+            m_maxKeelDepth = currentLiveDepth;
+        }
+
+        // 3. Push the number to the correct LCD screen and advance the index
+        switch (m_currentDepthIndex) {
+        case 0:
+            ui->lcdKeelDepth1->display(currentLiveDepth);
+            break;
+        case 1:
+            ui->lcdKeelDepth2->display(currentLiveDepth);
+            break;
+        case 2:
+            ui->lcdKeelDepth3->display(currentLiveDepth);
+            break;
+        case 3:
+            ui->lcdKeelDepth4->display(currentLiveDepth);
+            break;
+        case 4:
+            ui->lcdKeelDepth5->display(currentLiveDepth);
+
+
+            break;
+        }
+
+        m_currentDepthIndex++;
+    }
+
