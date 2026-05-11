@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "camerareceiver.h"
+#include "src/colmaprunner.h"
 
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
@@ -58,7 +59,7 @@ private slots:
   void on_backCamButton_clicked();
 
   // ── Resolution / FPS mode toggle ──────────────────────────────────────
-  void onModeToggleClicked();
+  void on_modeButton_clicked();
 
   // ── Camera receiver callbacks ─────────────────────────────────────────
   void onCameraFrame(const QImage &image);
@@ -71,7 +72,25 @@ private slots:
 
   void on_btnRecordDepth_clicked();
 
-  private:
+  // ── Photogrammetry ────────────────────────────────────────────────────
+  void on_importImagesButton_clicked();
+  void on_importVideoButton_clicked();
+  void on_clearButton_clicked();
+  void on_runButton_clicked();
+  void on_cancelButton_clicked();
+  void on_resetCameraButton_clicked();
+  void on_loadPlyButton_clicked();
+  void on_scaleButton_toggled(bool checked);
+  void on_measureButton_toggled(bool checked);
+
+  void onStepStarted(const QString &step);
+  void onProgressOutput(const QString &line);
+  void onStepFinished(const QString &step, bool success);
+  void onPipelineFinished(bool success);
+  void onError(const QString &error);
+  void onScalePointsPicked(float measuredModelDist);
+
+private:
   Ui::MainWindow *ui;
 
   // Camera network stream
@@ -83,8 +102,7 @@ private slots:
   QTimer *m_clockTimer = nullptr;
 
   // Current capture mode ("live" or "hq")
-  QString      m_currentMode   = "live";
-  QPushButton *m_modeButton    = nullptr;
+  QString m_currentMode = "live";
 
   // Helpers
   void setActiveCamButton(const QString &name);
@@ -95,16 +113,27 @@ private slots:
   void setupDepthChart();
   void setupFloatDataTable();
 
-  // Tactical Map (Task 2.2)
+  // Tactical Map
   QGraphicsScene       *m_tacticalScene = nullptr;
   QGraphicsEllipseItem *m_icebergMarker = nullptr;
-
   QGraphicsLineItem    *m_headingVector = nullptr;
   QGraphicsPolygonItem *m_icebergPerimeter = nullptr;
 
   int m_currentDepthIndex = 0;
   double m_maxKeelDepth = 0.0;
 
-void updateIcebergTracking(double iceX, double iceY, double headingDeg, double maxKeelDepth, QVector<QPointF> perimeterPoints);};
+  void updateIcebergTracking(double iceX, double iceY, double headingDeg, double maxKeelDepth, QVector<QPointF> perimeterPoints);
+
+  // Photogrammetry
+  void setupPhotogrammetry();
+  void setRunning(bool running);
+  void refreshThumbnails();
+  QString detectColmapPath();
+  void convertAndLoadModel();
+
+  ColmapRunner *m_runner       = nullptr;
+  QString       m_workspacePath;
+  QString       m_imagePath;
+};
 
 #endif // MAINWINDOW_H

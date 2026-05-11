@@ -30,8 +30,6 @@ set(PROJECT_SOURCES
     resources.qrc
     src/colmaprunner.h
     src/colmaprunner.cpp
-    src/photogrammetrywidget.h
-    src/photogrammetrywidget.cpp
     src/modelviewer.h
     src/modelviewer.cpp
 )

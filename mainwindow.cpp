@@ -1,25 +1,50 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "src/photogrammetrywidget.h"
 
+#include <QCheckBox>
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QDir>
+#include <QFileDialog>
+#include <QFileInfo>
 #include <QFontDatabase>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#include <QInputDialog>
 #include <QKeyEvent>
 #include <QLCDNumber>
 #include <QLabel>
+#include <QListWidget>
+#include <QMessageBox>
 #include <QPixmap>
+#include <QProcess>
+#include <QProgressBar>
 #include <QPushButton>
+#include <QScrollBar>
 #include <QSpinBox>
+#include <QSplitter>
+#include <QStandardPaths>
 #include <QString>
+#include <QSysInfo>
+#include <QTextEdit>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QChart>
 #include <QtCharts/QValueAxis>
+
+namespace {
+bool isRealColmap(const QString &path) {
+    QProcess probe;
+    probe.setProcessChannelMode(QProcess::MergedChannels);
+    probe.start(path, {"help"});
+    if (!probe.waitForStarted(2000) || !probe.waitForFinished(3000))
+        return false;
+    return probe.readAll().contains("Structure-from-Motion");
+}
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Construction / destruction
@@ -51,12 +76,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->stackedWidget->setCurrentIndex(0);
 
-    // ── Photogrammetry widget ─────────────────────────────────────────────
-    QWidget *modelingPage = ui->stackedWidget->widget(2);
-    auto *photogrammetry  = new PhotogrammetryWidget(modelingPage);
-    auto *pageLayout      = new QVBoxLayout(modelingPage);
-    pageLayout->setContentsMargins(0, 0, 0, 0);
-    pageLayout->addWidget(photogrammetry);
+    // ── Photogrammetry ────────────────────────────────────────────────────
+    setupPhotogrammetry();
 
     // ── Logo ──────────────────────────────────────────────────────────────
     QPixmap pixmap(":/images/images/rov_logo_complete.png");
@@ -87,24 +108,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(m_scene);
     ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
 
-    // ── Mode toggle button (added programmatically to the camera page) ────
-    // Placed in the top-right corner of the camera page layout so it doesn't
-    // require modifying the .ui file.
-    m_modeButton = new QPushButton(ui->cameraPage);
-    m_modeButton->setFixedSize(160, 36);
-    m_modeButton->move(ui->cameraPage->width() - 170, 4);
-    m_modeButton->setStyleSheet(
-        "background-color: rgb(44,181,222);"
-        "color: white;"
-        "border-width: 3px;"
-        "border-style: ridge;"
-        "border-color: rgb(152,199,65);"
-        "border-radius: 6px;"
-        "font-size: 13px;"
-        "font-weight: bold;"
-    );
+    // ── Mode toggle button ────────────────────────────────────────────────
     updateModeButton();
-    connect(m_modeButton, &QPushButton::clicked, this, &MainWindow::onModeToggleClicked);
 
     // ── Camera receiver ───────────────────────────────────────────────────
     m_cameraReceiver = new CameraReceiver(this);
@@ -400,7 +405,7 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
 // Mode toggle
 // ─────────────────────────────────────────────────────────────────────────────
 
-void MainWindow::onModeToggleClicked()
+void MainWindow::on_modeButton_clicked()
 {
     m_currentMode = (m_currentMode == "live") ? "hq" : "live";
     m_cameraReceiver->setMode(m_currentMode);
@@ -409,18 +414,25 @@ void MainWindow::onModeToggleClicked()
 
 void MainWindow::updateModeButton()
 {
-    if (!m_modeButton) return;
-
     if (m_currentMode == "live") {
-        m_modeButton->setText("Live  2048x1536 @ 30fps");
-        m_modeButton->setToolTip(
+        ui->modeButton->setText("Live  2048x1536 @ 30fps");
+        ui->modeButton->setToolTip(
             "Currently: Live streaming mode\nClick to switch to HQ photogrammetry mode");
+        ui->modeButton->setStyleSheet(
+            "background-color: rgb(44,181,222);"
+            "color: white;"
+            "border-width: 3px;"
+            "border-style: ridge;"
+            "border-color: rgb(152,199,65);"
+            "border-radius: 6px;"
+            "font-size: 13px;"
+            "font-weight: bold;"
+        );
     } else {
-        m_modeButton->setText("HQ  4656x3496 @ 10fps");
-        m_modeButton->setToolTip(
+        ui->modeButton->setText("HQ  4656x3496 @ 10fps");
+        ui->modeButton->setToolTip(
             "Currently: High-quality photogrammetry mode\nClick to switch to Live streaming mode");
-        // Tint the button gold when in HQ mode so it's obviously different
-        m_modeButton->setStyleSheet(
+        ui->modeButton->setStyleSheet(
             "background-color: rgb(210,160,20);"
             "color: white;"
             "border-width: 3px;"
@@ -430,19 +442,7 @@ void MainWindow::updateModeButton()
             "font-size: 13px;"
             "font-weight: bold;"
         );
-        return;
     }
-    // Reset to normal style for live mode
-    m_modeButton->setStyleSheet(
-        "background-color: rgb(44,181,222);"
-        "color: white;"
-        "border-width: 3px;"
-        "border-style: ridge;"
-        "border-color: rgb(152,199,65);"
-        "border-radius: 6px;"
-        "font-size: 13px;"
-        "font-weight: bold;"
-    );
 }
 
 /**
@@ -563,3 +563,501 @@ void MainWindow::on_btnRecordDepth_clicked()
         m_currentDepthIndex++;
     }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Photogrammetry setup
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::setupPhotogrammetry()
+{
+    QString base = QCoreApplication::applicationDirPath();
+    m_workspacePath = base + "/workspace";
+    m_imagePath = m_workspacePath + "/images";
+    QDir().mkpath(m_imagePath);
+
+    m_runner = new ColmapRunner(this);
+    m_runner->setColmapPath(detectColmapPath());
+    m_runner->setWorkspacePath(m_workspacePath);
+    m_runner->setImagePath(m_imagePath);
+
+    connect(m_runner, &ColmapRunner::stepStarted,      this, &MainWindow::onStepStarted);
+    connect(m_runner, &ColmapRunner::progressOutput,   this, &MainWindow::onProgressOutput);
+    connect(m_runner, &ColmapRunner::stepFinished,     this, &MainWindow::onStepFinished);
+    connect(m_runner, &ColmapRunner::pipelineFinished, this, &MainWindow::onPipelineFinished);
+    connect(m_runner, &ColmapRunner::errorOccurred,    this, &MainWindow::onError);
+
+    connect(ui->viewer, &ModelViewer::scalePointsPicked,
+            this, &MainWindow::onScalePointsPicked);
+
+    connect(ui->viewer, &ModelViewer::scaleApplied,
+            [this](float w, float h, float d) {
+                ui->statusLabel->setText(
+                    QString("Scale set — W:%1 m  H:%2 m  D:%3 m")
+                    .arg(w,0,'f',3).arg(h,0,'f',3).arg(d,0,'f',3));
+                ui->scaleButton->setChecked(false);
+            });
+
+    connect(ui->viewer, &ModelViewer::measurementReady,
+            [this](float total, float dx, float dy, float dz) {
+                ui->statusLabel->setText(
+                    QString("A→B: %1 m    ΔX:%2  ΔY:%3  ΔZ:%4")
+                    .arg(total,0,'f',3).arg(dx,0,'f',3).arg(dy,0,'f',3).arg(dz,0,'f',3));
+                ui->measureButton->setChecked(false);
+            });
+
+    ui->scaleButton->setToolTip("Click two points of known distance to set real-world scale");
+    ui->measureButton->setToolTip("Click two points to measure the distance between them");
+#if defined(Q_OS_WIN)
+    ui->denseCheckBox->setToolTip("Enables CUDA for COLMAP dense stereo on Windows.\nFeature extraction/matching and patch_match_stereo use the GPU when CUDA is available.\nSparse mapper and stereo_fusion remain CPU-bound.");
+#else
+    ui->denseCheckBox->setToolTip("Runs CPU-based dense reconstruction via OpenMVS DensifyPointCloud.\nSlower than CUDA but works on any hardware.");
+#endif
+
+    // mainSplitter fills all remaining vertical space in the page layout
+    ui->modelingPageLayout->setStretchFactor(ui->mainSplitter, 1);
+
+    // Internal splitter ratios
+    ui->mainSplitter->setStretchFactor(0, 0);
+    ui->mainSplitter->setStretchFactor(1, 1);
+    ui->rightSplitter->setStretchFactor(0, 3);
+    ui->rightSplitter->setStretchFactor(1, 1);
+
+    refreshThumbnails();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Photogrammetry — COLMAP path detection
+// ─────────────────────────────────────────────────────────────────────────────
+
+QString MainWindow::detectColmapPath()
+{
+    QString base = QCoreApplication::applicationDirPath();
+
+#ifdef Q_OS_WIN
+    QString winPath = base + "/tools/win64/colmap.exe";
+    if (QFileInfo::exists(winPath))
+        return winPath;
+
+    for (const QString &dir : {
+             QString("C:/Program Files/COLMAP"),
+             QString("C:/Program Files (x86)/COLMAP"),
+             base
+         }) {
+        QString p = dir + "/colmap.exe";
+        if (QFileInfo::exists(p))
+            return p;
+    }
+#elif defined(Q_OS_MACOS)
+    QString macPath = base + "/tools/macos/bin/colmap";
+    if (QFileInfo::exists(macPath) &&
+        QSysInfo::currentCpuArchitecture() == "arm64")
+        return macPath;
+#else
+    QString linuxPath = base + "/tools/linux/bin/colmap";
+    if (QFileInfo::exists(linuxPath))
+        return linuxPath;
+#endif
+
+    QString onPath = QStandardPaths::findExecutable("colmap");
+    if (!onPath.isEmpty() && isRealColmap(onPath))
+        return onPath;
+
+    QString chosen = QFileDialog::getOpenFileName(
+        this,
+        "Locate COLMAP executable",
+        QString(),
+#ifdef Q_OS_WIN
+        "COLMAP (colmap.exe)"
+#else
+        "COLMAP (colmap)"
+#endif
+    );
+    return chosen.isEmpty() ? "colmap" : chosen;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Photogrammetry — image management
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::on_importImagesButton_clicked()
+{
+    QStringList files = QFileDialog::getOpenFileNames(
+        this, "Import Images", QString(),
+        "Images (*.jpg *.jpeg *.png *.tiff *.tif *.bmp)");
+
+    if (files.isEmpty())
+        return;
+
+    QDir imgDir(m_imagePath);
+    int imported = 0;
+
+    for (const QString &src : files) {
+        QFileInfo fi(src);
+        QString dest = imgDir.filePath(fi.fileName());
+
+        if (QFile::exists(dest)) {
+            QString base = fi.baseName();
+            QString ext = fi.suffix();
+            int i = 1;
+            while (QFile::exists(dest))
+                dest = imgDir.filePath(QString("%1_%2.%3").arg(base).arg(i++).arg(ext));
+        }
+
+        if (QFile::copy(src, dest))
+            imported++;
+    }
+
+    ui->statusLabel->setText(QString("Imported %1 images").arg(imported));
+    refreshThumbnails();
+}
+
+void MainWindow::on_importVideoButton_clicked()
+{
+    QString videoPath = QFileDialog::getOpenFileName(
+        this, "Import Video", QString(),
+        "Video (*.mp4 *.avi *.mov *.mkv *.webm)");
+
+    if (videoPath.isEmpty())
+        return;
+
+    ui->statusLabel->setText("Extracting frames from video...");
+    setRunning(true);
+
+    QProcess *ffmpeg = new QProcess(this);
+    QString outputPattern = m_imagePath + "/frame_%04d.jpg";
+    QString filter = "select=not(mod(n\\,10))";
+
+    ffmpeg->start("ffmpeg", {"-i", videoPath, "-vf", filter, "-vsync", "vfr",
+                             "-q:v", "2", outputPattern});
+
+    connect(ffmpeg, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [this, ffmpeg](int exitCode, QProcess::ExitStatus) {
+                ffmpeg->deleteLater();
+                setRunning(false);
+
+                if (exitCode == 0) {
+                    refreshThumbnails();
+                    int count = QDir(m_imagePath)
+                                    .entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"},
+                                               QDir::Files)
+                                    .count();
+                    ui->statusLabel->setText(
+                        QString("Extracted frames — %1 images ready").arg(count));
+                } else {
+                    ui->statusLabel->setText(
+                        "Frame extraction failed. Is ffmpeg installed?");
+                    ui->logOutput->append("[ERROR] ffmpeg exited with code " +
+                                         QString::number(exitCode));
+                }
+            });
+
+    if (!ffmpeg->waitForStarted(3000)) {
+        ffmpeg->deleteLater();
+        setRunning(false);
+        ui->statusLabel->setText(
+            "Could not start ffmpeg. Make sure it's installed and on PATH.");
+    }
+}
+
+void MainWindow::on_clearButton_clicked()
+{
+    QDir imgDir(m_imagePath);
+    QStringList images = imgDir.entryList(
+        {"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"}, QDir::Files);
+
+    if (images.isEmpty())
+        return;
+
+    auto answer = QMessageBox::question(
+        this, "Clear Images",
+        QString("Remove %1 images from workspace?").arg(images.count()));
+
+    if (answer != QMessageBox::Yes)
+        return;
+
+    for (const QString &f : images)
+        imgDir.remove(f);
+
+    QDir(m_workspacePath + "/sparse").removeRecursively();
+    QDir(m_workspacePath + "/dense").removeRecursively();
+    QFile::remove(m_workspacePath + "/database.db");
+    QFile::remove(m_workspacePath + "/model.ply");
+
+    QDir wsDir(m_workspacePath);
+    for (const QString &f : wsDir.entryList({"depth*.dmap", "scene*.mvs", "dense*.mvs", "*.ply"}, QDir::Files))
+        wsDir.remove(f);
+
+    ui->viewer->clear();
+    refreshThumbnails();
+    ui->statusLabel->setText("Workspace cleared");
+    ui->logOutput->clear();
+    ui->progressBar->setValue(0);
+}
+
+void MainWindow::refreshThumbnails()
+{
+    ui->imageList->clear();
+
+    QDir imgDir(m_imagePath);
+    QStringList images =
+        imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"},
+                         QDir::Files, QDir::Name);
+
+    for (const QString &filename : images) {
+        QPixmap pix(imgDir.filePath(filename));
+        if (pix.isNull())
+            continue;
+
+        auto *item = new QListWidgetItem(
+            QIcon(pix.scaled(120, 90, Qt::KeepAspectRatio, Qt::SmoothTransformation)),
+            filename);
+        ui->imageList->addItem(item);
+    }
+
+    bool hasImages = !images.isEmpty();
+    ui->runButton->setEnabled(hasImages);
+
+    if (hasImages)
+        ui->statusLabel->setText(QString("%1 images ready").arg(images.count()));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Photogrammetry — pipeline control
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::on_runButton_clicked()
+{
+    QDir imgDir(m_imagePath);
+    int count =
+        imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"}, QDir::Files)
+            .count();
+    if (count < 3) {
+        ui->statusLabel->setText("Need at least 3 images to reconstruct");
+        return;
+    }
+
+#if !defined(Q_OS_WIN)
+    if (ui->denseCheckBox->isChecked()) {
+        QStringList missing;
+        if (QStandardPaths::findExecutable("InterfaceCOLMAP").isEmpty())
+            missing << "InterfaceCOLMAP";
+        if (QStandardPaths::findExecutable("DensifyPointCloud").isEmpty())
+            missing << "DensifyPointCloud";
+        if (!missing.isEmpty()) {
+            QMessageBox box(this);
+            box.setIcon(QMessageBox::Warning);
+            box.setWindowTitle("OpenMVS tools missing");
+            box.setText("Dense reconstruction needs OpenMVS binaries on PATH but "
+                        "these were not found:\n\n  • " +
+                        missing.join("\n  • ") +
+                        "\n\nInstall OpenMVS, or run sparse reconstruction only?");
+            auto *sparseBtn = box.addButton("Run sparse only", QMessageBox::AcceptRole);
+            box.addButton(QMessageBox::Cancel);
+            box.exec();
+            if (box.clickedButton() != sparseBtn)
+                return;
+            ui->denseCheckBox->setChecked(false);
+        }
+    }
+#endif
+
+    ui->logOutput->clear();
+    ui->progressBar->setValue(0);
+    ui->viewer->clear();
+    setRunning(true);
+
+    m_runner->setWorkspacePath(m_workspacePath);
+    m_runner->setImagePath(m_imagePath);
+    m_runner->setDenseEnabled(ui->denseCheckBox->isChecked());
+    m_runner->runFullPipeline();
+
+    ui->progressBar->setRange(0, m_runner->totalSteps());
+}
+
+void MainWindow::on_cancelButton_clicked()
+{
+    m_runner->cancel();
+    setRunning(false);
+    ui->statusLabel->setText("Cancelled.");
+}
+
+void MainWindow::setRunning(bool running)
+{
+    ui->runButton->setEnabled(!running);
+    ui->cancelButton->setEnabled(running);
+    ui->importImagesButton->setEnabled(!running);
+    ui->importVideoButton->setEnabled(!running);
+    ui->clearButton->setEnabled(!running);
+}
+
+void MainWindow::onStepStarted(const QString &step)
+{
+    ui->statusLabel->setText("Running: " + step);
+    ui->logOutput->append("\n=== " + step + " ===");
+}
+
+void MainWindow::onProgressOutput(const QString &line)
+{
+    ui->logOutput->append(line);
+    ui->logOutput->verticalScrollBar()->setValue(
+        ui->logOutput->verticalScrollBar()->maximum());
+}
+
+void MainWindow::onStepFinished(const QString &step, bool success)
+{
+    ui->progressBar->setValue(ui->progressBar->value() + 1);
+    ui->logOutput->append(success
+                              ? QString::fromUtf8("✓ ") + step + " complete."
+                              : QString::fromUtf8("✗ ") + step + " failed.");
+}
+
+void MainWindow::onPipelineFinished(bool success)
+{
+    setRunning(false);
+
+    if (success) {
+        ui->statusLabel->setText("Converting to point cloud...");
+        convertAndLoadModel();
+    } else {
+        ui->statusLabel->setText("Pipeline failed — check log for details");
+    }
+}
+
+void MainWindow::onError(const QString &error)
+{
+    ui->logOutput->append("\n[ERROR] " + error);
+}
+
+void MainWindow::on_resetCameraButton_clicked() { ui->viewer->resetCamera(); }
+
+void MainWindow::on_loadPlyButton_clicked()
+{
+    QString path = QFileDialog::getOpenFileName(
+        this, "Open PLY File", QString(), "PLY Files (*.ply)");
+    if (path.isEmpty())
+        return;
+    ui->viewer->loadPLY(path);
+    ui->statusLabel->setText("Loaded: " + QFileInfo(path).fileName());
+}
+
+void MainWindow::on_scaleButton_toggled(bool on)
+{
+    if (on) { ui->measureButton->setChecked(false); ui->viewer->enterScaleMode(); }
+    else      ui->viewer->exitPickMode();
+}
+
+void MainWindow::on_measureButton_toggled(bool on)
+{
+    if (on) { ui->scaleButton->setChecked(false); ui->viewer->enterMeasureMode(); }
+    else      ui->viewer->exitPickMode();
+}
+
+void MainWindow::onScalePointsPicked(float /*measuredModelDist*/)
+{
+    bool ok;
+    double val = QInputDialog::getDouble(
+        this, "Set Scale",
+        "Real-world distance between the two selected points (metres):",
+        0.1, 0.001, 10000.0, 4, &ok);
+    if (ok && val > 0)
+        ui->viewer->applyScale(static_cast<float>(val));
+    ui->scaleButton->setChecked(false);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Photogrammetry — model conversion
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::convertAndLoadModel()
+{
+    if (ui->denseCheckBox->isChecked()) {
+#if defined(Q_OS_WIN)
+        QString densePly = m_workspacePath + "/dense/fused.ply";
+#else
+        QString densePly = m_workspacePath + "/dense.ply";
+#endif
+        if (QFile::exists(densePly)) {
+            ui->logOutput->append("\n=== Loading Dense Model ===");
+            ui->viewer->loadPLY(densePly);
+            ui->statusLabel->setText(
+                "Dense reconstruction complete — use mouse to orbit/pan/zoom");
+            ui->logOutput->append(QString::fromUtf8("✓ ") +
+                                  "Dense model loaded into viewer.");
+            return;
+        }
+        ui->logOutput->append("[WARN] Dense output not found — falling back to sparse.");
+    }
+
+    QString sparsePath = m_workspacePath + "/sparse/0";
+    if (!QDir(sparsePath).exists()) {
+        sparsePath = m_workspacePath + "/sparse";
+        if (!QDir(sparsePath).exists()) {
+            ui->statusLabel->setText("No reconstruction found in sparse/");
+            return;
+        }
+    }
+
+    QString plyPath = m_workspacePath + "/model.ply";
+
+    QProcess *converter = new QProcess(this);
+
+    QString base = QCoreApplication::applicationDirPath();
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.insert("QT_QPA_PLATFORM", "offscreen");
+    env.insert("OPENBLAS_NUM_THREADS", "1");
+
+#if defined(Q_OS_MACOS)
+    QString toolsBase = base + "/tools/macos";
+    QString libVar = "DYLD_LIBRARY_PATH";
+#elif defined(Q_OS_WIN)
+    QString toolsBase = base + "/tools/win64";
+    QString libVar = "";
+#else
+    QString toolsBase = base + "/tools/linux";
+    QString libVar = "LD_LIBRARY_PATH";
+#endif
+
+#ifndef Q_OS_WIN
+    QString libPath = toolsBase + "/lib";
+    if (QDir(libPath).exists()) {
+        QString existing = env.value(libVar);
+        env.insert(libVar, libPath + (existing.isEmpty() ? "" : ":" + existing));
+    }
+#endif
+
+    QString pluginPath = toolsBase + "/plugins";
+    if (QDir(pluginPath).exists())
+        env.insert("QT_PLUGIN_PATH", pluginPath);
+
+    converter->setProcessEnvironment(env);
+
+    connect(
+        converter, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+        [this, converter, plyPath](int exitCode, QProcess::ExitStatus) {
+            converter->deleteLater();
+
+            if (exitCode == 0 && QFile::exists(plyPath)) {
+                ui->logOutput->append("\n=== Loading 3D Model ===");
+                ui->viewer->loadPLY(plyPath);
+                ui->statusLabel->setText(
+                    "Reconstruction complete — use mouse to orbit/pan/zoom");
+                ui->logOutput->append(QString::fromUtf8("✓ ") +
+                                      "Model loaded into viewer.");
+            } else {
+                ui->statusLabel->setText("Model conversion failed");
+                ui->logOutput->append("[ERROR] model_converter failed with exit code " +
+                                      QString::number(exitCode));
+                ui->logOutput->append(
+                    QString::fromUtf8(converter->readAllStandardError()));
+            }
+        });
+
+    QString colmapPath = detectColmapPath();
+    converter->start(colmapPath,
+                     {"model_converter", "--input_path", sparsePath,
+                      "--output_path", plyPath, "--output_type", "PLY"});
+
+    if (!converter->waitForStarted(5000)) {
+        converter->deleteLater();
+        ui->statusLabel->setText("Failed to start model converter");
+    }
+}
