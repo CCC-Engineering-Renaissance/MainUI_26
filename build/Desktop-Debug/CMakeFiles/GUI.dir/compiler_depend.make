@@ -1242,115 +1242,115 @@ GUI_autogen/timestamp: /Applications/CMake.app/Contents/bin/cmake \
   /Users/ella/MainUI_26/src/colmaprunner.h \
   /Users/ella/MainUI_26/src/photogrammetrywidget.cpp \
   /Users/ella/MainUI_26/src/photogrammetrywidget.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/calib3d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/affine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/async.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/bufferpool.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/check.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda_types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvdef.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/fast_math.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/hal/interface.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/neon_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/operations.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/optim.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/ovx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/persistence.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/saturate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/traits.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utility.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.defines.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logtag.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/vsx_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dict.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/layer.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/features2d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/all_indices.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/allocator.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/any.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/autotuned_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/composite_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/config.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/defines.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dist.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dynamic_bitset.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/flann_base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/general.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/ground_truth.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/heap.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/index_testing.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_single_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kmeans_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/linear_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/logger.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_table.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/matrix.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/miniflann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/nn_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/params.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/random.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/result_set.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/sampling.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/saving.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/timer.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/highgui.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgcodecs.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc/segmentation.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml/ml.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_board.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/barcode.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/face.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv_modules.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/photo.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/blenders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/camera.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/matchers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/background_segm.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/tracking.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/videoio.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/calib3d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/affine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/async.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/bufferpool.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/check.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda_types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvdef.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/fast_math.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/hal/interface.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/neon_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/operations.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/optim.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/ovx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/persistence.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/saturate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/traits.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utility.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.defines.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logtag.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dict.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/layer.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/features2d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/all_indices.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/allocator.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/any.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/autotuned_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/composite_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/config.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/defines.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dist.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dynamic_bitset.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/flann_base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/general.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/ground_truth.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/heap.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/index_testing.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_single_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kmeans_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/linear_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/logger.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_table.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/matrix.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/miniflann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/nn_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/params.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/random.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/result_set.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/sampling.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/saving.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/timer.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/highgui.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgcodecs.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_board.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/barcode.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/face.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv_modules.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/photo.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/background_segm.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/tracking.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/videoio.hpp \
   /opt/homebrew/lib/cmake/opencv4/OpenCVConfig-version.cmake \
   /opt/homebrew/lib/cmake/opencv4/OpenCVConfig.cmake \
   /opt/homebrew/lib/cmake/opencv4/OpenCVModules-release.cmake \
@@ -2397,116 +2397,116 @@ CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o: GUI_autogen/mocs_compilat
   /Users/ella/MainUI_26/src/photogrammetrywidget.h \
   GUI_autogen/UVLADIE3JM/moc_colmaprunner.cpp \
   GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc/segmentation.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/calib3d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/affine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/async.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/bufferpool.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/check.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda_types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvdef.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/fast_math.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/hal/interface.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/neon_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/operations.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/optim.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/ovx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/persistence.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/saturate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/traits.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utility.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.defines.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logtag.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/vsx_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dict.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/layer.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/features2d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/all_indices.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/allocator.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/any.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/autotuned_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/composite_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/config.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/defines.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dist.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dynamic_bitset.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/flann_base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/general.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/ground_truth.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/heap.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/index_testing.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_single_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kmeans_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/linear_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/logger.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_table.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/matrix.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/miniflann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/nn_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/params.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/random.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/result_set.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/sampling.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/saving.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/timer.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/highgui.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgcodecs.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml/ml.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_board.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/barcode.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/face.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv_modules.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/photo.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/blenders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/camera.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/matchers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/background_segm.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/tracking.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/videoio.hpp
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/calib3d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/affine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/async.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/bufferpool.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/check.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda_types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvdef.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/fast_math.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/hal/interface.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/neon_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/operations.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/optim.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/ovx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/persistence.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/saturate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/traits.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utility.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.defines.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logtag.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dict.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/layer.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/features2d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/all_indices.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/allocator.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/any.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/autotuned_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/composite_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/config.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/defines.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dist.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dynamic_bitset.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/flann_base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/general.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/ground_truth.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/heap.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/index_testing.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_single_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kmeans_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/linear_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/logger.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_table.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/matrix.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/miniflann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/nn_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/params.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/random.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/result_set.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/sampling.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/saving.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/timer.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/highgui.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgcodecs.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_board.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/barcode.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/face.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv_modules.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/photo.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/background_segm.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/tracking.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/videoio.hpp
 
 CMakeFiles/GUI.dir/main.cpp.o: /Users/ella/MainUI_26/main.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h \
@@ -3541,116 +3541,116 @@ CMakeFiles/GUI.dir/main.cpp.o: /Users/ella/MainUI_26/main.cpp \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qwidget.h \
   /Users/ella/MainUI_26/mainwindow.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc/segmentation.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/calib3d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/affine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/async.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/bufferpool.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/check.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda_types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvdef.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/fast_math.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/hal/interface.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/neon_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/operations.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/optim.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/ovx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/persistence.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/saturate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/traits.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utility.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.defines.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logtag.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/vsx_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dict.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/layer.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/features2d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/all_indices.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/allocator.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/any.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/autotuned_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/composite_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/config.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/defines.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dist.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dynamic_bitset.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/flann_base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/general.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/ground_truth.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/heap.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/index_testing.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_single_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kmeans_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/linear_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/logger.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_table.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/matrix.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/miniflann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/nn_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/params.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/random.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/result_set.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/sampling.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/saving.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/timer.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/highgui.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgcodecs.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml/ml.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_board.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/barcode.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/face.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv_modules.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/photo.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/blenders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/camera.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/matchers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/background_segm.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/tracking.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/videoio.hpp
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/calib3d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/affine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/async.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/bufferpool.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/check.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda_types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvdef.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/fast_math.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/hal/interface.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/neon_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/operations.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/optim.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/ovx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/persistence.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/saturate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/traits.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utility.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.defines.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logtag.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dict.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/layer.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/features2d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/all_indices.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/allocator.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/any.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/autotuned_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/composite_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/config.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/defines.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dist.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dynamic_bitset.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/flann_base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/general.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/ground_truth.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/heap.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/index_testing.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_single_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kmeans_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/linear_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/logger.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_table.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/matrix.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/miniflann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/nn_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/params.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/random.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/result_set.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/sampling.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/saving.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/timer.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/highgui.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgcodecs.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_board.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/barcode.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/face.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv_modules.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/photo.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/background_segm.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/tracking.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/videoio.hpp
 
 CMakeFiles/GUI.dir/mainwindow.cpp.o: /Users/ella/MainUI_26/mainwindow.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h \
@@ -3894,6 +3894,22 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: /Users/ella/MainUI_26/mainwindow.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__exception/nested_exception.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__exception/operations.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__exception/terminate.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/buffer.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/concepts.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/enable_insertable.h \
@@ -4281,6 +4297,7 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: /Users/ella/MainUI_26/mainwindow.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/errno.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/exception \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/execution \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/float.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/format \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
@@ -4489,6 +4506,8 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: /Users/ella/MainUI_26/mainwindow.cpp \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QDateTime \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QDebug \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QDir \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QList \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QObject \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QRect \
@@ -4545,9 +4564,14 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: /Users/ella/MainUI_26/mainwindow.cpp \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdatetime.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdeadlinetimer.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdebug.h \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdir.h \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdirlisting.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qendian.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qeventloop.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qexceptionhandling.h \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfile.h \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfiledevice.h \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfileinfo.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qflags.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfloat16.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qforeach.h \
@@ -4624,6 +4648,7 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: /Users/ella/MainUI_26/mainwindow.cpp \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtextstream.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtformat_impl.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtimer.h \
+  /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtimezone.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtmetamacros.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtnoop.h \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtpreprocessorsupport.h \
@@ -4771,116 +4796,116 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: /Users/ella/MainUI_26/mainwindow.cpp \
   /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qwidget.h \
   GUI_autogen/include/ui_mainwindow.h \
   /Users/ella/MainUI_26/mainwindow.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc/segmentation.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/calib3d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/affine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/async.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/bufferpool.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/check.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda_types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvdef.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/fast_math.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/hal/interface.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/neon_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/operations.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/optim.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/ovx.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/persistence.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/saturate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/traits.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/types.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utility.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.defines.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logtag.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/vsx_utils.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/version.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dict.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/layer.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/features2d.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/all_indices.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/allocator.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/any.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/autotuned_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/composite_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/config.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/defines.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dist.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dynamic_bitset.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/flann_base.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/general.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/ground_truth.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/heap.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/index_testing.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_single_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kmeans_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/linear_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/logger.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_table.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/matrix.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/miniflann.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/nn_index.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/params.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/random.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/result_set.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/sampling.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/saving.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/timer.h \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/highgui.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgcodecs.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml/ml.inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_board.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/barcode.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/face.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv_modules.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/photo.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/blenders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/camera.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/matchers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/warpers.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/background_segm.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/tracking.hpp \
-  /opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/videoio.hpp
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc/segmentation.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/calib3d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/affine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/async.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/bufferpool.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/check.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda_types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvdef.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/fast_math.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/hal/interface.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/neon_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/operations.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/optim.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/ovx.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/persistence.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/saturate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/traits.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/types.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utility.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.defines.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logtag.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/vsx_utils.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/version.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dict.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/layer.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/features2d.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/all_indices.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/allocator.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/any.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/autotuned_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/composite_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/config.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/defines.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dist.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dynamic_bitset.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/flann_base.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/general.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/ground_truth.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/heap.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/index_testing.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_single_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kmeans_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/linear_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/logger.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_table.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/matrix.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/miniflann.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/nn_index.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/params.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/random.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/result_set.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/sampling.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/saving.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/timer.h \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/highgui.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgcodecs.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml/ml.inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_board.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/barcode.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/face.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv_modules.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/photo.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/camera.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/warpers.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/background_segm.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/tracking.hpp \
+  /opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/videoio.hpp
 
 CMakeFiles/GUI.dir/src/colmaprunner.cpp.o: /Users/ella/MainUI_26/src/colmaprunner.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/Availability.h \
@@ -7177,11 +7202,11 @@ CMakeFiles/GUI.dir/src/photogrammetrywidget.cpp.o: /Users/ella/MainUI_26/src/pho
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qscopedvaluerollback.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qrunnable.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qresultstore.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qresource.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qreadwritelock.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qrangemodel_impl.h:
 
@@ -7225,15 +7250,13 @@ CMakeFiles/GUI.dir/src/photogrammetrywidget.cpp.o: /Users/ella/MainUI_26/src/pho
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfuturesynchronizer.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfuture_impl.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfilesystemwatcher.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfileselector.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qexception.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qelapsedtimer.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qeasingcurve.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qcryptographichash.h:
 
@@ -7283,8 +7306,6 @@ CMakeFiles/GUI.dir/src/photogrammetrywidget.cpp.o: /Users/ella/MainUI_26/src/pho
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/random:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/memory_resource:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/jthread.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__stop_token/stop_token.h:
@@ -7321,6 +7342,8 @@ CMakeFiles/GUI.dir/src/photogrammetrywidget.cpp.o: /Users/ella/MainUI_26/src/pho
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/knuth_b.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/is_seed_sequence.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/geometric_distribution.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/fisher_f_distribution.h:
@@ -7335,33 +7358,7 @@ CMakeFiles/GUI.dir/src/photogrammetrywidget.cpp.o: /Users/ella/MainUI_26/src/pho
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory_resource/synchronized_pool_resource.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtimezone.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfileinfo.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfile.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdir.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/discard_block_engine.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/space_info.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perm_options.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_type.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_time_type.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory_resource/monotonic_buffer_resource.h:
 
 GUI_autogen/include/ui_mainwindow.h:
 
@@ -7407,7 +7404,11 @@ GUI_autogen/include/ui_mainwindow.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QToolButton:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QToolBar:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QStackedWidget:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QPushButton:
 
@@ -7418,6 +7419,10 @@ GUI_autogen/include/ui_mainwindow.h:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QGraphicsProxyWidget:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QFrame:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/binomial_distribution.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QComboBox:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimediaWidgets.framework/Headers/qgraphicsvideoitem.h:
 
@@ -7431,6 +7436,8 @@ GUI_autogen/include/ui_mainwindow.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qscreen.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qpainter.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qeventpoint.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qevent.h:
@@ -7443,7 +7450,15 @@ GUI_autogen/include/ui_mainwindow.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/QFontDatabase:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtimezone.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qregularexpression.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfileinfo.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfile.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdir.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdatetime.h:
 
@@ -7454,6 +7469,28 @@ GUI_autogen/include/ui_mainwindow.h:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QRect:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QList:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QDebug:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/discard_block_engine.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/space_info.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perm_options.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_type.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_time_type.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qapplication.h:
 
@@ -7473,8 +7510,6 @@ GUI_autogen/include/ui_mainwindow.h:
 
 GUI_autogen/UVLADIE3JM/moc_colmaprunner.cpp:
 
-GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qwidget.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h:
@@ -7484,6 +7519,8 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qtabwidget.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qmainwindow.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QWidget:
 
@@ -7495,13 +7532,9 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Headers/qtaudio.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Headers/qaudio.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Headers/QMediaPlayer:
 
@@ -7519,8 +7552,6 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qrgba64.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qregion.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qpixelformat.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qpicture.h:
@@ -7532,8 +7563,6 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qkeysequence.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qimage.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/flann_base.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/stable_partition.h:
 
@@ -7551,13 +7580,17 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qyieldcpu.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qxptype_traits.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qversiontagging.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qdialog.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qvarlengtharray.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6DBus/Qt6DBusConfigVersionImpl.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qvariant.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qutf8stringview.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtversion.h:
 
@@ -7570,6 +7603,8 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtresource.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/contention_t.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dynamic_bitset.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtimer.h:
 
@@ -7587,6 +7622,12 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtclasshelpermacros.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/advance.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/Qt6VersionlessAliasTargets.cmake:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qsystemdetection.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qswap.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstringmatcher.h:
@@ -7594,6 +7635,8 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QTCore:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qlabel.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kmeans_index.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstringconverter_base.h:
 
@@ -7604,6 +7647,8 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstringalgorithms.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstring.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qsize.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qspan.h:
 
@@ -7618,10 +7663,6 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qrect.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qobjectdefs_impl.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qobject_impl.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/extreme_value_distribution.h:
 
@@ -7693,12 +7734,6 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qcheckedint_impl.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtInstallPaths.cmake:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qchar.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qbindingstorage.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qbasicatomic.h:
@@ -7745,23 +7780,13 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdbool.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/any_of.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinContactsPermissionPluginConfig.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_size_t.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QGridLayout:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_ptrdiff_t.h:
 
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_null.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/xlocale/_ctype.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_types/_nl_item.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qcontiguouscache.h:
 
@@ -7777,8 +7802,6 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/resource.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/version.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_wint_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_va_list.h:
@@ -7788,6 +7811,8 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 /Applications/CMake.app/Contents/share/cmake-4.2/Modules/CMakeCXXInformation.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/wchar.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/index_testing.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdlib.h:
 
@@ -7825,6 +7850,10 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/locale.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/float.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinBluetoothPermissionPluginDependencies.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/errno.h:
@@ -7857,6 +7886,12 @@ GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_stdlib.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfiledevice.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6MultimediaWidgets/Qt6MultimediaWidgetsConfigVersionImpl.cmake:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/___wctype.h:
+
 GUI_autogen/EWIEGA46WW/qrc_resources.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtaudio.h:
@@ -7865,179 +7900,163 @@ GUI_autogen/EWIEGA46WW/qrc_resources.cpp:
 
 /opt/homebrew/lib/cmake/opencv4/OpenCVConfig-version.cmake:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qreadwritelock.h:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/videoio.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/tracking.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/background_segm.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video/background_segm.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/warpers.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers.hpp:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/xlocale/_wctype.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/seam_finders.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_key_t.h:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/matchers.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cfloat:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/camera.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/face.hpp:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/any_of.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qgraphicsitem.h:
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinContactsPermissionPluginConfig.cmake:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_size_t.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/charuco_detector.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv_modules.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_enum.h:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/barcode.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/charuco_detector.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/streambuf:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_board.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/log2.h:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/result_set.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc/segmentation.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/random.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qdialog.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qvarlengtharray.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QStackedWidget:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/params.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/nn_index.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfiledevice.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6MultimediaWidgets/Qt6MultimediaWidgetsConfigVersionImpl.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/___wctype.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/matrix.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/advance.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/Qt6VersionlessAliasTargets.cmake:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qsystemdetection.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfileselector.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/logger.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/linear_index.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory_resource/monotonic_buffer_resource.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kmeans_index.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cwctype:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/index_testing.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/QTimer:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/general.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_rsize_t.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dist.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/defines.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/composite_index.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/autotuned_index.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/version.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/layer.hpp:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstdlibdetection.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.inl.hpp:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dnn.hpp:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/q23utility.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/vsx_utils.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logtag.hpp:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__bit/countl.h:
-
-CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/types.hpp:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/traits.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/ovx.hpp:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/Qt6ConfigExtras.cmake:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/optim.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/operations.hpp:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qsize.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qrgb.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/neon_utils.hpp:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/float.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stddef.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.hpp:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qpainter.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd_wrapper.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.inl.hpp:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda_types.hpp:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtPublicSbomPurlHelpers.cmake:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.inl.hpp:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qxptype_traits.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/check.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/random.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qfontvariableaxis.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/make_unsigned.h:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/params.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/async.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/miniflann.hpp:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/linear_index.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/affine.hpp:
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargets.cmake:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_single_index.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/kdtree_index.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/heap.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/ground_truth.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/flann_base.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/string_view.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/partial_sum.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/autotuned_index.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/any.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_table.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/allocator.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/features2d.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/utils/inference_engine.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/layer.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.inl.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dnn.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtInstallPaths.cmake:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qchar.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Headers/qaudio.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/vsx_utils.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/version.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.hpp:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qutf8stringview.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.hpp:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qregion.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utility.hpp:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qobject_impl.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tuple/ignore.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/types.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/traits.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_copy.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/saturate.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_null.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/ovx.hpp:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtformat_impl.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/neon_utils.hpp:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.inl.hpp:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/search_n.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.inl.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/hal/interface.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/matrix.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd_wrapper.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/highgui.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvstd.inl.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.inl.hpp:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qfuture_impl.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/async.hpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/affine.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QSvgPluginAdditionalTargetInfo.cmake:
 
@@ -8045,11 +8064,13 @@ CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
 
 /Users/ella/MainUI_26/mainwindow.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/pop_heap.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/video/tracking.hpp:
+
 .qtc/package-manager/auto-setup.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvdef.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake:
 
@@ -8063,11 +8084,11 @@ CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Widgets/Qt6WidgetsMacros.cmake:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__charconv/to_chars_base_10.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/objdetect/aruco_detector.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc/segmentation.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Widgets/Qt6QMacStylePluginAdditionalTargetInfo.cmake:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/config.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake:
 
@@ -8078,6 +8099,8 @@ CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/ctype.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/persistence.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake:
 
@@ -8095,13 +8118,7 @@ CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qmargins.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/is_seed_sequence.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/features2d.hpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake:
 
@@ -8131,7 +8148,11 @@ CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginTargets-relwithdebinfo.cmake:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/check.hpp:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginAdditionalTargetInfo.cmake:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logtag.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaTargets.cmake:
 
@@ -8146,6 +8167,10 @@ CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_max_align_t.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_neon.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/dist.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/sstream.h:
 
@@ -8164,10 +8189,6 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6GuiTools/Qt6GuiToolsDependencies.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdio:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/seam_finders.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginAdditionalTargetInfo.cmake:
 
@@ -8189,8 +8210,6 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QSvgIconPluginConfig.cmake:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargets.cmake:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/count.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargets-relwithdebinfo.cmake:
@@ -8203,6 +8222,8 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QJpegPluginConfig.cmake:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/segmented_iterator.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QJpegPluginAdditionalTargetInfo.cmake:
@@ -8212,8 +8233,6 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/make_heap.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QGifPluginTargets.cmake:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/allocator.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QGifPluginTargets-relwithdebinfo.cmake:
 
@@ -8225,15 +8244,17 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QCocoaIntegrationPluginTargets-relwithdebinfo.cmake:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cv_cpu_dispatch.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6GuiVersionlessAliasTargets.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6MultimediaWidgets/Qt6MultimediaWidgetsVersionlessAliasTargets.cmake:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml.hpp:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersionImpl.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/photo.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:
 
@@ -8246,6 +8267,10 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6DBusTools/Qt6DBusToolsVersionlessTargets.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6DBusTools/Qt6DBusToolsDependencies.cmake:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/bounded_iter.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgproc.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/piecewise_construct.h:
 
@@ -8263,11 +8288,13 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6DBus/Qt6DBusVersionlessAliasTargets.cmake:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util_inl.hpp:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6DBus/Qt6DBusMacros.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qscopedpointer.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/saving.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h:
 
@@ -8297,15 +8324,11 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinMicrophonePermissionPluginDependencies.cmake:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/version.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6GuiTools/Qt6GuiToolsConfigVersionImpl.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginTargets.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/queue.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/base.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinContactsPermissionPluginTargets-relwithdebinfo.cmake:
 
@@ -8326,6 +8349,8 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinCameraPermissionPluginTargets-relwithdebinfo.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinCameraPermissionPluginConfig.cmake:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstdlibdetection.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinCalendarPermissionPluginTargets-relwithdebinfo.cmake:
 
@@ -8367,14 +8392,6 @@ CMakeFiles/4.2.3/CMakeSystem.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qexceptionhandling.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qmetaobject.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/replace_if.h:
-
-GUI_autogen/moc_predefs.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/matx.inl.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_equality_comparable.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake:
@@ -8392,6 +8409,8 @@ GUI_autogen/moc_predefs.h:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtPublicTargetHelpers.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtPublicSbomSystemDepHelpers.cmake:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtPublicSbomPurlHelpers.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtPublicSbomGenerationCycloneDXHelpers.cmake:
 
@@ -8477,6 +8496,10 @@ GUI_autogen/moc_predefs.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QObject:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/memory_resource:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimedia-config.h:
@@ -8508,6 +8531,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_assert.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Versions/A/Headers/QMediaPlayer:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/matx.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h:
 
@@ -8555,6 +8580,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qfontinfo.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/composite_index.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qfont.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__cstddef/nullptr_t.h:
@@ -8573,6 +8600,10 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qbitmap.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/memory:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/variant:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qaction.h:
@@ -8586,8 +8617,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsscene.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qurl.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_index.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qobjectdefs.h:
 
@@ -8607,13 +8636,7 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml.hpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_index.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qtdeprecationdefinitions.h:
 
@@ -8624,8 +8647,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qsystemdetection.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qstringview.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_null_pointer.h:
 
@@ -8661,11 +8682,17 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qprocess.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/ground_truth.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qobjectdefs_impl.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qobjectdefs.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/optim.hpp:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qmetaobject.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/replace_if.h:
+
+GUI_autogen/moc_predefs.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6DBusTools/Qt6DBusToolsTargets-relwithdebinfo.cmake:
 
@@ -8681,9 +8708,13 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qobject.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/sampling.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qnamespace.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qmetatype.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/fast_math.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h:
 
@@ -8707,6 +8738,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qline.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__string/char_traits.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qiterator.h:
@@ -8729,6 +8762,10 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qfunctionaltools_impl.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__bit/countl.h:
+
+CMakeFiles/4.2.3/CMakeCXXCompiler.cmake:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qversiontagging.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/partition_point.h:
@@ -8745,19 +8782,11 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qendian.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/kdtree_single_index.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/matchers.hpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qbasictimer.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qdebug.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qmath.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/search_n.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h:
 
@@ -8803,8 +8832,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayview.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/photo.hpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qsequentialanimationgroup.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/source_location:
@@ -8816,12 +8843,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qbytearray.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qbasictimer.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qpair.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fd_copy.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/calib3d.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qbasicatomic.h:
 
@@ -8837,8 +8858,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qassert.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/sampling.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qarraydatapointer.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsitem.h:
@@ -8851,7 +8870,9 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdint:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/mat.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtimeline.h:
 
@@ -8863,6 +8884,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6MultimediaWidgets/Qt6MultimediaWidgetsConfigVersion.cmake:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/QTimer:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/Qt6Dependencies.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/auto_cast.h:
@@ -8870,8 +8893,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/limits.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_neon.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/chrono:
 
@@ -8951,7 +8972,7 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_off_t.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtformat_impl.h:
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/Qt6ConfigExtras.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_nlink_t.h:
 
@@ -8973,6 +8994,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qfontmetrics.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cvdef.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fsfilcnt_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_flag.h:
@@ -8985,13 +9008,13 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fd_setsize.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/blenders.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fd_clr.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_errno_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_clock_t.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/hal/interface.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qurl.h:
 
@@ -9009,8 +9032,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_blkcnt_t.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.inl.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_symbol_aliasing.h:
@@ -9020,8 +9041,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivially_assignable.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_pthread/_pthread_types.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/fast_math.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginAdditionalTargetInfo.cmake:
 
@@ -9055,8 +9074,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/CMake.app/Contents/share/cmake-4.2/Modules/CMakeLanguageInformation.cmake:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/blenders.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_pthread/_pthread_condattr_t.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qprocess.h:
@@ -9066,6 +9083,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qlogging.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_endian.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stddef.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qfunctionpointer.h:
 
@@ -9089,6 +9108,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/version:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/detail/util.hpp:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Widgets/Qt6WidgetsAdditionalTargetInfo.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtemporaryfile.h:
@@ -9103,9 +9124,13 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cwctype:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qpair.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fd_copy.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstring:
 
@@ -9115,6 +9140,10 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdlib.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qcomparehelpers.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/bufferpool.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/from_range.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qtgui-config.h:
@@ -9122,12 +9151,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory_resource/polymorphic_allocator.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/copyable.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qinputdevice.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qcompilerdetection.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:
 
@@ -9144,6 +9167,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/q20algorithm.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/istream:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/imgcodecs.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_const.h:
 
@@ -9163,11 +9188,11 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fsblkcnt_t.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/streambuf.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/format:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/heap.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinCameraPermissionPluginDependencies.cmake:
 
@@ -9191,8 +9216,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/errno.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/mat.hpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6MultimediaWidgets/Qt6MultimediaWidgetsDependencies.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qmap.h:
@@ -9205,9 +9228,9 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/identity.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdint:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdio:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/dynamic_bitset.h:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/timer.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/iterator.h:
 
@@ -9231,11 +9254,7 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/bit:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/streambuf:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/atomic:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/timer.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/array:
 
@@ -9289,8 +9308,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/memory:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/swap.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/functional.h:
@@ -9303,11 +9320,7 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/convert_to_integral.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/lsh_table.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/as_const.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/util_inl.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6GuiTools/Qt6GuiToolsAdditionalTargetInfo.cmake:
 
@@ -9359,13 +9372,15 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/remove_cvref.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qrunnable.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_detector.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_timespec.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/q20type_traits.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/remove_const_ref.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tuple/ignore.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_types/_locale_t.h:
 
@@ -9406,10 +9421,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/lazy.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/result_set.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/xlocale/_wctype.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_volatile.h:
 
@@ -9465,6 +9476,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_scalar.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/saving.h:
+
 /Applications/CMake.app/Contents/share/cmake-4.2/Modules/MacroAddFileDependencies.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/locale_base_api/bsd_locale_defaults.h:
@@ -9503,6 +9516,10 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_member_pointer.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binary_function.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda_types.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_literal_type.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qdiriterator.h:
@@ -9511,8 +9528,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstringfwd.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/bounded_iter.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QCocoaIntegrationPluginConfig.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_ino_t.h:
@@ -9520,12 +9535,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cmath:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/binomial_distribution.h:
-
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QComboBox:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/highgui.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/dangling.h:
 
@@ -9537,13 +9546,13 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_floating_point.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_enum.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qbytearrayview.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_convertible.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/opencv_modules.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qtpreprocessorsupport.h:
 
@@ -9556,6 +9565,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_compound.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qtextdocument.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn/dict.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_assignable.h:
 
@@ -9711,8 +9722,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qmetacontainer.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cfloat:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qvariant.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qstring.h:
@@ -9723,11 +9732,13 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/remove_volatile.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/miniflann.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/memory_resource.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/movable_box.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_heap_until.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/defines.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qtcore-config.h:
 
@@ -9747,6 +9758,8 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/concepts.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/log2.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginConfig.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/is_valid.h:
@@ -9756,8 +9769,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QICOPluginConfig.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/destructible.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/any.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake:
 
@@ -9772,8 +9783,6 @@ GUI_autogen/UVLADIE3JM/moc_photogrammetrywidget.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/destruct_n.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/unique.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/dict.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h:
 
@@ -9813,9 +9822,7 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6QAppleNetworkInformationPluginAdditionalTargetInfo.cmake:
 
-/Applications/CMake.app/Contents/share/cmake-4.2/Modules/Internal/CheckCompilerFlag.cmake:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/videoio.hpp:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching/warpers.hpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinCalendarPermissionPluginDependencies.cmake:
 
@@ -9861,6 +9868,8 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qtresource.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/q23utility.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdint.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h:
@@ -9905,6 +9914,8 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qalloc.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/lsh_index.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/copysign.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_intptr_t.h:
@@ -9946,6 +9957,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/Qt6ConfigVersion.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/projected.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic.h:
 
@@ -10001,8 +10014,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/incrementable_traits.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qcomparehelpers.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/q26numeric.h:
@@ -10049,10 +10060,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/typeinfo:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/QToolButton:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/all_indices.h:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QICOPluginTargets.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__hash_table:
@@ -10070,6 +10077,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/add_volatile.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/string.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h:
 
@@ -10092,6 +10101,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/libkern/arm/_OSByteOrder.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_destructible.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/queue.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qtextdocument.h:
 
@@ -10128,6 +10139,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qthreadstorage.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6QAppleNetworkInformationPluginConfig.cmake:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_implicitly_default_constructible.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tuple/make_tuple_types.h:
 
@@ -10207,8 +10220,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/parser_std_format_spec.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/binary_function.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/convertible_to.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_partitioned.h:
@@ -10216,10 +10227,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QDir:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/roots.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/string_view.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/partial_sum.h:
 
 /Applications/CMake.app/Contents/share/cmake-4.2/Modules/Platform/Apple-Clang-CXX.cmake:
 
@@ -10236,8 +10243,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iterator:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_stdio.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/saturate.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/arm/_endian.h:
 
@@ -10277,11 +10282,17 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/QHash:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/all_indices.h:
+
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_vector_types.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__configuration/language.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/invoke.h:
+
+GUI_autogen/EWIEGA46WW/moc_mainwindow.cpp:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/face.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config:
 
@@ -10289,9 +10300,9 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qstringconverter.h:
 
-/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginDependencies.cmake:
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/opencv.hpp:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgproc.hpp:
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginDependencies.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h:
 
@@ -10311,6 +10322,8 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/maybe_const.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/calib3d.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/same_as.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/formatter.h:
@@ -10318,6 +10331,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/bit_reference.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__bit/popcount.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/dnn.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__string/extern_template_lists.h:
 
@@ -10351,10 +10366,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qbytearrayalgorithms.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/steady_clock.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cuda.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityInternalLegacy.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtPublicSbomCommonGenerationHelpers.cmake:
@@ -10366,12 +10377,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__random/exponential_distribution.h:
 
 /Applications/CMake.app/Contents/share/cmake-4.2/Modules/FindPackageMessage.cmake:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/mismatch.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utility.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_unsigned.h:
 
@@ -10411,6 +10416,10 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/remove_if.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Headers/qinputdevice.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qcompilerdetection.h:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6CoreTools/Qt6CoreToolsAdditionalTargetInfo.cmake:
@@ -10420,6 +10429,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qatomic_cxx11.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_execution_policy.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/aruco_board.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/limits.h:
 
@@ -10431,6 +10442,8 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/initializer_list:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/operations.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/find_if_not.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__compare/compare_three_way.h:
@@ -10438,6 +10451,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/formatter_output.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/replace.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/steady_clock.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaMacros.cmake:
 
@@ -10458,8 +10473,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/system_clock.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/tuple.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_heap_until.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_u_int64_t.h:
 
@@ -10513,8 +10526,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/check_memory_order.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/bufferpool.hpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaVersionlessAliasTargets.cmake:
@@ -10534,6 +10545,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qrefcount.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/string.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/objdetect/barcode.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/size.h:
 
@@ -10563,6 +10576,8 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtFeatureCommon.cmake:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/utils/logger.defines.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/copy_if.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/reference_wrapper.h:
@@ -10581,7 +10596,11 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qpair.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/ml/ml.inl.hpp:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6/QtPublicSbomCycloneDXHelpers.cmake:
+
+/Applications/CMake.app/Contents/share/cmake-4.2/Modules/Internal/CheckCompilerFlag.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/set_intersection.h:
 
@@ -10601,11 +10620,15 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/remove.h:
 
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qeasingcurve.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/stitching.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__configuration/abi.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_base.h:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivially_copyable.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/cvstd.hpp:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_base.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinMicrophonePermissionPluginConfig.cmake:
 
@@ -10615,8 +10638,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/istreambuf_iterator.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/config.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/reverse_copy.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qanimationgroup.h:
@@ -10624,6 +10645,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qttypetraits.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/dependent_type.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_key_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/wctype.h:
 
@@ -10673,17 +10696,11 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/fdim.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/disjunction.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn/utils/inference_engine.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/unique_ptr.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/pstl.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/pop_heap.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qlibraryinfo.h:
 
@@ -10705,8 +10722,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/partition.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/flann/hierarchical_clustering_index.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/none_of.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qgraphicsscene.h:
@@ -10727,7 +10742,7 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/complex:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/video.hpp:
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtGui.framework/Versions/A/Headers/qrgb.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginConfig.cmake:
 
@@ -10745,6 +10760,8 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/common_reference_with.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/cuda.hpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__bit/invert_if.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qprocessordetection.h:
@@ -10756,6 +10773,10 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/math.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__exception/exception.h:
+
+/Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/general.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qpauseanimation.h:
 
@@ -10770,8 +10791,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/iter_swap.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ranges/view_interface.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/utils/logger.defines.hpp:
 
 /Applications/CMake.app/Contents/share/cmake-4.2/Modules/Internal/CheckSourceCompiles.cmake:
 
@@ -10808,8 +10827,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Versions/A/Headers/qscopedpointer.h:
 
 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg___gnuc_va_list.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/core/persistence.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/copy_n.h:
 
@@ -10849,8 +10866,6 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/is_always_lock_free.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/imgcodecs.hpp:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/vector:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_xlocale.h:
@@ -10858,8 +10873,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_abstract.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/abs.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/ml/ml.inl.hpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/gamma.h:
 
@@ -10875,6 +10888,8 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Multimedia/Qt6QDarwinMediaPluginConfig.cmake:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__charconv/to_chars_base_10.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/TargetConditionals.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6CoreVersionlessAliasTargets.cmake:
@@ -10885,7 +10900,11 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/unwrap_iter.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/logger.h:
+
 /Applications/CMake.app/Contents/share/cmake-4.2/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/nn_index.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/forward.h:
 
@@ -10894,6 +10913,8 @@ GUI_autogen/mocs_compilation.cpp:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/hypot.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__compare/three_way_comparable.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/make_unsigned.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__charconv/tables.h:
 
@@ -10913,11 +10934,11 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/__xlocale.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/hash.h:
-
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/dnn.hpp:
-
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6DBus/Qt6DBusConfigVersion.cmake:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stddef_rsize_t.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/support.h:
 
@@ -10927,9 +10948,9 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/xlocale/_string.h:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/hash.h:
 
-/opt/homebrew/Cellar/opencv/4.13.0_3/include/opencv4/opencv2/stitching/detail/camera.hpp:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/xlocale/_string.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cwchar:
 
@@ -10944,8 +10965,6 @@ GUI_autogen/mocs_compilation.cpp:
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfigVersion.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/is_sorted_until.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_copy.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fd_set.h:
 
@@ -10979,13 +10998,21 @@ GUI_autogen/mocs_compilation.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__system_error/error_condition.h:
 
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/core/base.hpp:
+
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginTargets-relwithdebinfo.cmake:
+
+/opt/homebrew/Cellar/opencv/4.13.0_7/include/opencv4/opencv2/flann/hierarchical_clustering_index.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtWidgets.framework/Headers/qdialogbuttonbox.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/ios.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__concepts/invocable.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/mismatch.h:
 
 /Users/ella/Desktop/Hi/Qt/6.10.2/macos/lib/QtCore.framework/Headers/qassert.h:
 

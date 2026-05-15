@@ -8,6 +8,7 @@
 #include <QMediaPlayer>
 #include <QTimer>
 #include <opencv2/opencv.hpp>
+#include <opencv2/features2d.hpp>
 
 
 QT_BEGIN_NAMESPACE
@@ -67,5 +68,14 @@ private:
     QTimer *timer;
     QGraphicsScene *scene;
     QGraphicsPixmapItem *pixmapItem;
+
+    cv::Ptr<cv::ORB> orb;
+
+    std::vector<cv::KeyPoint> kpCrab1, kpCrab2, kpCrab3;
+    cv::Mat desCrab1, desCrab2, desCrab3;
+
+    cv::Mat imgCrab1, imgCrab2, imgCrab3;
+
+    cv::Ptr<cv::BFMatcher> matcher;
 };
 #endif // MAINWINDOW_H

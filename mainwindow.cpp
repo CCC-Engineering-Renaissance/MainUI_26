@@ -19,6 +19,10 @@
 #include <QVBoxLayout>
 #include <QVideoWidget>
 #include <QWidget>
+
+#include <QDebug>
+#include <QDir>
+
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -68,6 +72,21 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->homePageButton, &QToolButton::clicked, this, &MainWindow::stopCamera);
 
     connect(timer, &QTimer::timeout, this, &MainWindow::updateFrame);
+
+    orb = cv::ORB::create();
+    matcher = cv::BFMatcher::create(cv::NORM_HAMMING);
+
+    qDebug() << "CURRENT DIR:" << QDir::currentPath();
+    qDebug() << "APP DIR:" << QCoreApplication::applicationDirPath();
+    qDebug() << QFile::exists("crabs/crab1.png");
+
+    imgCrab1 = cv::imread("crabs/crab1.png", cv::IMREAD_GRAYSCALE);
+    imgCrab2 = cv::imread("crabs/crab2.png", cv::IMREAD_GRAYSCALE);
+    imgCrab3 = cv::imread("crabs/crab3.png", cv::IMREAD_GRAYSCALE);
+
+    orb->detectAndCompute(imgCrab1, cv::noArray(), kpCrab1, desCrab1);
+    orb->detectAndCompute(imgCrab2, cv::noArray(), kpCrab2, desCrab2);
+    orb->detectAndCompute(imgCrab3, cv::noArray(), kpCrab3, desCrab3);
 }
 
 MainWindow::~MainWindow()
@@ -224,8 +243,78 @@ void MainWindow::updateFrame()
     cv::Mat frame;
     if (!cap.read(frame)) return;
 
+    cv::Mat gray;
+    cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+
+    ui->graphicsView->fitInView(pixmapItem, Qt::KeepAspectRatio);
+
+    std::vector<cv::KeyPoint> kpFrame;
+    cv::Mat desFrame;
+
+    orb->detectAndCompute(gray, cv::noArray(), kpFrame, desFrame);
+
+
+    if (desFrame.empty() || desCrab1.empty() || desCrab2.empty() || desCrab3.empty())
+    {
+        cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
+        QImage qimg(frame.data, frame.cols, frame.rows, frame.step,
+                    QImage::Format_RGB888);
+
+        pixmapItem->setPixmap(QPixmap::fromImage(qimg));
+        ui->graphicsView->fitInView(pixmapItem, Qt::KeepAspectRatio);
+        return;
+    }
+
+    std::vector<cv::DMatch> matches1, matches2, matches3;
+
+    matcher->match(desFrame, desCrab1, matches1);
+    matcher->match(desFrame, desCrab2, matches2);
+    matcher->match(desFrame, desCrab3, matches3);
+
+    auto goodMatches = [](const std::vector<cv::DMatch>& matches)
+    {
+        int good = 0;
+        for (const auto& m : matches)
+        {
+            if (m.distance < 40)
+                good++;
+        }
+        return good;
+    };
+
+    int score1 = goodMatches(matches1);
+    int score2 = goodMatches(matches2);
+    int score3 = goodMatches(matches3);
+
+    qDebug() << "Scores:" << score1 << score2 << score3;
+
+    std::string label = "Unknown";
+
+    int best = std::max({score1, score2, score3});
+
+    if (best >= 15)
+    {
+        if (best == score1) label = "European Green Crab";
+        else if (best == score2) label = "Rock Crab";
+        else label = "Jonah Crab";
+    }
+
+    cv::putText(frame,
+                label,
+                cv::Point(30, 50),
+                cv::FONT_HERSHEY_SIMPLEX,
+                1.2,
+                cv::Scalar(0, 255, 0),
+                2);
+
     cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
-    QImage qimg(frame.data, frame.cols, frame.rows, frame.step, QImage::Format_RGB888);
+
+    QImage qimg(frame.data,
+                frame.cols,
+                frame.rows,
+                frame.step,
+                QImage::Format_RGB888);
+
     pixmapItem->setPixmap(QPixmap::fromImage(qimg));
 
     ui->graphicsView->fitInView(pixmapItem, Qt::KeepAspectRatio);
