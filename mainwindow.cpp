@@ -571,47 +571,31 @@ void MainWindow::updateIcebergTracking(double iceX, double iceY, double headingD
 }
 
 void MainWindow::on_btnRecordDepth_clicked()
-
-    {
-        // Prevent errors if the pilot clicks more than 5 times
-        if (m_currentDepthIndex >= 5) {
-            return;
-        }
-
-        // 1. Fetch the live depth from your sensor backend
-        //double currentLiveDepth = m_cameraReceiver->getLiveDepth();
-        // TEMPORARY: Hardcoded dummy value for testing the UI
-        double currentLiveDepth = 42.5;
-
-
-        // 2. Update the max depth if this new reading is deeper
-        if (currentLiveDepth > m_maxKeelDepth) {
-            m_maxKeelDepth = currentLiveDepth;
-        }
-
-        // 3. Push the number to the correct LCD screen and advance the index
-        switch (m_currentDepthIndex) {
-        case 0:
-            ui->lcdKeelDepth1->display(currentLiveDepth);
-            break;
-        case 1:
-            ui->lcdKeelDepth2->display(currentLiveDepth);
-            break;
-        case 2:
-            ui->lcdKeelDepth3->display(currentLiveDepth);
-            break;
-        case 3:
-            ui->lcdKeelDepth4->display(currentLiveDepth);
-            break;
-        case 4:
-            ui->lcdKeelDepth5->display(currentLiveDepth);
-
-
-            break;
-        }
-
-        m_currentDepthIndex++;
+{
+    if (m_currentDepthIndex >= 5) {
+        return;
     }
+
+    double currentLiveDepth = m_cameraReceiver->getLiveDepth();
+
+    if (currentLiveDepth > m_maxKeelDepth) {
+        m_maxKeelDepth = currentLiveDepth;
+    }
+
+    switch (m_currentDepthIndex) {
+    case 0: ui->lcdKeelDepth1->display(currentLiveDepth); break;
+    case 1: ui->lcdKeelDepth2->display(currentLiveDepth); break;
+    case 2: ui->lcdKeelDepth3->display(currentLiveDepth); break;
+    case 3: ui->lcdKeelDepth4->display(currentLiveDepth); break;
+    case 4:
+        ui->lcdKeelDepth5->display(currentLiveDepth);
+        // Once the 5th point is recorded, you have the final max depth.
+        // updateIcebergTracking(..., m_maxKeelDepth, ...);
+        break;
+    }
+
+    m_currentDepthIndex++;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Photogrammetry setup

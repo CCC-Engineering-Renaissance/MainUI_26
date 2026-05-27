@@ -730,6 +730,7 @@
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/xlocale/_time.h \
   /Users/tylerbarbery/Projects/MainUI_26/camerareceiver.h \
+  /Users/tylerbarbery/Projects/MainUI_26/src/colmaprunner.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractAxis \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractSeries \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/QChart \
@@ -754,9 +755,13 @@
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QList \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QMargins \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
+  /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QProcess \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRect \
+  /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSet \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSize \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSizeF \
+  /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QString \
+  /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QStringList \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QVariant \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \
@@ -842,6 +847,7 @@
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qoverload.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qpair.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qpoint.h \
+  /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qprocess.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qprocessordetection.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qrect.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qrefcount.h \
@@ -947,12 +953,14 @@
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QAbstractSocket \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QTcpSocket \
+  /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/QUdpSocket \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qabstractsocket.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qhostaddress.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qtcpsocket.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qtnetwork-config.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkexports.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkglobal.h \
+  /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qudpsocket.h \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsPixmapItem \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsScene \
   /Users/tylerbarbery/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsView \

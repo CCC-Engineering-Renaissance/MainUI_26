@@ -3,4 +3,3 @@
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "UVLADIE3JM/moc_colmaprunner.cpp"
 #include "UVLADIE3JM/moc_modelviewer.cpp"
-#include "UVLADIE3JM/moc_photogrammetrywidget.cpp"

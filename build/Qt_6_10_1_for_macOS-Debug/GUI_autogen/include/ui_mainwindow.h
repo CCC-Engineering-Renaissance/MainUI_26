@@ -13,6 +13,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
@@ -20,16 +21,20 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
+#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "modelviewer.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -67,6 +72,7 @@ public:
     QGridLayout *gridLayout_2;
     QFrame *frame_6;
     QHBoxLayout *horizontalLayout_3;
+    QLabel *captureCountLabel;
     QLabel *latencyLabel;
     QLabel *timeLabel;
     QFrame *frame_5;
@@ -87,9 +93,32 @@ public:
     QLCDNumber *lcdNumber;
     QLabel *label_15;
     QPushButton *pushButton_2;
+    QPushButton *captureFramesButton;
     QToolButton *homePageButton;
+    QPushButton *modeButton;
     QWidget *modelingPage;
+    QVBoxLayout *modelingPageLayout;
+    QHBoxLayout *modelingTopRow;
     QToolButton *homePageButton_2;
+    QLabel *statusLabel;
+    QHBoxLayout *buttonLayout;
+    QPushButton *importImagesButton;
+    QPushButton *importVideoButton;
+    QPushButton *clearButton;
+    QCheckBox *denseCheckBox;
+    QSpacerItem *horizontalSpacer1;
+    QPushButton *scaleButton;
+    QPushButton *measureButton;
+    QPushButton *loadPlyButton;
+    QPushButton *resetCameraButton;
+    QPushButton *runButton;
+    QPushButton *cancelButton;
+    QProgressBar *progressBar;
+    QSplitter *mainSplitter;
+    QListWidget *imageList;
+    QSplitter *rightSplitter;
+    ModelViewer *viewer;
+    QTextEdit *logOutput;
     QWidget *icebergPage;
     QGridLayout *gridLayout_6;
     QLCDNumber *lcdKeelDepth2;
@@ -485,10 +514,17 @@ public:
         frame_6->setLineWidth(2);
         horizontalLayout_3 = new QHBoxLayout(frame_6);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        latencyLabel = new QLabel(frame_6);
-        latencyLabel->setObjectName("latencyLabel");
+        captureCountLabel = new QLabel(frame_6);
+        captureCountLabel->setObjectName("captureCountLabel");
         QFont font5;
         font5.setFamilies({QString::fromUtf8("Aileron")});
+        captureCountLabel->setFont(font5);
+        captureCountLabel->setFrameShape(QFrame::Shape::Box);
+
+        horizontalLayout_3->addWidget(captureCountLabel);
+
+        latencyLabel = new QLabel(frame_6);
+        latencyLabel->setObjectName("latencyLabel");
         latencyLabel->setFont(font5);
         latencyLabel->setFrameShape(QFrame::Shape::Box);
         latencyLabel->setFrameShadow(QFrame::Shadow::Plain);
@@ -679,37 +715,182 @@ public:
 
         gridLayout_2->addWidget(frame, 3, 0, 1, 1);
 
+        captureFramesButton = new QPushButton(cameraPage);
+        captureFramesButton->setObjectName("captureFramesButton");
+        QFont font12;
+        font12.setFamilies({QString::fromUtf8("Aileron")});
+        font12.setPointSize(12);
+        captureFramesButton->setFont(font12);
+        captureFramesButton->setStyleSheet(QString::fromUtf8("background-color: rgb(44,181,222);\n"
+"color: white;\n"
+"border-width: 3px;\n"
+"border-style: ridge;\n"
+"border-color: rgb(152,199,65);"));
+
+        gridLayout_2->addWidget(captureFramesButton, 0, 1, 1, 1);
+
         homePageButton = new QToolButton(cameraPage);
         homePageButton->setObjectName("homePageButton");
         sizePolicy1.setHeightForWidth(homePageButton->sizePolicy().hasHeightForWidth());
         homePageButton->setSizePolicy(sizePolicy1);
         homePageButton->setMinimumSize(QSize(40, 30));
         homePageButton->setMaximumSize(QSize(40, 30));
-        QFont font12;
-        font12.setPointSize(13);
-        font12.setBold(false);
-        homePageButton->setFont(font12);
+        QFont font13;
+        font13.setPointSize(13);
+        font13.setBold(false);
+        homePageButton->setFont(font13);
         homePageButton->setIconSize(QSize(16, 16));
         homePageButton->setAutoRaise(true);
         homePageButton->setArrowType(Qt::ArrowType::LeftArrow);
 
         gridLayout_2->addWidget(homePageButton, 0, 0, 1, 1);
 
+        modeButton = new QPushButton(cameraPage);
+        modeButton->setObjectName("modeButton");
+        modeButton->setMinimumSize(QSize(160, 36));
+        modeButton->setMaximumSize(QSize(160, 36));
+        modeButton->setStyleSheet(QString::fromUtf8("background-color: rgb(44,181,222);\n"
+"color: white;\n"
+"border-width: 3px;\n"
+"border-style: ridge;\n"
+"border-color: rgb(152,199,65);\n"
+"border-radius: 6px;\n"
+"font-size: 13px;\n"
+"font-weight: bold;"));
+
+        gridLayout_2->addWidget(modeButton, 0, 3, 1, 1);
+
         stackedWidget->addWidget(cameraPage);
         modelingPage = new QWidget();
         modelingPage->setObjectName("modelingPage");
+        modelingPageLayout = new QVBoxLayout(modelingPage);
+        modelingPageLayout->setObjectName("modelingPageLayout");
+        modelingTopRow = new QHBoxLayout();
+        modelingTopRow->setObjectName("modelingTopRow");
         homePageButton_2 = new QToolButton(modelingPage);
         homePageButton_2->setObjectName("homePageButton_2");
-        homePageButton_2->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_2->setMinimumSize(QSize(40, 30));
         homePageButton_2->setMaximumSize(QSize(40, 30));
-        QFont font13;
-        font13.setFamilies({QString::fromUtf8("Comic Sans MS")});
-        homePageButton_2->setFont(font13);
+        QFont font14;
+        font14.setFamilies({QString::fromUtf8("Comic Sans MS")});
+        homePageButton_2->setFont(font14);
         homePageButton_2->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_2->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_2->setAutoRaise(true);
         homePageButton_2->setArrowType(Qt::ArrowType::LeftArrow);
+
+        modelingTopRow->addWidget(homePageButton_2);
+
+        statusLabel = new QLabel(modelingPage);
+        statusLabel->setObjectName("statusLabel");
+
+        modelingTopRow->addWidget(statusLabel);
+
+
+        modelingPageLayout->addLayout(modelingTopRow);
+
+        buttonLayout = new QHBoxLayout();
+        buttonLayout->setObjectName("buttonLayout");
+        importImagesButton = new QPushButton(modelingPage);
+        importImagesButton->setObjectName("importImagesButton");
+
+        buttonLayout->addWidget(importImagesButton);
+
+        importVideoButton = new QPushButton(modelingPage);
+        importVideoButton->setObjectName("importVideoButton");
+
+        buttonLayout->addWidget(importVideoButton);
+
+        clearButton = new QPushButton(modelingPage);
+        clearButton->setObjectName("clearButton");
+
+        buttonLayout->addWidget(clearButton);
+
+        denseCheckBox = new QCheckBox(modelingPage);
+        denseCheckBox->setObjectName("denseCheckBox");
+
+        buttonLayout->addWidget(denseCheckBox);
+
+        horizontalSpacer1 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        buttonLayout->addItem(horizontalSpacer1);
+
+        scaleButton = new QPushButton(modelingPage);
+        scaleButton->setObjectName("scaleButton");
+        scaleButton->setCheckable(true);
+
+        buttonLayout->addWidget(scaleButton);
+
+        measureButton = new QPushButton(modelingPage);
+        measureButton->setObjectName("measureButton");
+        measureButton->setCheckable(true);
+
+        buttonLayout->addWidget(measureButton);
+
+        loadPlyButton = new QPushButton(modelingPage);
+        loadPlyButton->setObjectName("loadPlyButton");
+
+        buttonLayout->addWidget(loadPlyButton);
+
+        resetCameraButton = new QPushButton(modelingPage);
+        resetCameraButton->setObjectName("resetCameraButton");
+
+        buttonLayout->addWidget(resetCameraButton);
+
+        runButton = new QPushButton(modelingPage);
+        runButton->setObjectName("runButton");
+        runButton->setEnabled(false);
+
+        buttonLayout->addWidget(runButton);
+
+        cancelButton = new QPushButton(modelingPage);
+        cancelButton->setObjectName("cancelButton");
+        cancelButton->setEnabled(false);
+
+        buttonLayout->addWidget(cancelButton);
+
+
+        modelingPageLayout->addLayout(buttonLayout);
+
+        progressBar = new QProgressBar(modelingPage);
+        progressBar->setObjectName("progressBar");
+        progressBar->setMinimum(0);
+        progressBar->setMaximum(3);
+        progressBar->setValue(0);
+
+        modelingPageLayout->addWidget(progressBar);
+
+        mainSplitter = new QSplitter(modelingPage);
+        mainSplitter->setObjectName("mainSplitter");
+        mainSplitter->setOrientation(Qt::Orientation::Horizontal);
+        imageList = new QListWidget(mainSplitter);
+        imageList->setObjectName("imageList");
+        imageList->setMinimumSize(QSize(180, 0));
+        imageList->setMaximumSize(QSize(300, 16777215));
+        imageList->setIconSize(QSize(120, 90));
+        imageList->setSpacing(4);
+        imageList->setViewMode(QListView::ViewMode::IconMode);
+        imageList->setResizeMode(QListView::ResizeMode::Adjust);
+        mainSplitter->addWidget(imageList);
+        rightSplitter = new QSplitter(mainSplitter);
+        rightSplitter->setObjectName("rightSplitter");
+        rightSplitter->setOrientation(Qt::Orientation::Vertical);
+        viewer = new ModelViewer(rightSplitter);
+        viewer->setObjectName("viewer");
+        viewer->setMinimumSize(QSize(0, 300));
+        rightSplitter->addWidget(viewer);
+        logOutput = new QTextEdit(rightSplitter);
+        logOutput->setObjectName("logOutput");
+        logOutput->setMaximumSize(QSize(16777215, 200));
+        logOutput->setReadOnly(true);
+        QFont font15;
+        font15.setFamilies({QString::fromUtf8("Courier")});
+        logOutput->setFont(font15);
+        rightSplitter->addWidget(logOutput);
+        mainSplitter->addWidget(rightSplitter);
+
+        modelingPageLayout->addWidget(mainSplitter);
+
         stackedWidget->addWidget(modelingPage);
         icebergPage = new QWidget();
         icebergPage->setObjectName("icebergPage");
@@ -724,10 +905,10 @@ public:
 
         lcdkeeldepth5 = new QLabel(icebergPage);
         lcdkeeldepth5->setObjectName("lcdkeeldepth5");
-        QFont font14;
-        font14.setFamilies({QString::fromUtf8("Academy Engraved LET")});
-        font14.setPointSize(27);
-        lcdkeeldepth5->setFont(font14);
+        QFont font16;
+        font16.setFamilies({QString::fromUtf8("Academy Engraved LET")});
+        font16.setPointSize(27);
+        lcdkeeldepth5->setFont(font16);
         lcdkeeldepth5->setFrameShape(QFrame::Shape::Box);
         lcdkeeldepth5->setLineWidth(2);
         lcdkeeldepth5->setAlignment(Qt::AlignmentFlag::AlignCenter);
@@ -736,11 +917,11 @@ public:
 
         lcdkeeldepth2 = new QLabel(icebergPage);
         lcdkeeldepth2->setObjectName("lcdkeeldepth2");
-        QFont font15;
-        font15.setFamilies({QString::fromUtf8("Aileron")});
-        font15.setPointSize(27);
-        font15.setItalic(true);
-        lcdkeeldepth2->setFont(font15);
+        QFont font17;
+        font17.setFamilies({QString::fromUtf8("Aileron")});
+        font17.setPointSize(27);
+        font17.setItalic(true);
+        lcdkeeldepth2->setFont(font17);
         lcdkeeldepth2->setFrameShape(QFrame::Shape::Box);
         lcdkeeldepth2->setFrameShadow(QFrame::Shadow::Plain);
         lcdkeeldepth2->setLineWidth(2);
@@ -759,7 +940,7 @@ public:
 
         lcdkeeldepth1 = new QLabel(icebergPage);
         lcdkeeldepth1->setObjectName("lcdkeeldepth1");
-        lcdkeeldepth1->setFont(font15);
+        lcdkeeldepth1->setFont(font17);
         lcdkeeldepth1->setFrameShape(QFrame::Shape::Box);
         lcdkeeldepth1->setFrameShadow(QFrame::Shadow::Plain);
         lcdkeeldepth1->setLineWidth(2);
@@ -772,7 +953,7 @@ public:
         homePageButton_3->setObjectName("homePageButton_3");
         homePageButton_3->setMinimumSize(QSize(40, 30));
         homePageButton_3->setMaximumSize(QSize(40, 30));
-        homePageButton_3->setFont(font13);
+        homePageButton_3->setFont(font14);
         homePageButton_3->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_3->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_3->setAutoRaise(true);
@@ -782,18 +963,18 @@ public:
 
         label_16 = new QLabel(icebergPage);
         label_16->setObjectName("label_16");
-        QFont font16;
-        font16.setFamilies({QString::fromUtf8("Aileron")});
-        font16.setPointSize(31);
-        font16.setItalic(false);
-        font16.setUnderline(true);
-        label_16->setFont(font16);
+        QFont font18;
+        font18.setFamilies({QString::fromUtf8("Aileron")});
+        font18.setPointSize(31);
+        font18.setItalic(false);
+        font18.setUnderline(true);
+        label_16->setFont(font18);
 
         gridLayout_6->addWidget(label_16, 0, 1, 1, 1, Qt::AlignmentFlag::AlignRight);
 
         lcdkeeldepth3 = new QLabel(icebergPage);
         lcdkeeldepth3->setObjectName("lcdkeeldepth3");
-        lcdkeeldepth3->setFont(font15);
+        lcdkeeldepth3->setFont(font17);
         lcdkeeldepth3->setFrameShape(QFrame::Shape::Box);
         lcdkeeldepth3->setFrameShadow(QFrame::Shadow::Plain);
         lcdkeeldepth3->setLineWidth(2);
@@ -824,7 +1005,7 @@ public:
 
         lcdkeeldepth4 = new QLabel(icebergPage);
         lcdkeeldepth4->setObjectName("lcdkeeldepth4");
-        lcdkeeldepth4->setFont(font15);
+        lcdkeeldepth4->setFont(font17);
         lcdkeeldepth4->setFrameShape(QFrame::Shape::Box);
         lcdkeeldepth4->setFrameShadow(QFrame::Shadow::Plain);
         lcdkeeldepth4->setLineWidth(2);
@@ -890,19 +1071,19 @@ public:
         gridLayout_4->setObjectName("gridLayout_4");
         spinBoxRock = new QSpinBox(ednaPage);
         spinBoxRock->setObjectName("spinBoxRock");
-        QFont font17;
-        font17.setFamilies({QString::fromUtf8("Aileron")});
-        font17.setPointSize(30);
-        spinBoxRock->setFont(font17);
+        QFont font19;
+        font19.setFamilies({QString::fromUtf8("Aileron")});
+        font19.setPointSize(30);
+        spinBoxRock->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxRock, 5, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         borealPercent = new QLCDNumber(ednaPage);
         borealPercent->setObjectName("borealPercent");
-        QFont font18;
-        font18.setFamilies({QString::fromUtf8("Aileron")});
-        font18.setPointSize(20);
-        borealPercent->setFont(font18);
+        QFont font20;
+        font20.setFamilies({QString::fromUtf8("Aileron")});
+        font20.setPointSize(20);
+        borealPercent->setFont(font20);
         borealPercent->setFrameShadow(QFrame::Shadow::Plain);
         borealPercent->setSmallDecimalPoint(true);
         borealPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -911,20 +1092,20 @@ public:
 
         spinBoxUrchin = new QSpinBox(ednaPage);
         spinBoxUrchin->setObjectName("spinBoxUrchin");
-        spinBoxUrchin->setFont(font17);
+        spinBoxUrchin->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxUrchin, 4, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_10 = new QLabel(ednaPage);
         label_10->setObjectName("label_10");
-        label_10->setFont(font18);
+        label_10->setFont(font20);
         label_10->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_10, 4, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         rockCrabPercent = new QLCDNumber(ednaPage);
         rockCrabPercent->setObjectName("rockCrabPercent");
-        rockCrabPercent->setFont(font18);
+        rockCrabPercent->setFont(font20);
         rockCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         rockCrabPercent->setSmallDecimalPoint(true);
         rockCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -933,13 +1114,13 @@ public:
 
         spinBoxSnow = new QSpinBox(ednaPage);
         spinBoxSnow->setObjectName("spinBoxSnow");
-        spinBoxSnow->setFont(font17);
+        spinBoxSnow->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxSnow, 1, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         jonahCrabPercent = new QLCDNumber(ednaPage);
         jonahCrabPercent->setObjectName("jonahCrabPercent");
-        jonahCrabPercent->setFont(font18);
+        jonahCrabPercent->setFont(font20);
         jonahCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         jonahCrabPercent->setSmallDecimalPoint(true);
         jonahCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -948,7 +1129,7 @@ public:
 
         sunstarPercent = new QLCDNumber(ednaPage);
         sunstarPercent->setObjectName("sunstarPercent");
-        sunstarPercent->setFont(font18);
+        sunstarPercent->setFont(font20);
         sunstarPercent->setFrameShadow(QFrame::Shadow::Plain);
         sunstarPercent->setSmallDecimalPoint(true);
         sunstarPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -957,39 +1138,39 @@ public:
 
         spinBoxBrittle = new QSpinBox(ednaPage);
         spinBoxBrittle->setObjectName("spinBoxBrittle");
-        spinBoxBrittle->setFont(font17);
+        spinBoxBrittle->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxBrittle, 5, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label = new QLabel(ednaPage);
         label->setObjectName("label");
-        label->setFont(font18);
+        label->setFont(font20);
         label->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label, 1, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxWestern = new QSpinBox(ednaPage);
         spinBoxWestern->setObjectName("spinBoxWestern");
-        spinBoxWestern->setFont(font17);
+        spinBoxWestern->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxWestern, 3, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxAcadian = new QSpinBox(ednaPage);
         spinBoxAcadian->setObjectName("spinBoxAcadian");
-        spinBoxAcadian->setFont(font17);
+        spinBoxAcadian->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxAcadian, 2, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_8 = new QLabel(ednaPage);
         label_8->setObjectName("label_8");
-        label_8->setFont(font18);
+        label_8->setFont(font20);
         label_8->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_8, 3, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_5 = new QLabel(ednaPage);
         label_5->setObjectName("label_5");
-        label_5->setFont(font18);
+        label_5->setFont(font20);
         label_5->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_5, 5, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
@@ -1001,10 +1182,10 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(snowCrabPercent->sizePolicy().hasHeightForWidth());
         snowCrabPercent->setSizePolicy(sizePolicy4);
-        QFont font19;
-        font19.setFamilies({QString::fromUtf8("Aileron")});
-        font19.setPointSize(26);
-        snowCrabPercent->setFont(font19);
+        QFont font21;
+        font21.setFamilies({QString::fromUtf8("Aileron")});
+        font21.setPointSize(26);
+        snowCrabPercent->setFont(font21);
         snowCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         snowCrabPercent->setSmallDecimalPoint(true);
         snowCrabPercent->setMode(QLCDNumber::Mode::Dec);
@@ -1014,7 +1195,7 @@ public:
 
         brittlePercent = new QLCDNumber(ednaPage);
         brittlePercent->setObjectName("brittlePercent");
-        brittlePercent->setFont(font18);
+        brittlePercent->setFont(font20);
         brittlePercent->setFrameShadow(QFrame::Shadow::Plain);
         brittlePercent->setSmallDecimalPoint(true);
         brittlePercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1023,38 +1204,38 @@ public:
 
         label_14 = new QLabel(ednaPage);
         label_14->setObjectName("label_14");
-        QFont font20;
-        font20.setFamilies({QString::fromUtf8("Aileron")});
-        font20.setPointSize(30);
-        font20.setItalic(true);
-        label_14->setFont(font20);
+        QFont font22;
+        font22.setFamilies({QString::fromUtf8("Aileron")});
+        font22.setPointSize(30);
+        font22.setItalic(true);
+        label_14->setFont(font22);
 
         gridLayout_4->addWidget(label_14, 0, 3, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_3 = new QLabel(ednaPage);
         label_3->setObjectName("label_3");
-        label_3->setFont(font18);
+        label_3->setFont(font20);
         label_3->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_3, 3, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_2 = new QLabel(ednaPage);
         label_2->setObjectName("label_2");
-        label_2->setFont(font18);
+        label_2->setFont(font20);
         label_2->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_2, 2, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_11 = new QLabel(ednaPage);
         label_11->setObjectName("label_11");
-        label_11->setFont(font18);
+        label_11->setFont(font20);
         label_11->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_11, 5, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter);
 
         acadianCrabPercent = new QLCDNumber(ednaPage);
         acadianCrabPercent->setObjectName("acadianCrabPercent");
-        acadianCrabPercent->setFont(font18);
+        acadianCrabPercent->setFont(font20);
         acadianCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         acadianCrabPercent->setSmallDecimalPoint(true);
         acadianCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1063,21 +1244,21 @@ public:
 
         label_6 = new QLabel(ednaPage);
         label_6->setObjectName("label_6");
-        label_6->setFont(font18);
+        label_6->setFont(font20);
         label_6->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_6, 1, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_7 = new QLabel(ednaPage);
         label_7->setObjectName("label_7");
-        label_7->setFont(font18);
+        label_7->setFont(font20);
         label_7->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_7, 2, 4, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         urchinPercent = new QLCDNumber(ednaPage);
         urchinPercent->setObjectName("urchinPercent");
-        urchinPercent->setFont(font18);
+        urchinPercent->setFont(font20);
         urchinPercent->setFrameShadow(QFrame::Shadow::Plain);
         urchinPercent->setSmallDecimalPoint(true);
         urchinPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1086,7 +1267,7 @@ public:
 
         hairyCrabPercent = new QLCDNumber(ednaPage);
         hairyCrabPercent->setObjectName("hairyCrabPercent");
-        hairyCrabPercent->setFont(font18);
+        hairyCrabPercent->setFont(font20);
         hairyCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         hairyCrabPercent->setSmallDecimalPoint(true);
         hairyCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1095,7 +1276,7 @@ public:
 
         greenCrabPercent = new QLCDNumber(ednaPage);
         greenCrabPercent->setObjectName("greenCrabPercent");
-        greenCrabPercent->setFont(font18);
+        greenCrabPercent->setFont(font20);
         greenCrabPercent->setFrameShadow(QFrame::Shadow::Plain);
         greenCrabPercent->setSmallDecimalPoint(true);
         greenCrabPercent->setSegmentStyle(QLCDNumber::SegmentStyle::Flat);
@@ -1104,23 +1285,23 @@ public:
 
         spinBoxBoreal = new QSpinBox(ednaPage);
         spinBoxBoreal->setObjectName("spinBoxBoreal");
-        spinBoxBoreal->setFont(font17);
+        spinBoxBoreal->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxBoreal, 4, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxSunstar = new QSpinBox(ednaPage);
         spinBoxSunstar->setObjectName("spinBoxSunstar");
-        spinBoxSunstar->setFont(font17);
+        spinBoxSunstar->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxSunstar, 2, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         pushButtonCalcPercent = new QPushButton(ednaPage);
         pushButtonCalcPercent->setObjectName("pushButtonCalcPercent");
-        QFont font21;
-        font21.setFamilies({QString::fromUtf8("Aileron")});
-        font21.setPointSize(20);
-        font21.setItalic(false);
-        pushButtonCalcPercent->setFont(font21);
+        QFont font23;
+        font23.setFamilies({QString::fromUtf8("Aileron")});
+        font23.setPointSize(20);
+        font23.setItalic(false);
+        pushButtonCalcPercent->setFont(font23);
         pushButtonCalcPercent->setStyleSheet(QString::fromUtf8("	background-color: rgb(44,181,222); /* A nice green color */\n"
 "	border-width: 4px;\n"
 "	border-style: ridge;\n"
@@ -1131,20 +1312,20 @@ public:
 
         label_13 = new QLabel(ednaPage);
         label_13->setObjectName("label_13");
-        label_13->setFont(font20);
+        label_13->setFont(font22);
 
         gridLayout_4->addWidget(label_13, 0, 2, 1, 1, Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
         label_4 = new QLabel(ednaPage);
         label_4->setObjectName("label_4");
-        label_4->setFont(font18);
+        label_4->setFont(font20);
         label_4->setFrameShape(QFrame::Shape::Box);
 
         gridLayout_4->addWidget(label_4, 4, 1, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         spinBoxGreen = new QSpinBox(ednaPage);
         spinBoxGreen->setObjectName("spinBoxGreen");
-        spinBoxGreen->setFont(font17);
+        spinBoxGreen->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxGreen, 3, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
@@ -1162,17 +1343,17 @@ public:
 
         spinBoxJonah = new QSpinBox(ednaPage);
         spinBoxJonah->setObjectName("spinBoxJonah");
-        spinBoxJonah->setFont(font17);
+        spinBoxJonah->setFont(font19);
 
         gridLayout_4->addWidget(spinBoxJonah, 1, 5, 1, 1, Qt::AlignmentFlag::AlignHCenter);
 
         label_12 = new QLabel(ednaPage);
         label_12->setObjectName("label_12");
-        QFont font22;
-        font22.setFamilies({QString::fromUtf8("Aileron")});
-        font22.setPointSize(33);
-        font22.setItalic(true);
-        label_12->setFont(font22);
+        QFont font24;
+        font24.setFamilies({QString::fromUtf8("Aileron")});
+        font24.setPointSize(33);
+        font24.setItalic(true);
+        label_12->setFont(font24);
         label_12->setFrameShape(QFrame::Shape::NoFrame);
         label_12->setTextFormat(Qt::TextFormat::AutoText);
 
@@ -1218,7 +1399,7 @@ public:
         homePageButton_5->setObjectName("homePageButton_5");
         homePageButton_5->setMinimumSize(QSize(40, 30));
         homePageButton_5->setMaximumSize(QSize(40, 30));
-        homePageButton_5->setFont(font13);
+        homePageButton_5->setFont(font14);
         homePageButton_5->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_5->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_5->setAutoRaise(true);
@@ -1248,7 +1429,7 @@ public:
         homePageButton_6->setGeometry(QRect(0, 0, 40, 30));
         homePageButton_6->setMinimumSize(QSize(40, 30));
         homePageButton_6->setMaximumSize(QSize(40, 30));
-        homePageButton_6->setFont(font13);
+        homePageButton_6->setFont(font14);
         homePageButton_6->setPopupMode(QToolButton::ToolButtonPopupMode::DelayedPopup);
         homePageButton_6->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonFollowStyle);
         homePageButton_6->setAutoRaise(true);
@@ -1261,7 +1442,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1278,6 +1459,7 @@ public:
         cameraFeedPushButton->setText(QCoreApplication::translate("MainWindow", "Video Feed", nullptr));
         pushButton->setText(QString());
         closeProgramButton->setText(QString());
+        captureCountLabel->setText(QCoreApplication::translate("MainWindow", "0 frames", nullptr));
         latencyLabel->setText(QCoreApplication::translate("MainWindow", "Latency: 0ms", nullptr));
         timeLabel->setText(QCoreApplication::translate("MainWindow", "Current Time", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "European Green Crab Count", nullptr));
@@ -1289,7 +1471,21 @@ public:
         backCamButton->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "Current Keel Depth", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "Store Value", nullptr));
+        captureFramesButton->setText(QCoreApplication::translate("MainWindow", "Capture Frames", nullptr));
+        modeButton->setText(QCoreApplication::translate("MainWindow", "Live  2048x1536 @ 30fps", nullptr));
         homePageButton_2->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+        statusLabel->setText(QCoreApplication::translate("MainWindow", "Ready \342\200\224 import images to begin", nullptr));
+        importImagesButton->setText(QCoreApplication::translate("MainWindow", "Import Images", nullptr));
+        importVideoButton->setText(QCoreApplication::translate("MainWindow", "Import Video", nullptr));
+        clearButton->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
+        denseCheckBox->setText(QCoreApplication::translate("MainWindow", "Dense Reconstruction", nullptr));
+        scaleButton->setText(QCoreApplication::translate("MainWindow", "Set Scale", nullptr));
+        measureButton->setText(QCoreApplication::translate("MainWindow", "Measure", nullptr));
+        loadPlyButton->setText(QCoreApplication::translate("MainWindow", "Open PLY...", nullptr));
+        resetCameraButton->setText(QCoreApplication::translate("MainWindow", "Reset View", nullptr));
+        runButton->setText(QCoreApplication::translate("MainWindow", "Run Photogrammetry", nullptr));
+        cancelButton->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        progressBar->setFormat(QCoreApplication::translate("MainWindow", "Step %v / %m", nullptr));
         lcdkeeldepth5->setText(QCoreApplication::translate("MainWindow", "Keel Depth #5", nullptr));
         lcdkeeldepth2->setText(QCoreApplication::translate("MainWindow", "Keel Depth #2", nullptr));
         lcdkeeldepth1->setText(QCoreApplication::translate("MainWindow", "Keel Depth #1", nullptr));

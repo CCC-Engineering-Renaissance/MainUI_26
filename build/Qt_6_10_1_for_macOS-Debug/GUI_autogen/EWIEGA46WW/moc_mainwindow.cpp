@@ -59,7 +59,8 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_rightCamButton_clicked",
         "on_botCamButton_clicked",
         "on_backCamButton_clicked",
-        "onModeToggleClicked",
+        "on_modeButton_clicked",
+        "on_captureFramesButton_clicked",
         "onCameraFrame",
         "QImage",
         "image",
@@ -68,7 +69,28 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onFpsUpdated",
         "fps",
         "updateClock",
-        "on_btnRecordDepth_clicked"
+        "on_btnRecordDepth_clicked",
+        "on_importImagesButton_clicked",
+        "on_importVideoButton_clicked",
+        "on_clearButton_clicked",
+        "on_runButton_clicked",
+        "on_cancelButton_clicked",
+        "on_resetCameraButton_clicked",
+        "on_loadPlyButton_clicked",
+        "on_scaleButton_toggled",
+        "checked",
+        "on_measureButton_toggled",
+        "onStepStarted",
+        "step",
+        "onProgressOutput",
+        "line",
+        "onStepFinished",
+        "success",
+        "onPipelineFinished",
+        "onError",
+        "error",
+        "onScalePointsPicked",
+        "measuredModelDist"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -108,24 +130,72 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_backCamButton_clicked'
         QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onModeToggleClicked'
+        // Slot 'on_modeButton_clicked'
         QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_captureFramesButton_clicked'
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onCameraFrame'
-        QtMocHelpers::SlotData<void(const QImage &)>(21, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 22, 23 },
+        QtMocHelpers::SlotData<void(const QImage &)>(22, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 23, 24 },
         }}),
         // Slot 'onCameraConnected'
-        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onCameraDisconnected'
         QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onCameraDisconnected'
+        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onFpsUpdated'
-        QtMocHelpers::SlotData<void(int)>(26, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Int, 27 },
+        QtMocHelpers::SlotData<void(int)>(27, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 28 },
         }}),
         // Slot 'updateClock'
-        QtMocHelpers::SlotData<void()>(28, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_btnRecordDepth_clicked'
         QtMocHelpers::SlotData<void()>(29, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_btnRecordDepth_clicked'
+        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_importImagesButton_clicked'
+        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_importVideoButton_clicked'
+        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_clearButton_clicked'
+        QtMocHelpers::SlotData<void()>(33, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_runButton_clicked'
+        QtMocHelpers::SlotData<void()>(34, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_cancelButton_clicked'
+        QtMocHelpers::SlotData<void()>(35, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_resetCameraButton_clicked'
+        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_loadPlyButton_clicked'
+        QtMocHelpers::SlotData<void()>(37, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_scaleButton_toggled'
+        QtMocHelpers::SlotData<void(bool)>(38, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 39 },
+        }}),
+        // Slot 'on_measureButton_toggled'
+        QtMocHelpers::SlotData<void(bool)>(40, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 39 },
+        }}),
+        // Slot 'onStepStarted'
+        QtMocHelpers::SlotData<void(const QString &)>(41, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 42 },
+        }}),
+        // Slot 'onProgressOutput'
+        QtMocHelpers::SlotData<void(const QString &)>(43, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 44 },
+        }}),
+        // Slot 'onStepFinished'
+        QtMocHelpers::SlotData<void(const QString &, bool)>(45, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 42 }, { QMetaType::Bool, 46 },
+        }}),
+        // Slot 'onPipelineFinished'
+        QtMocHelpers::SlotData<void(bool)>(47, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 46 },
+        }}),
+        // Slot 'onError'
+        QtMocHelpers::SlotData<void(const QString &)>(48, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::QString, 49 },
+        }}),
+        // Slot 'onScalePointsPicked'
+        QtMocHelpers::SlotData<void(float)>(50, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Float, 51 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -167,13 +237,29 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 15: _t->on_rightCamButton_clicked(); break;
         case 16: _t->on_botCamButton_clicked(); break;
         case 17: _t->on_backCamButton_clicked(); break;
-        case 18: _t->onModeToggleClicked(); break;
-        case 19: _t->onCameraFrame((*reinterpret_cast<std::add_pointer_t<QImage>>(_a[1]))); break;
-        case 20: _t->onCameraConnected(); break;
-        case 21: _t->onCameraDisconnected(); break;
-        case 22: _t->onFpsUpdated((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
-        case 23: _t->updateClock(); break;
-        case 24: _t->on_btnRecordDepth_clicked(); break;
+        case 18: _t->on_modeButton_clicked(); break;
+        case 19: _t->on_captureFramesButton_clicked(); break;
+        case 20: _t->onCameraFrame((*reinterpret_cast<std::add_pointer_t<QImage>>(_a[1]))); break;
+        case 21: _t->onCameraConnected(); break;
+        case 22: _t->onCameraDisconnected(); break;
+        case 23: _t->onFpsUpdated((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 24: _t->updateClock(); break;
+        case 25: _t->on_btnRecordDepth_clicked(); break;
+        case 26: _t->on_importImagesButton_clicked(); break;
+        case 27: _t->on_importVideoButton_clicked(); break;
+        case 28: _t->on_clearButton_clicked(); break;
+        case 29: _t->on_runButton_clicked(); break;
+        case 30: _t->on_cancelButton_clicked(); break;
+        case 31: _t->on_resetCameraButton_clicked(); break;
+        case 32: _t->on_loadPlyButton_clicked(); break;
+        case 33: _t->on_scaleButton_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 34: _t->on_measureButton_toggled((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 35: _t->onStepStarted((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 36: _t->onProgressOutput((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 37: _t->onStepFinished((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<bool>>(_a[2]))); break;
+        case 38: _t->onPipelineFinished((*reinterpret_cast<std::add_pointer_t<bool>>(_a[1]))); break;
+        case 39: _t->onError((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
+        case 40: _t->onScalePointsPicked((*reinterpret_cast<std::add_pointer_t<float>>(_a[1]))); break;
         default: ;
         }
     }
@@ -198,14 +284,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 41)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 41;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 25)
+        if (_id < 41)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 25;
+        _id -= 41;
     }
     return _id;
 }

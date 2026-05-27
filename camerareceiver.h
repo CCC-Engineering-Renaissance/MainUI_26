@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QUdpSocket>
 
 /**
  * CameraReceiver
@@ -55,6 +56,7 @@ public:
 
   bool isConnected() const;
 
+  double getLiveDepth() const;
 signals:
   /** Emitted for every decoded frame – safe to use directly in the GUI thread.
    */
@@ -72,7 +74,7 @@ private slots:
   void onStreamReadyRead();
   void onStreamError(QAbstractSocket::SocketError error);
   void onFpsTimerTick();
-
+  void readTelemetry();
 private:
   QTcpSocket *m_streamSocket = nullptr;
   QTcpSocket *m_commandSocket = nullptr;
@@ -86,4 +88,7 @@ private:
 
   QTimer *m_fpsTimer = nullptr;
   int m_frameCount = 0;
+  QUdpSocket *m_udpSocket = nullptr;
+  double m_currentDepth = 0.0;
 };
+
