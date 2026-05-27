@@ -79,6 +79,10 @@ MainWindow::MainWindow(QWidget *parent)
     // ── Photogrammetry ────────────────────────────────────────────────────
     setupPhotogrammetry();
 
+    // ── Frame capture output folder ───────────────────────────────────────
+    m_photogramPath = QCoreApplication::applicationDirPath() + "/photogram_images";
+    QDir().mkpath(m_photogramPath);
+
     // ── Logo ──────────────────────────────────────────────────────────────
     QPixmap pixmap(":/images/images/rov_logo_complete.png");
     if (pixmap.isNull()) {
@@ -332,6 +336,23 @@ void MainWindow::onCameraFrame(const QImage &image)
     m_pixmapItem->setPixmap(pm);
     m_scene->setSceneRect(m_pixmapItem->boundingRect());
     ui->graphicsView->fitInView(m_pixmapItem, Qt::KeepAspectRatio);
+
+    if (m_capturingFrames) {
+        m_frameCounter++;
+        if (m_frameCounter % 10 == 0) {
+            QString filename = m_photogramPath
+                + QString("/frame_%1.jpg").arg(m_captureCount, 4, 10, QChar('0'));
+            bool ok = image.save(filename, "JPEG", 95);
+            if (ok) {
+                m_captureCount++;
+                ui->captureCountLabel->setText(QString("%1 frames").arg(m_captureCount));
+                if (m_captureCount == 1)
+                    qDebug() << "Capture started, saving to:" << m_photogramPath;
+            } else {
+                qDebug() << "Failed to save frame to:" << filename;
+            }
+        }
+    }
 }
 
 void MainWindow::onCameraConnected()
@@ -350,6 +371,35 @@ void MainWindow::onFpsUpdated(int fps)
 {
     ui->latencyLabel->setText(
         QStringLiteral("Stream: %1 fps").arg(fps));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Frame capture toggle
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::on_captureFramesButton_clicked()
+{
+    m_capturingFrames = !m_capturingFrames;
+    if (m_capturingFrames) {
+        m_frameCounter = 0;
+        m_captureCount = 0;
+        ui->captureCountLabel->setText("0 frames");
+        ui->captureFramesButton->setText("Stop Capture");
+        ui->captureFramesButton->setStyleSheet(
+            "background-color: rgb(210,80,80);"
+            "color: white;"
+            "border-width: 3px;"
+            "border-style: ridge;"
+            "border-color: rgb(255,60,60);");
+    } else {
+        ui->captureFramesButton->setText("Capture Frames");
+        ui->captureFramesButton->setStyleSheet(
+            "background-color: rgb(44,181,222);"
+            "color: white;"
+            "border-width: 3px;"
+            "border-style: ridge;"
+            "border-color: rgb(152,199,65);");
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

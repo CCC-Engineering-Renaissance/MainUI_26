@@ -61,6 +61,9 @@ private slots:
   // ── Resolution / FPS mode toggle ──────────────────────────────────────
   void on_modeButton_clicked();
 
+  // ── Frame capture to photogram_images ────────────────────────────────
+  void on_captureFramesButton_clicked();
+
   // ── Camera receiver callbacks ─────────────────────────────────────────
   void onCameraFrame(const QImage &image);
   void onCameraConnected();
@@ -134,6 +137,12 @@ private:
   ColmapRunner *m_runner       = nullptr;
   QString       m_workspacePath;
   QString       m_imagePath;
+
+  // Frame capture
+  bool    m_capturingFrames = false;
+  int     m_frameCounter    = 0;
+  int     m_captureCount    = 0;
+  QString m_photogramPath;
 };
 
 #endif // MAINWINDOW_H
