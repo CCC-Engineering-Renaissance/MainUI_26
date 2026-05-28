@@ -109,6 +109,12 @@ private:
   QGraphicsScene       *m_scene          = nullptr;
   QGraphicsPixmapItem  *m_pixmapItem     = nullptr;
 
+  // HUD overlay labels (children of graphicsView, always on top)
+  QLabel *m_hudDepth    = nullptr;
+  QLabel *m_hudPressure = nullptr;
+  QLabel *m_hudLatency  = nullptr;
+  QLabel *m_hudAls      = nullptr;
+
   // Clock timer (updates timeLabel every second)
   QTimer *m_clockTimer = nullptr;
 
