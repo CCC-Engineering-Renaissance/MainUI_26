@@ -721,6 +721,25 @@ border: none;</string>
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QLabel" name="alsStatusLabel">
+             <property name="font">
+              <font>
+               <family>Aileron</family>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::Box</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #ff4444;</string>
+             </property>
+             <property name="text">
+              <string>ALS: OFF</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>

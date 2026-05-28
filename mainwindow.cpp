@@ -134,6 +134,11 @@ MainWindow::MainWindow(QWidget *parent)
     m_clockTimer->start();
     updateClock(); // show immediately
 
+    // ── ALS telemetry UDP socket (receives JSON from thruster.py on port 5006) ──
+    m_alsSocket = new QUdpSocket(this);
+    m_alsSocket->bind(QHostAddress::LocalHost, 5006, QUdpSocket::ShareAddress);
+    connect(m_alsSocket, &QUdpSocket::readyRead, this, &MainWindow::onAlsDataReady);
+
     // ── Call Float Chart Functions ───────────────────────────────────────────────────────
     setupPressureChart();
     setupDepthChart();
@@ -410,6 +415,40 @@ void MainWindow::updateClock()
 {
     ui->timeLabel->setText(
         QDateTime::currentDateTime().toString("hh:mm:ss"));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ALS telemetry
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::onAlsDataReady()
+{
+    while (m_alsSocket->hasPendingDatagrams()) {
+        QByteArray data;
+        data.resize(m_alsSocket->pendingDatagramSize());
+        m_alsSocket->readDatagram(data.data(), data.size());
+
+        QJsonParseError err;
+        QJsonDocument doc = QJsonDocument::fromJson(data, &err);
+        if (err.error != QJsonParseError::NoError || !doc.isObject())
+            continue;
+
+        QJsonObject obj = doc.object();
+        m_alsEnabled = obj.value("als").toBool();
+
+        if (m_alsEnabled) {
+            double pitch = obj.value("pitch").toDouble();
+            double yaw   = obj.value("yaw").toDouble();
+            ui->alsStatusLabel->setText(
+                QString("ALS: ON  P:%1  Y:%2")
+                    .arg(pitch, 0, 'f', 2)
+                    .arg(yaw,   0, 'f', 2));
+            ui->alsStatusLabel->setStyleSheet("color: #00ff88; font-weight: bold;");
+        } else {
+            ui->alsStatusLabel->setText("ALS: OFF");
+            ui->alsStatusLabel->setStyleSheet("color: #ff4444; font-weight: bold;");
+        }
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

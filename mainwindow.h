@@ -6,10 +6,13 @@
 
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
 #include <QTimer>
+#include <QUdpSocket>
 #include <QChart>
 #include <QChartView>
 #include <QValueAxis>
@@ -73,6 +76,9 @@ private slots:
   // ── Clock ─────────────────────────────────────────────────────────────
   void updateClock();
 
+  // ── ALS telemetry ──────────────────────────────────────────────────────
+  void onAlsDataReady();
+
   void on_btnRecordDepth_clicked();
 
   // ── Photogrammetry ────────────────────────────────────────────────────
@@ -100,6 +106,10 @@ private:
   CameraReceiver       *m_cameraReceiver = nullptr;
   QGraphicsScene       *m_scene          = nullptr;
   QGraphicsPixmapItem  *m_pixmapItem     = nullptr;
+
+  // ALS telemetry socket
+  QUdpSocket *m_alsSocket  = nullptr;
+  bool        m_alsEnabled = false;
 
   // Clock timer (updates timeLabel every second)
   QTimer *m_clockTimer = nullptr;
