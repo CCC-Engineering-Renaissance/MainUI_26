@@ -740,6 +740,44 @@ border: none;</string>
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QLabel" name="depthLabel">
+             <property name="font">
+              <font>
+               <family>Aileron</family>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::Box</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #00ccff; font-weight: bold;</string>
+             </property>
+             <property name="text">
+              <string>Depth: --</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="pressureLabel">
+             <property name="font">
+              <font>
+               <family>Aileron</family>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::Box</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #00ccff; font-weight: bold;</string>
+             </property>
+             <property name="text">
+              <string>Pressure: --</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>

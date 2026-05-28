@@ -172,10 +172,20 @@ void CameraReceiver::readTelemetry()
         if (error.error == QJsonParseError::NoError && doc.isObject()) {
             QJsonObject json = doc.object();
 
-            // Check if the JSON contains our "depth" key
             if (json.contains("depth")) {
                 m_currentDepth = json["depth"].toDouble();
-                qDebug() << "Received Live Depth:" << m_currentDepth;
+            }
+            if (json.contains("pressure")) {
+                m_currentPressure = json["pressure"].toDouble();
+            }
+            if (json.contains("depth") || json.contains("pressure")) {
+                emit telemetryUpdated(m_currentDepth, m_currentPressure);
+            }
+            if (json.contains("als")) {
+                m_alsEnabled = json["als"].toBool();
+                m_alsPitch   = json.value("pitch").toDouble();
+                m_alsYaw     = json.value("yaw").toDouble();
+                emit alsUpdated(m_alsEnabled, m_alsPitch, m_alsYaw);
             }
         } else {
             qDebug() << "JSON Parse Error on Port 5006:" << error.errorString();
@@ -183,8 +193,12 @@ void CameraReceiver::readTelemetry()
     }
 }
 
-// Return the most recent depth when the Keel Page asks for it
 double CameraReceiver::getLiveDepth() const
 {
     return m_currentDepth;
+}
+
+double CameraReceiver::getPressure() const
+{
+    return m_currentPressure;
 }
