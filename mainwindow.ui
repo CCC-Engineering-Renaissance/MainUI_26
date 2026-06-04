@@ -84,7 +84,7 @@
        <number>2</number>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <property name="styleSheet">
@@ -1355,6 +1355,35 @@ font-weight: bold;</string>
       </widget>
       <widget class="QWidget" name="icebergPage">
        <layout class="QGridLayout" name="gridLayout_6">
+        <item row="2" column="1">
+         <widget class="QLabel" name="lcdkeeldepth1">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+            <pointsize>27</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="midLineWidth">
+           <number>13</number>
+          </property>
+          <property name="text">
+           <string>Keel Depth #1</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="2">
          <widget class="QLCDNumber" name="lcdKeelDepth2">
           <property name="font">
@@ -1364,6 +1393,48 @@ font-weight: bold;</string>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Shadow::Plain</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth1">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+           </font>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="segmentStyle">
+           <enum>QLCDNumber::SegmentStyle::Filled</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth4">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+           </font>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+         <widget class="QLabel" name="label_16">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+            <pointsize>31</pointsize>
+            <italic>false</italic>
+            <underline>true</underline>
+           </font>
+          </property>
+          <property name="text">
+           <string>Iceberg Analysis</string>
           </property>
          </widget>
         </item>
@@ -1383,6 +1454,70 @@ font-weight: bold;</string>
           </property>
           <property name="text">
            <string>Keel Depth #5</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QLCDNumber" name="lcdKeelDepth3">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+           </font>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="lcdkeeldepth4">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+            <pointsize>27</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="text">
+           <string>Keel Depth #4</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="lcdkeeldepth3">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+            <pointsize>27</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="text">
+           <string>Keel Depth #3</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1412,50 +1547,6 @@ font-weight: bold;</string>
           </property>
           <property name="text">
            <string>Keel Depth #2</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth1">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::SegmentStyle::Filled</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="lcdkeeldepth1">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="midLineWidth">
-           <number>13</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #1</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1498,59 +1589,6 @@ font-weight: bold;</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
-         <widget class="QLabel" name="label_16">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>31</pointsize>
-            <italic>false</italic>
-            <underline>true</underline>
-           </font>
-          </property>
-          <property name="text">
-           <string>Iceberg Analysis</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLabel" name="lcdkeeldepth3">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #3</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth3">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-         </widget>
-        </item>
         <item row="6" column="2">
          <widget class="QLCDNumber" name="lcdKeelDepth5">
           <property name="frameShadow">
@@ -1558,44 +1596,6 @@ font-weight: bold;</string>
           </property>
           <property name="lineWidth">
            <number>1</number>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth4">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLabel" name="lcdkeeldepth4">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #4</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
         </item>
@@ -1611,17 +1611,17 @@ font-weight: bold;</string>
            <property name="geometry">
             <rect>
              <x>50</x>
-             <y>60</y>
-             <width>256</width>
-             <height>192</height>
+             <y>0</y>
+             <width>281</width>
+             <height>201</height>
             </rect>
            </property>
           </widget>
           <widget class="QProgressBar" name="ProgThreat1">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>340</y>
+             <x>60</x>
+             <y>240</y>
              <width>271</width>
              <height>23</height>
             </rect>
@@ -1633,8 +1633,8 @@ font-weight: bold;</string>
           <widget class="QProgressBar" name="ProgThreat2">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>380</y>
+             <x>60</x>
+             <y>290</y>
              <width>271</width>
              <height>23</height>
             </rect>
@@ -1646,8 +1646,8 @@ font-weight: bold;</string>
           <widget class="QProgressBar" name="ProgThreat3">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>420</y>
+             <x>60</x>
+             <y>330</y>
              <width>271</width>
              <height>23</height>
             </rect>
@@ -1659,8 +1659,8 @@ font-weight: bold;</string>
           <widget class="QProgressBar" name="ProgThreat4">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>460</y>
+             <x>60</x>
+             <y>380</y>
              <width>271</width>
              <height>23</height>
             </rect>
@@ -1672,8 +1672,8 @@ font-weight: bold;</string>
           <widget class="QLabel" name="label_17">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>320</y>
+             <x>60</x>
+             <y>220</y>
              <width>121</width>
              <height>16</height>
             </rect>
@@ -1685,8 +1685,8 @@ font-weight: bold;</string>
           <widget class="QLabel" name="label_18">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>360</y>
+             <x>60</x>
+             <y>270</y>
              <width>131</width>
              <height>16</height>
             </rect>
@@ -1698,8 +1698,8 @@ font-weight: bold;</string>
           <widget class="QLabel" name="label_19">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>400</y>
+             <x>60</x>
+             <y>310</y>
              <width>131</width>
              <height>16</height>
             </rect>
@@ -1711,8 +1711,8 @@ font-weight: bold;</string>
           <widget class="QLabel" name="label_20">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>440</y>
+             <x>60</x>
+             <y>360</y>
              <width>121</width>
              <height>16</height>
             </rect>
@@ -1724,8 +1724,8 @@ font-weight: bold;</string>
           <widget class="QProgressBar" name="progThreatSubsea">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>500</y>
+             <x>60</x>
+             <y>430</y>
              <width>271</width>
              <height>23</height>
             </rect>
@@ -1737,8 +1737,8 @@ font-weight: bold;</string>
           <widget class="QLabel" name="label_21">
            <property name="geometry">
             <rect>
-             <x>80</x>
-             <y>480</y>
+             <x>60</x>
+             <y>410</y>
              <width>131</width>
              <height>16</height>
             </rect>
@@ -1750,14 +1750,37 @@ font-weight: bold;</string>
           <widget class="QPushButton" name="btnRecordDepth">
            <property name="geometry">
             <rect>
-             <x>90</x>
-             <y>570</y>
-             <width>171</width>
+             <x>20</x>
+             <y>560</y>
+             <width>131</width>
              <height>91</height>
             </rect>
            </property>
            <property name="text">
-            <string>PushButton</string>
+            <string>Record Depth</string>
+           </property>
+          </widget>
+          <widget class="QLCDNumber" name="lcdLiveDepth">
+           <property name="geometry">
+            <rect>
+             <x>60</x>
+             <y>490</y>
+             <width>231</width>
+             <height>61</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="btnUndoDepth">
+           <property name="geometry">
+            <rect>
+             <x>200</x>
+             <y>560</y>
+             <width>131</width>
+             <height>91</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Undo Record</string>
            </property>
           </widget>
          </widget>

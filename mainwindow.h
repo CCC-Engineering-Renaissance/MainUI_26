@@ -80,8 +80,10 @@ private slots:
 
   // ── Depth / pressure telemetry ────────────────────────────────────────
   void onTelemetryUpdated(double depth, double pressure);
-
   void on_btnRecordDepth_clicked();
+  void updateLiveDepthDisplay(double depth);
+  void on_btnUndoDepth_clicked();
+  void updateIcebergPosition(double x, double y);
 
   // ── Photogrammetry ────────────────────────────────────────────────────
   void on_importImagesButton_clicked();
@@ -138,6 +140,7 @@ private:
 
   int m_currentDepthIndex = 0;
   double m_maxKeelDepth = 0.0;
+  double m_currentDepth = 0.0;
 
   void updateIcebergTracking(double iceX, double iceY, double headingDeg, double maxKeelDepth, QVector<QPointF> perimeterPoints);
 

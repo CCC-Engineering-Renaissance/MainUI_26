@@ -172,8 +172,13 @@ void CameraReceiver::readTelemetry()
         if (error.error == QJsonParseError::NoError && doc.isObject()) {
             QJsonObject json = doc.object();
 
+            // Check if the JSON contains our "depth" key
             if (json.contains("depth")) {
                 m_currentDepth = json["depth"].toDouble();
+                qDebug() << "Received Live Depth:" << m_currentDepth;
+
+                // Broadcast the live depth to the UI
+                emit depthUpdated(m_currentDepth);
             }
             if (json.contains("pressure")) {
                 m_currentPressure = json["pressure"].toDouble();
@@ -186,6 +191,14 @@ void CameraReceiver::readTelemetry()
                 m_alsPitch   = json.value("pitch").toDouble();
                 m_alsYaw     = json.value("yaw").toDouble();
                 emit alsUpdated(m_alsEnabled, m_alsPitch, m_alsYaw);
+            }
+            // Handle the X/Y coordinate logic
+            if (json.contains("x") && json.contains("y")) {
+                double icebergX = json["x"].toDouble();
+                double icebergY = json["y"].toDouble();
+
+                qDebug() << "Received Iceberg Coordinates - X:" << icebergX << " Y:" << icebergY;
+                emit icebergMoved(icebergX, icebergY);
             }
         } else {
             qDebug() << "JSON Parse Error on Port 5006:" << error.errorString();

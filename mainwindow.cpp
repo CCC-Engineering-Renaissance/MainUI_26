@@ -34,6 +34,7 @@
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QChart>
 #include <QtCharts/QValueAxis>
+#include <cmath>
 
 namespace {
 bool isRealColmap(const QString &path) {
@@ -144,6 +145,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     // ── Camera receiver ───────────────────────────────────────────────────
     m_cameraReceiver = new CameraReceiver(this);
+
+    connect(m_cameraReceiver, &CameraReceiver::depthUpdated, this, &MainWindow::updateLiveDepthDisplay);
+
+    connect(m_cameraReceiver, &CameraReceiver::icebergMoved, this, &MainWindow::updateIcebergPosition);
 
     connect(m_cameraReceiver, &CameraReceiver::frameReady,
             this, &MainWindow::onCameraFrame);
@@ -1178,4 +1183,72 @@ void MainWindow::convertAndLoadModel()
         converter->deleteLater();
         ui->statusLabel->setText("Failed to start model converter");
     }
+}
+// Instantly updates the live LCD whenever a UDP packet arrives
+void MainWindow::updateLiveDepthDisplay(double depth)
+{
+    ui->lcdLiveDepth->display(depth);
+}
+
+// Steps the tracker backward one slot and clears the screen
+void MainWindow::on_btnUndoDepth_clicked()
+{
+    if (m_currentDepthIndex > 0) {
+        // Move the hidden tracker back by 1
+        m_currentDepthIndex--;
+
+        // Clear the specific LCD screen so the pilot knows it is empty
+        switch (m_currentDepthIndex) {
+        case 0: ui->lcdKeelDepth1->display(0); break;
+        case 1: ui->lcdKeelDepth2->display(0); break;
+        case 2: ui->lcdKeelDepth3->display(0); break;
+        case 3: ui->lcdKeelDepth4->display(0); break;
+        case 4: ui->lcdKeelDepth5->display(0); break;
+        }
+    }
+}
+// Instantly moves the blue dot and calculates real-time threat levels
+void MainWindow::updateIcebergPosition(double x, double y)
+{
+    // 1. Move the physical blue dot on the map
+    if (m_icebergMarker != nullptr) {
+        m_icebergMarker->setPos(x, y);
+    }
+
+    // 2. Define the exact coordinates of your stationary platforms
+    // (These match the addEllipse numbers from your constructor)
+    double p1_x = 50,   p1_y = 50;
+    double p2_x = -100, p2_y = 80;
+    double p3_x = 120,  p3_y = -60;
+    double p4_x = -80,  p4_y = -90;
+    double asset_x = 0, asset_y = 0; // Assuming Subsea Asset is dead center
+
+    // 3. Calculate the true distance from the iceberg to each platform
+    double dist1 = std::hypot(x - p1_x, y - p1_y);
+    double dist2 = std::hypot(x - p2_x, y - p2_y);
+    double dist3 = std::hypot(x - p3_x, y - p3_y);
+    double dist4 = std::hypot(x - p4_x, y - p4_y);
+    double distAsset = std::hypot(x - asset_x, y - asset_y);
+
+    // 4. The Threat Algorithm (Closer distance + Deeper keel = Higher Danger)
+    auto calculateThreat = [this](double distance) -> int {
+        // Start with a base danger level based on distance
+        double baseThreat = 100.0 - (distance * 0.4);
+
+        // Add a penalty if the iceberg's keel is reaching dangerously deep
+        double depthPenalty = m_currentDepth * 0.5;
+
+        int totalThreat = static_cast<int>(baseThreat + depthPenalty);
+
+        // Lock the percentage cleanly between 0% and 100%
+        if (totalThreat > 100) return 100;
+        if (totalThreat < 0) return 0;
+        return totalThreat;
+    };
+
+    ui->ProgThreat1->setValue(calculateThreat(dist1));
+    ui->ProgThreat2->setValue(calculateThreat(dist2));
+    ui->ProgThreat3->setValue(calculateThreat(dist3));
+    ui->ProgThreat4->setValue(calculateThreat(dist4));
+    ui->progThreatSubsea->setValue(calculateThreat(distAsset));
 }

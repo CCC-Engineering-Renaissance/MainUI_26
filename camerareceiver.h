@@ -75,6 +75,10 @@ signals:
   /** Emitted whenever depth/pressure telemetry arrives from the ROV on port 5006. */
   void telemetryUpdated(double depth, double pressure);
 
+  void depthUpdated(double newDepth);
+
+  void icebergMoved(double x, double y);
+
 private slots:
   void onStreamConnected();
   void onStreamDisconnected();
