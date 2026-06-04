@@ -868,9 +868,9 @@ public:
         imageList->setMinimumSize(QSize(180, 0));
         imageList->setMaximumSize(QSize(300, 16777215));
         imageList->setIconSize(QSize(120, 90));
+        imageList->setResizeMode(QListView::ResizeMode::Adjust);
         imageList->setSpacing(4);
         imageList->setViewMode(QListView::ViewMode::IconMode);
-        imageList->setResizeMode(QListView::ResizeMode::Adjust);
         mainSplitter->addWidget(imageList);
         rightSplitter = new QSplitter(mainSplitter);
         rightSplitter->setObjectName("rightSplitter");
@@ -882,10 +882,10 @@ public:
         logOutput = new QTextEdit(rightSplitter);
         logOutput->setObjectName("logOutput");
         logOutput->setMaximumSize(QSize(16777215, 200));
-        logOutput->setReadOnly(true);
         QFont font15;
         font15.setFamilies({QString::fromUtf8("Courier")});
         logOutput->setFont(font15);
+        logOutput->setReadOnly(true);
         rightSplitter->addWidget(logOutput);
         mainSplitter->addWidget(rightSplitter);
 
@@ -1442,7 +1442,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
