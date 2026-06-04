@@ -57,6 +57,7 @@ public:
   bool isConnected() const;
 
   double getLiveDepth() const;
+  double getPressure() const;
 signals:
   /** Emitted for every decoded frame – safe to use directly in the GUI thread.
    */
@@ -67,6 +68,12 @@ signals:
 
   /** Emitted once per second with the number of frames received that second. */
   void fpsUpdated(int fps);
+
+  /** Emitted whenever ALS telemetry arrives from thruster.py on port 5006. */
+  void alsUpdated(bool als, double pitch, double yaw);
+
+  /** Emitted whenever depth/pressure telemetry arrives from the ROV on port 5006. */
+  void telemetryUpdated(double depth, double pressure);
 
 private slots:
   void onStreamConnected();
@@ -89,6 +96,10 @@ private:
   QTimer *m_fpsTimer = nullptr;
   int m_frameCount = 0;
   QUdpSocket *m_udpSocket = nullptr;
-  double m_currentDepth = 0.0;
+  double m_currentDepth    = 0.0;
+  double m_currentPressure = 0.0;
+  bool   m_alsEnabled      = false;
+  double m_alsPitch        = 0.0;
+  double m_alsYaw          = 0.0;
 };
 

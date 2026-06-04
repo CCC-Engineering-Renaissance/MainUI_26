@@ -6,6 +6,8 @@
 
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QLabel>
 #include <QMainWindow>
 #include <QPushButton>
@@ -73,6 +75,12 @@ private slots:
   // ── Clock ─────────────────────────────────────────────────────────────
   void updateClock();
 
+  // ── ALS telemetry ──────────────────────────────────────────────────────
+  void onAlsDataReady(bool als, double pitch, double yaw);
+
+  // ── Depth / pressure telemetry ────────────────────────────────────────
+  void onTelemetryUpdated(double depth, double pressure);
+
   void on_btnRecordDepth_clicked();
 
   // ── Photogrammetry ────────────────────────────────────────────────────
@@ -100,6 +108,12 @@ private:
   CameraReceiver       *m_cameraReceiver = nullptr;
   QGraphicsScene       *m_scene          = nullptr;
   QGraphicsPixmapItem  *m_pixmapItem     = nullptr;
+
+  // HUD overlay labels (children of graphicsView, always on top)
+  QLabel *m_hudDepth    = nullptr;
+  QLabel *m_hudPressure = nullptr;
+  QLabel *m_hudLatency  = nullptr;
+  QLabel *m_hudAls      = nullptr;
 
   // Clock timer (updates timeLabel every second)
   QTimer *m_clockTimer = nullptr;

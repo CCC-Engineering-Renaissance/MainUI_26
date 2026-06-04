@@ -112,6 +112,33 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(m_scene);
     ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
 
+    // ── HUD overlay labels (children of graphicsView, always on top) ─────
+    auto makeHud = [](QWidget *parent, const QString &text, const QString &color) -> QLabel* {
+        auto *lbl = new QLabel(text, parent);
+        lbl->setStyleSheet(
+            QString("QLabel { background-color: rgba(0,0,0,160);"
+                    " color: %1;"
+                    " font: bold 15px 'Aileron';"
+                    " padding: 3px 8px;"
+                    " border-radius: 4px; }").arg(color));
+        lbl->setAttribute(Qt::WA_TransparentForMouseEvents);
+        lbl->adjustSize();
+        lbl->show();
+        return lbl;
+    };
+    m_hudDepth    = makeHud(ui->graphicsView, "Depth: --",    "#00ccff");
+    m_hudPressure = makeHud(ui->graphicsView, "Pressure: --", "#00ccff");
+    m_hudLatency  = makeHud(ui->graphicsView, "Stream: --",   "#ffffff");
+    m_hudAls      = makeHud(ui->graphicsView, "ALS: OFF",     "#ff4444");
+
+    // Stack them in the top-left corner
+    const int margin = 10;
+    const int step   = 30;
+    m_hudDepth   ->move(margin, margin);
+    m_hudPressure->move(margin, margin + step);
+    m_hudLatency ->move(margin, margin + step * 2);
+    m_hudAls     ->move(margin, margin + step * 3);
+
     // ── Mode toggle button ────────────────────────────────────────────────
     updateModeButton();
 
@@ -126,6 +153,10 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::onCameraDisconnected);
     connect(m_cameraReceiver, &CameraReceiver::fpsUpdated,
             this, &MainWindow::onFpsUpdated);
+    connect(m_cameraReceiver, &CameraReceiver::alsUpdated,
+            this, &MainWindow::onAlsDataReady);
+    connect(m_cameraReceiver, &CameraReceiver::telemetryUpdated,
+            this, &MainWindow::onTelemetryUpdated);
 
     // ── Clock timer ───────────────────────────────────────────────────────
     m_clockTimer = new QTimer(this);
@@ -337,6 +368,7 @@ void MainWindow::onCameraFrame(const QImage &image)
     m_scene->setSceneRect(m_pixmapItem->boundingRect());
     ui->graphicsView->fitInView(m_pixmapItem, Qt::KeepAspectRatio);
 
+
     if (m_capturingFrames) {
         m_frameCounter++;
         if (m_frameCounter % 10 == 0) {
@@ -369,8 +401,12 @@ void MainWindow::onCameraDisconnected()
 
 void MainWindow::onFpsUpdated(int fps)
 {
-    ui->latencyLabel->setText(
-        QStringLiteral("Stream: %1 fps").arg(fps));
+    const QString text = QStringLiteral("Stream: %1 fps").arg(fps);
+    ui->latencyLabel->setText(text);
+    if (m_hudLatency) {
+        m_hudLatency->setText(text);
+        m_hudLatency->adjustSize();
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -410,6 +446,54 @@ void MainWindow::updateClock()
 {
     ui->timeLabel->setText(
         QDateTime::currentDateTime().toString("hh:mm:ss"));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ALS telemetry
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::onAlsDataReady(bool als, double pitch, double yaw)
+{
+    if (als) {
+        const QString text = QString("ALS: ON  P:%1  Y:%2")
+                                 .arg(pitch, 0, 'f', 2)
+                                 .arg(yaw,   0, 'f', 2);
+        ui->alsStatusLabel->setText(text);
+        ui->alsStatusLabel->setStyleSheet("color: #00ff88; font-weight: bold;");
+        if (m_hudAls) {
+            m_hudAls->setText(text);
+            m_hudAls->setStyleSheet(
+                "QLabel { background-color: rgba(0,0,0,160); color: #00ff88;"
+                " font: bold 15px 'Aileron'; padding: 3px 8px; border-radius: 4px; }");
+            m_hudAls->adjustSize();
+        }
+    } else {
+        ui->alsStatusLabel->setText("ALS: OFF");
+        ui->alsStatusLabel->setStyleSheet("color: #ff4444; font-weight: bold;");
+        if (m_hudAls) {
+            m_hudAls->setText("ALS: OFF");
+            m_hudAls->setStyleSheet(
+                "QLabel { background-color: rgba(0,0,0,160); color: #ff4444;"
+                " font: bold 15px 'Aileron'; padding: 3px 8px; border-radius: 4px; }");
+            m_hudAls->adjustSize();
+        }
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Depth / pressure telemetry
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::onTelemetryUpdated(double depth, double pressure)
+{
+    if (m_hudDepth) {
+        m_hudDepth->setText(QString("Depth: %1 m").arg(depth, 0, 'f', 2));
+        m_hudDepth->adjustSize();
+    }
+    if (m_hudPressure) {
+        m_hudPressure->setText(QString("Pressure: %1 mbar").arg(pressure, 0, 'f', 1));
+        m_hudPressure->adjustSize();
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
