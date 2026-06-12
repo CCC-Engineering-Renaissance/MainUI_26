@@ -23,11 +23,14 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+class RovSetupPage;
+
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
 protected:
   void keyPressEvent(QKeyEvent *event) override;
+  void closeEvent(QCloseEvent *event) override;
 
 public:
   MainWindow(QWidget *parent = nullptr);
@@ -50,6 +53,7 @@ private slots:
   void on_homePageButton_6_clicked();
 
   // ── Misc ──────────────────────────────────────────────────────────────
+  void on_pushButton_clicked();   // bottom-left settings → ROV Setup page
   void on_closeProgramButton_clicked();
   void on_pushButtonCalcPercent_clicked();
 
@@ -154,6 +158,9 @@ private:
   ColmapRunner *m_runner       = nullptr;
   QString       m_workspacePath;
   QString       m_imagePath;
+
+  // ROV setup submenu (settingsPage)
+  RovSetupPage *m_rovSetup = nullptr;
 
   // Frame capture
   bool    m_capturingFrames = false;

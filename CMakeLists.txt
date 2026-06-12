@@ -30,6 +30,12 @@ set(PROJECT_SOURCES
     resources.qrc
     src/colmaprunner.h
     src/colmaprunner.cpp
+    src/taskrunner.h
+    src/taskrunner.cpp
+    src/pilink.h
+    src/pilink.cpp
+    src/rovsetuppage.h
+    src/rovsetuppage.cpp
     src/modelviewer.h
     src/modelviewer.cpp
 )

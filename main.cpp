@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
     QSurfaceFormat::setDefaultFormat(fmt);
 
     QApplication a(argc, argv);
+    QCoreApplication::setOrganizationName("MATE-ROV");
+    QCoreApplication::setApplicationName("MainUI_26");
 
 #ifdef Q_OS_LINUX
     a.setStyle("Fusion");

@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "src/rovsetuppage.h"
 
 #include <QCheckBox>
+#include <QCloseEvent>
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
@@ -76,6 +78,16 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     ui->stackedWidget->setCurrentIndex(0);
+
+    // ── ROV Setup submenu (settingsPage, index 6) ─────────────────────────
+    {
+        auto *settingsLayout = new QVBoxLayout(ui->settingsPage);
+        // Top margin clears the absolutely-positioned back button.
+        settingsLayout->setContentsMargins(12, 36, 12, 12);
+        m_rovSetup = new RovSetupPage(ui->settingsPage);
+        settingsLayout->addWidget(m_rovSetup);
+        ui->homePageButton_6->raise();
+    }
 
     // ── Photogrammetry ────────────────────────────────────────────────────
     setupPhotogrammetry();
@@ -313,6 +325,16 @@ void MainWindow::on_homePageButton_3_clicked() { ui->stackedWidget->setCurrentIn
 void MainWindow::on_homePageButton_4_clicked() { ui->stackedWidget->setCurrentIndex(0); }
 void MainWindow::on_homePageButton_5_clicked() { ui->stackedWidget->setCurrentIndex(0); }
 void MainWindow::on_homePageButton_6_clicked() { ui->stackedWidget->setCurrentIndex(0); }
+
+// Bottom-left settings button → ROV Setup page
+void MainWindow::on_pushButton_clicked() { ui->stackedWidget->setCurrentIndex(6); }
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (m_rovSetup)
+        m_rovSetup->shutdownAll();
+    QMainWindow::closeEvent(event);
+}
 
 void MainWindow::on_closeProgramButton_clicked() { close(); }
 

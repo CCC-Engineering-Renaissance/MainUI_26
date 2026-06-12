@@ -1,0 +1,18 @@
+# ninja log v7
+2	317	1781225231834575822	GUI_autogen/timestamp	ee488f3a916b673d
+2	317	1781225231834575822	GUI_autogen/mocs_compilation.cpp	ee488f3a916b673d
+2	317	1781225231834575822	/home/jlu/Projects/MainUI_26/build-cli/GUI_autogen/timestamp	ee488f3a916b673d
+2	317	1781225231834575822	/home/jlu/Projects/MainUI_26/build-cli/GUI_autogen/mocs_compilation.cpp	ee488f3a916b673d
+318	2262	1781225233773576324	GUI_autogen/EWIEGA46WW/qrc_resources.cpp	b9fdf5c73e9707d4
+318	2262	1781225233773576324	/home/jlu/Projects/MainUI_26/build-cli/GUI_autogen/EWIEGA46WW/qrc_resources.cpp	b9fdf5c73e9707d4
+2263	3046	1781225233794339873	CMakeFiles/GUI.dir/GUI_autogen/EWIEGA46WW/qrc_resources.cpp.o	37140ee5fb5d6ab4
+2263	3178	1781225233793869730	CMakeFiles/GUI.dir/src/taskrunner.cpp.o	df4d3419c244b99a
+2263	3420	1781225233794021856	CMakeFiles/GUI.dir/src/pilink.cpp.o	1b6cb16c9c92dd59
+2263	3658	1781225233793584775	CMakeFiles/GUI.dir/camerareceiver.cpp.o	1c5321bb381efc2a
+2262	3763	1781225233793224198	CMakeFiles/GUI.dir/main.cpp.o	d1a70026ef31caa4
+2263	3805	1781225233793721071	CMakeFiles/GUI.dir/src/colmaprunner.cpp.o	3a1d6492e551390f
+2263	4101	1781225233794174553	CMakeFiles/GUI.dir/src/modelviewer.cpp.o	bf70ca642157a34c
+2262	4199	1781225233791576329	CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o	5de07bc675442e2d
+2263	4329	1781225233794089393	CMakeFiles/GUI.dir/src/rovsetuppage.cpp.o	befdb23d0b6bfa61
+2262	4766	1781225233793395570	CMakeFiles/GUI.dir/mainwindow.cpp.o	960a724f3a8497e9
+4766	5101	1781225236295576978	MainUI_26	3d3be22d18ba10d4
