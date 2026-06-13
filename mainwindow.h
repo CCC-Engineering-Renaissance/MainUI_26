@@ -18,12 +18,12 @@
 #include <QTimer>
 #include <QValueAxis>
 
-//%temp for testing on laptop (comment out later for actual cameras)
+/*//%temp for testing on laptop (comment out later for actual cameras)
 #include <QCamera>
 #include <QMediaCaptureSession>
 #include <QVideoSink>
 #include <QVideoFrame>
-//%
+//%*/
 
 
 QT_BEGIN_NAMESPACE
@@ -122,11 +122,11 @@ private:
     // Camera network stream
     CameraReceiver *m_cameraReceiver = nullptr;
 
-    //%temp for testing on laptop (comment out later for actual cameras)
+    /*//%temp for testing on laptop (comment out later for actual cameras)
     QCamera *m_webcam = nullptr;
     QMediaCaptureSession m_captureSession;
     QVideoSink *m_videoSink = nullptr;
-    //%
+    //%*/
 
     QGraphicsScene *m_scene = nullptr;
     QGraphicsPixmapItem *m_pixmapItem = nullptr;

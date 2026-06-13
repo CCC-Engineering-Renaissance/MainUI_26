@@ -36,11 +36,11 @@
 #include <QtCharts/QValueAxis>
 #include <cmath>
 
-//%temp
+/*//%temp
 #include <QMediaDevices>
 #include <QCameraDevice>
 #include <QtCore/QPermissions>
-//%
+//%*/
 
 namespace {
 bool isRealColmap(const QString &path)
@@ -202,7 +202,7 @@ MainWindow::MainWindow(QWidget *parent)
     setupPressureChart();
     setupDepthChart();
 
-    //%temp webcam
+    /*//%temp webcam
     auto cameras = QMediaDevices::videoInputs();
     qDebug() << "Found cameras:" << cameras.size();
 
@@ -270,7 +270,7 @@ MainWindow::MainWindow(QWidget *parent)
     {
         m_webcam->start();
     }
-    //%
+    //%*/
 }
 
 MainWindow::~MainWindow()
@@ -336,7 +336,7 @@ void MainWindow::on_cameraFeedPushButton_clicked()
     // camerareceiver.h – change PI_DEFAULT_HOST to your Pi's static IP.
 
     //uncomment later after webcam test
-    //% m_cameraReceiver->connectToHost();
+    m_cameraReceiver->connectToHost();
 
     // Default to front camera on entry
     ui->camName->setText("Camera:  Front");
