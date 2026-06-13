@@ -1,0 +1,1 @@
+Current model: crabs_v1-3, epoch 32, mAP50 0.914

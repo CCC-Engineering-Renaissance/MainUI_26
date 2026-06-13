@@ -19,6 +19,40 @@ find_package(Qt6 REQUIRED COMPONENTS
     OpenGLWidgets
     Charts
 )
+find_package(OpenCV REQUIRED)
+
+# ONNX Runtime 1.26.0 bundled
+set(ORT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/third_party/onnxruntime")
+set(ORT_INC  "${ORT_ROOT}/include")
+
+if(APPLE)
+    if(CMAKE_SYSTEM_PROCESSOR MATCHES "arm64")
+        set(ORT_LIB_DIR "${ORT_ROOT}/lib/mac_arm64")
+    else()
+        set(ORT_LIB_DIR "${ORT_ROOT}/lib/mac_x86")
+    endif()
+    set(ORT_LIB "${ORT_LIB_DIR}/libonnxruntime.dylib")
+
+elseif(WIN32)
+    set(ORT_LIB_DIR "${ORT_ROOT}/lib/win")
+    set(ORT_LIB "${ORT_LIB_DIR}/onnxruntime.lib")   # import lib (link-time)
+    set(ORT_DLL "${ORT_LIB_DIR}/onnxruntime.dll")   # runtime DLL (run-time)
+
+elseif(UNIX)
+    set(ORT_LIB_DIR "${ORT_ROOT}/lib/linux")
+    set(ORT_LIB "${ORT_LIB_DIR}/libonnxruntime.so")
+endif()
+
+add_library(onnxruntime SHARED IMPORTED GLOBAL)
+set_target_properties(onnxruntime PROPERTIES
+    IMPORTED_LOCATION "${ORT_LIB}"
+    INTERFACE_INCLUDE_DIRECTORIES "${ORT_INC}"
+)
+
+if(WIN32)
+    set_target_properties(onnxruntime PROPERTIES IMPORTED_IMPLIB "${ORT_LIB}")
+endif()
+
 
 set(PROJECT_SOURCES
     main.cpp
@@ -27,6 +61,8 @@ set(PROJECT_SOURCES
     mainwindow.ui
     camerareceiver.h
     camerareceiver.cpp
+    crabdetector.h
+    crabdetector.cpp
     resources.qrc
     src/colmaprunner.h
     src/colmaprunner.cpp
@@ -42,6 +78,7 @@ endif()
 qt_add_executable(GUI
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
+    crabs/green_crab.png crabs/jonah_crab.png crabs/rock_crab.png
 )
 
 target_link_libraries(GUI PRIVATE
@@ -53,9 +90,14 @@ target_link_libraries(GUI PRIVATE
     Qt6::OpenGL
     Qt6::OpenGLWidgets
     Qt6::Charts
+
+    ${OpenCV_LIBS}
+    onnxruntime
 )
 
-target_include_directories(GUI PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_include_directories(GUI PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src
+                                       ${OpenCV_INCLUDE_DIRS}
+                                       ${ORT_INC})
 
 set_target_properties(GUI PROPERTIES
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
@@ -71,6 +113,54 @@ if(APPLE)
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist"
     )
 endif()
+
+# Copy ONNX Runtime library
+if(APPLE)
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${ORT_LIB}"
+            "$<TARGET_FILE_DIR:GUI>/libonnxruntime.1.dylib"
+        COMMENT "Copying libonnxruntime.dylib into bundle"
+    )
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND install_name_tool
+            -change "@rpath/libonnxruntime.1.dylib"
+                    "@executable_path/libonnxruntime.1.dylib"
+            "$<TARGET_FILE:GUI>"
+        COMMENT "Patching ONNX Runtime rpath in executable"
+    )
+
+elseif(WIN32)
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${ORT_DLL}"
+            "$<TARGET_FILE_DIR:GUI>/onnxruntime.dll"
+        COMMENT "Copying onnxruntime.dll next to executable"
+    )
+
+elseif(UNIX)
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${ORT_LIB_DIR}/libonnxruntime.so"
+            "$<TARGET_FILE_DIR:GUI>/libonnxruntime.so"
+        COMMENT "Copying libonnxruntime.so next to executable"
+    )
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${ORT_LIB_DIR}/libonnxruntime.so.1.26.0"
+            "$<TARGET_FILE_DIR:GUI>/libonnxruntime.so.1.26.0"
+    )
+endif()
+
+# Copy detection model
+add_custom_command(TARGET GUI POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+        "$<TARGET_FILE_DIR:GUI>/models"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/models/crabs_yolov8n.onnx"
+        "$<TARGET_FILE_DIR:GUI>/models/crabs_yolov8n.onnx"
+    COMMENT "Copying crab detection model to build output"
+)
 
 # Bundle COLMAP tools next to the built binary
 if(WIN32)

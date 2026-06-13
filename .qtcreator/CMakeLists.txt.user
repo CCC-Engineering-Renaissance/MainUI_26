@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 18.0.2, 2026-06-04T11:43:32. -->
+<!-- Written by QtCreator 18.0.2, 2026-06-12T21:30:13. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{e0a0eeb4-94e8-4f97-b121-cd7a3b39226e}</value>
+  <value type="QByteArray">{c08744c8-1dd7-48d6-9b3a-329a0b930ec0}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -94,9 +94,9 @@
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
    <value type="bool" key="HasPerBcDcs">true</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Qt 6.10.1 for macOS</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Qt 6.10.1 for macOS</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.6101.clang_64_kit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{975795c0-f712-486f-88e8-32eb9e287cd7}</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -105,24 +105,22 @@
     <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
-    <value type="QString" key="CMake.Initial.Parameters">-DQT_MAINTENANCE_TOOL:FILEPATH=/Users/tylerbarbery/Qt/MaintenanceTool.app/Contents/MacOS/MaintenanceTool
--DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{BuildConfig:BuildDirectory:NativeFilePath}/.qtc/package-manager/auto-setup.cmake
--DCMAKE_COLOR_DIAGNOSTICS:BOOL=ON
--DCMAKE_BUILD_TYPE:STRING=Debug
--DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}
--DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
--DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_BUILD_TYPE:STRING=Debug
+-DCMAKE_COLOR_DIAGNOSTICS:BOOL=ON
+-DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
+-DCMAKE_GENERATOR:STRING=Unix Makefiles
+-DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{BuildConfig:BuildDirectory:NativeFilePath}/.qtc/package-manager/auto-setup.cmake
 -DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
--DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}</value>
-    <value type="QString" key="CMake.Source.Directory">/Users/tylerbarbery/Projects/MainUI_26</value>
+-DQT_QMAKE_EXECUTABLE:FILEPATH=%{Qt:qmakeExecutable}</value>
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/tylerbarbery/Projects/MainUI_26/build/Qt_6_10_1_for_macOS-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/ella/MainUI_26/build/Desktop-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.BuildTargets">
-       <value type="QString">all</value>
+       <value type="QString">GUI</value>
       </valuelist>
       <value type="bool" key="CMakeProjectManager.MakeStep.ClearSystemEnvironment">false</value>
       <valuelist type="QVariantList" key="CMakeProjectManager.MakeStep.UserEnvironmentChanges"/>
@@ -157,7 +155,7 @@
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Debug (imported)</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Debug</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeBuildConfiguration</value>
     <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
     <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
