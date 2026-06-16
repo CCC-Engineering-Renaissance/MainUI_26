@@ -5,25 +5,27 @@
 #include <QQueue>
 #include <functional>
 
-struct PipelineStep {
+struct PipelineStep
+{
     QString name;
     QStringList args;
 };
 
-class ColmapPipeline : public QObject {
+class ColmapPipeline : public QObject
+{
     Q_OBJECT
 public:
-    explicit ColmapPipeline(QObject* parent = nullptr);
+    explicit ColmapPipeline(QObject *parent = nullptr);
 
-    void setWorkspace(const QString& workspace);
-    void setImagePath(const QString& imagePath);
+    void setWorkspace(const QString &workspace);
+    void setImagePath(const QString &imagePath);
     void runFullPipeline();
     void cancel();
 
 signals:
-    void stepStarted(const QString& stepName);
-    void logOutput(const QString& text);
-    void stepFinished(const QString& stepName, bool success);
+    void stepStarted(const QString &stepName);
+    void logOutput(const QString &text);
+    void stepFinished(const QString &stepName, bool success);
     void pipelineFinished(bool success);
     void progressUpdated(int stepIndex, int totalSteps);
 
@@ -32,7 +34,7 @@ private slots:
 
 private:
     QQueue<PipelineStep> m_steps;
-    QProcess* m_process = nullptr;
+    QProcess *m_process = nullptr;
     QString m_workspace;
     QString m_imagePath;
     QString m_databasePath;

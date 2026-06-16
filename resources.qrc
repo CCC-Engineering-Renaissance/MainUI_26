@@ -9,4 +9,9 @@
     <qresource prefix="/font">
         <file>fonts/aileron.black.otf</file>
     </qresource>
+    <qresource prefix="/">
+        <file>crabs/green_crab.png</file>
+        <file>crabs/jonah_crab.png</file>
+        <file>crabs/rock_crab.png</file>
+    </qresource>
 </RCC>

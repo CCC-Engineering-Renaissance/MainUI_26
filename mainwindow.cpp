@@ -32,14 +32,21 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QtCharts/QChart>
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
-#include <QtCharts/QChart>
 #include <QtCharts/QValueAxis>
 #include <cmath>
 
+/*//%temp
+#include <QMediaDevices>
+#include <QCameraDevice>
+#include <QtCore/QPermissions>
+//%*/
+
 namespace {
-bool isRealColmap(const QString &path) {
+bool isRealColmap(const QString &path)
+{
     QProcess probe;
     probe.setProcessChannelMode(QProcess::MergedChannels);
     probe.start(path, {"help"});
@@ -47,7 +54,7 @@ bool isRealColmap(const QString &path) {
         return false;
     return probe.readAll().contains("Structure-from-Motion");
 }
-}
+} // namespace
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Construction / destruction
@@ -58,6 +65,24 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //+
+    // ── YOLOv8 crab detector model ────────────────────────────────────────────────────
+    const QString modelFile = QCoreApplication::applicationDirPath() + "/models/crabs_yolov8n.onnx";
+
+    if (!m_crabDetector.loadModel(modelFile))
+    {
+        qWarning() << "CrabDetector: no ONNX model found – detection disabled.";
+    }
+    else
+    {
+        m_crabDetector.setConfidenceThreshold(0.60f);
+        // ^ adjust to 50 to identify more crabs (less accuracy), 70 for more accuracy (less identifiable crabs)
+        m_crabDetector.setNmsThreshold(0.45f);
+        qDebug() << "CrabDetector: ready";
+    }
+    //+
+
     resize(1200, 800);
     setMinimumSize(900, 600);
 
@@ -72,10 +97,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     // 2. Initialize the dynamic tracking items
     m_icebergMarker = m_tacticalScene->addEllipse(0, 0, 30, 30, QPen(Qt::blue), QBrush(Qt::cyan));
-    m_headingVector = m_tacticalScene->addLine(0, 0, 0, 0, QPen(Qt::red, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    m_headingVector = m_tacticalScene->addLine(
+        0, 0, 0, 0, QPen(Qt::red, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     m_icebergPerimeter = m_tacticalScene->addPolygon(QPolygonF(), QPen(Qt::cyan, 1, Qt::DashLine));
     // ------------------------------------------------------
-
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -101,16 +126,13 @@ MainWindow::MainWindow(QWidget *parent)
     if (pixmap.isNull()) {
         ui->crush_label->setText("Error: Logo not found!");
     } else {
-        QPixmap scaled = pixmap.scaled(250, 250,
-                                       Qt::KeepAspectRatio,
-                                       Qt::SmoothTransformation);
+        QPixmap scaled = pixmap.scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         ui->crush_label->setPixmap(scaled);
         ui->crush_label->setAlignment(Qt::AlignCenter);
     }
 
     // ── Font ──────────────────────────────────────────────────────────────
-    int fontId =
-        QFontDatabase::addApplicationFont(":/font/fonts/aileron.black.otf");
+    int fontId = QFontDatabase::addApplicationFont(":/font/fonts/aileron.black.otf");
     if (fontId == -1) {
         qDebug() << "Warning: Custom font failed to load from resources!";
     } else {
@@ -119,38 +141,38 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     // ── Camera graphics scene ─────────────────────────────────────────────
-    m_scene      = new QGraphicsScene(this);
+    m_scene = new QGraphicsScene(this);
     m_pixmapItem = new QGraphicsPixmapItem();
     m_scene->addItem(m_pixmapItem);
     ui->graphicsView->setScene(m_scene);
     ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
 
     // ── HUD overlay labels (children of graphicsView, always on top) ─────
-    auto makeHud = [](QWidget *parent, const QString &text, const QString &color) -> QLabel* {
+    auto makeHud = [](QWidget *parent, const QString &text, const QString &color) -> QLabel * {
         auto *lbl = new QLabel(text, parent);
-        lbl->setStyleSheet(
-            QString("QLabel { background-color: rgba(0,0,0,160);"
-                    " color: %1;"
-                    " font: bold 15px 'Aileron';"
-                    " padding: 3px 8px;"
-                    " border-radius: 4px; }").arg(color));
+        lbl->setStyleSheet(QString("QLabel { background-color: rgba(0,0,0,160);"
+                                   " color: %1;"
+                                   " font: bold 15px 'Aileron';"
+                                   " padding: 3px 8px;"
+                                   " border-radius: 4px; }")
+                               .arg(color));
         lbl->setAttribute(Qt::WA_TransparentForMouseEvents);
         lbl->adjustSize();
         lbl->show();
         return lbl;
     };
-    m_hudDepth    = makeHud(ui->graphicsView, "Depth: --",    "#00ccff");
+    m_hudDepth = makeHud(ui->graphicsView, "Depth: --", "#00ccff");
     m_hudPressure = makeHud(ui->graphicsView, "Pressure: --", "#00ccff");
-    m_hudLatency  = makeHud(ui->graphicsView, "Stream: --",   "#ffffff");
-    m_hudAls      = makeHud(ui->graphicsView, "ALS: OFF",     "#ff4444");
+    m_hudLatency = makeHud(ui->graphicsView, "Stream: --", "#ffffff");
+    m_hudAls = makeHud(ui->graphicsView, "ALS: OFF", "#ff4444");
 
     // Stack them in the top-left corner
     const int margin = 10;
-    const int step   = 30;
-    m_hudDepth   ->move(margin, margin);
+    const int step = 30;
+    m_hudDepth->move(margin, margin);
     m_hudPressure->move(margin, margin + step);
-    m_hudLatency ->move(margin, margin + step * 2);
-    m_hudAls     ->move(margin, margin + step * 3);
+    m_hudLatency->move(margin, margin + step * 2);
+    m_hudAls->move(margin, margin + step * 3);
 
     // ── Mode toggle button ────────────────────────────────────────────────
     updateModeButton();
@@ -158,22 +180,28 @@ MainWindow::MainWindow(QWidget *parent)
     // ── Camera receiver ───────────────────────────────────────────────────
     m_cameraReceiver = new CameraReceiver(this);
 
-    connect(m_cameraReceiver, &CameraReceiver::depthUpdated, this, &MainWindow::updateLiveDepthDisplay);
+    connect(m_cameraReceiver,
+            &CameraReceiver::depthUpdated,
+            this,
+            &MainWindow::updateLiveDepthDisplay);
 
-    connect(m_cameraReceiver, &CameraReceiver::icebergMoved, this, &MainWindow::updateIcebergPosition);
+    connect(m_cameraReceiver,
+            &CameraReceiver::icebergMoved,
+            this,
+            &MainWindow::updateIcebergPosition);
 
-    connect(m_cameraReceiver, &CameraReceiver::frameReady,
-            this, &MainWindow::onCameraFrame);
-    connect(m_cameraReceiver, &CameraReceiver::connected,
-            this, &MainWindow::onCameraConnected);
-    connect(m_cameraReceiver, &CameraReceiver::disconnected,
-            this, &MainWindow::onCameraDisconnected);
-    connect(m_cameraReceiver, &CameraReceiver::fpsUpdated,
-            this, &MainWindow::onFpsUpdated);
-    connect(m_cameraReceiver, &CameraReceiver::alsUpdated,
-            this, &MainWindow::onAlsDataReady);
-    connect(m_cameraReceiver, &CameraReceiver::telemetryUpdated,
-            this, &MainWindow::onTelemetryUpdated);
+    connect(m_cameraReceiver, &CameraReceiver::frameReady, this, &MainWindow::onCameraFrame);
+    connect(m_cameraReceiver, &CameraReceiver::connected, this, &MainWindow::onCameraConnected);
+    connect(m_cameraReceiver,
+            &CameraReceiver::disconnected,
+            this,
+            &MainWindow::onCameraDisconnected);
+    connect(m_cameraReceiver, &CameraReceiver::fpsUpdated, this, &MainWindow::onFpsUpdated);
+    connect(m_cameraReceiver, &CameraReceiver::alsUpdated, this, &MainWindow::onAlsDataReady);
+    connect(m_cameraReceiver,
+            &CameraReceiver::telemetryUpdated,
+            this,
+            &MainWindow::onTelemetryUpdated);
 
     // ── Clock timer ───────────────────────────────────────────────────────
     m_clockTimer = new QTimer(this);
@@ -185,6 +213,76 @@ MainWindow::MainWindow(QWidget *parent)
     // ── Call Float Chart Functions ───────────────────────────────────────────────────────
     setupPressureChart();
     setupDepthChart();
+
+    /*//%temp webcam
+    auto cameras = QMediaDevices::videoInputs();
+    qDebug() << "Found cameras:" << cameras.size();
+
+    for (const auto &cam : cameras)
+    {
+        qDebug() << cam.description();
+    }
+
+    if (!cameras.isEmpty())
+    {
+        m_webcam = new QCamera(cameras.first(), this);
+        m_videoSink = new QVideoSink(this);
+
+        m_captureSession.setCamera(m_webcam);
+        m_captureSession.setVideoSink(m_videoSink);
+
+        connect(
+            m_videoSink,
+            &QVideoSink::videoFrameChanged,
+            this,
+            [this](const QVideoFrame &frame)
+            {
+                if (!frame.isValid()) return;
+
+                QVideoFrame copy(frame);
+
+                if (!copy.map(QVideoFrame::ReadOnly))return;
+
+                QImage image = copy.toImage();
+
+                copy.unmap();
+
+                if (!image.isNull()) onCameraFrame(image);
+            });
+
+        m_webcam->start();
+
+
+        qDebug() << "Webcam started";
+    }
+    else
+    {
+        qDebug() << "No webcam found";
+    }
+
+    qDebug() << QT_VERSION_STR;
+
+    auto status = qApp->checkPermission(QCameraPermission());
+    if (status == Qt::PermissionStatus::Undetermined)
+    {
+        qApp->requestPermission(QCameraPermission{}, this,
+            [this](const QPermission &permission)
+            {
+                if (permission.status() == Qt::PermissionStatus::Granted)
+                {
+                    m_webcam->start();
+                }
+                else
+                {
+                    qDebug() << "Camera permission denied";
+                }
+            });
+    }
+    else if (status == Qt::PermissionStatus::Granted)
+    {
+        m_webcam->start();
+    }
+    //%*/
 }
 
 MainWindow::~MainWindow()
@@ -206,7 +304,33 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             }
             ui->stackedWidget->setCurrentIndex(0);
         }
-    } else {
+    }
+    else if (event->key() == Qt::Key_0) {
+        // Toggle detection on/off
+        m_detectionEnabled = !m_detectionEnabled;
+        qDebug() << "Detection:" << (m_detectionEnabled ? "ON" : "OFF");
+    }
+    else if (event->key() == Qt::Key_Minus) {
+        // Remove one green crab from count
+        if (m_greenCrabCount > 0)
+        {
+            m_greenCrabCount--;
+            ui->lcdNumber_3->display(m_greenCrabCount);
+        }
+    }
+    else if (event->key() == Qt::Key_Plus ||
+               event->key() == Qt::Key_Equal) {
+        // Count green crabs in current frame
+        int greenCount = 0;
+        for (const auto &det : m_lastDetections)
+        {
+            if (det.species == "European-Green-Crabs")
+                greenCount++;
+        }
+        m_greenCrabCount += greenCount;
+        ui->lcdNumber_3->display(m_greenCrabCount);
+    }
+    else {
         QMainWindow::keyPressEvent(event);
     }
 }
@@ -222,6 +346,8 @@ void MainWindow::on_cameraFeedPushButton_clicked()
     // Connect to the ROV Pi camera server over Ethernet.
     // PI_DEFAULT_HOST / CAM_STREAM_PORT / CAM_COMMAND_PORT are defined in
     // camerareceiver.h – change PI_DEFAULT_HOST to your Pi's static IP.
+
+    //uncomment later after webcam test
     m_cameraReceiver->connectToHost();
 
     // Default to front camera on entry
@@ -230,17 +356,29 @@ void MainWindow::on_cameraFeedPushButton_clicked()
     setActiveCamButton("front");
 }
 
-void MainWindow::on_modelingPushButton_clicked()  { ui->stackedWidget->setCurrentIndex(2); }
-void MainWindow::on_icebergPushButton_clicked()   { ui->stackedWidget->setCurrentIndex(3); }
-void MainWindow::on_ednaPushButton_clicked()      { ui->stackedWidget->setCurrentIndex(4); }
-void MainWindow::on_floatPushButton_clicked()     { ui->stackedWidget->setCurrentIndex(5); }
+void MainWindow::on_modelingPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+void MainWindow::on_icebergPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+void MainWindow::on_ednaPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+void MainWindow::on_floatPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Float Page logic
 // ─────────────────────────────────────────────────────────────────────────────
 
-void MainWindow::setupPressureChart() {
-
+void MainWindow::setupPressureChart()
+{
     auto series = new QLineSeries();
 
     // Add static data points
@@ -271,8 +409,8 @@ void MainWindow::setupPressureChart() {
     ui->pressureChart->setChart(chart);
 }
 
-void MainWindow::setupDepthChart() {
-
+void MainWindow::setupDepthChart()
+{
     auto series = new QLineSeries();
 
     // Add static data points
@@ -303,9 +441,7 @@ void MainWindow::setupDepthChart() {
     ui->depthChart->setChart(chart);
 }
 
-void MainWindow::setupFloatDataTable(){
-
-}
+void MainWindow::setupFloatDataTable() {}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Home (back) buttons
@@ -320,11 +456,26 @@ void MainWindow::on_homePageButton_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
-void MainWindow::on_homePageButton_2_clicked() { ui->stackedWidget->setCurrentIndex(0); }
-void MainWindow::on_homePageButton_3_clicked() { ui->stackedWidget->setCurrentIndex(0); }
-void MainWindow::on_homePageButton_4_clicked() { ui->stackedWidget->setCurrentIndex(0); }
-void MainWindow::on_homePageButton_5_clicked() { ui->stackedWidget->setCurrentIndex(0); }
-void MainWindow::on_homePageButton_6_clicked() { ui->stackedWidget->setCurrentIndex(0); }
+void MainWindow::on_homePageButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+void MainWindow::on_homePageButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+void MainWindow::on_homePageButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+void MainWindow::on_homePageButton_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+void MainWindow::on_homePageButton_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
 
 // Bottom-left settings button → ROV Setup page
 void MainWindow::on_pushButton_clicked() { ui->stackedWidget->setCurrentIndex(6); }
@@ -386,21 +537,73 @@ void MainWindow::onCameraFrame(const QImage &image)
     if (!m_pixmapItem)
         return;
 
-    QPixmap pm = QPixmap::fromImage(image).scaled(
-        ui->graphicsView->viewport()->size(),
-        Qt::KeepAspectRatio,
-        Qt::SmoothTransformation
-    );
+    //+
+    // Run YOLOv8 crab detection
+    QImage displayImage = image.copy();
+
+    if (m_crabDetector.isLoaded() && m_detectionEnabled)
+    {
+        m_lastDetections = m_crabDetector.detect(image);
+
+        QPainter painter(&displayImage);
+        QFont font;
+        font.setPointSize(16);
+        font.setBold(true);
+        painter.setFont(font);
+
+        for (const auto &det : m_lastDetections)
+        {
+            float threshold = 0.70f;
+
+            if (det.species == "European-Green-Crabs")
+                threshold = 0.87f;
+            else if (det.species == "Atlantic-Rock-Crabs")
+                threshold = 0.72f;
+
+            if (det.confidence < threshold)
+                continue;
+
+            // Color per species
+            if (det.species == "European-Green-Crabs")
+                painter.setPen(QPen(Qt::green, 2));
+            else if (det.species == "Atlantic-Rock-Crabs")
+                painter.setPen(QPen(Qt::red, 2));
+            else if (det.species == "Jonah-Crabs")
+                painter.setPen(QPen(Qt::yellow, 2));
+
+            painter.drawRect(det.box);
+
+            // Identify species + confidence
+            QString label = QString("%1  %2%")
+                                .arg(det.species)
+                                .arg(static_cast<int>(det.confidence * 100));
+
+            // Text background
+            QFontMetrics fm(font);
+            QRect textRect = fm.boundingRect(label);
+            textRect.moveTopLeft({ det.box.x(), det.box.y() - textRect.height() - 4 });
+            painter.fillRect(textRect.adjusted(-3, -2, 3, 2), QColor(0, 0, 0, 160));
+            painter.drawText(textRect.bottomLeft(), label);
+        }
+    }
+    else
+    {
+        m_lastDetections.clear();
+    }
+    //+
+
+    QPixmap pm = QPixmap::fromImage(displayImage).scaled(ui->graphicsView->viewport()->size(),
+                                                  Qt::KeepAspectRatio,
+                                                  Qt::SmoothTransformation);
     m_pixmapItem->setPixmap(pm);
     m_scene->setSceneRect(m_pixmapItem->boundingRect());
     ui->graphicsView->fitInView(m_pixmapItem, Qt::KeepAspectRatio);
-
 
     if (m_capturingFrames) {
         m_frameCounter++;
         if (m_frameCounter % 10 == 0) {
             QString filename = m_photogramPath
-                + QString("/frame_%1.jpg").arg(m_captureCount, 4, 10, QChar('0'));
+                               + QString("/frame_%1.jpg").arg(m_captureCount, 4, 10, QChar('0'));
             bool ok = image.save(filename, "JPEG", 95);
             if (ok) {
                 m_captureCount++;
@@ -448,20 +651,18 @@ void MainWindow::on_captureFramesButton_clicked()
         m_captureCount = 0;
         ui->captureCountLabel->setText("0 frames");
         ui->captureFramesButton->setText("Stop Capture");
-        ui->captureFramesButton->setStyleSheet(
-            "background-color: rgb(210,80,80);"
-            "color: white;"
-            "border-width: 3px;"
-            "border-style: ridge;"
-            "border-color: rgb(255,60,60);");
+        ui->captureFramesButton->setStyleSheet("background-color: rgb(210,80,80);"
+                                               "color: white;"
+                                               "border-width: 3px;"
+                                               "border-style: ridge;"
+                                               "border-color: rgb(255,60,60);");
     } else {
         ui->captureFramesButton->setText("Capture Frames");
-        ui->captureFramesButton->setStyleSheet(
-            "background-color: rgb(44,181,222);"
-            "color: white;"
-            "border-width: 3px;"
-            "border-style: ridge;"
-            "border-color: rgb(152,199,65);");
+        ui->captureFramesButton->setStyleSheet("background-color: rgb(44,181,222);"
+                                               "color: white;"
+                                               "border-width: 3px;"
+                                               "border-style: ridge;"
+                                               "border-color: rgb(152,199,65);");
     }
 }
 
@@ -471,8 +672,7 @@ void MainWindow::on_captureFramesButton_clicked()
 
 void MainWindow::updateClock()
 {
-    ui->timeLabel->setText(
-        QDateTime::currentDateTime().toString("hh:mm:ss"));
+    ui->timeLabel->setText(QDateTime::currentDateTime().toString("hh:mm:ss"));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -482,9 +682,7 @@ void MainWindow::updateClock()
 void MainWindow::onAlsDataReady(bool als, double pitch, double yaw)
 {
     if (als) {
-        const QString text = QString("ALS: ON  P:%1  Y:%2")
-                                 .arg(pitch, 0, 'f', 2)
-                                 .arg(yaw,   0, 'f', 2);
+        const QString text = QString("ALS: ON  P:%1  Y:%2").arg(pitch, 0, 'f', 2).arg(yaw, 0, 'f', 2);
         ui->alsStatusLabel->setText(text);
         ui->alsStatusLabel->setStyleSheet("color: #00ff88; font-weight: bold;");
         if (m_hudAls) {
@@ -529,32 +727,32 @@ void MainWindow::onTelemetryUpdated(double depth, double pressure)
 
 void MainWindow::on_pushButtonCalcPercent_clicked()
 {
-    int snowInput    = ui->spinBoxSnow->value();
+    int snowInput = ui->spinBoxSnow->value();
     int acadianInput = ui->spinBoxAcadian->value();
     int westernInput = ui->spinBoxWestern->value();
-    int urchinInput  = ui->spinBoxUrchin->value();
-    int rockInput    = ui->spinBoxRock->value();
-    int jonahInput   = ui->spinBoxJonah->value();
+    int urchinInput = ui->spinBoxUrchin->value();
+    int rockInput = ui->spinBoxRock->value();
+    int jonahInput = ui->spinBoxJonah->value();
     int sunstarInput = ui->spinBoxSunstar->value();
-    int greenInput   = ui->spinBoxGreen->value();
-    int borealInput  = ui->spinBoxBoreal->value();
+    int greenInput = ui->spinBoxGreen->value();
+    int borealInput = ui->spinBoxBoreal->value();
     int brittleInput = ui->spinBoxBrittle->value();
 
-    double sum = snowInput + acadianInput + westernInput + urchinInput +
-                 rockInput + jonahInput + sunstarInput + greenInput +
-                 borealInput + brittleInput;
+    double sum = snowInput + acadianInput + westernInput + urchinInput + rockInput + jonahInput
+                 + sunstarInput + greenInput + borealInput + brittleInput;
 
-    if (sum == 0) return;
+    if (sum == 0)
+        return;
 
-    ui->snowCrabPercent->display((snowInput    / sum) * 100);
+    ui->snowCrabPercent->display((snowInput / sum) * 100);
     ui->acadianCrabPercent->display((acadianInput / sum) * 100);
     ui->hairyCrabPercent->display((westernInput / sum) * 100);
-    ui->urchinPercent->display((urchinInput  / sum) * 100);
-    ui->rockCrabPercent->display((rockInput   / sum) * 100);
-    ui->jonahCrabPercent->display((jonahInput  / sum) * 100);
+    ui->urchinPercent->display((urchinInput / sum) * 100);
+    ui->rockCrabPercent->display((rockInput / sum) * 100);
+    ui->jonahCrabPercent->display((jonahInput / sum) * 100);
     ui->sunstarPercent->display((sunstarInput / sum) * 100);
-    ui->greenCrabPercent->display((greenInput  / sum) * 100);
-    ui->borealPercent->display((borealInput  / sum) * 100);
+    ui->greenCrabPercent->display((greenInput / sum) * 100);
+    ui->borealPercent->display((borealInput / sum) * 100);
     ui->brittlePercent->display((brittleInput / sum) * 100);
 }
 
@@ -579,30 +777,26 @@ void MainWindow::updateModeButton()
         ui->modeButton->setText("Live  2048x1536 @ 30fps");
         ui->modeButton->setToolTip(
             "Currently: Live streaming mode\nClick to switch to HQ photogrammetry mode");
-        ui->modeButton->setStyleSheet(
-            "background-color: rgb(44,181,222);"
-            "color: white;"
-            "border-width: 3px;"
-            "border-style: ridge;"
-            "border-color: rgb(152,199,65);"
-            "border-radius: 6px;"
-            "font-size: 13px;"
-            "font-weight: bold;"
-        );
+        ui->modeButton->setStyleSheet("background-color: rgb(44,181,222);"
+                                      "color: white;"
+                                      "border-width: 3px;"
+                                      "border-style: ridge;"
+                                      "border-color: rgb(152,199,65);"
+                                      "border-radius: 6px;"
+                                      "font-size: 13px;"
+                                      "font-weight: bold;");
     } else {
         ui->modeButton->setText("HQ  4656x3496 @ 10fps");
         ui->modeButton->setToolTip(
             "Currently: High-quality photogrammetry mode\nClick to switch to Live streaming mode");
-        ui->modeButton->setStyleSheet(
-            "background-color: rgb(210,160,20);"
-            "color: white;"
-            "border-width: 3px;"
-            "border-style: ridge;"
-            "border-color: rgb(255,220,80);"
-            "border-radius: 6px;"
-            "font-size: 13px;"
-            "font-weight: bold;"
-        );
+        ui->modeButton->setStyleSheet("background-color: rgb(210,160,20);"
+                                      "color: white;"
+                                      "border-width: 3px;"
+                                      "border-style: ridge;"
+                                      "border-color: rgb(255,220,80);"
+                                      "border-radius: 6px;"
+                                      "font-size: 13px;"
+                                      "font-weight: bold;");
     }
 }
 
@@ -612,28 +806,30 @@ void MainWindow::updateModeButton()
  */
 void MainWindow::setActiveCamButton(const QString &name)
 {
-    static const QString activeStyle =
-        "background-color: rgb(44,181,222);"
-        "border-width: 4px;"
-        "border-style: ridge;"
-        "border-color: rgb(255, 255, 255);"   // white border = active
-        "color: rgb(255,255,255);"
-        "font-weight: bold;";
+    static const QString activeStyle = "background-color: rgb(44,181,222);"
+                                       "border-width: 4px;"
+                                       "border-style: ridge;"
+                                       "border-color: rgb(255, 255, 255);" // white border = active
+                                       "color: rgb(255,255,255);"
+                                       "font-weight: bold;";
 
-    static const QString inactiveStyle =
-        "background-color: rgb(44,181,222);"
-        "border-width: 4px;"
-        "border-style: ridge;"
-        "border-color: rgb(152, 199, 65);"    // green border = inactive
-        "selection-color: rgb(255, 255, 255);";
+    static const QString inactiveStyle = "background-color: rgb(44,181,222);"
+                                         "border-width: 4px;"
+                                         "border-style: ridge;"
+                                         "border-color: rgb(152, 199, 65);" // green border = inactive
+                                         "selection-color: rgb(255, 255, 255);";
 
-    ui->frontCamButton->setStyleSheet(name == "front"  ? activeStyle : inactiveStyle);
-    ui->leftCamButton->setStyleSheet( name == "left"   ? activeStyle : inactiveStyle);
-    ui->rightCamButton->setStyleSheet(name == "right"  ? activeStyle : inactiveStyle);
-    ui->botCamButton->setStyleSheet(  name == "bot"    ? activeStyle : inactiveStyle);
-    ui->backCamButton->setStyleSheet( name == "back"   ? activeStyle : inactiveStyle);
+    ui->frontCamButton->setStyleSheet(name == "front" ? activeStyle : inactiveStyle);
+    ui->leftCamButton->setStyleSheet(name == "left" ? activeStyle : inactiveStyle);
+    ui->rightCamButton->setStyleSheet(name == "right" ? activeStyle : inactiveStyle);
+    ui->botCamButton->setStyleSheet(name == "bot" ? activeStyle : inactiveStyle);
+    ui->backCamButton->setStyleSheet(name == "back" ? activeStyle : inactiveStyle);
 }
-void MainWindow::updateIcebergTracking(double iceX, double iceY, double headingDeg, double maxKeelDepth, QVector<QPointF> perimeterPoints)
+void MainWindow::updateIcebergTracking(double iceX,
+                                       double iceY,
+                                       double headingDeg,
+                                       double maxKeelDepth,
+                                       QVector<QPointF> perimeterPoints)
 {
     // 1. Update the visual map position
     m_icebergMarker->setPos(iceX, -iceY);
@@ -654,12 +850,18 @@ void MainWindow::updateIcebergTracking(double iceX, double iceY, double headingD
     // ---------------------------------------
 
     // 2. Calculate Distance to Platforms for Threat Level
-    QPointF platforms[4] = { QPointF(50, -50), QPointF(-100, -80), QPointF(120, 60), QPointF(-80, 90) };
-    QProgressBar* threatBars[4] = { ui->ProgThreat1, ui->ProgThreat2, ui->ProgThreat3, ui->ProgThreat4 };
+    QPointF platforms[4] = {QPointF(50, -50),
+                            QPointF(-100, -80),
+                            QPointF(120, 60),
+                            QPointF(-80, 90)};
+    QProgressBar *threatBars[4] = {ui->ProgThreat1,
+                                   ui->ProgThreat2,
+                                   ui->ProgThreat3,
+                                   ui->ProgThreat4};
 
     double threatRadius = 150.0;
 
-    for(int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
         double dist = qSqrt(qPow(platforms[i].x() - iceX, 2) + qPow(platforms[i].y() - (-iceY), 2));
 
         int threatPercent = 0;
@@ -694,10 +896,18 @@ void MainWindow::on_btnRecordDepth_clicked()
     }
 
     switch (m_currentDepthIndex) {
-    case 0: ui->lcdKeelDepth1->display(currentLiveDepth); break;
-    case 1: ui->lcdKeelDepth2->display(currentLiveDepth); break;
-    case 2: ui->lcdKeelDepth3->display(currentLiveDepth); break;
-    case 3: ui->lcdKeelDepth4->display(currentLiveDepth); break;
+    case 0:
+        ui->lcdKeelDepth1->display(currentLiveDepth);
+        break;
+    case 1:
+        ui->lcdKeelDepth2->display(currentLiveDepth);
+        break;
+    case 2:
+        ui->lcdKeelDepth3->display(currentLiveDepth);
+        break;
+    case 3:
+        ui->lcdKeelDepth4->display(currentLiveDepth);
+        break;
     case 4:
         ui->lcdKeelDepth5->display(currentLiveDepth);
         // Once the 5th point is recorded, you have the final max depth.
@@ -724,37 +934,44 @@ void MainWindow::setupPhotogrammetry()
     m_runner->setWorkspacePath(m_workspacePath);
     m_runner->setImagePath(m_imagePath);
 
-    connect(m_runner, &ColmapRunner::stepStarted,      this, &MainWindow::onStepStarted);
-    connect(m_runner, &ColmapRunner::progressOutput,   this, &MainWindow::onProgressOutput);
-    connect(m_runner, &ColmapRunner::stepFinished,     this, &MainWindow::onStepFinished);
+    connect(m_runner, &ColmapRunner::stepStarted, this, &MainWindow::onStepStarted);
+    connect(m_runner, &ColmapRunner::progressOutput, this, &MainWindow::onProgressOutput);
+    connect(m_runner, &ColmapRunner::stepFinished, this, &MainWindow::onStepFinished);
     connect(m_runner, &ColmapRunner::pipelineFinished, this, &MainWindow::onPipelineFinished);
-    connect(m_runner, &ColmapRunner::errorOccurred,    this, &MainWindow::onError);
+    connect(m_runner, &ColmapRunner::errorOccurred, this, &MainWindow::onError);
 
-    connect(ui->viewer, &ModelViewer::scalePointsPicked,
-            this, &MainWindow::onScalePointsPicked);
+    connect(ui->viewer, &ModelViewer::scalePointsPicked, this, &MainWindow::onScalePointsPicked);
 
-    connect(ui->viewer, &ModelViewer::scaleApplied,
-            [this](float w, float h, float d) {
-                ui->statusLabel->setText(
-                    QString("Scale set — W:%1 m  H:%2 m  D:%3 m")
-                    .arg(w,0,'f',3).arg(h,0,'f',3).arg(d,0,'f',3));
-                ui->scaleButton->setChecked(false);
-            });
+    connect(ui->viewer, &ModelViewer::scaleApplied, [this](float w, float h, float d) {
+        ui->statusLabel->setText(QString("Scale set — W:%1 m  H:%2 m  D:%3 m")
+                                     .arg(w, 0, 'f', 3)
+                                     .arg(h, 0, 'f', 3)
+                                     .arg(d, 0, 'f', 3));
+        ui->scaleButton->setChecked(false);
+    });
 
-    connect(ui->viewer, &ModelViewer::measurementReady,
+    connect(ui->viewer,
+            &ModelViewer::measurementReady,
             [this](float total, float dx, float dy, float dz) {
-                ui->statusLabel->setText(
-                    QString("A→B: %1 m    ΔX:%2  ΔY:%3  ΔZ:%4")
-                    .arg(total,0,'f',3).arg(dx,0,'f',3).arg(dy,0,'f',3).arg(dz,0,'f',3));
+                ui->statusLabel->setText(QString("A→B: %1 m    ΔX:%2  ΔY:%3  ΔZ:%4")
+                                             .arg(total, 0, 'f', 3)
+                                             .arg(dx, 0, 'f', 3)
+                                             .arg(dy, 0, 'f', 3)
+                                             .arg(dz, 0, 'f', 3));
                 ui->measureButton->setChecked(false);
             });
 
     ui->scaleButton->setToolTip("Click two points of known distance to set real-world scale");
     ui->measureButton->setToolTip("Click two points to measure the distance between them");
 #if defined(Q_OS_WIN)
-    ui->denseCheckBox->setToolTip("Enables CUDA for COLMAP dense stereo on Windows.\nFeature extraction/matching and patch_match_stereo use the GPU when CUDA is available.\nSparse mapper and stereo_fusion remain CPU-bound.");
+    ui->denseCheckBox->setToolTip(
+        "Enables CUDA for COLMAP dense stereo on Windows.\nFeature extraction/matching and "
+        "patch_match_stereo use the GPU when CUDA is available.\nSparse mapper and stereo_fusion "
+        "remain CPU-bound.");
 #else
-    ui->denseCheckBox->setToolTip("Runs CPU-based dense reconstruction via OpenMVS DensifyPointCloud.\nSlower than CUDA but works on any hardware.");
+    ui->denseCheckBox->setToolTip(
+        "Runs CPU-based dense reconstruction via OpenMVS DensifyPointCloud.\nSlower than CUDA but "
+        "works on any hardware.");
 #endif
 
     // mainSplitter fills all remaining vertical space in the page layout
@@ -782,19 +999,15 @@ QString MainWindow::detectColmapPath()
     if (QFileInfo::exists(winPath))
         return winPath;
 
-    for (const QString &dir : {
-             QString("C:/Program Files/COLMAP"),
-             QString("C:/Program Files (x86)/COLMAP"),
-             base
-         }) {
+    for (const QString &dir :
+         {QString("C:/Program Files/COLMAP"), QString("C:/Program Files (x86)/COLMAP"), base}) {
         QString p = dir + "/colmap.exe";
         if (QFileInfo::exists(p))
             return p;
     }
 #elif defined(Q_OS_MACOS)
     QString macPath = base + "/tools/macos/bin/colmap";
-    if (QFileInfo::exists(macPath) &&
-        QSysInfo::currentCpuArchitecture() == "arm64")
+    if (QFileInfo::exists(macPath) && QSysInfo::currentCpuArchitecture() == "arm64")
         return macPath;
 #else
     QString linuxPath = base + "/tools/linux/bin/colmap";
@@ -806,14 +1019,13 @@ QString MainWindow::detectColmapPath()
     if (!onPath.isEmpty() && isRealColmap(onPath))
         return onPath;
 
-    QString chosen = QFileDialog::getOpenFileName(
-        this,
-        "Locate COLMAP executable",
-        QString(),
+    QString chosen = QFileDialog::getOpenFileName(this,
+                                                  "Locate COLMAP executable",
+                                                  QString(),
 #ifdef Q_OS_WIN
-        "COLMAP (colmap.exe)"
+                                                  "COLMAP (colmap.exe)"
 #else
-        "COLMAP (colmap)"
+                                                  "COLMAP (colmap)"
 #endif
     );
     return chosen.isEmpty() ? "colmap" : chosen;
@@ -825,9 +1037,11 @@ QString MainWindow::detectColmapPath()
 
 void MainWindow::on_importImagesButton_clicked()
 {
-    QStringList files = QFileDialog::getOpenFileNames(
-        this, "Import Images", QString(),
-        "Images (*.jpg *.jpeg *.png *.tiff *.tif *.bmp)");
+    QStringList files
+        = QFileDialog::getOpenFileNames(this,
+                                        "Import Images",
+                                        QString(),
+                                        "Images (*.jpg *.jpeg *.png *.tiff *.tif *.bmp)");
 
     if (files.isEmpty())
         return;
@@ -857,9 +1071,10 @@ void MainWindow::on_importImagesButton_clicked()
 
 void MainWindow::on_importVideoButton_clicked()
 {
-    QString videoPath = QFileDialog::getOpenFileName(
-        this, "Import Video", QString(),
-        "Video (*.mp4 *.avi *.mov *.mkv *.webm)");
+    QString videoPath = QFileDialog::getOpenFileName(this,
+                                                     "Import Video",
+                                                     QString(),
+                                                     "Video (*.mp4 *.avi *.mov *.mkv *.webm)");
 
     if (videoPath.isEmpty())
         return;
@@ -871,10 +1086,11 @@ void MainWindow::on_importVideoButton_clicked()
     QString outputPattern = m_imagePath + "/frame_%04d.jpg";
     QString filter = "select=not(mod(n\\,10))";
 
-    ffmpeg->start("ffmpeg", {"-i", videoPath, "-vf", filter, "-vsync", "vfr",
-                             "-q:v", "2", outputPattern});
+    ffmpeg->start("ffmpeg",
+                  {"-i", videoPath, "-vf", filter, "-vsync", "vfr", "-q:v", "2", outputPattern});
 
-    connect(ffmpeg, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+    connect(ffmpeg,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
             [this, ffmpeg](int exitCode, QProcess::ExitStatus) {
                 ffmpeg->deleteLater();
                 setRunning(false);
@@ -882,39 +1098,37 @@ void MainWindow::on_importVideoButton_clicked()
                 if (exitCode == 0) {
                     refreshThumbnails();
                     int count = QDir(m_imagePath)
-                                    .entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"},
-                                               QDir::Files)
+                                    .entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"}, QDir::Files)
                                     .count();
                     ui->statusLabel->setText(
                         QString("Extracted frames — %1 images ready").arg(count));
                 } else {
-                    ui->statusLabel->setText(
-                        "Frame extraction failed. Is ffmpeg installed?");
-                    ui->logOutput->append("[ERROR] ffmpeg exited with code " +
-                                         QString::number(exitCode));
+                    ui->statusLabel->setText("Frame extraction failed. Is ffmpeg installed?");
+                    ui->logOutput->append("[ERROR] ffmpeg exited with code "
+                                          + QString::number(exitCode));
                 }
             });
 
     if (!ffmpeg->waitForStarted(3000)) {
         ffmpeg->deleteLater();
         setRunning(false);
-        ui->statusLabel->setText(
-            "Could not start ffmpeg. Make sure it's installed and on PATH.");
+        ui->statusLabel->setText("Could not start ffmpeg. Make sure it's installed and on PATH.");
     }
 }
 
 void MainWindow::on_clearButton_clicked()
 {
     QDir imgDir(m_imagePath);
-    QStringList images = imgDir.entryList(
-        {"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"}, QDir::Files);
+    QStringList images = imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"},
+                                          QDir::Files);
 
     if (images.isEmpty())
         return;
 
-    auto answer = QMessageBox::question(
-        this, "Clear Images",
-        QString("Remove %1 images from workspace?").arg(images.count()));
+    auto answer
+        = QMessageBox::question(this,
+                                "Clear Images",
+                                QString("Remove %1 images from workspace?").arg(images.count()));
 
     if (answer != QMessageBox::Yes)
         return;
@@ -928,7 +1142,8 @@ void MainWindow::on_clearButton_clicked()
     QFile::remove(m_workspacePath + "/model.ply");
 
     QDir wsDir(m_workspacePath);
-    for (const QString &f : wsDir.entryList({"depth*.dmap", "scene*.mvs", "dense*.mvs", "*.ply"}, QDir::Files))
+    for (const QString &f :
+         wsDir.entryList({"depth*.dmap", "scene*.mvs", "dense*.mvs", "*.ply"}, QDir::Files))
         wsDir.remove(f);
 
     ui->viewer->clear();
@@ -943,18 +1158,20 @@ void MainWindow::refreshThumbnails()
     ui->imageList->clear();
 
     QDir imgDir(m_imagePath);
-    QStringList images =
-        imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"},
-                         QDir::Files, QDir::Name);
+    QStringList images = imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"},
+                                          QDir::Files,
+                                          QDir::Name);
 
     for (const QString &filename : images) {
         QPixmap pix(imgDir.filePath(filename));
         if (pix.isNull())
             continue;
 
-        auto *item = new QListWidgetItem(
-            QIcon(pix.scaled(120, 90, Qt::KeepAspectRatio, Qt::SmoothTransformation)),
-            filename);
+        auto *item = new QListWidgetItem(QIcon(pix.scaled(120,
+                                                          90,
+                                                          Qt::KeepAspectRatio,
+                                                          Qt::SmoothTransformation)),
+                                         filename);
         ui->imageList->addItem(item);
     }
 
@@ -972,9 +1189,7 @@ void MainWindow::refreshThumbnails()
 void MainWindow::on_runButton_clicked()
 {
     QDir imgDir(m_imagePath);
-    int count =
-        imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"}, QDir::Files)
-            .count();
+    int count = imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"}, QDir::Files).count();
     if (count < 3) {
         ui->statusLabel->setText("Need at least 3 images to reconstruct");
         return;
@@ -992,9 +1207,9 @@ void MainWindow::on_runButton_clicked()
             box.setIcon(QMessageBox::Warning);
             box.setWindowTitle("OpenMVS tools missing");
             box.setText("Dense reconstruction needs OpenMVS binaries on PATH but "
-                        "these were not found:\n\n  • " +
-                        missing.join("\n  • ") +
-                        "\n\nInstall OpenMVS, or run sparse reconstruction only?");
+                        "these were not found:\n\n  • "
+                        + missing.join("\n  • ")
+                        + "\n\nInstall OpenMVS, or run sparse reconstruction only?");
             auto *sparseBtn = box.addButton("Run sparse only", QMessageBox::AcceptRole);
             box.addButton(QMessageBox::Cancel);
             box.exec();
@@ -1043,16 +1258,14 @@ void MainWindow::onStepStarted(const QString &step)
 void MainWindow::onProgressOutput(const QString &line)
 {
     ui->logOutput->append(line);
-    ui->logOutput->verticalScrollBar()->setValue(
-        ui->logOutput->verticalScrollBar()->maximum());
+    ui->logOutput->verticalScrollBar()->setValue(ui->logOutput->verticalScrollBar()->maximum());
 }
 
 void MainWindow::onStepFinished(const QString &step, bool success)
 {
     ui->progressBar->setValue(ui->progressBar->value() + 1);
-    ui->logOutput->append(success
-                              ? QString::fromUtf8("✓ ") + step + " complete."
-                              : QString::fromUtf8("✗ ") + step + " failed.");
+    ui->logOutput->append(success ? QString::fromUtf8("✓ ") + step + " complete."
+                                  : QString::fromUtf8("✗ ") + step + " failed.");
 }
 
 void MainWindow::onPipelineFinished(bool success)
@@ -1072,12 +1285,17 @@ void MainWindow::onError(const QString &error)
     ui->logOutput->append("\n[ERROR] " + error);
 }
 
-void MainWindow::on_resetCameraButton_clicked() { ui->viewer->resetCamera(); }
+void MainWindow::on_resetCameraButton_clicked()
+{
+    ui->viewer->resetCamera();
+}
 
 void MainWindow::on_loadPlyButton_clicked()
 {
-    QString path = QFileDialog::getOpenFileName(
-        this, "Open PLY File", QString(), "PLY Files (*.ply)");
+    QString path = QFileDialog::getOpenFileName(this,
+                                                "Open PLY File",
+                                                QString(),
+                                                "PLY Files (*.ply)");
     if (path.isEmpty())
         return;
     ui->viewer->loadPLY(path);
@@ -1086,23 +1304,34 @@ void MainWindow::on_loadPlyButton_clicked()
 
 void MainWindow::on_scaleButton_toggled(bool on)
 {
-    if (on) { ui->measureButton->setChecked(false); ui->viewer->enterScaleMode(); }
-    else      ui->viewer->exitPickMode();
+    if (on) {
+        ui->measureButton->setChecked(false);
+        ui->viewer->enterScaleMode();
+    } else
+        ui->viewer->exitPickMode();
 }
 
 void MainWindow::on_measureButton_toggled(bool on)
 {
-    if (on) { ui->scaleButton->setChecked(false); ui->viewer->enterMeasureMode(); }
-    else      ui->viewer->exitPickMode();
+    if (on) {
+        ui->scaleButton->setChecked(false);
+        ui->viewer->enterMeasureMode();
+    } else
+        ui->viewer->exitPickMode();
 }
 
 void MainWindow::onScalePointsPicked(float /*measuredModelDist*/)
 {
     bool ok;
-    double val = QInputDialog::getDouble(
-        this, "Set Scale",
-        "Real-world distance between the two selected points (metres):",
-        0.1, 0.001, 10000.0, 4, &ok);
+    double val
+        = QInputDialog::getDouble(this,
+                                  "Set Scale",
+                                  "Real-world distance between the two selected points (metres):",
+                                  0.1,
+                                  0.001,
+                                  10000.0,
+                                  4,
+                                  &ok);
     if (ok && val > 0)
         ui->viewer->applyScale(static_cast<float>(val));
     ui->scaleButton->setChecked(false);
@@ -1123,10 +1352,8 @@ void MainWindow::convertAndLoadModel()
         if (QFile::exists(densePly)) {
             ui->logOutput->append("\n=== Loading Dense Model ===");
             ui->viewer->loadPLY(densePly);
-            ui->statusLabel->setText(
-                "Dense reconstruction complete — use mouse to orbit/pan/zoom");
-            ui->logOutput->append(QString::fromUtf8("✓ ") +
-                                  "Dense model loaded into viewer.");
+            ui->statusLabel->setText("Dense reconstruction complete — use mouse to orbit/pan/zoom");
+            ui->logOutput->append(QString::fromUtf8("✓ ") + "Dense model loaded into viewer.");
             return;
         }
         ui->logOutput->append("[WARN] Dense output not found — falling back to sparse.");
@@ -1175,31 +1402,34 @@ void MainWindow::convertAndLoadModel()
 
     converter->setProcessEnvironment(env);
 
-    connect(
-        converter, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-        [this, converter, plyPath](int exitCode, QProcess::ExitStatus) {
-            converter->deleteLater();
+    connect(converter,
+            QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            [this, converter, plyPath](int exitCode, QProcess::ExitStatus) {
+                converter->deleteLater();
 
-            if (exitCode == 0 && QFile::exists(plyPath)) {
-                ui->logOutput->append("\n=== Loading 3D Model ===");
-                ui->viewer->loadPLY(plyPath);
-                ui->statusLabel->setText(
-                    "Reconstruction complete — use mouse to orbit/pan/zoom");
-                ui->logOutput->append(QString::fromUtf8("✓ ") +
-                                      "Model loaded into viewer.");
-            } else {
-                ui->statusLabel->setText("Model conversion failed");
-                ui->logOutput->append("[ERROR] model_converter failed with exit code " +
-                                      QString::number(exitCode));
-                ui->logOutput->append(
-                    QString::fromUtf8(converter->readAllStandardError()));
-            }
-        });
+                if (exitCode == 0 && QFile::exists(plyPath)) {
+                    ui->logOutput->append("\n=== Loading 3D Model ===");
+                    ui->viewer->loadPLY(plyPath);
+                    ui->statusLabel->setText(
+                        "Reconstruction complete — use mouse to orbit/pan/zoom");
+                    ui->logOutput->append(QString::fromUtf8("✓ ") + "Model loaded into viewer.");
+                } else {
+                    ui->statusLabel->setText("Model conversion failed");
+                    ui->logOutput->append("[ERROR] model_converter failed with exit code "
+                                          + QString::number(exitCode));
+                    ui->logOutput->append(QString::fromUtf8(converter->readAllStandardError()));
+                }
+            });
 
     QString colmapPath = detectColmapPath();
     converter->start(colmapPath,
-                     {"model_converter", "--input_path", sparsePath,
-                      "--output_path", plyPath, "--output_type", "PLY"});
+                     {"model_converter",
+                      "--input_path",
+                      sparsePath,
+                      "--output_path",
+                      plyPath,
+                      "--output_type",
+                      "PLY"});
 
     if (!converter->waitForStarted(5000)) {
         converter->deleteLater();
@@ -1221,11 +1451,21 @@ void MainWindow::on_btnUndoDepth_clicked()
 
         // Clear the specific LCD screen so the pilot knows it is empty
         switch (m_currentDepthIndex) {
-        case 0: ui->lcdKeelDepth1->display(0); break;
-        case 1: ui->lcdKeelDepth2->display(0); break;
-        case 2: ui->lcdKeelDepth3->display(0); break;
-        case 3: ui->lcdKeelDepth4->display(0); break;
-        case 4: ui->lcdKeelDepth5->display(0); break;
+        case 0:
+            ui->lcdKeelDepth1->display(0);
+            break;
+        case 1:
+            ui->lcdKeelDepth2->display(0);
+            break;
+        case 2:
+            ui->lcdKeelDepth3->display(0);
+            break;
+        case 3:
+            ui->lcdKeelDepth4->display(0);
+            break;
+        case 4:
+            ui->lcdKeelDepth5->display(0);
+            break;
         }
     }
 }
@@ -1239,10 +1479,10 @@ void MainWindow::updateIcebergPosition(double x, double y)
 
     // 2. Define the exact coordinates of your stationary platforms
     // (These match the addEllipse numbers from your constructor)
-    double p1_x = 50,   p1_y = 50;
+    double p1_x = 50, p1_y = 50;
     double p2_x = -100, p2_y = 80;
-    double p3_x = 120,  p3_y = -60;
-    double p4_x = -80,  p4_y = -90;
+    double p3_x = 120, p3_y = -60;
+    double p4_x = -80, p4_y = -90;
     double asset_x = 0, asset_y = 0; // Assuming Subsea Asset is dead center
 
     // 3. Calculate the true distance from the iceberg to each platform
@@ -1263,8 +1503,10 @@ void MainWindow::updateIcebergPosition(double x, double y)
         int totalThreat = static_cast<int>(baseThreat + depthPenalty);
 
         // Lock the percentage cleanly between 0% and 100%
-        if (totalThreat > 100) return 100;
-        if (totalThreat < 0) return 0;
+        if (totalThreat > 100)
+            return 100;
+        if (totalThreat < 0)
+            return 0;
         return totalThreat;
     };
 

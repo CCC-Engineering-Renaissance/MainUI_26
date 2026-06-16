@@ -1,14 +1,14 @@
 #pragma once
-#include <QOpenGLWidget>
+#include <QMatrix4x4>
+#include <QMouseEvent>
+#include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
-#include <QMatrix4x4>
+#include <QOpenGLWidget>
 #include <QQuaternion>
 #include <QVector3D>
 #include <QVector>
-#include <QMouseEvent>
 #include <QWheelEvent>
 
 class QPainter;
@@ -51,7 +51,8 @@ protected:
 private:
     enum class PickMode { None, ScaleFirst, ScaleSecond, MeasureFirst, MeasureSecond };
 
-    struct PointCloudData {
+    struct PointCloudData
+    {
         QVector<float> vertexData; // interleaved xyz rgb, centred at origin
         int vertexCount = 0;
         QVector3D center;
@@ -69,38 +70,38 @@ private:
 
     // GL — point cloud
     QOpenGLShaderProgram *m_shader = nullptr;
-    QOpenGLBuffer         m_vbo;
+    QOpenGLBuffer m_vbo;
     QOpenGLVertexArrayObject m_vao;
 
     // GL — AABB wireframe
-    QOpenGLBuffer            m_lineVbo;
+    QOpenGLBuffer m_lineVbo;
     QOpenGLVertexArrayObject m_lineVao;
     int m_lineVertexCount = 0;
 
-    int  m_vertexCount = 0;
-    bool m_dataLoaded  = false;
+    int m_vertexCount = 0;
+    bool m_dataLoaded = false;
 
     // Camera
     QQuaternion m_rotation;
-    float       m_distance  = 5.0f;
-    QVector3D   m_panOffset {0, 0, 0};
-    float       m_pointSize = 3.0f;
-    QPoint      m_lastMousePos;
-    QMatrix4x4  m_projection;
+    float m_distance = 5.0f;
+    QVector3D m_panOffset{0, 0, 0};
+    float m_pointSize = 3.0f;
+    QPoint m_lastMousePos;
+    QMatrix4x4 m_projection;
 
     // Pick state
-    PickMode  m_pickMode        = PickMode::None;
+    PickMode m_pickMode = PickMode::None;
     QVector3D m_pickedA, m_pickedB;
-    float     m_measuredPickDist = 0;
+    float m_measuredPickDist = 0;
 
     // Scale
     float m_scaleFactor = 1.0f;
-    bool  m_hasScale    = false;
+    bool m_hasScale = false;
     float m_extentX = 0, m_extentY = 0, m_extentZ = 0;
 
     // Measurement result
-    bool      m_hasMeasure    = false;
-    float     m_measureTotal  = 0;
+    bool m_hasMeasure = false;
+    float m_measureTotal = 0;
     QVector3D m_measureDelta;
 
     // CPU vertex copy for screen-space picking

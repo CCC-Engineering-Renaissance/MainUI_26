@@ -3,21 +3,16 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonParseError>
-#include <QDebug>
 CameraReceiver::CameraReceiver(QObject *parent)
     : QObject(parent)
 {
-    m_streamSocket  = new QTcpSocket(this);
+    m_streamSocket = new QTcpSocket(this);
     m_commandSocket = new QTcpSocket(this);
 
-    connect(m_streamSocket, &QTcpSocket::connected,
-            this, &CameraReceiver::onStreamConnected);
-    connect(m_streamSocket, &QTcpSocket::disconnected,
-            this, &CameraReceiver::onStreamDisconnected);
-    connect(m_streamSocket, &QTcpSocket::readyRead,
-            this, &CameraReceiver::onStreamReadyRead);
-    connect(m_streamSocket, &QAbstractSocket::errorOccurred,
-            this, &CameraReceiver::onStreamError);
+    connect(m_streamSocket, &QTcpSocket::connected, this, &CameraReceiver::onStreamConnected);
+    connect(m_streamSocket, &QTcpSocket::disconnected, this, &CameraReceiver::onStreamDisconnected);
+    connect(m_streamSocket, &QTcpSocket::readyRead, this, &CameraReceiver::onStreamReadyRead);
+    connect(m_streamSocket, &QAbstractSocket::errorOccurred, this, &CameraReceiver::onStreamError);
     m_fpsTimer = new QTimer(this);
     m_fpsTimer->setInterval(1000);
     connect(m_fpsTimer, &QTimer::timeout, this, &CameraReceiver::onFpsTimerTick);
@@ -29,12 +24,10 @@ CameraReceiver::CameraReceiver(QObject *parent)
     connect(m_udpSocket, &QUdpSocket::readyRead, this, &CameraReceiver::readTelemetry);
 }
 
-void CameraReceiver::connectToHost(const QString &host,
-                                   quint16 streamPort,
-                                   quint16 commandPort)
+void CameraReceiver::connectToHost(const QString &host, quint16 streamPort, quint16 commandPort)
 {
-    m_host        = host;
-    m_streamPort  = streamPort;
+    m_host = host;
+    m_streamPort = streamPort;
     m_commandPort = commandPort;
 
     m_buffer.clear();
@@ -43,8 +36,7 @@ void CameraReceiver::connectToHost(const QString &host,
     m_streamSocket->connectToHost(host, streamPort);
     m_commandSocket->connectToHost(host, commandPort);
 
-    qDebug() << "CameraReceiver: connecting to" << host
-             << "stream=" << streamPort
+    qDebug() << "CameraReceiver: connecting to" << host << "stream=" << streamPort
              << "commands=" << commandPort;
 }
 
@@ -63,8 +55,7 @@ void CameraReceiver::switchCamera(const QString &cameraName)
         qDebug() << "CameraReceiver: command socket not connected – cannot switch";
         return;
     }
-    const QByteArray cmd =
-        QStringLiteral("CMD:%1\n").arg(cameraName.toLower()).toUtf8();
+    const QByteArray cmd = QStringLiteral("CMD:%1\n").arg(cameraName.toLower()).toUtf8();
     m_commandSocket->write(cmd);
     m_commandSocket->flush();
     qDebug() << "CameraReceiver: sent" << cmd.trimmed();
@@ -76,8 +67,7 @@ void CameraReceiver::setMode(const QString &modeName)
         qDebug() << "CameraReceiver: command socket not connected – cannot set mode";
         return;
     }
-    const QByteArray cmd =
-        QStringLiteral("MODE:%1\n").arg(modeName.toLower()).toUtf8();
+    const QByteArray cmd = QStringLiteral("MODE:%1\n").arg(modeName.toLower()).toUtf8();
     m_commandSocket->write(cmd);
     m_commandSocket->flush();
     qDebug() << "CameraReceiver: sent" << cmd.trimmed();
@@ -121,9 +111,8 @@ void CameraReceiver::onStreamReadyRead()
                 break;
 
             const auto *d = reinterpret_cast<const uchar *>(m_buffer.constData());
-            const quint32 len =
-                (quint32(d[0]) << 24) | (quint32(d[1]) << 16) |
-                (quint32(d[2]) <<  8) |  quint32(d[3]);
+            const quint32 len = (quint32(d[0]) << 24) | (quint32(d[1]) << 16) | (quint32(d[2]) << 8)
+                                | quint32(d[3]);
 
             m_buffer.remove(0, 4);
             m_pendingBytes = static_cast<qint32>(len);
@@ -147,8 +136,7 @@ void CameraReceiver::onStreamReadyRead()
 
 void CameraReceiver::onStreamError(QAbstractSocket::SocketError error)
 {
-    qDebug() << "CameraReceiver stream error:" << error
-             << m_streamSocket->errorString();
+    qDebug() << "CameraReceiver stream error:" << error << m_streamSocket->errorString();
 }
 
 void CameraReceiver::onFpsTimerTick()
@@ -188,8 +176,8 @@ void CameraReceiver::readTelemetry()
             }
             if (json.contains("als")) {
                 m_alsEnabled = json["als"].toBool();
-                m_alsPitch   = json.value("pitch").toDouble();
-                m_alsYaw     = json.value("yaw").toDouble();
+                m_alsPitch = json.value("pitch").toDouble();
+                m_alsYaw = json.value("yaw").toDouble();
                 emit alsUpdated(m_alsEnabled, m_alsPitch, m_alsYaw);
             }
             // Handle the X/Y coordinate logic
