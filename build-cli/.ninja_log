@@ -17,3 +17,10 @@
 2666	5873	1781647772991188435	CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o	4dee86bb3d2d5e19
 2667	6504	1781647772993142211	CMakeFiles/GUI.dir/mainwindow.cpp.o	edd25a252ff4403d
 6504	7389	1781647776829188338	MainUI_26	4069b53b0c3ae2eb
+5	37	1781662705968628684	GUI_autogen/timestamp	ee488f3a916b673d
+5	37	1781662705968628684	GUI_autogen/mocs_compilation.cpp	ee488f3a916b673d
+5	37	1781662705968628684	/home/jlu/Projects/MainUI_26/build-cli/GUI_autogen/timestamp	ee488f3a916b673d
+5	37	1781662705968628684	/home/jlu/Projects/MainUI_26/build-cli/GUI_autogen/mocs_compilation.cpp	ee488f3a916b673d
+37	1324	1781662706001993292	CMakeFiles/GUI.dir/camerareceiver.cpp.o	591f4aecab15b6e0
+37	3526	1781662706000628679	CMakeFiles/GUI.dir/mainwindow.cpp.o	edd25a252ff4403d
+3526	4326	1781662709489628088	MainUI_26	4069b53b0c3ae2eb

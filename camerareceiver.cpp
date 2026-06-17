@@ -103,7 +103,14 @@ void CameraReceiver::onStreamReadyRead()
 {
     m_buffer.append(m_streamSocket->readAll());
 
-    // Parse as many complete frames as are buffered
+    // Parse every complete frame in the buffer, but keep only the most recent
+    // one. Decoding and painting each frame on the GUI thread can't keep up
+    // with a 30 fps stream of full-resolution JPEGs, so stale frames are
+    // discarded here to bound latency — we always display the newest frame
+    // rather than letting a backlog build up (which otherwise drags the
+    // displayed rate down to ~1 fps over time).
+    QByteArray latestJpeg;
+
     while (true) {
         // -- Step 1: read 4-byte big-endian length header --
         if (m_pendingBytes == -1) {
@@ -122,12 +129,15 @@ void CameraReceiver::onStreamReadyRead()
         if (m_buffer.size() < m_pendingBytes)
             break;
 
-        const QByteArray jpeg = m_buffer.left(m_pendingBytes);
+        latestJpeg = m_buffer.left(m_pendingBytes);
         m_buffer.remove(0, m_pendingBytes);
         m_pendingBytes = -1;
+    }
 
+    // Decode + display only the newest complete frame from this batch.
+    if (!latestJpeg.isEmpty()) {
         QImage img;
-        if (img.loadFromData(jpeg, "JPEG")) {
+        if (img.loadFromData(latestJpeg, "JPEG")) {
             ++m_frameCount;
             emit frameReady(img);
         }
