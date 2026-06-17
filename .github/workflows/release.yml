@@ -1,0 +1,166 @@
+name: Release
+
+# Cut a release by pushing a version tag:
+#   git tag v0.1.0 && git push origin v0.1.0
+# This builds self-contained Windows (.zip) and Linux (.AppImage) bundles and
+# attaches them to a GitHub Release. End users download and run — no Qt, no
+# compiler, no source clone required.
+#
+# You can also trigger it manually from the Actions tab (workflow_dispatch);
+# manual runs build the artifacts but do not publish a Release.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+env:
+  QT_VERSION: '6.11.1'
+  ORT_VERSION: '1.26.0'          # must match third_party/onnxruntime/include
+  OPENCV_VERSION: '4.10.0'       # Windows prebuilt release to download
+  QT_MODULES: 'qtmultimedia qtcharts'   # extra modules beyond qtbase
+
+jobs:
+  # ---------------------------------------------------------------------------
+  linux:
+    runs-on: ubuntu-22.04        # older glibc = broad AppImage compatibility
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build + runtime deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build \
+            libopencv-dev \
+            libgl1-mesa-dev libglu1-mesa-dev \
+            libxcb-cursor0 libxkbcommon0 \
+            fuse libfuse2
+
+      - name: Install Qt ${{ env.QT_VERSION }}
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ env.QT_VERSION }}
+          modules: ${{ env.QT_MODULES }}
+          cache: true
+
+      - name: Configure & build
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_PREFIX_PATH="$QT_ROOT_DIR"
+          cmake --build build --config Release
+
+      - name: Stage AppDir
+        run: |
+          APPDIR="$PWD/AppDir"
+          install -Dm755 build/MainUI_26 "$APPDIR/usr/bin/MainUI_26"
+          # Data + libs the app loads relative to applicationDirPath()
+          cp -r build/models "$APPDIR/usr/bin/models"
+          cp build/libonnxruntime.so* "$APPDIR/usr/bin/"
+          # Desktop entry + icon (required by linuxdeploy)
+          install -Dm644 rov_logo_complete.png "$APPDIR/usr/share/icons/hicolor/256x256/apps/MainUI_26.png"
+          cat > "$APPDIR/usr/share/applications/MainUI_26.desktop" <<'EOF'
+          [Desktop Entry]
+          Type=Application
+          Name=MainUI_26
+          Exec=MainUI_26
+          Icon=MainUI_26
+          Categories=Utility;
+          Terminal=false
+          EOF
+
+      - name: Build AppImage
+        run: |
+          wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          wget -q https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy*.AppImage
+          export QMAKE="$QT_ROOT_DIR/bin/qmake"
+          export EXTRA_QT_MODULES="multimedia;multimediawidgets;charts;opengl;openglwidgets"
+          ./linuxdeploy-x86_64.AppImage \
+            --appdir AppDir \
+            --plugin qt \
+            --library "$PWD/build/libonnxruntime.so.${ORT_VERSION}" \
+            --desktop-file AppDir/usr/share/applications/MainUI_26.desktop \
+            --icon-file AppDir/usr/share/icons/hicolor/256x256/apps/MainUI_26.png \
+            --output appimage
+          mv MainUI_26*.AppImage MainUI_26-linux-x86_64.AppImage
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MainUI_26-linux
+          path: MainUI_26-linux-x86_64.AppImage
+
+  # ---------------------------------------------------------------------------
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt ${{ env.QT_VERSION }}
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ env.QT_VERSION }}
+          modules: ${{ env.QT_MODULES }}
+          arch: win64_msvc2022_64
+          cache: true
+
+      - name: Download OpenCV prebuilt
+        run: |
+          $url = "https://github.com/opencv/opencv/releases/download/$env:OPENCV_VERSION/opencv-$env:OPENCV_VERSION-windows.exe"
+          Invoke-WebRequest -Uri $url -OutFile opencv.exe
+          # Self-extracting 7z archive -> .\opencv\
+          Start-Process -FilePath .\opencv.exe -ArgumentList '-o".\" -y' -Wait
+          echo "OpenCV_DIR=$PWD\opencv\build" >> $env:GITHUB_ENV
+
+      - name: Provide ONNX Runtime DLL + import lib
+        # Repo only tracks the tiny import .lib; fetch the real runtime DLL.
+        run: |
+          $url = "https://github.com/microsoft/onnxruntime/releases/download/v$env:ORT_VERSION/onnxruntime-win-x64-$env:ORT_VERSION.zip"
+          Invoke-WebRequest -Uri $url -OutFile ort.zip
+          Expand-Archive ort.zip -DestinationPath ort
+          $libdir = "third_party\onnxruntime\lib\win"
+          Copy-Item "ort\onnxruntime-win-x64-$env:ORT_VERSION\lib\onnxruntime.dll" "$libdir\onnxruntime.dll" -Force
+          Copy-Item "ort\onnxruntime-win-x64-$env:ORT_VERSION\lib\onnxruntime.lib" "$libdir\onnxruntime.lib" -Force
+
+      - name: Configure & build
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR"
+          cmake --build build --config Release
+
+      - name: Stage + windeployqt
+        run: |
+          $stage = "MainUI_26-windows"
+          New-Item -ItemType Directory -Force -Path $stage | Out-Null
+          Copy-Item build\Release\MainUI_26.exe $stage\
+          Copy-Item build\Release\onnxruntime.dll $stage\ -ErrorAction SilentlyContinue
+          Copy-Item -Recurse build\Release\models $stage\models
+          # OpenCV world DLL
+          Copy-Item "$env:OpenCV_DIR\x64\vc16\bin\opencv_world*.dll" $stage\ -ErrorAction SilentlyContinue
+          & "$env:QT_ROOT_DIR\bin\windeployqt.exe" --release --no-translations "$stage\MainUI_26.exe"
+          Compress-Archive -Path "$stage\*" -DestinationPath MainUI_26-windows-x64.zip -Force
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MainUI_26-windows
+          path: MainUI_26-windows-x64.zip
+
+  # ---------------------------------------------------------------------------
+  release:
+    needs: [linux, windows]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/**/*
+          generate_release_notes: true
