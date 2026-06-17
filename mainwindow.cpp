@@ -766,37 +766,44 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
 
 void MainWindow::on_modeButton_clicked()
 {
-    m_currentMode = (m_currentMode == "live") ? "hq" : "live";
+    // Cycle: live (1080p) → hi (3 MP) → hq (photogrammetry) → live
+    if (m_currentMode == "live")
+        m_currentMode = "hi";
+    else if (m_currentMode == "hi")
+        m_currentMode = "hq";
+    else
+        m_currentMode = "live";
     m_cameraReceiver->setMode(m_currentMode);
     updateModeButton();
 }
 
 void MainWindow::updateModeButton()
 {
+    const QString styleTmpl =
+        "background-color: %1;"
+        "color: white;"
+        "border-width: 3px;"
+        "border-style: ridge;"
+        "border-color: %2;"
+        "border-radius: 6px;"
+        "font-size: 13px;"
+        "font-weight: bold;";
+
     if (m_currentMode == "live") {
-        ui->modeButton->setText("Live  2048x1536 @ 30fps");
+        ui->modeButton->setText("Live  1920x1080 @ 30fps");
         ui->modeButton->setToolTip(
-            "Currently: Live streaming mode\nClick to switch to HQ photogrammetry mode");
-        ui->modeButton->setStyleSheet("background-color: rgb(44,181,222);"
-                                      "color: white;"
-                                      "border-width: 3px;"
-                                      "border-style: ridge;"
-                                      "border-color: rgb(152,199,65);"
-                                      "border-radius: 6px;"
-                                      "font-size: 13px;"
-                                      "font-weight: bold;");
+            "Currently: Live (1080p cameras)\nClick to switch to Hi-Res 2048x1536");
+        ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(44,181,222)", "rgb(152,199,65)"));
+    } else if (m_currentMode == "hi") {
+        ui->modeButton->setText("Hi-Res  2048x1536 @ 30fps");
+        ui->modeButton->setToolTip(
+            "Currently: Hi-Res (3 MP cameras)\nClick to switch to HQ photogrammetry");
+        ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(120,180,90)", "rgb(200,230,120)"));
     } else {
         ui->modeButton->setText("HQ  4656x3496 @ 10fps");
         ui->modeButton->setToolTip(
-            "Currently: High-quality photogrammetry mode\nClick to switch to Live streaming mode");
-        ui->modeButton->setStyleSheet("background-color: rgb(210,160,20);"
-                                      "color: white;"
-                                      "border-width: 3px;"
-                                      "border-style: ridge;"
-                                      "border-color: rgb(255,220,80);"
-                                      "border-radius: 6px;"
-                                      "font-size: 13px;"
-                                      "font-weight: bold;");
+            "Currently: HQ photogrammetry\nClick to switch to Live 1080p");
+        ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(210,160,20)", "rgb(255,220,80)"));
     }
 }
 
