@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS
     Core
+    Concurrent
     Widgets
     Multimedia
     MultimediaWidgets
@@ -89,6 +90,7 @@ qt_add_executable(GUI
 
 target_link_libraries(GUI PRIVATE
     Qt6::Core
+    Qt6::Concurrent
     Qt6::Widgets
     Qt6::Multimedia
     Qt6::MultimediaWidgets

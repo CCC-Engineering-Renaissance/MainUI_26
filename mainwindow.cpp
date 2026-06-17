@@ -23,6 +23,7 @@
 #include <QProcess>
 #include <QProgressBar>
 #include <QPushButton>
+#include <QtConcurrent>
 #include <QScrollBar>
 #include <QSpinBox>
 #include <QSplitter>
@@ -191,6 +192,14 @@ MainWindow::MainWindow(QWidget *parent)
             &MainWindow::updateIcebergPosition);
 
     connect(m_cameraReceiver, &CameraReceiver::frameReady, this, &MainWindow::onCameraFrame);
+
+    // Async crab detection: when a worker-thread inference finishes, store its
+    // results (overlaid on subsequent frames) and free the slot for the next.
+    connect(&m_detWatcher, &QFutureWatcherBase::finished, this, [this]() {
+        if (m_detectionEnabled)
+            m_lastDetections = m_detWatcher.result();
+        m_detRunning = false;
+    });
     connect(m_cameraReceiver, &CameraReceiver::connected, this, &MainWindow::onCameraConnected);
     connect(m_cameraReceiver,
             &CameraReceiver::disconnected,
@@ -287,6 +296,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    // A detection task may still be running on a worker thread and references
+    // this object + m_crabDetector — wait for it before tearing them down.
+    if (m_detRunning)
+        m_detWatcher.waitForFinished();
     delete ui;
 }
 
@@ -538,13 +551,27 @@ void MainWindow::onCameraFrame(const QImage &image)
         return;
 
     //+
-    // Run YOLOv8 crab detection
-    QImage displayImage = image.copy();
+    // YOLOv8 crab detection — inference runs on a worker thread (never here on
+    // the GUI thread). This frame is overlaid with the most recent results,
+    // which may be a few frames old; for crab counting that's fine, and the
+    // video stays at full framerate.
+    if (m_detectionEnabled && m_crabDetector.isLoaded()) {
+        // Dispatch an inference for ~every 3rd frame, but only when the previous
+        // one has finished — drop frames rather than queue them.
+        ++m_detDispatchCounter;
+        if (!m_detRunning && (m_detDispatchCounter % 3 == 0)) {
+            m_detRunning = true;
+            const QImage snapshot = image.copy();
+            m_detWatcher.setFuture(QtConcurrent::run(
+                [this, snapshot]() { return m_crabDetector.detect(snapshot); }));
+        }
+    } else {
+        m_lastDetections.clear();
+    }
 
-    if (m_crabDetector.isLoaded() && m_detectionEnabled)
-    {
-        m_lastDetections = m_crabDetector.detect(image);
-
+    QImage displayImage = image;   // shared; deep-copied only if we draw overlays
+    if (m_detectionEnabled && !m_lastDetections.isEmpty()) {
+        displayImage = image.copy();
         QPainter painter(&displayImage);
         QFont font;
         font.setPointSize(16);
@@ -585,10 +612,6 @@ void MainWindow::onCameraFrame(const QImage &image)
             painter.fillRect(textRect.adjusted(-3, -2, 3, 2), QColor(0, 0, 0, 160));
             painter.drawText(textRect.bottomLeft(), label);
         }
-    }
-    else
-    {
-        m_lastDetections.clear();
     }
     //+
 
@@ -766,13 +789,15 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
 
 void MainWindow::on_modeButton_clicked()
 {
-    // Cycle: live (1080p) → hi (3 MP) → hq (photogrammetry) → live
-    if (m_currentMode == "live")
+    // Cycle: lo (720p) → live (1080p) → hi (3 MP) → hq (photogrammetry) → lo
+    if (m_currentMode == "lo")
+        m_currentMode = "live";
+    else if (m_currentMode == "live")
         m_currentMode = "hi";
     else if (m_currentMode == "hi")
         m_currentMode = "hq";
     else
-        m_currentMode = "live";
+        m_currentMode = "lo";
     m_cameraReceiver->setMode(m_currentMode);
     updateModeButton();
 }
@@ -789,7 +814,12 @@ void MainWindow::updateModeButton()
         "font-size: 13px;"
         "font-weight: bold;";
 
-    if (m_currentMode == "live") {
+    if (m_currentMode == "lo") {
+        ui->modeButton->setText("720p  1280x720 @ 30fps");
+        ui->modeButton->setToolTip(
+            "Currently: 720p (low bandwidth / most stable)\nClick to switch to Live 1080p");
+        ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(80,170,200)", "rgb(150,210,230)"));
+    } else if (m_currentMode == "live") {
         ui->modeButton->setText("Live  1920x1080 @ 30fps");
         ui->modeButton->setToolTip(
             "Currently: Live (1080p cameras)\nClick to switch to Hi-Res 2048x1536");

@@ -7,6 +7,7 @@
 
 #include <QChart>
 #include <QChartView>
+#include <QFutureWatcher>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QJsonDocument>
@@ -194,6 +195,11 @@ private:
 
     // Crab detection keypress controls
     QVector<CrabDetector::Detection> m_lastDetections;
+
+  // Detection runs on a worker thread so it never blocks the video display.
+  QFutureWatcher<QVector<CrabDetector::Detection>> m_detWatcher;
+  bool m_detRunning = false;
+  int  m_detDispatchCounter = 0;
     int m_greenCrabCount = 0;
     bool m_detectionEnabled = true;
 };
