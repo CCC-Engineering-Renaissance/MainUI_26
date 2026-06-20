@@ -145,8 +145,8 @@ private:
     // Clock timer (updates timeLabel every second)
     QTimer *m_clockTimer = nullptr;
 
-    // Current capture mode ("live" or "hq")
-    QString m_currentMode = "live";
+    // Current capture mode ("lo", "hi", or "hq")
+    QString m_currentMode = "hi";
 
     // Helpers
     void setActiveCamButton(const QString &name);

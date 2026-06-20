@@ -464,7 +464,7 @@ void MainWindow::on_homePageButton_clicked()
 {
     // Camera page → main menu: disconnect stream and reset mode
     m_cameraReceiver->disconnectFromHost();
-    m_currentMode = "live";
+    m_currentMode = "hi";
     updateModeButton();
     ui->stackedWidget->setCurrentIndex(0);
 }
@@ -789,10 +789,8 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
 
 void MainWindow::on_modeButton_clicked()
 {
-    // Cycle: lo (720p) → live (1080p) → hi (3 MP) → hq (photogrammetry) → lo
+    // Cycle: lo (720p) → hi (3 MP) → hq (photogrammetry) → lo
     if (m_currentMode == "lo")
-        m_currentMode = "live";
-    else if (m_currentMode == "live")
         m_currentMode = "hi";
     else if (m_currentMode == "hi")
         m_currentMode = "hq";
@@ -817,13 +815,8 @@ void MainWindow::updateModeButton()
     if (m_currentMode == "lo") {
         ui->modeButton->setText("720p  1280x720 @ 30fps");
         ui->modeButton->setToolTip(
-            "Currently: 720p (low bandwidth / most stable)\nClick to switch to Live 1080p");
+            "Currently: 720p (low bandwidth / most stable)\nClick to switch to Hi-Res 2048x1536");
         ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(80,170,200)", "rgb(150,210,230)"));
-    } else if (m_currentMode == "live") {
-        ui->modeButton->setText("Live  1920x1080 @ 30fps");
-        ui->modeButton->setToolTip(
-            "Currently: Live (1080p cameras)\nClick to switch to Hi-Res 2048x1536");
-        ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(44,181,222)", "rgb(152,199,65)"));
     } else if (m_currentMode == "hi") {
         ui->modeButton->setText("Hi-Res  2048x1536 @ 30fps");
         ui->modeButton->setToolTip(
@@ -832,7 +825,7 @@ void MainWindow::updateModeButton()
     } else {
         ui->modeButton->setText("HQ  4656x3496 @ 10fps");
         ui->modeButton->setToolTip(
-            "Currently: HQ photogrammetry\nClick to switch to Live 1080p");
+            "Currently: HQ photogrammetry\nClick to switch to 720p");
         ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(210,160,20)", "rgb(255,220,80)"));
     }
 }
