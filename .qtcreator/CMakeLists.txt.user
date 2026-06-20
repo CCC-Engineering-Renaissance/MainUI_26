@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 19.0.0, 2026-06-16T15:13:08. -->
+<!-- Written by QtCreator 19.0.2, 2026-06-19T15:29:45. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{e4facd54-ebb6-4c50-90f1-f9da06cc7b5f}</value>
+  <value type="QByteArray">{0494d974-a54b-40e4-9a8c-3cf4695d4073}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -94,9 +94,9 @@
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
    <value type="bool" key="HasPerBcDcs">true</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 6.11.0</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 6.11.0</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt6.6110.linux_gcc_64_kit</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{a86a7f5f-f418-4fba-9787-a04b7afd7bb3}</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -109,7 +109,8 @@
 -DCMAKE_COLOR_DIAGNOSTICS:BOOL=ON
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
--DCMAKE_GENERATOR:STRING=Unix Makefiles
+-DCMAKE_GENERATOR:STRING=Ninja
+-DCMAKE_MAKE_PROGRAM:STRING=/usr/bin/ninja
 -DCMAKE_PREFIX_PATH:PATH=%{Qt:QT_INSTALL_PREFIX}
 -DCMAKE_PROJECT_INCLUDE_BEFORE:FILEPATH=%{BuildConfig:BuildDirectory:NativeFilePath}/.qtcreator/cmake-helper/qtcreator-project.cmake
 -DQT_CREATOR_ENABLE_MAINTENANCE_TOOL_PROVIDER:BOOL=ON

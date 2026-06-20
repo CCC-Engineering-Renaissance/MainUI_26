@@ -20,7 +20,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     OpenGLWidgets
     Charts
 )
-find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED COMPONENTS core imgproc dnn)
 
 # ONNX Runtime 1.26.0 bundled
 set(ORT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/third_party/onnxruntime")
