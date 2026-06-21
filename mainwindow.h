@@ -145,7 +145,7 @@ private:
     // Clock timer (updates timeLabel every second)
     QTimer *m_clockTimer = nullptr;
 
-    // Current capture mode ("lo", "hi", or "hq")
+    // Current capture mode ("hi" or "hq")
     QString m_currentMode = "hi";
 
     // Helpers

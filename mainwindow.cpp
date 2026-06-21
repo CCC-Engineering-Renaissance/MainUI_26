@@ -789,13 +789,11 @@ void MainWindow::on_pushButtonCalcPercent_clicked()
 
 void MainWindow::on_modeButton_clicked()
 {
-    // Cycle: lo (720p) → hi (3 MP) → hq (photogrammetry) → lo
-    if (m_currentMode == "lo")
-        m_currentMode = "hi";
-    else if (m_currentMode == "hi")
+    // Cycle: hi (3 MP) → hq (photogrammetry) → hi
+    if (m_currentMode == "hi")
         m_currentMode = "hq";
     else
-        m_currentMode = "lo";
+        m_currentMode = "hi";
     m_cameraReceiver->setMode(m_currentMode);
     updateModeButton();
 }
@@ -812,12 +810,7 @@ void MainWindow::updateModeButton()
         "font-size: 13px;"
         "font-weight: bold;";
 
-    if (m_currentMode == "lo") {
-        ui->modeButton->setText("720p  1280x720 @ 30fps");
-        ui->modeButton->setToolTip(
-            "Currently: 720p (low bandwidth / most stable)\nClick to switch to Hi-Res 2048x1536");
-        ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(80,170,200)", "rgb(150,210,230)"));
-    } else if (m_currentMode == "hi") {
+    if (m_currentMode == "hi") {
         ui->modeButton->setText("Hi-Res  2048x1536 @ 30fps");
         ui->modeButton->setToolTip(
             "Currently: Hi-Res (3 MP cameras)\nClick to switch to HQ photogrammetry");
@@ -825,7 +818,7 @@ void MainWindow::updateModeButton()
     } else {
         ui->modeButton->setText("HQ  4656x3496 @ 10fps");
         ui->modeButton->setToolTip(
-            "Currently: HQ photogrammetry\nClick to switch to 720p");
+            "Currently: HQ photogrammetry\nClick to switch to Hi-Res 2048x1536");
         ui->modeButton->setStyleSheet(styleTmpl.arg("rgb(210,160,20)", "rgb(255,220,80)"));
     }
 }
@@ -1227,10 +1220,15 @@ void MainWindow::on_runButton_clicked()
 
 #if !defined(Q_OS_WIN)
     if (ui->denseCheckBox->isChecked()) {
+        const QString toolsBin = QCoreApplication::applicationDirPath() + "/tools/linux/bin/";
+        auto hasTool = [&](const QString &name) {
+            return !QStandardPaths::findExecutable(name).isEmpty()
+                || QFileInfo::exists(toolsBin + name);
+        };
         QStringList missing;
-        if (QStandardPaths::findExecutable("InterfaceCOLMAP").isEmpty())
+        if (!hasTool("InterfaceCOLMAP"))
             missing << "InterfaceCOLMAP";
-        if (QStandardPaths::findExecutable("DensifyPointCloud").isEmpty())
+        if (!hasTool("DensifyPointCloud"))
             missing << "DensifyPointCloud";
         if (!missing.isEmpty()) {
             QMessageBox box(this);

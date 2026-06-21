@@ -1,6 +1,12 @@
 # Build directories
 build/
+build-linux/
+build-appimage/
 cmake-build-*/
+
+# AppImage packaging
+packaging/.cache/
+*.AppImage
 
 # Qt Creator user files
 *.user
