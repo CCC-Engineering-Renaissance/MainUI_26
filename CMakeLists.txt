@@ -188,6 +188,28 @@ endif()
      )
  endif()
 
+# Bundle control-systems Python scripts (thruster.py, test_controllers.py, …)
+# next to the binary so the ROV Setup page can run them with no external checkout.
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/scripts")
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/scripts"
+            "$<TARGET_FILE_DIR:GUI>/scripts"
+        COMMENT "Bundling control-systems scripts"
+    )
+endif()
+
+# Bundle a relocatable Python runtime (with pygame) so the scripts above run
+# without a system Python install. Large; only present when staged for packaging.
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/python")
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/python"
+            "$<TARGET_FILE_DIR:GUI>/python"
+        COMMENT "Bundling Python runtime"
+    )
+endif()
+
 include(GNUInstallDirs)
 if(APPLE)
     install(TARGETS GUI BUNDLE DESTINATION .)

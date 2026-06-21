@@ -1,0 +1,7 @@
+# Python deps for the GUI's local (PC-native) control-systems scripts.
+# These are the scripts the ROV Setup page runs on the surface-station PC
+# (thruster.py, test_controllers.py, axistest.py, tests/). The Pi-side scripts
+# (camera_server.py, MAIN_CODE, etc.) are NOT bundled and their deps
+# (numpy, opencv-python) are intentionally excluded.
+pygame==2.6.1
+pytest

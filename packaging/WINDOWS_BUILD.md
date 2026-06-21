@@ -16,6 +16,7 @@ All steps run **on the Windows 11 + NVIDIA machine.**
 | **OpenCV (Windows prebuilt)** | `opencv-*-windows.exe` self-extractor → gives `...\opencv\build` (has `OpenCVConfig.cmake` + `opencv_world*.dll`). |
 | **CMake + Ninja** | Bundled with VS 2022, or install standalone. |
 | **NVIDIA GPU driver** | Recent driver so the CUDA dense step runs. CUDA *toolkit* not required (colmap bundles cudart). |
+| **Python 3** (for the ROV Setup page) | Install from python.org with **"Add python.exe to PATH"** checked, then `pip install -r scripts\requirements.txt` (pygame + pytest). The app finds `py -3` automatically; no Python is embedded. |
 
 ## 2. Download the two binary assets (not in git)
 
@@ -57,6 +58,18 @@ Output: `MainUI_26-win64-cuda.zip` at the repo root, and the portable folder at
 > modules — re-run the Qt Maintenance Tool and add them.
 > `-ExecutionPolicy Bypass` is needed because the scripts aren't signed.
 
+## 4b. Enable the ROV Setup (script activation) page
+
+The build bundles the PC-native control-systems scripts into `build-win\bin\scripts\`
+(`thruster.py`, `test_controllers.py`, `axistest.py`, `tests\`). The Pi-side scripts are
+intentionally not included. To make the page work:
+
+1. Install Python 3 (PATH option checked) and `pip install -r scripts\requirements.txt`.
+2. Launch the app → **ROV Setup → Connection Settings** → set **Local scripts** to the
+   bundled `scripts\` folder (next to `MainUI_26.exe`). Leave the Python field blank to use
+   the system `py -3`, or point it at a specific `python.exe`.
+3. The Detect / Thruster / Axis / Pytest buttons should now be enabled.
+
 ## 5. Verify (end-to-end)
 
 1. **Cold launch:** unzip on a *clean* Windows 11 box (no Qt/OpenCV/COLMAP installed) and run
@@ -68,6 +81,10 @@ Output: `MainUI_26-win64-cuda.zip` at the repo root, and the portable folder at
    **Task Manager → Performance → GPU → CUDA** should show load — that's the proof CUDA is on.
    Output `dense\fused.ply` should load in the model viewer.
 4. **Crab detector:** confirm the YOLO model loads (CPU ONNX) without error.
+5. **ROV Setup page:** with a game controller plugged in, click **Detect Controllers**
+   (runs `test_controllers.py`), then **Thruster Control** (runs `thruster.py`). Output should
+   appear in the log with no "no Python interpreter found" / "set a valid folder" errors.
+   **Pytest** should run `tests\` green (proves pygame/pytest are installed correctly).
 
 ## Notes
 

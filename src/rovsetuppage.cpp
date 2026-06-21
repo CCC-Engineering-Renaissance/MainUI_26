@@ -2,6 +2,7 @@
 #include "pilink.h"
 
 #include <QComboBox>
+#include <QCoreApplication>
 #include <QDir>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -421,6 +422,18 @@ QString RovSetupPage::pythonProgram(QStringList *preArgs) const
     const QString overridePath = m_python->text().trimmed();
     if (!overridePath.isEmpty())
         return overridePath;
+
+    // Prefer a relocatable Python runtime bundled next to the binary (so the
+    // scripts run with no system Python install); fall back to system Python.
+    const QString appDir = QCoreApplication::applicationDirPath();
+#if defined(Q_OS_WIN)
+    const QString bundledPy = QDir(appDir).filePath(QStringLiteral("python/python.exe"));
+#else
+    const QString bundledPy = QDir(appDir).filePath(QStringLiteral("python/bin/python3"));
+#endif
+    if (QFileInfo(bundledPy).isExecutable())
+        return bundledPy;
+
 #if defined(Q_OS_WIN)
     const QString py = QStandardPaths::findExecutable(QStringLiteral("py"));
     if (!py.isEmpty()) {
@@ -438,7 +451,19 @@ QString RovSetupPage::pythonProgram(QStringList *preArgs) const
 
 QString RovSetupPage::scriptsDir() const
 {
-    return m_localPath->text().trimmed();
+    // A developer-configured checkout that actually contains the scripts wins;
+    // otherwise fall back to the copy bundled next to the binary.
+    const QString configured = m_localPath->text().trimmed();
+    if (!configured.isEmpty()
+        && QFileInfo(QDir(configured).filePath(QStringLiteral("thruster.py"))).isFile())
+        return configured;
+
+    const QString bundled =
+        QDir(QCoreApplication::applicationDirPath()).filePath(QStringLiteral("scripts"));
+    if (QFileInfo(QDir(bundled).filePath(QStringLiteral("thruster.py"))).isFile())
+        return bundled;
+
+    return configured;
 }
 
 bool RovSetupPage::scriptsDirValid() const

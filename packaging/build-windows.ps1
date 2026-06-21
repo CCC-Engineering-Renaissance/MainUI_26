@@ -75,6 +75,15 @@ if ($cvDll) {
     Write-Warning "No opencv_world*.dll found under $OpenCVDir -- if you built OpenCV as separate modules, copy opencv_core/imgproc/dnn DLLs into $binDir manually."
 }
 
+Write-Host "==> Bundling local control-systems scripts"
+$scriptsSrc = Join-Path $RepoRoot "scripts"
+if (Test-Path $scriptsSrc) {
+    Copy-Item $scriptsSrc (Join-Path $binDir "scripts") -Recurse -Force
+    Write-Host "    -> bundled scripts\ (point the app's 'Local scripts' field here)"
+} else {
+    Write-Warning "No scripts\ folder in repo -- the ROV Setup page's local scripts won't be bundled."
+}
+
 # Sanity: the POST_BUILD steps should already have placed these.
 foreach ($must in @("onnxruntime.dll", "models\crabs_yolov8n.onnx", "tools\win64\colmap.exe")) {
     if (-not (Test-Path (Join-Path $binDir $must))) {

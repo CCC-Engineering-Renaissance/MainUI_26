@@ -2,11 +2,15 @@
 build/
 build-linux/
 build-appimage/
+build-appimage-portable/
 cmake-build-*/
 
 # AppImage packaging
 packaging/.cache/
 *.AppImage
+
+# Bundled relocatable Python runtime (large; staged for packaging, not tracked)
+python/
 
 # Qt Creator user files
 *.user
