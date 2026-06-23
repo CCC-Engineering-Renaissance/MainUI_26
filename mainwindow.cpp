@@ -1120,6 +1120,11 @@ void MainWindow::onCameraFrame(const QImage &image)
 void MainWindow::onCameraConnected()
 {
     ui->latencyLabel->setText("Latency: connected");
+
+    // Push the GUI's current mode to the Pi so the two never disagree. Without
+    // this the server boots at its own DEFAULT_MODE and we'd silently stream a
+    // different resolution than the mode button claims (e.g. full 16 MP @ 10fps).
+    m_cameraReceiver->setMode(m_currentMode);
 }
 
 void MainWindow::onCameraDisconnected()
