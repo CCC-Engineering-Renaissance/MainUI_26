@@ -53,6 +53,7 @@
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
 #include <QtMath>
+#include <algorithm>
 #include <cmath>
 
 /*//%temp
@@ -90,6 +91,13 @@ constexpr double kDepthHoldMinMeters = 2.27;
 constexpr double kDepthHoldMaxMeters = 2.83;
 constexpr double kShallowHoldMinMeters = 0.07;
 constexpr double kShallowHoldMaxMeters = 0.73;
+
+bool isFloatMeasurementUnit(const QString &token)
+{
+    const QString unit = token.toLower();
+    return unit == "kpa" || unit == "pa" || unit == "meters" || unit == "meter" ||
+           unit == "metres" || unit == "metre" || unit == "m" || unit == "cm";
+}
 
 } // namespace
 
@@ -529,6 +537,7 @@ void MainWindow::setupFloatMissionPage()
         appendFloatPacketText(QString::fromUtf8(file.readAll()));
     });
     connect(ui->btnFloatLoadSample, &QPushButton::clicked, this, [this]() {
+        m_floatPackets.clear();
         QStringList rows;
         rows << "EX01 0 float 0.0 kpa 0.00 meters";
         const QVector<double> depths = {
@@ -644,7 +653,13 @@ void MainWindow::appendFloatPacketText(const QString &text)
         FloatPacket packet;
         if (parseFloatPacket(line.trimmed(), &packet)) {
             packet.afterDescent = packet.depthMeters > 0.05;
-            m_floatPackets.push_back(packet);
+            auto existing = std::find_if(m_floatPackets.begin(), m_floatPackets.end(), [&packet](const FloatPacket &p) {
+                return p.company == packet.company && qAbs(p.timeSeconds - packet.timeSeconds) < 0.001;
+            });
+            if (existing != m_floatPackets.end())
+                *existing = packet;
+            else
+                m_floatPackets.push_back(packet);
         }
     }
     std::sort(m_floatPackets.begin(), m_floatPackets.end(), [](const FloatPacket &a, const FloatPacket &b) {
@@ -665,7 +680,10 @@ bool MainWindow::parseFloatPacket(const QString &line, FloatPacket *packet) cons
         parsed.company = tokens.first();
 
     bool gotTime = false;
-    for (const QString &token : tokens) {
+    for (int i = 0; i < tokens.size(); ++i) {
+        const QString &token = tokens[i];
+        if (i + 1 < tokens.size() && isFloatMeasurementUnit(tokens[i + 1]))
+            continue;
         const double seconds = parseFloatTimeSeconds(token);
         if (seconds >= 0.0) {
             parsed.timeSeconds = seconds;
@@ -697,7 +715,7 @@ bool MainWindow::parseFloatPacket(const QString &line, FloatPacket *packet) cons
 
     if (!gotDepth || !gotTime) {
         QVector<double> numbers;
-        QRegularExpression numberRe("-?\\d+(?:\\.\\d+)?");
+        QRegularExpression numberRe("(?<![A-Za-z0-9_.])-?\\d+(?:\\.\\d+)?(?![A-Za-z0-9_.])");
         auto it = numberRe.globalMatch(line);
         while (it.hasNext())
             numbers.push_back(it.next().captured(0).toDouble());
