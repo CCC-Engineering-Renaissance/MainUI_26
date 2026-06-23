@@ -9,13 +9,16 @@
 #include <QDebug>
 #include <QDoubleSpinBox>
 #include <QDir>
+#include <QFile>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QFontDatabase>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QGroupBox>
 #include <QHeaderView>
+#include <QHBoxLayout>
 #include <QAbstractItemView>
 #include <QInputDialog>
 #include <QKeyEvent>
@@ -24,11 +27,13 @@
 #include <QLineEdit>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QNetworkDatagram>
 #include <QPainter>
 #include <QPixmap>
 #include <QPlainTextEdit>
 #include <QProcess>
 #include <QPushButton>
+#include <QRegularExpression>
 #include <QtConcurrent>
 #include <QScrollBar>
 #include <QSpinBox>
@@ -39,6 +44,8 @@
 #include <QTableWidget>
 #include <QTableWidgetItem>
 #include <QTextEdit>
+#include <QTextStream>
+#include <QUdpSocket>
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QtCharts/QChart>
@@ -78,6 +85,11 @@ const PlatformInfo kPlatforms[] = {
     {"Terra Nova", 46.4, -48.4, 91.0},
     {"Hebron", 46.544, -48.498, 93.0},
 };
+
+constexpr double kDepthHoldMinMeters = 2.27;
+constexpr double kDepthHoldMaxMeters = 2.83;
+constexpr double kShallowHoldMinMeters = 0.07;
+constexpr double kShallowHoldMaxMeters = 0.73;
 
 } // namespace
 
@@ -247,9 +259,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_clockTimer->start();
     updateClock(); // show immediately
 
-    // ── Call Float Chart Functions ───────────────────────────────────────────────────────
-    setupPressureChart();
-    setupDepthChart();
+    // ── Float mission station ─────────────────────────────────────────────
+    setupFloatMissionPage();
 
     /*//%temp webcam
     auto cameras = QMediaDevices::videoInputs();
@@ -469,71 +480,440 @@ void MainWindow::setupIcebergPage()
 // Float Page logic
 // ─────────────────────────────────────────────────────────────────────────────
 
+void MainWindow::setupFloatMissionPage()
+{
+    m_floatPortSpin = ui->floatPortSpin;
+    m_floatRxStatus = ui->floatRxStatusLabel;
+    m_floatBottomOffsetSpin = ui->spinFloatBottomOffset;
+    m_floatTopOffsetSpin = ui->spinFloatTopOffset;
+    m_floatPacketInput = ui->txtFloatPacketInput;
+    m_floatPacketTable = ui->floatPacketTable;
+
+    ui->floatMainSplitter->setStretchFactor(0, 3);
+    ui->floatMainSplitter->setStretchFactor(1, 2);
+
+    m_floatSocket = new QUdpSocket(this);
+    connect(m_floatSocket, &QUdpSocket::readyRead, this, [this]() {
+        while (m_floatSocket->hasPendingDatagrams()) {
+            const QByteArray data = m_floatSocket->receiveDatagram().data();
+            appendFloatPacketText(QString::fromUtf8(data));
+        }
+    });
+
+    connect(ui->btnFloatStartReceiver, &QPushButton::clicked, this, [this]() {
+        if (m_floatSocket->state() != QAbstractSocket::UnconnectedState)
+            m_floatSocket->close();
+        const quint16 port = static_cast<quint16>(m_floatPortSpin->value());
+        const bool ok = m_floatSocket->bind(QHostAddress::AnyIPv4, port,
+                                            QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
+        m_floatRxStatus->setText(ok ? QString("Listening on %1").arg(port) : "Bind failed");
+    });
+    connect(ui->btnFloatStopReceiver, &QPushButton::clicked, this, [this]() {
+        m_floatSocket->close();
+        m_floatRxStatus->setText("Receiver idle");
+    });
+    connect(ui->btnFloatAddPackets, &QPushButton::clicked, this, [this]() {
+        appendFloatPacketText(m_floatPacketInput->toPlainText());
+        m_floatPacketInput->clear();
+    });
+    connect(ui->btnFloatImportPackets, &QPushButton::clicked, this, [this]() {
+        const QString path = QFileDialog::getOpenFileName(this, "Import float packets", QString(),
+                                                          "Packet logs (*.txt *.csv *.log);;All files (*)");
+        if (path.isEmpty())
+            return;
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QMessageBox::warning(this, "Float packets", "Could not open selected file.");
+            return;
+        }
+        appendFloatPacketText(QString::fromUtf8(file.readAll()));
+    });
+    connect(ui->btnFloatLoadSample, &QPushButton::clicked, this, [this]() {
+        QStringList rows;
+        rows << "EX01 0 float 0.0 kpa 0.00 meters";
+        const QVector<double> depths = {
+            0.15, 0.80, 1.60, 2.35, 2.48, 2.51, 2.53, 2.50, 2.49, 2.52, 2.51, 1.70, 0.62, 0.42,
+            0.41, 0.40, 0.39, 0.42, 0.41, 0.40, 0.38, 0.90, 1.80, 2.43, 2.50, 2.52, 2.51, 2.49,
+            2.48, 2.51, 2.50, 1.60, 0.58, 0.43, 0.40, 0.41, 0.39, 0.40, 0.42, 0.41};
+        for (int i = 0; i < depths.size(); ++i) {
+            const int t = (i + 1) * 5;
+            const double pressure = depths[i] * 10.05;
+            rows << QString("EX01 %1 float %2 kpa %3 meters")
+                        .arg(t)
+                        .arg(pressure, 0, 'f', 2)
+                        .arg(depths[i], 0, 'f', 2);
+        }
+        appendFloatPacketText(rows.join('\n'));
+    });
+    connect(ui->btnFloatClear, &QPushButton::clicked, this, [this]() {
+        m_floatPackets.clear();
+        rebuildFloatTableAndCharts();
+    });
+    connect(m_floatBottomOffsetSpin, qOverload<double>(&QDoubleSpinBox::valueChanged),
+            this, [this]() { rebuildFloatTableAndCharts(); });
+    connect(m_floatTopOffsetSpin, qOverload<double>(&QDoubleSpinBox::valueChanged),
+            this, [this]() { rebuildFloatTableAndCharts(); });
+
+    setupDepthChart();
+    setupPressureChart();
+    setupFloatDataTable();
+}
+
 void MainWindow::setupPressureChart()
 {
-    auto series = new QLineSeries();
+    m_floatPressureSeries = new QLineSeries();
+    m_floatPressureSeries->setName("Pressure");
+    QPen pen(QColor("#f05a5a"));
+    pen.setWidth(4);
+    m_floatPressureSeries->setPen(pen);
 
-    // Add static data points
-    series->append(0, 5);
-    series->append(5, 10);
-    series->append(10, 5);
-
-    // Create chart
     auto chart = new QChart();
-    chart->addSeries(series);
-    chart->createDefaultAxes();
-
-    chart->setTitle("Pressure Chart");
-
+    chart->addSeries(m_floatPressureSeries);
+    chart->setTitle("Float Pressure Over Time");
+    chart->setTitleFont(QFont("Aileron", 14, QFont::Bold));
     chart->setTheme(QChart::ChartThemeBlueCerulean);
-
-    chart->axes(Qt::Horizontal).first()->setRange(0, 10);
-    chart->axes(Qt::Vertical).first()->setRange(0, 10);
-    chart->axes(Qt::Horizontal).back()->setTitleText("Time (seconds)");
-    chart->axes(Qt::Vertical).back()->setTitleText("Pressure (kpa)");
-
-    QPen pen(Qt::red);
-    pen.setWidth(3);
-    series->setPen(pen);
-    series->setVisible(true);
-
-    // Attach to the UI widget (Promoted QChartView)
+    chart->legend()->setVisible(false);
+    auto *axisX = new QValueAxis(chart);
+    axisX->setTitleText("Time (seconds)");
+    axisX->setTitleFont(QFont("Aileron", 11, QFont::Bold));
+    axisX->setLabelsFont(QFont("Aileron", 10));
+    axisX->setRange(0, 10);
+    auto *axisY = new QValueAxis(chart);
+    axisY->setTitleText("Pressure (kPa)");
+    axisY->setTitleFont(QFont("Aileron", 11, QFont::Bold));
+    axisY->setLabelsFont(QFont("Aileron", 10));
+    axisY->setRange(0, 30);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    m_floatPressureSeries->attachAxis(axisX);
+    m_floatPressureSeries->attachAxis(axisY);
     ui->pressureChart->setChart(chart);
+    ui->pressureChart->setRenderHint(QPainter::Antialiasing);
 }
 
 void MainWindow::setupDepthChart()
 {
-    auto series = new QLineSeries();
+    m_floatDepthSeries = new QLineSeries();
+    m_floatDepthSeries->setName("Depth");
+    QPen pen(QColor("#00ccff"));
+    pen.setWidth(4);
+    m_floatDepthSeries->setPen(pen);
 
-    // Add static data points
-    series->append(1, 5);
-    series->append(2, 10);
-    series->append(3, 5);
-
-    // Create chart
     auto chart = new QChart();
-    chart->addSeries(series);
-    chart->createDefaultAxes();
-
-    chart->setTitle("Depth Chart");
-
+    chart->addSeries(m_floatDepthSeries);
+    chart->setTitle("Float Depth Over Time");
+    chart->setTitleFont(QFont("Aileron", 15, QFont::Bold));
     chart->setTheme(QChart::ChartThemeBlueCerulean);
-
-    chart->axes(Qt::Horizontal).first()->setRange(0, 10);
-    chart->axes(Qt::Vertical).first()->setRange(0, 10);
-    chart->axes(Qt::Horizontal).back()->setTitleText("Time (seconds)");
-    chart->axes(Qt::Vertical).back()->setTitleText("Depth (meters)");
-
-    QPen pen(Qt::red);
-    pen.setWidth(3);
-    series->setPen(pen);
-    series->setVisible(true);
-
-    // Attach to the UI widget (Promoted QChartView)
+    chart->legend()->setVisible(false);
+    auto *axisX = new QValueAxis(chart);
+    axisX->setTitleText("Time (seconds)");
+    axisX->setTitleFont(QFont("Aileron", 11, QFont::Bold));
+    axisX->setLabelsFont(QFont("Aileron", 10));
+    axisX->setRange(0, 10);
+    auto *axisY = new QValueAxis(chart);
+    axisY->setTitleText("Depth (meters)");
+    axisY->setTitleFont(QFont("Aileron", 11, QFont::Bold));
+    axisY->setLabelsFont(QFont("Aileron", 10));
+    axisY->setRange(0, 3.2);
+    axisY->setReverse(true);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    m_floatDepthSeries->attachAxis(axisX);
+    m_floatDepthSeries->attachAxis(axisY);
     ui->depthChart->setChart(chart);
+    ui->depthChart->setRenderHint(QPainter::Antialiasing);
 }
 
-void MainWindow::setupFloatDataTable() {}
+void MainWindow::setupFloatDataTable()
+{
+    m_floatPacketTable->setColumnCount(7);
+    m_floatPacketTable->setHorizontalHeaderLabels({"#", "Company", "Time (s)", "Depth (m)", "Pressure (kPa)", "Phase", "Raw packet"});
+    m_floatPacketTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    m_floatPacketTable->horizontalHeader()->setStretchLastSection(true);
+    m_floatPacketTable->verticalHeader()->setVisible(false);
+    m_floatPacketTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_floatPacketTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    rebuildFloatTableAndCharts();
+}
+
+void MainWindow::appendFloatPacketText(const QString &text)
+{
+    const QStringList lines = text.split(QRegularExpression("[\r\n]+"), Qt::SkipEmptyParts);
+    for (const QString &line : lines) {
+        FloatPacket packet;
+        if (parseFloatPacket(line.trimmed(), &packet)) {
+            packet.afterDescent = packet.depthMeters > 0.05;
+            m_floatPackets.push_back(packet);
+        }
+    }
+    std::sort(m_floatPackets.begin(), m_floatPackets.end(), [](const FloatPacket &a, const FloatPacket &b) {
+        return a.timeSeconds < b.timeSeconds;
+    });
+    rebuildFloatTableAndCharts();
+}
+
+bool MainWindow::parseFloatPacket(const QString &line, FloatPacket *packet) const
+{
+    if (line.isEmpty() || !packet)
+        return false;
+
+    FloatPacket parsed;
+    parsed.raw = line;
+    const QStringList tokens = line.split(QRegularExpression("[,\\s]+"), Qt::SkipEmptyParts);
+    if (!tokens.isEmpty())
+        parsed.company = tokens.first();
+
+    bool gotTime = false;
+    for (const QString &token : tokens) {
+        const double seconds = parseFloatTimeSeconds(token);
+        if (seconds >= 0.0) {
+            parsed.timeSeconds = seconds;
+            gotTime = true;
+            break;
+        }
+    }
+
+    QRegularExpression depthRe("(-?\\d+(?:\\.\\d+)?)\\s*(meters?|metres?|m|cm)\\b",
+                               QRegularExpression::CaseInsensitiveOption);
+    auto depthMatch = depthRe.match(line);
+    bool gotDepth = depthMatch.hasMatch();
+    if (gotDepth) {
+        parsed.depthMeters = depthMatch.captured(1).toDouble();
+        const QString unit = depthMatch.captured(2).toLower();
+        if (unit == "cm")
+            parsed.depthMeters /= 100.0;
+    }
+
+    QRegularExpression pressureRe("(-?\\d+(?:\\.\\d+)?)\\s*(kpa|pa)\\b",
+                                  QRegularExpression::CaseInsensitiveOption);
+    auto pressureMatch = pressureRe.match(line);
+    if (pressureMatch.hasMatch()) {
+        parsed.pressureKpa = pressureMatch.captured(1).toDouble();
+        if (pressureMatch.captured(2).compare("pa", Qt::CaseInsensitive) == 0)
+            parsed.pressureKpa /= 1000.0;
+        parsed.hasPressure = true;
+    }
+
+    if (!gotDepth || !gotTime) {
+        QVector<double> numbers;
+        QRegularExpression numberRe("-?\\d+(?:\\.\\d+)?");
+        auto it = numberRe.globalMatch(line);
+        while (it.hasNext())
+            numbers.push_back(it.next().captured(0).toDouble());
+        if (!gotTime && !numbers.isEmpty()) {
+            parsed.timeSeconds = numbers.first();
+            gotTime = true;
+        }
+        if (!gotDepth && numbers.size() >= 2) {
+            parsed.depthMeters = numbers.last();
+            gotDepth = true;
+        }
+    }
+
+    if (!gotTime || !gotDepth)
+        return false;
+
+    *packet = parsed;
+    return true;
+}
+
+double MainWindow::parseFloatTimeSeconds(const QString &token)
+{
+    if (token.contains(':')) {
+        const QStringList parts = token.split(':');
+        bool ok = false;
+        double seconds = 0.0;
+        if (parts.size() == 3) {
+            seconds = parts[0].toDouble(&ok) * 3600.0;
+            bool ok2 = false, ok3 = false;
+            seconds += parts[1].toDouble(&ok2) * 60.0;
+            seconds += parts[2].toDouble(&ok3);
+            return ok && ok2 && ok3 ? seconds : -1.0;
+        }
+        if (parts.size() == 2) {
+            seconds = parts[0].toDouble(&ok) * 60.0;
+            bool ok2 = false;
+            seconds += parts[1].toDouble(&ok2);
+            return ok && ok2 ? seconds : -1.0;
+        }
+        return -1.0;
+    }
+
+    bool ok = false;
+    const double value = token.toDouble(&ok);
+    return ok ? value : -1.0;
+}
+
+void MainWindow::rebuildFloatTableAndCharts()
+{
+    if (m_floatPacketTable) {
+        const double deepMin = kDepthHoldMinMeters - (m_floatBottomOffsetSpin ? m_floatBottomOffsetSpin->value() : 0.0) / 100.0;
+        const double deepMax = kDepthHoldMaxMeters - (m_floatBottomOffsetSpin ? m_floatBottomOffsetSpin->value() : 0.0) / 100.0;
+        const double shallowMin = kShallowHoldMinMeters + (m_floatTopOffsetSpin ? m_floatTopOffsetSpin->value() : 0.0) / 100.0;
+        const double shallowMax = kShallowHoldMaxMeters + (m_floatTopOffsetSpin ? m_floatTopOffsetSpin->value() : 0.0) / 100.0;
+        m_floatPacketTable->setRowCount(m_floatPackets.size());
+        for (int row = 0; row < m_floatPackets.size(); ++row) {
+            const FloatPacket &p = m_floatPackets[row];
+            const QString phase = !p.afterDescent ? "pre-descent" :
+                                      (p.depthMeters >= deepMin && p.depthMeters <= deepMax) ? "2.5 m hold" :
+                                      (p.depthMeters >= shallowMin && p.depthMeters <= shallowMax) ? "40 cm hold" :
+                                      "profile";
+            const QStringList values = {
+                QString::number(row + 1),
+                p.company,
+                QString::number(p.timeSeconds, 'f', 1),
+                QString::number(p.depthMeters, 'f', 2),
+                p.hasPressure ? QString::number(p.pressureKpa, 'f', 2) : QString(),
+                phase,
+                p.raw
+            };
+            for (int col = 0; col < values.size(); ++col)
+                m_floatPacketTable->setItem(row, col, new QTableWidgetItem(values[col]));
+        }
+    }
+
+    if (m_floatDepthSeries)
+        m_floatDepthSeries->clear();
+    if (m_floatPressureSeries)
+        m_floatPressureSeries->clear();
+
+    double maxTime = 10.0;
+    double maxDepth = 3.2;
+    double maxPressure = 30.0;
+    for (const FloatPacket &p : m_floatPackets) {
+        if (m_floatDepthSeries)
+            m_floatDepthSeries->append(p.timeSeconds, p.depthMeters);
+        if (p.hasPressure && m_floatPressureSeries)
+            m_floatPressureSeries->append(p.timeSeconds, p.pressureKpa);
+        maxTime = qMax(maxTime, p.timeSeconds);
+        maxDepth = qMax(maxDepth, p.depthMeters + 0.25);
+        if (p.hasPressure)
+            maxPressure = qMax(maxPressure, p.pressureKpa + 5.0);
+    }
+
+    if (ui->depthChart->chart() && !ui->depthChart->chart()->axes(Qt::Horizontal).isEmpty())
+        static_cast<QValueAxis *>(ui->depthChart->chart()->axes(Qt::Horizontal).first())->setRange(0, maxTime);
+    if (ui->depthChart->chart() && !ui->depthChart->chart()->axes(Qt::Vertical).isEmpty())
+        static_cast<QValueAxis *>(ui->depthChart->chart()->axes(Qt::Vertical).first())->setRange(0, maxDepth);
+    if (ui->pressureChart->chart() && !ui->pressureChart->chart()->axes(Qt::Horizontal).isEmpty())
+        static_cast<QValueAxis *>(ui->pressureChart->chart()->axes(Qt::Horizontal).first())->setRange(0, maxTime);
+    if (ui->pressureChart->chart() && !ui->pressureChart->chart()->axes(Qt::Vertical).isEmpty())
+        static_cast<QValueAxis *>(ui->pressureChart->chart()->axes(Qt::Vertical).first())->setRange(0, maxPressure);
+
+}
+
+int MainWindow::bestFloatProfileScore(int profileNumber, QStringList *evidence) const
+{
+    if (evidence)
+        evidence->clear();
+    if (m_floatPackets.size() < 2) {
+        if (evidence)
+            *evidence << "  No profile data parsed yet.";
+        return 0;
+    }
+
+    const double deepMin = kDepthHoldMinMeters - m_floatBottomOffsetSpin->value() / 100.0;
+    const double deepMax = kDepthHoldMaxMeters - m_floatBottomOffsetSpin->value() / 100.0;
+    const double shallowMin = kShallowHoldMinMeters + m_floatTopOffsetSpin->value() / 100.0;
+    const double shallowMax = kShallowHoldMaxMeters + m_floatTopOffsetSpin->value() / 100.0;
+
+    int start = 0;
+    int foundProfiles = 0;
+    while (start < m_floatPackets.size()) {
+        int deepIndex = -1;
+        for (int i = start; i < m_floatPackets.size(); ++i) {
+            if (m_floatPackets[i].depthMeters >= deepMin) {
+                deepIndex = i;
+                break;
+            }
+        }
+        if (deepIndex < 0)
+            break;
+
+        int shallowIndex = -1;
+        for (int i = deepIndex + 1; i < m_floatPackets.size(); ++i) {
+            if (m_floatPackets[i].depthMeters <= shallowMax) {
+                shallowIndex = i;
+                break;
+            }
+        }
+        if (shallowIndex < 0)
+            break;
+
+        ++foundProfiles;
+        int end = m_floatPackets.size() - 1;
+        for (int i = shallowIndex + 1; i < m_floatPackets.size(); ++i) {
+            if (m_floatPackets[i].depthMeters >= deepMin) {
+                end = i - 1;
+                break;
+            }
+        }
+
+        if (foundProfiles == profileNumber) {
+            int score = 10;
+            if (evidence)
+                *evidence << QString("  Completed descent/ascent between %1s and %2s: +10")
+                                  .arg(m_floatPackets[deepIndex].timeSeconds, 0, 'f', 1)
+                                  .arg(m_floatPackets[shallowIndex].timeSeconds, 0, 'f', 1);
+
+            const bool deepHold = hasConsecutiveHold(deepMin, deepMax, deepIndex, end);
+            const bool shallowHold = hasConsecutiveHold(shallowMin, shallowMax, shallowIndex, end);
+            if (deepHold) {
+                score += 5;
+                if (evidence)
+                    *evidence << "  2.5 m hold has 7 sequential packets over 30 seconds: +5";
+            } else if (evidence) {
+                *evidence << "  2.5 m hold evidence missing or not continuous.";
+            }
+            if (shallowHold) {
+                score += 5;
+                if (evidence)
+                    *evidence << "  40 cm hold has 7 sequential packets over 30 seconds: +5";
+            } else if (evidence) {
+                *evidence << "  40 cm hold evidence missing or not continuous.";
+            }
+
+            bool breached = false;
+            for (int i = deepIndex; i <= end && i < m_floatPackets.size(); ++i) {
+                if (m_floatPackets[i].depthMeters < shallowMin) {
+                    breached = true;
+                    break;
+                }
+            }
+            if (breached) {
+                score = qMax(0, score - 5);
+                if (evidence)
+                    *evidence << "  Possible surface/ice contact from shallow packet: -5";
+            }
+            return score;
+        }
+
+        start = qMax(shallowIndex + 1, end + 1);
+    }
+
+    if (evidence)
+        *evidence << QString("  Profile %1 not detected yet.").arg(profileNumber);
+    return 0;
+}
+
+bool MainWindow::hasConsecutiveHold(double minDepth, double maxDepth, int startIndex, int endIndex) const
+{
+    for (int i = qMax(0, startIndex); i <= endIndex && i < m_floatPackets.size(); ++i) {
+        if (m_floatPackets[i].depthMeters < minDepth || m_floatPackets[i].depthMeters > maxDepth)
+            continue;
+        int count = 1;
+        const double startTime = m_floatPackets[i].timeSeconds;
+        for (int j = i + 1; j <= endIndex && j < m_floatPackets.size(); ++j) {
+            if (m_floatPackets[j].depthMeters < minDepth || m_floatPackets[j].depthMeters > maxDepth)
+                break;
+            ++count;
+            if (count >= 7 && m_floatPackets[j].timeSeconds - startTime >= 30.0)
+                return true;
+        }
+    }
+    return false;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Home (back) buttons

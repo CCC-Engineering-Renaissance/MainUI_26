@@ -84,7 +84,7 @@
        <number>2</number>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <property name="styleSheet">
@@ -1202,7 +1202,7 @@ font-weight: bold;</string>
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer">
+           <spacer name="photogrammetryHorizontalSpacer">
             <property name="orientation">
              <enum>Qt::Orientation::Horizontal</enum>
             </property>
@@ -2409,111 +2409,314 @@ font-weight: bold;</string>
        </layout>
       </widget>
       <widget class="QWidget" name="floatPage">
-       <layout class="QGridLayout" name="gridLayout_7">
-        <item row="1" column="1">
-         <widget class="QFrame" name="frame_3">
-          <property name="frameShape">
-           <enum>QFrame::Shape::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Raised</enum>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <widget class="QChartView" name="depthChart"/>
-           </item>
-           <item>
-            <widget class="QChartView" name="pressureChart">
-             <property name="focusPolicy">
-              <enum>Qt::FocusPolicy::TabFocus</enum>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::Shape::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Shadow::Plain</enum>
-             </property>
-             <property name="midLineWidth">
-              <number>0</number>
-             </property>
-             <property name="backgroundBrush">
-              <brush brushstyle="SolidPattern">
-               <color alpha="255">
-                <red>39</red>
-                <green>76</green>
-                <blue>98</blue>
-               </color>
-              </brush>
-             </property>
-             <property name="foregroundBrush">
-              <brush brushstyle="NoBrush">
-               <color alpha="255">
-                <red>0</red>
-                <green>0</green>
-                <blue>0</blue>
-               </color>
-              </brush>
-             </property>
-             <property name="interactive">
-              <bool>false</bool>
-             </property>
-             <property name="renderHints">
-              <set>QPainter::RenderHint::Antialiasing</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+       <layout class="QVBoxLayout" name="floatPageLayout">
+        <property name="leftMargin">
+         <number>12</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>12</number>
+        </property>
+        <property name="bottomMargin">
+         <number>12</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" name="floatHeaderLayout">
+          <item>
+           <widget class="QToolButton" name="homePageButton_5">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Comic Sans MS</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="popupMode">
+             <enum>QToolButton::ToolButtonPopupMode::DelayedPopup</enum>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonStyle::ToolButtonFollowStyle</enum>
+            </property>
+            <property name="autoRaise">
+             <bool>true</bool>
+            </property>
+            <property name="arrowType">
+             <enum>Qt::ArrowType::LeftArrow</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="floatTitleLabel">
+            <property name="font">
+             <font>
+              <family>Aileron</family>
+              <pointsize>24</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Float Page</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="floatHeaderSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
         </item>
-        <item row="0" column="0">
-         <widget class="QToolButton" name="homePageButton_5">
-          <property name="minimumSize">
-           <size>
-            <width>40</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>40</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-           </font>
-          </property>
+        <item>
+         <widget class="QLabel" name="floatInstructionLabel">
           <property name="text">
-           <string>...</string>
+           <string/>
           </property>
-          <property name="popupMode">
-           <enum>QToolButton::ToolButtonPopupMode::DelayedPopup</enum>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonStyle::ToolButtonFollowStyle</enum>
-          </property>
-          <property name="autoRaise">
+          <property name="wordWrap">
            <bool>true</bool>
           </property>
-          <property name="arrowType">
-           <enum>Qt::ArrowType::LeftArrow</enum>
-          </property>
          </widget>
         </item>
-        <item row="1" column="2">
-         <widget class="QFrame" name="frame_4">
-          <property name="frameShape">
-           <enum>QFrame::Shape::StyledPanel</enum>
+        <item>
+         <layout class="QHBoxLayout" name="floatControlsLayout">
+          <item>
+           <widget class="QSpinBox" name="floatPortSpin">
+            <property name="toolTip">
+             <string>UDP port used by the float radio/receiver bridge.</string>
+            </property>
+            <property name="prefix">
+             <string>UDP </string>
+            </property>
+            <property name="minimum">
+             <number>1024</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="value">
+             <number>5007</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnFloatStartReceiver">
+            <property name="text">
+             <string>Start Receiver</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnFloatStopReceiver">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnFloatImportPackets">
+            <property name="text">
+             <string>Import Packets</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnFloatAddPackets">
+            <property name="text">
+             <string>Add Pasted Packets</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnFloatLoadSample">
+            <property name="text">
+             <string>Load Sample</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnFloatClear">
+            <property name="text">
+             <string>Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="floatRxStatusLabel">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Receiver idle</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="floatOffsetLayout">
+          <item>
+           <widget class="QLabel" name="floatBottomOffsetLabel">
+            <property name="text">
+             <string>Depth sensor above float bottom:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="spinFloatBottomOffset">
+            <property name="toolTip">
+             <string>Used to adjust the 2.5 m bottom-of-float scoring range.</string>
+            </property>
+            <property name="suffix">
+             <string> cm</string>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="floatTopOffsetLabel">
+            <property name="text">
+             <string>Depth sensor below float top:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QDoubleSpinBox" name="spinFloatTopOffset">
+            <property name="toolTip">
+             <string>Used to adjust the 40 cm top-of-float scoring range.</string>
+            </property>
+            <property name="suffix">
+             <string> cm</string>
+            </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="floatOffsetSpacer">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSplitter" name="floatMainSplitter">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Raised</enum>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <widget class="QTableView" name="floatDataTable"/>
-           </item>
-          </layout>
+          <widget class="QWidget" name="floatPacketPanel">
+           <layout class="QVBoxLayout" name="floatPacketPanelLayout">
+            <item>
+             <widget class="QLabel" name="floatPacketInputLabel">
+              <property name="text">
+               <string>Packet input / import preview</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="txtFloatPacketInput">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>90</height>
+               </size>
+              </property>
+              <property name="placeholderText">
+               <string>Paste packets one per line. Example: EX01 1:51:42 UTC 9.8 kpa 1.00 meters</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="floatPacketTableLabel">
+              <property name="text">
+               <string>Parsed packets to show the judge</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTableWidget" name="floatPacketTable">
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="floatGraphPanel">
+           <layout class="QVBoxLayout" name="floatGraphPanelLayout">
+            <item>
+             <widget class="QLabel" name="floatGraphLabel">
+              <property name="text">
+               <string>Depth and pressure over time</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QChartView" name="depthChart">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>330</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QChartView" name="pressureChart">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>260</height>
+               </size>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::FocusPolicy::TabFocus</enum>
+              </property>
+              <property name="interactive">
+               <bool>false</bool>
+              </property>
+              <property name="renderHints">
+               <set>QPainter::RenderHint::Antialiasing</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>

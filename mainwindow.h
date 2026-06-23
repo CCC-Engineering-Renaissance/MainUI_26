@@ -39,7 +39,10 @@ class QGraphicsView;
 class QLCDNumber;
 class QLineEdit;
 class QPlainTextEdit;
+class QSpinBox;
 class QTableWidget;
+class QTextEdit;
+class QUdpSocket;
 
 class MainWindow : public QMainWindow
 {
@@ -159,10 +162,27 @@ private:
     void setActiveCamButton(const QString &name);
     void updateModeButton();
 
-    // Helper for float charts
+    // Float mission station
+    struct FloatPacket {
+        QString raw;
+        QString company;
+        double timeSeconds = 0.0;
+        double depthMeters = 0.0;
+        double pressureKpa = 0.0;
+        bool hasPressure = false;
+        bool afterDescent = false;
+    };
+
+    void setupFloatMissionPage();
     void setupPressureChart();
     void setupDepthChart();
     void setupFloatDataTable();
+    void appendFloatPacketText(const QString &text);
+    bool parseFloatPacket(const QString &line, FloatPacket *packet) const;
+    void rebuildFloatTableAndCharts();
+    int bestFloatProfileScore(int profileNumber, QStringList *evidence) const;
+    bool hasConsecutiveHold(double minDepth, double maxDepth, int startIndex, int endIndex) const;
+    static double parseFloatTimeSeconds(const QString &token);
     void setupIcebergPage();
 
     // Tactical Map
@@ -184,6 +204,17 @@ private:
     QDoubleSpinBox *m_icebergHeadingSpin = nullptr;
     QTableWidget *m_platformThreatTable = nullptr;
     QPlainTextEdit *m_judgeSummary = nullptr;
+
+    QUdpSocket *m_floatSocket = nullptr;
+    QLineSeries *m_floatDepthSeries = nullptr;
+    QLineSeries *m_floatPressureSeries = nullptr;
+    QTableWidget *m_floatPacketTable = nullptr;
+    QTextEdit *m_floatPacketInput = nullptr;
+    QLabel *m_floatRxStatus = nullptr;
+    QSpinBox *m_floatPortSpin = nullptr;
+    QDoubleSpinBox *m_floatBottomOffsetSpin = nullptr;
+    QDoubleSpinBox *m_floatTopOffsetSpin = nullptr;
+    QVector<FloatPacket> m_floatPackets;
 
     void updateIcebergTracking(double iceX,
                                double iceY,
