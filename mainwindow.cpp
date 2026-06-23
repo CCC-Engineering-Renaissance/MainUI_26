@@ -7,21 +7,27 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QDoubleSpinBox>
 #include <QDir>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QFontDatabase>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QHeaderView>
+#include <QAbstractItemView>
 #include <QInputDialog>
 #include <QKeyEvent>
 #include <QLCDNumber>
 #include <QLabel>
+#include <QLineEdit>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QPainter>
 #include <QPixmap>
+#include <QPlainTextEdit>
 #include <QProcess>
-#include <QProgressBar>
 #include <QPushButton>
 #include <QtConcurrent>
 #include <QScrollBar>
@@ -30,6 +36,8 @@
 #include <QStandardPaths>
 #include <QString>
 #include <QSysInfo>
+#include <QTableWidget>
+#include <QTableWidgetItem>
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -37,6 +45,7 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
+#include <QtMath>
 #include <cmath>
 
 /*//%temp
@@ -55,6 +64,21 @@ bool isRealColmap(const QString &path)
         return false;
     return probe.readAll().contains("Structure-from-Motion");
 }
+
+struct PlatformInfo {
+    const char *name;
+    double latitude;
+    double longitude;
+    double depthMeters;
+};
+
+const PlatformInfo kPlatforms[] = {
+    {"Hibernia", 43.7504, -48.7819, 78.0},
+    {"Sea Rose", 46.7895, -48.1417, 107.0},
+    {"Terra Nova", 46.4, -48.4, 91.0},
+    {"Hebron", 46.544, -48.498, 93.0},
+};
+
 } // namespace
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -87,8 +111,11 @@ MainWindow::MainWindow(QWidget *parent)
     resize(1200, 800);
     setMinimumSize(900, 600);
 
+    setupIcebergPage();
+
     m_tacticalScene = new QGraphicsScene(this);
-    ui->tacticalview->setScene(m_tacticalScene);
+    if (m_tacticalView)
+        m_tacticalView->setScene(m_tacticalScene);
 
     // 1. Plot all 4 Platforms
     m_tacticalScene->addEllipse(50, 50, 15, 15, QPen(Qt::black), QBrush(Qt::darkGray));   // Plat 1
@@ -102,6 +129,7 @@ MainWindow::MainWindow(QWidget *parent)
         0, 0, 0, 0, QPen(Qt::red, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     m_icebergPerimeter = m_tacticalScene->addPolygon(QPolygonF(), QPen(Qt::cyan, 1, Qt::DashLine));
     // ------------------------------------------------------
+    updateIcebergAnalysis();
 
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -384,6 +412,57 @@ void MainWindow::on_ednaPushButton_clicked()
 void MainWindow::on_floatPushButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(5);
+}
+
+void MainWindow::setupIcebergPage()
+{
+    m_tacticalView = ui->tacticalview;
+    m_liveDepthLcd = ui->lcdLiveDepth;
+    m_keelDepthLcds[0] = ui->lcdKeelDepth1;
+    m_keelDepthLcds[1] = ui->lcdKeelDepth2;
+    m_keelDepthLcds[2] = ui->lcdKeelDepth3;
+    m_keelDepthLcds[3] = ui->lcdKeelDepth4;
+    m_keelDepthLcds[4] = ui->lcdKeelDepth5;
+    m_surveyNumberEdits[0] = ui->lineSurveyNumber1;
+    m_surveyNumberEdits[1] = ui->lineSurveyNumber2;
+    m_surveyNumberEdits[2] = ui->lineSurveyNumber3;
+    m_surveyNumberEdits[3] = ui->lineSurveyNumber4;
+    m_surveyNumberEdits[4] = ui->lineSurveyNumber5;
+    m_manualKeelSpin = ui->spinFinalKeelDepth;
+    m_icebergLatSpin = ui->spinIcebergLatitude;
+    m_icebergLonSpin = ui->spinIcebergLongitude;
+    m_icebergHeadingSpin = ui->spinIcebergHeading;
+    m_platformThreatTable = ui->tablePlatformThreats;
+    m_judgeSummary = ui->txtJudgeSummary;
+
+    for (QLCDNumber *lcd : m_keelDepthLcds)
+        if (lcd)
+            lcd->display(0.0);
+
+    if (m_platformThreatTable) {
+        m_platformThreatTable->verticalHeader()->setVisible(false);
+        m_platformThreatTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        m_platformThreatTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        m_platformThreatTable->setSelectionMode(QAbstractItemView::NoSelection);
+    }
+
+    if (m_tacticalView)
+        m_tacticalView->setRenderHint(QPainter::Antialiasing);
+
+    for (QLineEdit *edit : m_surveyNumberEdits) {
+        if (edit)
+            connect(edit, &QLineEdit::textChanged, this, &MainWindow::updateIcebergAnalysis);
+    }
+    connect(m_icebergLatSpin, qOverload<double>(&QDoubleSpinBox::valueChanged),
+            this, &MainWindow::updateIcebergAnalysis);
+    connect(m_icebergLonSpin, qOverload<double>(&QDoubleSpinBox::valueChanged),
+            this, &MainWindow::updateIcebergAnalysis);
+    connect(m_icebergHeadingSpin, qOverload<double>(&QDoubleSpinBox::valueChanged),
+            this, &MainWindow::updateIcebergAnalysis);
+    connect(m_manualKeelSpin, qOverload<double>(&QDoubleSpinBox::valueChanged),
+            this, &MainWindow::updateIcebergAnalysis);
+
+    updateIcebergAnalysis();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -870,40 +949,12 @@ void MainWindow::updateIcebergTracking(double iceX,
         poly << QPointF(perimeterPoints[i].x(), -perimeterPoints[i].y());
     }
     m_icebergPerimeter->setPolygon(poly);
-    // ---------------------------------------
 
-    // 2. Calculate Distance to Platforms for Threat Level
-    QPointF platforms[4] = {QPointF(50, -50),
-                            QPointF(-100, -80),
-                            QPointF(120, 60),
-                            QPointF(-80, 90)};
-    QProgressBar *threatBars[4] = {ui->ProgThreat1,
-                                   ui->ProgThreat2,
-                                   ui->ProgThreat3,
-                                   ui->ProgThreat4};
-
-    double threatRadius = 150.0;
-
-    for (int i = 0; i < 4; i++) {
-        double dist = qSqrt(qPow(platforms[i].x() - iceX, 2) + qPow(platforms[i].y() - (-iceY), 2));
-
-        int threatPercent = 0;
-        if (dist < threatRadius) {
-            threatPercent = 100 - static_cast<int>((dist / threatRadius) * 100);
-        }
-        threatBars[i]->setValue(threatPercent);
-    }
-
-    // 3. Subsea Asset Threat
-    double subseaAssetDepth = 85.0;
-
-    if (maxKeelDepth >= subseaAssetDepth) {
-        ui->progThreatSubsea->setValue(100);
-        ui->progThreatSubsea->setStyleSheet("QProgressBar::chunk { background-color: red; }");
-    } else {
-        ui->progThreatSubsea->setValue(0);
-        ui->progThreatSubsea->setStyleSheet("QProgressBar::chunk { background-color: green; }");
-    }
+    if (m_manualKeelSpin && maxKeelDepth > 0.0)
+        m_manualKeelSpin->setValue(maxKeelDepth);
+    if (m_icebergHeadingSpin)
+        m_icebergHeadingSpin->setValue(std::fmod(headingDeg + 360.0, 360.0));
+    updateIcebergAnalysis();
 }
 
 void MainWindow::on_btnRecordDepth_clicked()
@@ -918,27 +969,13 @@ void MainWindow::on_btnRecordDepth_clicked()
         m_maxKeelDepth = currentLiveDepth;
     }
 
-    switch (m_currentDepthIndex) {
-    case 0:
-        ui->lcdKeelDepth1->display(currentLiveDepth);
-        break;
-    case 1:
-        ui->lcdKeelDepth2->display(currentLiveDepth);
-        break;
-    case 2:
-        ui->lcdKeelDepth3->display(currentLiveDepth);
-        break;
-    case 3:
-        ui->lcdKeelDepth4->display(currentLiveDepth);
-        break;
-    case 4:
-        ui->lcdKeelDepth5->display(currentLiveDepth);
-        // Once the 5th point is recorded, you have the final max depth.
-        // updateIcebergTracking(..., m_maxKeelDepth, ...);
-        break;
-    }
+    if (m_keelDepthLcds[m_currentDepthIndex])
+        m_keelDepthLcds[m_currentDepthIndex]->display(currentLiveDepth);
+    if (m_manualKeelSpin)
+        m_manualKeelSpin->setValue(m_maxKeelDepth);
 
     m_currentDepthIndex++;
+    updateIcebergAnalysis();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1467,80 +1504,154 @@ void MainWindow::convertAndLoadModel()
 // Instantly updates the live LCD whenever a UDP packet arrives
 void MainWindow::updateLiveDepthDisplay(double depth)
 {
-    ui->lcdLiveDepth->display(depth);
+    m_currentDepth = depth;
+    if (m_liveDepthLcd)
+        m_liveDepthLcd->display(depth);
 }
 
 // Steps the tracker backward one slot and clears the screen
 void MainWindow::on_btnUndoDepth_clicked()
 {
     if (m_currentDepthIndex > 0) {
-        // Move the hidden tracker back by 1
         m_currentDepthIndex--;
+        if (m_keelDepthLcds[m_currentDepthIndex])
+            m_keelDepthLcds[m_currentDepthIndex]->display(0);
 
-        // Clear the specific LCD screen so the pilot knows it is empty
-        switch (m_currentDepthIndex) {
-        case 0:
-            ui->lcdKeelDepth1->display(0);
-            break;
-        case 1:
-            ui->lcdKeelDepth2->display(0);
-            break;
-        case 2:
-            ui->lcdKeelDepth3->display(0);
-            break;
-        case 3:
-            ui->lcdKeelDepth4->display(0);
-            break;
-        case 4:
-            ui->lcdKeelDepth5->display(0);
-            break;
+        m_maxKeelDepth = 0.0;
+        for (int i = 0; i < m_currentDepthIndex; ++i) {
+            if (m_keelDepthLcds[i])
+                m_maxKeelDepth = qMax(m_maxKeelDepth, m_keelDepthLcds[i]->value());
         }
+        if (m_manualKeelSpin)
+            m_manualKeelSpin->setValue(m_maxKeelDepth);
+        updateIcebergAnalysis();
     }
 }
-// Instantly moves the blue dot and calculates real-time threat levels
+
+void MainWindow::updateIcebergAnalysis()
+{
+    if (!m_platformThreatTable || !m_manualKeelSpin || !m_icebergLatSpin
+        || !m_icebergLonSpin || !m_icebergHeadingSpin)
+        return;
+
+    const double icebergLat = m_icebergLatSpin->value();
+    const double icebergLon = m_icebergLonSpin->value();
+    const double headingRad = qDegreesToRadians(m_icebergHeadingSpin->value());
+    const double keelDepth = m_manualKeelSpin->value();
+    const double trackX = qSin(headingRad);
+    const double trackY = qCos(headingRad);
+
+    auto closestApproachNm = [&](const PlatformInfo &platform) {
+        const double meanLatRad = qDegreesToRadians((icebergLat + platform.latitude) / 2.0);
+        const double dx = (platform.longitude - icebergLon) * 60.0 * qCos(meanLatRad);
+        const double dy = (platform.latitude - icebergLat) * 60.0;
+        const double alongTrack = dx * trackX + dy * trackY;
+        if (alongTrack < 0.0)
+            return std::hypot(dx, dy);
+        const double crossTrack = dx * trackY - dy * trackX;
+        return qAbs(crossTrack);
+    };
+
+    auto surfaceThreat = [&](double distanceNm, double platformDepth) {
+        if (keelDepth >= platformDepth * 1.10)
+            return QStringLiteral("GREEN");
+        if (distanceNm < 5.0)
+            return QStringLiteral("RED");
+        if (distanceNm <= 10.0)
+            return QStringLiteral("YELLOW");
+        return QStringLiteral("GREEN");
+    };
+
+    auto subseaThreat = [&](double distanceNm, double platformDepth) {
+        if (distanceNm > 25.0)
+            return QStringLiteral("GREEN");
+        const double ratio = platformDepth > 0.0 ? keelDepth / platformDepth : 0.0;
+        if (ratio >= 1.10)
+            return QStringLiteral("GREEN");
+        if (ratio >= 0.90)
+            return QStringLiteral("RED");
+        if (ratio >= 0.70)
+            return QStringLiteral("YELLOW");
+        return QStringLiteral("GREEN");
+    };
+
+    auto setItem = [&](int row, int column, const QString &text, const QString &threat = QString()) {
+        auto *item = new QTableWidgetItem(text);
+        item->setTextAlignment(Qt::AlignCenter);
+        if (threat == "RED") {
+            item->setForeground(Qt::white);
+            item->setBackground(QColor(QStringLiteral("#b3261e")));
+        } else if (threat == "YELLOW") {
+            item->setForeground(QColor(QStringLiteral("#1d1b16")));
+            item->setBackground(QColor(QStringLiteral("#f4c542")));
+        } else if (threat == "GREEN") {
+            item->setForeground(Qt::white);
+            item->setBackground(QColor(QStringLiteral("#2e7d32")));
+        }
+        m_platformThreatTable->setItem(row, column, item);
+    };
+
+    QStringList summary;
+    QStringList surveyed;
+    for (QLineEdit *edit : m_surveyNumberEdits)
+        surveyed << (edit && !edit->text().trimmed().isEmpty() ? edit->text().trimmed() : QStringLiteral("_"));
+
+    summary << QStringLiteral("Survey numbers shown: %1").arg(surveyed.join(QStringLiteral(", ")));
+    summary << QStringLiteral("Measured keel depth: %1 m").arg(keelDepth, 0, 'f', 2);
+    summary << QStringLiteral("Iceberg position: %1, %2 | heading %3 deg")
+                   .arg(icebergLat, 0, 'f', 4)
+                   .arg(icebergLon, 0, 'f', 4)
+                   .arg(m_icebergHeadingSpin->value(), 0, 'f', 1);
+    summary << QStringLiteral("");
+
+    if (m_tacticalScene) {
+        m_tacticalScene->clear();
+        m_icebergMarker = m_tacticalScene->addEllipse(-5, -5, 10, 10, QPen(Qt::cyan, 2), QBrush(Qt::cyan));
+        m_headingVector = m_tacticalScene->addLine(0, 0, trackX * 120.0, -trackY * 120.0, QPen(Qt::red, 3));
+        m_icebergPerimeter = m_tacticalScene->addPolygon(QPolygonF(), QPen(Qt::cyan, 1, Qt::DashLine));
+    }
+
+    for (int i = 0; i < 4; ++i) {
+        const PlatformInfo &platform = kPlatforms[i];
+        const double distanceNm = closestApproachNm(platform);
+        const QString surface = surfaceThreat(distanceNm, platform.depthMeters);
+        const QString subsea = subseaThreat(distanceNm, platform.depthMeters);
+
+        setItem(i, 0, QString::fromLatin1(platform.name));
+        setItem(i, 1, QString::number(platform.latitude, 'f', 4));
+        setItem(i, 2, QString::number(platform.longitude, 'f', 4));
+        setItem(i, 3, QString::number(platform.depthMeters, 'f', 0));
+        setItem(i, 4, QString::number(distanceNm, 'f', 1));
+        setItem(i, 5, surface, surface);
+        setItem(i, 6, subsea, subsea);
+
+        summary << QStringLiteral("%1: surface %2, subsea %3, closest approach %4 NM")
+                       .arg(QString::fromLatin1(platform.name), surface, subsea)
+                       .arg(distanceNm, 0, 'f', 1);
+
+        if (m_tacticalScene) {
+            const double meanLatRad = qDegreesToRadians((icebergLat + platform.latitude) / 2.0);
+            const double x = (platform.longitude - icebergLon) * 60.0 * qCos(meanLatRad);
+            const double y = (platform.latitude - icebergLat) * 60.0;
+            const QColor color = surface == "RED" ? QColor("#b3261e")
+                                 : surface == "YELLOW" ? QColor("#f4c542")
+                                                        : QColor("#2e7d32");
+            m_tacticalScene->addEllipse(x - 4.0, -y - 4.0, 8.0, 8.0, QPen(color), QBrush(color));
+            m_tacticalScene->addText(QString::fromLatin1(platform.name))->setPos(x + 6.0, -y - 10.0);
+        }
+    }
+
+    if (m_tacticalView && m_tacticalScene)
+        m_tacticalView->fitInView(m_tacticalScene->itemsBoundingRect().adjusted(-20, -20, 20, 20),
+                                  Qt::KeepAspectRatio);
+    if (m_judgeSummary)
+        m_judgeSummary->setPlainText(summary.join(QStringLiteral("\n")));
+}
+
+// Instantly moves the blue dot on the map when telemetry supplies live coordinates.
 void MainWindow::updateIcebergPosition(double x, double y)
 {
-    // 1. Move the physical blue dot on the map
     if (m_icebergMarker != nullptr) {
         m_icebergMarker->setPos(x, y);
     }
-
-    // 2. Define the exact coordinates of your stationary platforms
-    // (These match the addEllipse numbers from your constructor)
-    double p1_x = 50, p1_y = 50;
-    double p2_x = -100, p2_y = 80;
-    double p3_x = 120, p3_y = -60;
-    double p4_x = -80, p4_y = -90;
-    double asset_x = 0, asset_y = 0; // Assuming Subsea Asset is dead center
-
-    // 3. Calculate the true distance from the iceberg to each platform
-    double dist1 = std::hypot(x - p1_x, y - p1_y);
-    double dist2 = std::hypot(x - p2_x, y - p2_y);
-    double dist3 = std::hypot(x - p3_x, y - p3_y);
-    double dist4 = std::hypot(x - p4_x, y - p4_y);
-    double distAsset = std::hypot(x - asset_x, y - asset_y);
-
-    // 4. The Threat Algorithm (Closer distance + Deeper keel = Higher Danger)
-    auto calculateThreat = [this](double distance) -> int {
-        // Start with a base danger level based on distance
-        double baseThreat = 100.0 - (distance * 0.4);
-
-        // Add a penalty if the iceberg's keel is reaching dangerously deep
-        double depthPenalty = m_currentDepth * 0.5;
-
-        int totalThreat = static_cast<int>(baseThreat + depthPenalty);
-
-        // Lock the percentage cleanly between 0% and 100%
-        if (totalThreat > 100)
-            return 100;
-        if (totalThreat < 0)
-            return 0;
-        return totalThreat;
-    };
-
-    ui->ProgThreat1->setValue(calculateThreat(dist1));
-    ui->ProgThreat2->setValue(calculateThreat(dist2));
-    ui->ProgThreat3->setValue(calculateThreat(dist3));
-    ui->ProgThreat4->setValue(calculateThreat(dist4));
-    ui->progThreatSubsea->setValue(calculateThreat(distAsset));
 }
