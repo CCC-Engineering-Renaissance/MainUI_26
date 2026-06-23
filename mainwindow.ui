@@ -84,7 +84,7 @@
        <number>2</number>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <property name="styleSheet">
@@ -1355,231 +1355,34 @@ font-weight: bold;</string>
       </widget>
       <widget class="QWidget" name="icebergPage">
        <layout class="QGridLayout" name="gridLayout_6">
-        <item row="2" column="1">
-         <widget class="QLabel" name="lcdkeeldepth1">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="midLineWidth">
-           <number>13</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #1</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth2">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth1">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="segmentStyle">
-           <enum>QLCDNumber::SegmentStyle::Filled</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth4">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
-         <widget class="QLabel" name="label_16">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>31</pointsize>
-            <italic>false</italic>
-            <underline>true</underline>
-           </font>
-          </property>
-          <property name="text">
-           <string>Iceberg Analysis</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <widget class="QLabel" name="lcdkeeldepth5">
-          <property name="font">
-           <font>
-            <family>Academy Engraved LET</family>
-            <pointsize>27</pointsize>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #5</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth3">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-           </font>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLabel" name="lcdkeeldepth4">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #4</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLabel" name="lcdkeeldepth3">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #3</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLabel" name="lcdkeeldepth2">
-          <property name="font">
-           <font>
-            <family>Aileron</family>
-            <pointsize>27</pointsize>
-            <italic>true</italic>
-           </font>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::Shape::Box</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="midLineWidth">
-           <number>0</number>
-          </property>
-          <property name="text">
-           <string>Keel Depth #2</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
+        <property name="leftMargin">
+         <number>14</number>
+        </property>
+        <property name="topMargin">
+         <number>12</number>
+        </property>
+        <property name="rightMargin">
+         <number>14</number>
+        </property>
+        <property name="bottomMargin">
+         <number>12</number>
+        </property>
+        <property name="horizontalSpacing">
+         <number>14</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="0" alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop">
          <widget class="QToolButton" name="homePageButton_3">
           <property name="minimumSize">
            <size>
-            <width>40</width>
-            <height>30</height>
+            <width>44</width>
+            <height>34</height>
            </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>40</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Comic Sans MS</family>
-           </font>
           </property>
           <property name="text">
            <string>...</string>
-          </property>
-          <property name="popupMode">
-           <enum>QToolButton::ToolButtonPopupMode::DelayedPopup</enum>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonStyle::ToolButtonFollowStyle</enum>
           </property>
           <property name="autoRaise">
            <bool>true</bool>
@@ -1589,200 +1392,445 @@ font-weight: bold;</string>
           </property>
          </widget>
         </item>
-        <item row="6" column="2">
-         <widget class="QLCDNumber" name="lcdKeelDepth5">
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Plain</enum>
+        <item row="0" column="1" colspan="2">
+         <widget class="QLabel" name="labelIcebergTitle">
+          <property name="font">
+           <font>
+            <family>Aileron</family>
+            <pointsize>26</pointsize>
+            <bold>true</bold>
+           </font>
           </property>
-          <property name="lineWidth">
-           <number>1</number>
+          <property name="text">
+           <string>Iceberg Keel Depth Task</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="3" rowspan="5">
-         <widget class="QFrame" name="Qframe">
-          <property name="frameShape">
-           <enum>QFrame::Shape::StyledPanel</enum>
+        <item row="1" column="0" rowspan="2">
+         <layout class="QVBoxLayout" name="icebergLeftColumn">
+          <item>
+           <widget class="QGroupBox" name="groupPerimeterSurvey">
+            <property name="title">
+             <string>Perimeter Survey (Numbers located on the perimeters of the icebergs)</string>
+            </property>
+            <layout class="QGridLayout" name="gridPerimeterSurvey">
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="labelSurveyPrompt">
+               <property name="text">
+                <string>Show each number clearly to the judge.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelSurvey1">
+               <property name="text">
+                <string>Number 1:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="lineSurveyNumber1">
+               <property name="maxLength">
+                <number>1</number>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>0-9</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="labelSurvey2">
+               <property name="text">
+                <string>Number 2:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLineEdit" name="lineSurveyNumber2">
+               <property name="maxLength">
+                <number>1</number>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>0-9</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="labelSurvey3">
+               <property name="text">
+                <string>Number 3:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="lineSurveyNumber3">
+               <property name="maxLength">
+                <number>1</number>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>0-9</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="labelSurvey4">
+               <property name="text">
+                <string>Number 4:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QLineEdit" name="lineSurveyNumber4">
+               <property name="maxLength">
+                <number>1</number>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>0-9</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="labelSurvey5">
+               <property name="text">
+                <string>Number 5:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="lineSurveyNumber5">
+               <property name="maxLength">
+                <number>1</number>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+               <property name="placeholderText">
+                <string>0-9</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupKeelMeasurement">
+            <property name="title">
+             <string>Keel Measurement</string>
+            </property>
+            <layout class="QGridLayout" name="gridKeelMeasurement">
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelLiveDepth">
+               <property name="text">
+                <string>Live ROV depth (m)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="2">
+              <widget class="QLCDNumber" name="lcdLiveDepth">
+               <property name="digitCount">
+                <number>6</number>
+               </property>
+               <property name="segmentStyle">
+                <enum>QLCDNumber::SegmentStyle::Filled</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelKeelSample1">
+               <property name="text">
+                <string>Sample 1</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" colspan="2">
+              <widget class="QLCDNumber" name="lcdKeelDepth1">
+               <property name="digitCount">
+                <number>6</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="labelKeelSample2">
+               <property name="text">
+                <string>Sample 2</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" colspan="2">
+              <widget class="QLCDNumber" name="lcdKeelDepth2">
+               <property name="digitCount">
+                <number>6</number>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="labelKeelSample3">
+               <property name="text">
+                <string>Sample 3</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="2">
+              <widget class="QLCDNumber" name="lcdKeelDepth3">
+               <property name="digitCount">
+                <number>6</number>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="labelKeelSample4">
+               <property name="text">
+                <string>Sample 4</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" colspan="2">
+              <widget class="QLCDNumber" name="lcdKeelDepth4">
+               <property name="digitCount">
+                <number>6</number>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="labelKeelSample5">
+               <property name="text">
+                <string>Sample 5</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1" colspan="2">
+              <widget class="QLCDNumber" name="lcdKeelDepth5">
+               <property name="digitCount">
+                <number>6</number>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" colspan="2">
+              <widget class="QPushButton" name="btnRecordDepth">
+               <property name="text">
+                <string>Record Live Depth</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="QPushButton" name="btnUndoDepth">
+               <property name="text">
+                <string>Undo Sample</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="labelFinalKeel">
+               <property name="text">
+                <string>Final keel depth</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1" colspan="2">
+              <widget class="QDoubleSpinBox" name="spinFinalKeelDepth">
+               <property name="suffix">
+                <string> m</string>
+               </property>
+               <property name="decimals">
+                <number>2</number>
+               </property>
+               <property name="maximum">
+                <double>200.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupIcebergInfo">
+            <property name="title">
+             <string>Iceberg Information Sheet (From Sheet)</string>
+            </property>
+            <layout class="QFormLayout" name="formIcebergInfo">
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelIcebergLatitude">
+               <property name="text">
+                <string>Latitude</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="spinIcebergLatitude">
+               <property name="suffix">
+                <string> deg</string>
+               </property>
+               <property name="decimals">
+                <number>4</number>
+               </property>
+               <property name="minimum">
+                <double>-90.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>90.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="value">
+                <double>46.399999999999999</double>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelIcebergLongitude">
+               <property name="text">
+                <string>Longitude</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="spinIcebergLongitude">
+               <property name="suffix">
+                <string> deg</string>
+               </property>
+               <property name="decimals">
+                <number>4</number>
+               </property>
+               <property name="minimum">
+                <double>-180.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>180.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.000100000000000</double>
+               </property>
+               <property name="value">
+                <double>-48.399999999999999</double>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="labelIcebergHeading">
+               <property name="text">
+                <string>Heading</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QDoubleSpinBox" name="spinIcebergHeading">
+               <property name="suffix">
+                <string> deg</string>
+               </property>
+               <property name="decimals">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <double>359.899999999999977</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="groupTrackMap">
+          <property name="title">
+           <string>Map of Iceberg and Oil Rigs</string>
           </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Raised</enum>
+          <layout class="QVBoxLayout" name="verticalLayoutTrackMap">
+           <item>
+            <widget class="QGraphicsView" name="tacticalview">
+             <property name="minimumSize">
+              <size>
+               <width>320</width>
+               <height>260</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QTableWidget" name="tablePlatformThreats">
+          <property name="editTriggers">
+           <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
           </property>
-          <widget class="QGraphicsView" name="tacticalview">
-           <property name="geometry">
-            <rect>
-             <x>50</x>
-             <y>0</y>
-             <width>281</width>
-             <height>201</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QProgressBar" name="ProgThreat1">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>240</y>
-             <width>271</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="value">
-            <number>24</number>
-           </property>
-          </widget>
-          <widget class="QProgressBar" name="ProgThreat2">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>290</y>
-             <width>271</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="value">
-            <number>24</number>
-           </property>
-          </widget>
-          <widget class="QProgressBar" name="ProgThreat3">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>330</y>
-             <width>271</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="value">
-            <number>24</number>
-           </property>
-          </widget>
-          <widget class="QProgressBar" name="ProgThreat4">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>380</y>
-             <width>271</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="value">
-            <number>24</number>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_17">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>220</y>
-             <width>121</width>
-             <height>16</height>
-            </rect>
-           </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
+          </property>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <column>
            <property name="text">
-            <string>Platform #1 Threat</string>
+            <string>Platform</string>
            </property>
-          </widget>
-          <widget class="QLabel" name="label_18">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>270</y>
-             <width>131</width>
-             <height>16</height>
-            </rect>
-           </property>
+          </column>
+          <column>
            <property name="text">
-            <string>Platform #2 Threat</string>
+            <string>Lat</string>
            </property>
-          </widget>
-          <widget class="QLabel" name="label_19">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>310</y>
-             <width>131</width>
-             <height>16</height>
-            </rect>
-           </property>
+          </column>
+          <column>
            <property name="text">
-            <string>Platform #3 Threat</string>
+            <string>Lon</string>
            </property>
-          </widget>
-          <widget class="QLabel" name="label_20">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>360</y>
-             <width>121</width>
-             <height>16</height>
-            </rect>
-           </property>
+          </column>
+          <column>
            <property name="text">
-            <string>Platform #4 Threat</string>
+            <string>Water m</string>
            </property>
-          </widget>
-          <widget class="QProgressBar" name="progThreatSubsea">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>430</y>
-             <width>271</width>
-             <height>23</height>
-            </rect>
-           </property>
-           <property name="value">
-            <number>24</number>
-           </property>
-          </widget>
-          <widget class="QLabel" name="label_21">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>410</y>
-             <width>131</width>
-             <height>16</height>
-            </rect>
-           </property>
+          </column>
+          <column>
            <property name="text">
-            <string>Subsea Asset Threat</string>
+            <string>Closest NM</string>
            </property>
-          </widget>
-          <widget class="QPushButton" name="btnRecordDepth">
-           <property name="geometry">
-            <rect>
-             <x>20</x>
-             <y>560</y>
-             <width>131</width>
-             <height>91</height>
-            </rect>
-           </property>
+          </column>
+          <column>
            <property name="text">
-            <string>Record Depth</string>
+            <string>Surface</string>
            </property>
-          </widget>
-          <widget class="QLCDNumber" name="lcdLiveDepth">
-           <property name="geometry">
-            <rect>
-             <x>60</x>
-             <y>490</y>
-             <width>231</width>
-             <height>61</height>
-            </rect>
-           </property>
-          </widget>
-          <widget class="QPushButton" name="btnUndoDepth">
-           <property name="geometry">
-            <rect>
-             <x>200</x>
-             <y>560</y>
-             <width>131</width>
-             <height>91</height>
-            </rect>
-           </property>
+          </column>
+          <column>
            <property name="text">
-            <string>Undo Record</string>
+            <string>Subsea</string>
            </property>
-          </widget>
+          </column>
+         </widget>
+        </item>
+        <item row="2" column="1" colspan="2">
+         <widget class="QGroupBox" name="groupJudgeSummary">
+          <property name="title">
+           <string>Judges Outline</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayoutJudgeSummary">
+           <item>
+            <widget class="QPlainTextEdit" name="txtJudgeSummary">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>130</height>
+              </size>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>

@@ -34,6 +34,12 @@ class MainWindow;
 QT_END_NAMESPACE
 
 class RovSetupPage;
+class QDoubleSpinBox;
+class QGraphicsView;
+class QLCDNumber;
+class QLineEdit;
+class QPlainTextEdit;
+class QTableWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -98,6 +104,7 @@ private slots:
     void on_btnRecordDepth_clicked();
     void updateLiveDepthDisplay(double depth);
     void on_btnUndoDepth_clicked();
+    void updateIcebergAnalysis();
     void updateIcebergPosition(double x, double y);
 
     // ── Photogrammetry ────────────────────────────────────────────────────
@@ -156,9 +163,11 @@ private:
     void setupPressureChart();
     void setupDepthChart();
     void setupFloatDataTable();
+    void setupIcebergPage();
 
     // Tactical Map
     QGraphicsScene *m_tacticalScene = nullptr;
+    QGraphicsView *m_tacticalView = nullptr;
     QGraphicsEllipseItem *m_icebergMarker = nullptr;
     QGraphicsLineItem *m_headingVector = nullptr;
     QGraphicsPolygonItem *m_icebergPerimeter = nullptr;
@@ -166,6 +175,15 @@ private:
     int m_currentDepthIndex = 0;
     double m_maxKeelDepth = 0.0;
     double m_currentDepth = 0.0;
+    QLCDNumber *m_liveDepthLcd = nullptr;
+    QLCDNumber *m_keelDepthLcds[5] = {};
+    QLineEdit *m_surveyNumberEdits[5] = {};
+    QDoubleSpinBox *m_manualKeelSpin = nullptr;
+    QDoubleSpinBox *m_icebergLatSpin = nullptr;
+    QDoubleSpinBox *m_icebergLonSpin = nullptr;
+    QDoubleSpinBox *m_icebergHeadingSpin = nullptr;
+    QTableWidget *m_platformThreatTable = nullptr;
+    QPlainTextEdit *m_judgeSummary = nullptr;
 
     void updateIcebergTracking(double iceX,
                                double iceY,
