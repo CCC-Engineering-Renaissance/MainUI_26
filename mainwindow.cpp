@@ -56,11 +56,9 @@
 #include <algorithm>
 #include <cmath>
 
-/*//%temp
 #include <QMediaDevices>
 #include <QCameraDevice>
 #include <QtCore/QPermissions>
-//%*/
 
 namespace {
 bool isRealColmap(const QString &path)
@@ -270,75 +268,8 @@ MainWindow::MainWindow(QWidget *parent)
     // ── Float mission station ─────────────────────────────────────────────
     setupFloatMissionPage();
 
-    /*//%temp webcam
-    auto cameras = QMediaDevices::videoInputs();
-    qDebug() << "Found cameras:" << cameras.size();
-
-    for (const auto &cam : cameras)
-    {
-        qDebug() << cam.description();
-    }
-
-    if (!cameras.isEmpty())
-    {
-        m_webcam = new QCamera(cameras.first(), this);
-        m_videoSink = new QVideoSink(this);
-
-        m_captureSession.setCamera(m_webcam);
-        m_captureSession.setVideoSink(m_videoSink);
-
-        connect(
-            m_videoSink,
-            &QVideoSink::videoFrameChanged,
-            this,
-            [this](const QVideoFrame &frame)
-            {
-                if (!frame.isValid()) return;
-
-                QVideoFrame copy(frame);
-
-                if (!copy.map(QVideoFrame::ReadOnly))return;
-
-                QImage image = copy.toImage();
-
-                copy.unmap();
-
-                if (!image.isNull()) onCameraFrame(image);
-            });
-
-        m_webcam->start();
-
-
-        qDebug() << "Webcam started";
-    }
-    else
-    {
-        qDebug() << "No webcam found";
-    }
-
-    qDebug() << QT_VERSION_STR;
-
-    auto status = qApp->checkPermission(QCameraPermission());
-    if (status == Qt::PermissionStatus::Undetermined)
-    {
-        qApp->requestPermission(QCameraPermission{}, this,
-            [this](const QPermission &permission)
-            {
-                if (permission.status() == Qt::PermissionStatus::Granted)
-                {
-                    m_webcam->start();
-                }
-                else
-                {
-                    qDebug() << "Camera permission denied";
-                }
-            });
-    }
-    else if (status == Qt::PermissionStatus::Granted)
-    {
-        m_webcam->start();
-    }
-    //%*/
+    // The local webcam test feed starts on demand via the Webcam Test button on
+    // the camera page (see on_webcamTestButton_toggled / startWebcam).
 }
 
 MainWindow::~MainWindow()
@@ -359,8 +290,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if (event->key() == Qt::Key_Escape) {
         if (ui->stackedWidget->currentIndex() != 0) {
             if (ui->stackedWidget->currentIndex() == 1) {
-                // Leaving camera page: stop the stream
+                // Leaving camera page: stop the stream and release the webcam.
                 m_cameraReceiver->disconnectFromHost();
+                if (m_webcamActive) {
+                    ui->webcamTestButton->setChecked(false); // triggers stopWebcam()
+                }
             }
             ui->stackedWidget->setCurrentIndex(0);
         }
@@ -936,8 +870,10 @@ bool MainWindow::hasConsecutiveHold(double minDepth, double maxDepth, int startI
 
 void MainWindow::on_homePageButton_clicked()
 {
-    // Camera page → main menu: disconnect stream and reset mode
+    // Camera page → main menu: disconnect stream, release webcam, reset mode
     m_cameraReceiver->disconnectFromHost();
+    if (m_webcamActive)
+        ui->webcamTestButton->setChecked(false); // triggers stopWebcam()
     m_currentMode = "hi";
     updateModeButton();
     ui->stackedWidget->setCurrentIndex(0);
@@ -1166,6 +1102,114 @@ void MainWindow::on_captureFramesButton_clicked()
                                                "border-style: ridge;"
                                                "border-color: rgb(152,199,65);");
     }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Local webcam test feed
+//
+// Opens the laptop's built-in/USB webcam on demand for testing the camera
+// display + crab-detection pipeline without an ROV attached. Frames are fed into
+// onCameraFrame(), the same path the network stream uses, so detection overlays
+// work identically. The webcam and the Pi network stream are mutually exclusive.
+// ─────────────────────────────────────────────────────────────────────────────
+
+void MainWindow::on_webcamTestButton_toggled(bool checked)
+{
+    if (checked)
+        startWebcam();
+    else
+        stopWebcam();
+}
+
+void MainWindow::startWebcam()
+{
+    if (m_webcamActive)
+        return;
+
+    // Mutual exclusion: drop the ROV network stream while the webcam is live.
+    if (m_cameraReceiver->isConnected())
+        m_cameraReceiver->disconnectFromHost();
+
+    const auto cameras = QMediaDevices::videoInputs();
+    if (cameras.isEmpty()) {
+        qDebug() << "Webcam test: no camera found";
+        ui->latencyLabel->setText("Webcam: no camera found");
+        // Bounce the button back out (without re-triggering this handler).
+        QSignalBlocker block(ui->webcamTestButton);
+        ui->webcamTestButton->setChecked(false);
+        return;
+    }
+
+    if (!m_webcam) {
+        m_webcam = new QCamera(cameras.first(), this);
+        m_videoSink = new QVideoSink(this);
+        m_captureSession.setCamera(m_webcam);
+        m_captureSession.setVideoSink(m_videoSink);
+    }
+
+    m_webcamFrameConn = connect(
+        m_videoSink, &QVideoSink::videoFrameChanged, this,
+        [this](const QVideoFrame &frame) {
+            if (!frame.isValid())
+                return;
+            QVideoFrame copy(frame);
+            if (!copy.map(QVideoFrame::ReadOnly))
+                return;
+            QImage image = copy.toImage();
+            copy.unmap();
+            if (!image.isNull())
+                onCameraFrame(image);
+        });
+
+    auto startCapture = [this]() {
+        m_webcam->start();
+        m_webcamActive = true;
+        ui->camName->setText("Camera:  Webcam (test)");
+        ui->latencyLabel->setText("Webcam: live");
+        qDebug() << "Webcam test: started";
+    };
+
+    // Request camera permission where the platform requires it (macOS), then
+    // start. On platforms without the permission concept this is Granted already.
+    const auto status = qApp->checkPermission(QCameraPermission{});
+    if (status == Qt::PermissionStatus::Undetermined) {
+        qApp->requestPermission(QCameraPermission{}, this,
+            [this, startCapture](const QPermission &permission) {
+                if (permission.status() == Qt::PermissionStatus::Granted) {
+                    startCapture();
+                } else {
+                    qDebug() << "Webcam test: camera permission denied";
+                    ui->latencyLabel->setText("Webcam: permission denied");
+                    QSignalBlocker block(ui->webcamTestButton);
+                    ui->webcamTestButton->setChecked(false);
+                }
+            });
+    } else if (status == Qt::PermissionStatus::Granted) {
+        startCapture();
+    } else {
+        qDebug() << "Webcam test: camera permission denied";
+        ui->latencyLabel->setText("Webcam: permission denied");
+        QSignalBlocker block(ui->webcamTestButton);
+        ui->webcamTestButton->setChecked(false);
+    }
+}
+
+void MainWindow::stopWebcam()
+{
+    if (!m_webcamActive && !m_webcam)
+        return;
+
+    disconnect(m_webcamFrameConn);
+    if (m_webcam)
+        m_webcam->stop();
+    m_webcamActive = false;
+
+    if (m_pixmapItem)
+        m_pixmapItem->setPixmap(QPixmap()); // clear stale frame
+    m_lastDetections.clear();
+
+    ui->latencyLabel->setText("Webcam: off");
+    qDebug() << "Webcam test: stopped";
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

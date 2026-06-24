@@ -19,12 +19,11 @@
 #include <QTimer>
 #include <QValueAxis>
 
-/*//%temp for testing on laptop (comment out later for actual cameras)
+// Local webcam test feed (laptop development without the ROV stream)
 #include <QCamera>
 #include <QMediaCaptureSession>
 #include <QVideoSink>
 #include <QVideoFrame>
-//%*/
 
 
 QT_BEGIN_NAMESPACE
@@ -90,6 +89,9 @@ private slots:
     // ── Frame capture to photogram_images ────────────────────────────────
     void on_captureFramesButton_clicked();
 
+    // ── Local webcam test toggle ──────────────────────────────────────────
+    void on_webcamTestButton_toggled(bool checked);
+
     // ── Camera receiver callbacks ─────────────────────────────────────────
     void onCameraFrame(const QImage &image);
     void onCameraConnected();
@@ -136,11 +138,15 @@ private:
     // Camera network stream
     CameraReceiver *m_cameraReceiver = nullptr;
 
-    /*//%temp for testing on laptop (comment out later for actual cameras)
+    // Local webcam test feed (laptop development without the ROV stream)
     QCamera *m_webcam = nullptr;
     QMediaCaptureSession m_captureSession;
     QVideoSink *m_videoSink = nullptr;
-    //%*/
+    QMetaObject::Connection m_webcamFrameConn;
+    bool m_webcamActive = false;
+
+    void startWebcam();
+    void stopWebcam();
 
     QGraphicsScene *m_scene = nullptr;
     QGraphicsPixmapItem *m_pixmapItem = nullptr;
