@@ -84,7 +84,7 @@
        <number>2</number>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="mainMenu">
        <property name="styleSheet">
@@ -1545,14 +1545,14 @@ font-weight: bold;</string>
              </item>
              <item row="0" column="1">
               <widget class="QLCDNumber" name="lcdLiveDepth">
-               <property name="digitCount">
-                <number>6</number>
-               </property>
                <property name="minimumSize">
                 <size>
                  <width>150</width>
                  <height>42</height>
                 </size>
+               </property>
+               <property name="digitCount">
+                <number>6</number>
                </property>
                <property name="segmentStyle">
                 <enum>QLCDNumber::SegmentStyle::Filled</enum>

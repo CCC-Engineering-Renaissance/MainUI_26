@@ -20,6 +20,10 @@ find_package(Qt6 REQUIRED COMPONENTS
     OpenGLWidgets
     Charts
 )
+# Tell CMake where to find OpenCV
+list(APPEND CMAKE_PREFIX_PATH "/usr/local/opt/opencv")
+# OR if installed via Homebrew on Apple Silicon:
+list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew/opt/opencv")
 find_package(OpenCV REQUIRED COMPONENTS core imgproc dnn)
 
 # ONNX Runtime 1.26.0 bundled

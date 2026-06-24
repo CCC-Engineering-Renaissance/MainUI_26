@@ -146,6 +146,15 @@
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Core/Qt6QDarwinMicrophonePermissionPluginTargets-relwithdebinfo.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Core/Qt6QDarwinMicrophonePermissionPluginAdditionalTargetInfo.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Core/Qt6CoreVersionlessAliasTargets.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake",
+		"/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersionImpl.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake",
@@ -306,15 +315,6 @@
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaConfig.cmake",
 		"/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Multimedia/Qt6MultimediaDependencies.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake",
-		"/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake",
-		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake",
@@ -449,6 +449,12 @@
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake",
 		"/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/cmake/Qt6/Qt6Dependencies.cmake",
+		"/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVConfig-version.cmake",
+		"/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVConfig.cmake",
+		"/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake",
+		"/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/FindPackageMessage.cmake",
+		"/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVModules.cmake",
+		"/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVModules-release.cmake",
 		"/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
 		"/Users/tylerbarbery/Projects/MainUI_26/Info.plist",
 		"/Users/tylerbarbery/Projects/MainUI_26/resources.qrc"
@@ -463,6 +469,12 @@
 			"/Users/tylerbarbery/Projects/MainUI_26/camerareceiver.h",
 			"MU",
 			"EWIEGA46WW/moc_camerareceiver.cpp",
+			null
+		],
+		[
+			"/Users/tylerbarbery/Projects/MainUI_26/crabdetector.h",
+			"MU",
+			"EWIEGA46WW/moc_crabdetector.cpp",
 			null
 		],
 		[
@@ -482,6 +494,24 @@
 			"MU",
 			"UVLADIE3JM/moc_modelviewer.cpp",
 			null
+		],
+		[
+			"/Users/tylerbarbery/Projects/MainUI_26/src/pilink.h",
+			"MU",
+			"UVLADIE3JM/moc_pilink.cpp",
+			null
+		],
+		[
+			"/Users/tylerbarbery/Projects/MainUI_26/src/rovsetuppage.h",
+			"MU",
+			"UVLADIE3JM/moc_rovsetuppage.cpp",
+			null
+		],
+		[
+			"/Users/tylerbarbery/Projects/MainUI_26/src/taskrunner.h",
+			"MU",
+			"UVLADIE3JM/moc_taskrunner.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -490,6 +520,7 @@
 	"MOC_DEFINITIONS" : 
 	[
 		"QT_CHARTS_LIB",
+		"QT_CONCURRENT_LIB",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_MULTIMEDIAWIDGETS_LIB",
@@ -509,10 +540,14 @@
 	"MOC_INCLUDES" : 
 	[
 		"/Users/tylerbarbery/Projects/MainUI_26/src",
+		"/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4",
+		"/Users/tylerbarbery/Projects/MainUI_26/third_party/onnxruntime/include",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Headers",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/mkspecs/macx-clang",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/include",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtConcurrent.framework/Headers",
+		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtConcurrent.framework",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtWidgets.framework",
 		"/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtGui.framework/Headers",
@@ -572,6 +607,7 @@
 			"MU",
 			null
 		],
+		[ "/Users/tylerbarbery/Projects/MainUI_26/crabdetector.cpp", "MU", null ],
 		[ "/Users/tylerbarbery/Projects/MainUI_26/main.cpp", "MU", null ],
 		[ "/Users/tylerbarbery/Projects/MainUI_26/mainwindow.cpp", "MU", null ],
 		[
@@ -581,6 +617,17 @@
 		],
 		[
 			"/Users/tylerbarbery/Projects/MainUI_26/src/modelviewer.cpp",
+			"MU",
+			null
+		],
+		[ "/Users/tylerbarbery/Projects/MainUI_26/src/pilink.cpp", "MU", null ],
+		[
+			"/Users/tylerbarbery/Projects/MainUI_26/src/rovsetuppage.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/tylerbarbery/Projects/MainUI_26/src/taskrunner.cpp",
 			"MU",
 			null
 		]

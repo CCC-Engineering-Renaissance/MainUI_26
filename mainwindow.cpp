@@ -437,11 +437,6 @@ void MainWindow::setupIcebergPage()
 {
     m_tacticalView = ui->tacticalview;
     m_liveDepthLcd = ui->lcdLiveDepth;
-    m_keelDepthLcds[0] = ui->lcdKeelDepth1;
-    m_keelDepthLcds[1] = ui->lcdKeelDepth2;
-    m_keelDepthLcds[2] = ui->lcdKeelDepth3;
-    m_keelDepthLcds[3] = ui->lcdKeelDepth4;
-    m_keelDepthLcds[4] = ui->lcdKeelDepth5;
     m_surveyNumberEdits[0] = ui->lineSurveyNumber1;
     m_surveyNumberEdits[1] = ui->lineSurveyNumber2;
     m_surveyNumberEdits[2] = ui->lineSurveyNumber3;
@@ -454,13 +449,15 @@ void MainWindow::setupIcebergPage()
     m_platformThreatTable = ui->tablePlatformThreats;
     m_judgeSummary = ui->txtJudgeSummary;
 
-    for (QLCDNumber *lcd : m_keelDepthLcds)
-        if (lcd)
-            lcd->display(0.0);
+    ui->gridLayout_6->setColumnStretch(0, 1);
+    ui->gridLayout_6->setColumnStretch(1, 1);
+    ui->gridLayout_6->setColumnStretch(2, 2);
+    ui->gridLayout_6->setRowStretch(1, 1);
 
     if (m_platformThreatTable) {
         m_platformThreatTable->verticalHeader()->setVisible(false);
         m_platformThreatTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+        m_platformThreatTable->horizontalHeader()->setStretchLastSection(false);
         m_platformThreatTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
         m_platformThreatTable->setSelectionMode(QAbstractItemView::NoSelection);
     }
@@ -1362,22 +1359,10 @@ void MainWindow::updateIcebergTracking(double iceX,
 
 void MainWindow::on_btnRecordDepth_clicked()
 {
-    if (m_currentDepthIndex >= 5) {
-        return;
-    }
-
     double currentLiveDepth = m_cameraReceiver->getLiveDepth();
 
-    if (currentLiveDepth > m_maxKeelDepth) {
-        m_maxKeelDepth = currentLiveDepth;
-    }
-
-    if (m_keelDepthLcds[m_currentDepthIndex])
-        m_keelDepthLcds[m_currentDepthIndex]->display(currentLiveDepth);
     if (m_manualKeelSpin)
-        m_manualKeelSpin->setValue(m_maxKeelDepth);
-
-    m_currentDepthIndex++;
+        m_manualKeelSpin->setValue(currentLiveDepth);
     updateIcebergAnalysis();
 }
 
@@ -1910,25 +1895,6 @@ void MainWindow::updateLiveDepthDisplay(double depth)
     m_currentDepth = depth;
     if (m_liveDepthLcd)
         m_liveDepthLcd->display(depth);
-}
-
-// Steps the tracker backward one slot and clears the screen
-void MainWindow::on_btnUndoDepth_clicked()
-{
-    if (m_currentDepthIndex > 0) {
-        m_currentDepthIndex--;
-        if (m_keelDepthLcds[m_currentDepthIndex])
-            m_keelDepthLcds[m_currentDepthIndex]->display(0);
-
-        m_maxKeelDepth = 0.0;
-        for (int i = 0; i < m_currentDepthIndex; ++i) {
-            if (m_keelDepthLcds[i])
-                m_maxKeelDepth = qMax(m_maxKeelDepth, m_keelDepthLcds[i]->value());
-        }
-        if (m_manualKeelSpin)
-            m_manualKeelSpin->setValue(m_maxKeelDepth);
-        updateIcebergAnalysis();
-    }
 }
 
 void MainWindow::updateIcebergAnalysis()

@@ -5,6 +5,9 @@ GUI_autogen/timestamp: \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_arg.h \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_copy.h \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/__stdarg_va_list.h \
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_bf16.h \
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_neon.h \
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/arm_vector_types.h \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/limits.h \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h \
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h \
@@ -269,6 +272,7 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/bit_reference.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/byte.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/complex.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/deque.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/format.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/fstream.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/functional.h \
@@ -278,7 +282,9 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/memory_resource.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/ostream.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/pair.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/queue.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/sstream.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/stack.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/streambuf.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/string.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__fwd/string_view.h \
@@ -395,6 +401,7 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__numeric/transform_exclusive_scan.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__numeric/transform_inclusive_scan.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__numeric/transform_reduce.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__ostream/basic_ostream.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__random/is_valid.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__random/log2.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__random/uniform_int_distribution.h \
@@ -413,6 +420,12 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__ranges/view_interface.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__split_buffer \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__std_mbstate_t.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__stop_token/atomic_unique_lock.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__stop_token/intrusive_list_view.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__stop_token/intrusive_shared_ptr.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__stop_token/stop_source.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__stop_token/stop_state.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__stop_token/stop_token.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__string/char_traits.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__string/constexpr_c_functions.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__string/extern_template_lists.h \
@@ -421,10 +434,14 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__system_error/error_code.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__system_error/error_condition.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__system_error/system_error.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/formatter.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/id.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/jthread.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/support.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/support/pthread.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/this_thread.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__thread/thread.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__tree \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__tuple/find_index.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__tuple/ignore.h \
@@ -473,6 +490,7 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__type_traits/is_base_of.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__type_traits/is_bounded_array.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__type_traits/is_callable.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__type_traits/is_class.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__type_traits/is_compound.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/__type_traits/is_const.h \
@@ -580,14 +598,17 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/array \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/atomic \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/bit \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/bitset \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cassert \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cctype \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cerrno \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cfloat \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/chrono \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/climits \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/clocale \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cmath \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/compare \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/complex \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/concepts \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cstdarg \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cstddef \
@@ -599,15 +620,22 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/ctype.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cwchar \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/cwctype \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/deque \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/errno.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/exception \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/execution \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/float.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/format \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/forward_list \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/functional \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/future \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/initializer_list \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/inttypes.h \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/iomanip \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/ios \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/iosfwd \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/iostream \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/istream \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/iterator \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/limits \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/list \
@@ -620,8 +648,13 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/new \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/numeric \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/optional \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/ostream \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/print \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/queue \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/ratio \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/set \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/sstream \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/stack \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/stdbool.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/stddef.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/stdexcept \
@@ -633,6 +666,7 @@ GUI_autogen/timestamp: \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/string.h \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/string_view \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/system_error \
+	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/thread \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/tuple \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/type_traits \
 	/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/typeinfo \
@@ -738,6 +772,8 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Projects/MainUI_26/build/Qt_6_10_1_for_macOS-Debug/GUI_autogen/moc_predefs.h \
 	/Users/tylerbarbery/Projects/MainUI_26/camerareceiver.cpp \
 	/Users/tylerbarbery/Projects/MainUI_26/camerareceiver.h \
+	/Users/tylerbarbery/Projects/MainUI_26/crabdetector.cpp \
+	/Users/tylerbarbery/Projects/MainUI_26/crabdetector.h \
 	/Users/tylerbarbery/Projects/MainUI_26/main.cpp \
 	/Users/tylerbarbery/Projects/MainUI_26/mainwindow.cpp \
 	/Users/tylerbarbery/Projects/MainUI_26/mainwindow.h \
@@ -746,6 +782,17 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Projects/MainUI_26/src/colmaprunner.h \
 	/Users/tylerbarbery/Projects/MainUI_26/src/modelviewer.cpp \
 	/Users/tylerbarbery/Projects/MainUI_26/src/modelviewer.h \
+	/Users/tylerbarbery/Projects/MainUI_26/src/pilink.cpp \
+	/Users/tylerbarbery/Projects/MainUI_26/src/pilink.h \
+	/Users/tylerbarbery/Projects/MainUI_26/src/rovsetuppage.cpp \
+	/Users/tylerbarbery/Projects/MainUI_26/src/rovsetuppage.h \
+	/Users/tylerbarbery/Projects/MainUI_26/src/taskrunner.cpp \
+	/Users/tylerbarbery/Projects/MainUI_26/src/taskrunner.h \
+	/Users/tylerbarbery/Projects/MainUI_26/third_party/onnxruntime/include/onnxruntime_c_api.h \
+	/Users/tylerbarbery/Projects/MainUI_26/third_party/onnxruntime/include/onnxruntime_cxx_api.h \
+	/Users/tylerbarbery/Projects/MainUI_26/third_party/onnxruntime/include/onnxruntime_cxx_inline.h \
+	/Users/tylerbarbery/Projects/MainUI_26/third_party/onnxruntime/include/onnxruntime_ep_c_api.h \
+	/Users/tylerbarbery/Projects/MainUI_26/third_party/onnxruntime/include/onnxruntime_float16.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractAxis \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractSeries \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/QChart \
@@ -767,11 +814,14 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/qvalueaxis.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCharts.framework/Versions/A/Headers/qxyseries.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QByteArray \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QFutureWatcher \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QHash \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QJsonDocument \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QJsonObject \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QList \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QMargins \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QPair \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QProcess \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRect \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSet \
@@ -832,12 +882,17 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qdebug.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qendian.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qeventloop.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexception.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qflags.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfloat16.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qforeach.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfunctionaltools_impl.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfunctionpointer.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfuture.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfuture_impl.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfutureinterface.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qfuturewatcher.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qgenericatomic.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qglobal.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qglobalstatic.h \
@@ -863,6 +918,7 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmetatype.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qminmax.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qmutex.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qnamespace.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qnativeinterface.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qnumeric.h \
@@ -875,9 +931,12 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qpoint.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qprocess.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qprocessordetection.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qpromise.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qrect.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qrefcount.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qregularexpression.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qresultstore.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qrunnable.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qscopedpointer.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qscopeguard.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qset.h \
@@ -913,11 +972,14 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtextstream.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qthread.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qthreadpool.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtimer.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtresource.h \
+	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtsan_impl.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qttranslation.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qttypetraits.h \
 	/Users/tylerbarbery/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/qtversion.h \
@@ -1342,5 +1404,118 @@ GUI_autogen/timestamp: \
 	/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/Platform/Darwin-Initialize.cmake \
 	/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/Platform/Darwin.cmake \
 	/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/share/cmake-3.30/Modules/Platform/UnixPaths.cmake \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/calib3d.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/affine.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/async.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/base.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/bufferpool.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/check.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cuda.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cuda.inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cuda_types.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cv_cpu_dispatch.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cvdef.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cvstd.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cvstd.inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/cvstd_wrapper.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/fast_math.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/hal/interface.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/mat.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/mat.inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/matx.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/matx.inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/neon_utils.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/operations.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/optim.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/ovx.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/persistence.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/saturate.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/traits.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/types.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/utility.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/utils/logger.defines.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/utils/logger.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/utils/logtag.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/version.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/core/vsx_utils.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/dnn.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/dnn/dict.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/dnn/dnn.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/dnn/dnn.inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/dnn/layer.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/dnn/utils/inference_engine.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/dnn/version.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/features2d.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/all_indices.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/allocator.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/any.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/autotuned_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/composite_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/config.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/defines.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/dist.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/dynamic_bitset.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/flann_base.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/general.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/ground_truth.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/heap.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/hierarchical_clustering_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/index_testing.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/kdtree_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/kdtree_single_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/kmeans_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/linear_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/logger.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/lsh_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/lsh_table.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/matrix.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/miniflann.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/nn_index.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/params.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/random.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/result_set.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/sampling.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/saving.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/flann/timer.h \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/highgui.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/imgcodecs.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/imgproc.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/imgproc/segmentation.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/ml.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/ml/ml.inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/aruco_board.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/aruco_detector.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/aruco_dictionary.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/barcode.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/charuco_detector.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/detection_based_tracker.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/face.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/objdetect/graphical_code_detector.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/opencv.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/opencv_modules.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/photo.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/blenders.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/camera.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/exposure_compensate.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/matchers.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/motion_estimators.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/seam_finders.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/util.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/util_inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/warpers.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/detail/warpers_inl.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/stitching/warpers.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/video.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/video/background_segm.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/video/tracking.hpp \
+	/opt/homebrew/Cellar/opencv/4.13.0_15/include/opencv4/opencv2/videoio.hpp \
+	/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVConfig-version.cmake \
+	/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVConfig.cmake \
+	/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVModules-release.cmake \
+	/opt/homebrew/opt/opencv/lib/cmake/opencv4/OpenCVModules.cmake \
 	/Users/tylerbarbery/Projects/MainUI_26/mainwindow.ui \
 	/Users/tylerbarbery/Qt/Tools/CMake/CMake.app/Contents/bin/cmake

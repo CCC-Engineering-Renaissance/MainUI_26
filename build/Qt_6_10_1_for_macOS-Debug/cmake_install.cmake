@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/tmp")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,6 +43,8 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26")
     execute_process(COMMAND /usr/bin/install_name_tool
       -delete_rpath "/Users/tylerbarbery/Qt/6.10.1/macos/lib"
+      -delete_rpath "/opt/homebrew/opt/opencv/lib"
+      -delete_rpath "/Users/tylerbarbery/Projects/MainUI_26/third_party/onnxruntime/lib/mac_arm64"
       -add_rpath "@executable_path/../Frameworks"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MainUI_26.app/Contents/MacOS/MainUI_26")
   endif()

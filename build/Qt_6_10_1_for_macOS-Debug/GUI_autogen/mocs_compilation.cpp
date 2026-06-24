@@ -3,3 +3,6 @@
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "UVLADIE3JM/moc_colmaprunner.cpp"
 #include "UVLADIE3JM/moc_modelviewer.cpp"
+#include "UVLADIE3JM/moc_pilink.cpp"
+#include "UVLADIE3JM/moc_rovsetuppage.cpp"
+#include "UVLADIE3JM/moc_taskrunner.cpp"

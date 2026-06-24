@@ -106,7 +106,6 @@ private slots:
     void onTelemetryUpdated(double depth, double pressure);
     void on_btnRecordDepth_clicked();
     void updateLiveDepthDisplay(double depth);
-    void on_btnUndoDepth_clicked();
     void updateIcebergAnalysis();
     void updateIcebergPosition(double x, double y);
 
@@ -192,11 +191,8 @@ private:
     QGraphicsLineItem *m_headingVector = nullptr;
     QGraphicsPolygonItem *m_icebergPerimeter = nullptr;
 
-    int m_currentDepthIndex = 0;
-    double m_maxKeelDepth = 0.0;
     double m_currentDepth = 0.0;
     QLCDNumber *m_liveDepthLcd = nullptr;
-    QLCDNumber *m_keelDepthLcds[5] = {};
     QLineEdit *m_surveyNumberEdits[5] = {};
     QDoubleSpinBox *m_manualKeelSpin = nullptr;
     QDoubleSpinBox *m_icebergLatSpin = nullptr;
