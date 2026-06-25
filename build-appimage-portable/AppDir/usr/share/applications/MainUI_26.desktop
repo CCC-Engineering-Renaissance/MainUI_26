@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=MainUI_26
-Comment=MATE ROV surface station
-Exec=MainUI_26
-Icon=rov_logo_complete
-Categories=Utility;Engineering;
-Terminal=false
