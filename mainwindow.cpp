@@ -164,10 +164,6 @@ MainWindow::MainWindow(QWidget *parent)
     // ── Photogrammetry ────────────────────────────────────────────────────
     setupPhotogrammetry();
 
-    // ── Frame capture output folder ───────────────────────────────────────
-    m_photogramPath = QCoreApplication::applicationDirPath() + "/photogram_images";
-    QDir().mkpath(m_photogramPath);
-
     // ── Logo ──────────────────────────────────────────────────────────────
     QPixmap pixmap(":/images/images/rov_logo_complete.png");
     if (pixmap.isNull()) {
@@ -291,6 +287,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         if (ui->stackedWidget->currentIndex() != 0) {
             if (ui->stackedWidget->currentIndex() == 1) {
                 // Leaving camera page: stop the stream and release the webcam.
+                stopFrameCapture();
                 m_cameraReceiver->disconnectFromHost();
                 if (m_webcamActive) {
                     ui->webcamTestButton->setChecked(false); // triggers stopWebcam()
@@ -871,6 +868,7 @@ bool MainWindow::hasConsecutiveHold(double minDepth, double maxDepth, int startI
 void MainWindow::on_homePageButton_clicked()
 {
     // Camera page → main menu: disconnect stream, release webcam, reset mode
+    stopFrameCapture();
     m_cameraReceiver->disconnectFromHost();
     if (m_webcamActive)
         ui->webcamTestButton->setChecked(false); // triggers stopWebcam()
@@ -918,6 +916,8 @@ void MainWindow::on_closeProgramButton_clicked() { close(); }
 
 void MainWindow::on_frontCamButton_clicked()
 {
+    if (m_webcamActive)
+        ui->webcamTestButton->setChecked(false);
     m_cameraReceiver->switchCamera("front");
     ui->camName->setText("Camera:  Front");
     setActiveCamButton("front");
@@ -925,6 +925,8 @@ void MainWindow::on_frontCamButton_clicked()
 
 void MainWindow::on_leftCamButton_clicked()
 {
+    if (m_webcamActive)
+        ui->webcamTestButton->setChecked(false);
     m_cameraReceiver->switchCamera("left");
     ui->camName->setText("Camera:  Left");
     setActiveCamButton("left");
@@ -932,6 +934,8 @@ void MainWindow::on_leftCamButton_clicked()
 
 void MainWindow::on_rightCamButton_clicked()
 {
+    if (m_webcamActive)
+        ui->webcamTestButton->setChecked(false);
     m_cameraReceiver->switchCamera("right");
     ui->camName->setText("Camera:  Right");
     setActiveCamButton("right");
@@ -939,6 +943,8 @@ void MainWindow::on_rightCamButton_clicked()
 
 void MainWindow::on_botCamButton_clicked()
 {
+    if (m_webcamActive)
+        ui->webcamTestButton->setChecked(false);
     m_cameraReceiver->switchCamera("bot");
     ui->camName->setText("Camera:  Bottom");
     setActiveCamButton("bot");
@@ -946,6 +952,8 @@ void MainWindow::on_botCamButton_clicked()
 
 void MainWindow::on_backCamButton_clicked()
 {
+    if (m_webcamActive)
+        ui->webcamTestButton->setChecked(false);
     m_cameraReceiver->switchCamera("back");
     ui->camName->setText("Camera:  Back");
     setActiveCamButton("back");
@@ -1035,16 +1043,20 @@ void MainWindow::onCameraFrame(const QImage &image)
     if (m_capturingFrames) {
         m_frameCounter++;
         if (m_frameCounter % 10 == 0) {
-            QString filename = m_photogramPath
-                               + QString("/frame_%1.jpg").arg(m_captureCount, 4, 10, QChar('0'));
+            QString filename = QDir(m_currentCapturePath)
+                                   .filePath(QString("%1_%2.jpg")
+                                                 .arg(m_captureFilePrefix)
+                                                 .arg(m_captureCount, 4, 10, QChar('0')));
             bool ok = image.save(filename, "JPEG", 95);
             if (ok) {
                 m_captureCount++;
                 ui->captureCountLabel->setText(QString("%1 frames").arg(m_captureCount));
                 if (m_captureCount == 1)
-                    qDebug() << "Capture started, saving to:" << m_photogramPath;
+                    qDebug() << "Capture started, saving to:" << m_currentCapturePath;
+                refreshThumbnails();
             } else {
                 qDebug() << "Failed to save frame to:" << filename;
+                ui->captureCountLabel->setText("Save failed");
             }
         }
     }
@@ -1063,6 +1075,7 @@ void MainWindow::onCameraConnected()
 void MainWindow::onCameraDisconnected()
 {
     ui->latencyLabel->setText("Latency: disconnected");
+    stopFrameCapture();
     if (m_pixmapItem)
         m_pixmapItem->setPixmap(QPixmap()); // clear stale frame
 }
@@ -1085,6 +1098,17 @@ void MainWindow::on_captureFramesButton_clicked()
 {
     m_capturingFrames = !m_capturingFrames;
     if (m_capturingFrames) {
+        m_currentCapturePath = m_imagePath;
+        m_captureFilePrefix = QDateTime::currentDateTime().toString("capture_yyyyMMdd_hhmmss");
+        if (!QDir().mkpath(m_currentCapturePath)) {
+            const QString failedPath = m_currentCapturePath;
+            m_capturingFrames = false;
+            m_currentCapturePath.clear();
+            m_captureFilePrefix.clear();
+            ui->captureCountLabel->setText("Folder error");
+            qDebug() << "Failed to create capture folder:" << failedPath;
+            return;
+        }
         m_frameCounter = 0;
         m_captureCount = 0;
         ui->captureCountLabel->setText("0 frames");
@@ -1095,13 +1119,25 @@ void MainWindow::on_captureFramesButton_clicked()
                                                "border-style: ridge;"
                                                "border-color: rgb(255,60,60);");
     } else {
-        ui->captureFramesButton->setText("Capture Frames");
-        ui->captureFramesButton->setStyleSheet("background-color: rgb(44,181,222);"
-                                               "color: white;"
-                                               "border-width: 3px;"
-                                               "border-style: ridge;"
-                                               "border-color: rgb(152,199,65);");
+        stopFrameCapture();
     }
+}
+
+void MainWindow::stopFrameCapture()
+{
+    if (!m_capturingFrames
+        && (!ui || !ui->captureFramesButton || ui->captureFramesButton->text() == "Capture Frames"))
+        return;
+
+    m_capturingFrames = false;
+    m_currentCapturePath.clear();
+    m_captureFilePrefix.clear();
+    ui->captureFramesButton->setText("Capture Frames");
+    ui->captureFramesButton->setStyleSheet("background-color: rgb(44,181,222);"
+                                           "color: white;"
+                                           "border-width: 3px;"
+                                           "border-style: ridge;"
+                                           "border-color: rgb(152,199,65);");
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1162,6 +1198,8 @@ void MainWindow::startWebcam()
         });
 
     auto startCapture = [this]() {
+        if (!ui->webcamTestButton->isChecked())
+            return;
         m_webcam->start();
         m_webcamActive = true;
         ui->camName->setText("Camera:  Webcam (test)");
@@ -1422,7 +1460,8 @@ void MainWindow::setupPhotogrammetry()
     QDir().mkpath(m_imagePath);
 
     m_runner = new ColmapRunner(this);
-    m_runner->setColmapPath(detectColmapPath());
+    m_colmapPath = detectColmapPath();
+    m_runner->setColmapPath(m_colmapPath);
     m_runner->setWorkspacePath(m_workspacePath);
     m_runner->setImagePath(m_imagePath);
 
@@ -1485,42 +1524,47 @@ void MainWindow::setupPhotogrammetry()
 QString MainWindow::detectColmapPath()
 {
     QString base = QCoreApplication::applicationDirPath();
+    QStringList candidates;
+
+    auto addCandidate = [&](const QString &path) {
+        if (!path.isEmpty() && !candidates.contains(path))
+            candidates << path;
+    };
+
+    addCandidate(qEnvironmentVariable("MAINUI_COLMAP_PATH"));
 
 #ifdef Q_OS_WIN
-    QString winPath = base + "/tools/win64/colmap.exe";
-    if (QFileInfo::exists(winPath))
-        return winPath;
+    addCandidate(base + "/tools/win64/colmap.exe");
+    addCandidate(base + "/tools/win64/bin/colmap.exe");
+    addCandidate(base + "/colmap.exe");
+    addCandidate(base + "/bin/colmap.exe");
+    addCandidate(QDir::currentPath() + "/tools/win64/colmap.exe");
+    addCandidate(QDir::currentPath() + "/tools/win64/bin/colmap.exe");
 
     for (const QString &dir :
-         {QString("C:/Program Files/COLMAP"), QString("C:/Program Files (x86)/COLMAP"), base}) {
-        QString p = dir + "/colmap.exe";
-        if (QFileInfo::exists(p))
-            return p;
+         {QString("C:/Program Files/COLMAP"), QString("C:/Program Files (x86)/COLMAP")}) {
+        addCandidate(dir + "/colmap.exe");
+        addCandidate(dir + "/bin/colmap.exe");
     }
 #elif defined(Q_OS_MACOS)
-    QString macPath = base + "/tools/macos/bin/colmap";
-    if (QFileInfo::exists(macPath) && QSysInfo::currentCpuArchitecture() == "arm64")
-        return macPath;
+    addCandidate(base + "/tools/macos/bin/colmap");
 #else
-    QString linuxPath = base + "/tools/linux/bin/colmap";
-    if (QFileInfo::exists(linuxPath))
-        return linuxPath;
+    addCandidate(base + "/tools/linux/bin/colmap");
+    addCandidate(QDir::currentPath() + "/tools/linux/bin/colmap");
 #endif
 
     QString onPath = QStandardPaths::findExecutable("colmap");
-    if (!onPath.isEmpty() && isRealColmap(onPath))
-        return onPath;
-
-    QString chosen = QFileDialog::getOpenFileName(this,
-                                                  "Locate COLMAP executable",
-                                                  QString(),
+    addCandidate(onPath);
 #ifdef Q_OS_WIN
-                                                  "COLMAP (colmap.exe)"
-#else
-                                                  "COLMAP (colmap)"
+    addCandidate(QStandardPaths::findExecutable("colmap.exe"));
 #endif
-    );
-    return chosen.isEmpty() ? "colmap" : chosen;
+
+    for (const QString &path : candidates) {
+        if (QFileInfo::exists(path) && isRealColmap(path))
+            return path;
+    }
+
+    return QString();
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1575,7 +1619,9 @@ void MainWindow::on_importVideoButton_clicked()
     setRunning(true);
 
     QProcess *ffmpeg = new QProcess(this);
-    QString outputPattern = m_imagePath + "/frame_%04d.jpg";
+    QString outputPattern = QDir(m_imagePath)
+                                .filePath(QDateTime::currentDateTime().toString(
+                                              "video_yyyyMMdd_hhmmss_%04d.jpg"));
     QString filter = "select=not(mod(n\\,10))";
 
     ffmpeg->start("ffmpeg",
@@ -1590,7 +1636,13 @@ void MainWindow::on_importVideoButton_clicked()
                 if (exitCode == 0) {
                     refreshThumbnails();
                     int count = QDir(m_imagePath)
-                                    .entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"}, QDir::Files)
+                                    .entryList({"*.jpg",
+                                                "*.jpeg",
+                                                "*.png",
+                                                "*.tiff",
+                                                "*.tif",
+                                                "*.bmp"},
+                                               QDir::Files)
                                     .count();
                     ui->statusLabel->setText(
                         QString("Extracted frames — %1 images ready").arg(count));
@@ -1610,6 +1662,8 @@ void MainWindow::on_importVideoButton_clicked()
 
 void MainWindow::on_clearButton_clicked()
 {
+    stopFrameCapture();
+
     QDir imgDir(m_imagePath);
     QStringList images = imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"},
                                           QDir::Files);
@@ -1680,10 +1734,44 @@ void MainWindow::refreshThumbnails()
 
 void MainWindow::on_runButton_clicked()
 {
+    stopFrameCapture();
+
     QDir imgDir(m_imagePath);
-    int count = imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff"}, QDir::Files).count();
+    int count = imgDir.entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"},
+                                 QDir::Files)
+                    .count();
     if (count < 3) {
         ui->statusLabel->setText("Need at least 3 images to reconstruct");
+        return;
+    }
+
+    if (m_colmapPath.isEmpty() || !QFileInfo::exists(m_colmapPath) || !isRealColmap(m_colmapPath))
+        m_colmapPath = detectColmapPath();
+
+    if (m_colmapPath.isEmpty() || !QFileInfo::exists(m_colmapPath) || !isRealColmap(m_colmapPath)) {
+        m_colmapPath = QFileDialog::getOpenFileName(this,
+                                                    "Locate COLMAP executable",
+                                                    QString(),
+#ifdef Q_OS_WIN
+                                                    "COLMAP (colmap.exe)"
+#else
+                                                    "COLMAP (colmap)"
+#endif
+        );
+    }
+
+    if (m_colmapPath.isEmpty() || !QFileInfo::exists(m_colmapPath) || !isRealColmap(m_colmapPath)) {
+        ui->statusLabel->setText("COLMAP executable not found");
+        ui->logOutput->append("[ERROR] COLMAP is not configured. Install COLMAP for this computer, "
+                              "then select its executable when prompted.");
+#ifdef Q_OS_WIN
+        ui->logOutput->append("[hint] For the packaged Windows app, expected path is "
+                              "tools\\win64\\colmap.exe next to MainUI_26.exe.");
+#endif
+        QMessageBox::warning(this,
+                             "COLMAP Not Found",
+                             "Captured images are ready, but photogrammetry cannot run until COLMAP "
+                             "is installed/configured for this computer.");
         return;
     }
 
@@ -1722,6 +1810,7 @@ void MainWindow::on_runButton_clicked()
     ui->viewer->clear();
     setRunning(true);
 
+    m_runner->setColmapPath(m_colmapPath);
     m_runner->setWorkspacePath(m_workspacePath);
     m_runner->setImagePath(m_imagePath);
     m_runner->setDenseEnabled(ui->denseCheckBox->isChecked());
@@ -1739,7 +1828,12 @@ void MainWindow::on_cancelButton_clicked()
 
 void MainWindow::setRunning(bool running)
 {
-    ui->runButton->setEnabled(!running);
+    const bool hasImages = QDir(m_imagePath)
+                               .entryList({"*.jpg", "*.jpeg", "*.png", "*.tiff", "*.tif", "*.bmp"},
+                                          QDir::Files)
+                               .count()
+                           > 0;
+    ui->runButton->setEnabled(!running && hasImages);
     ui->cancelButton->setEnabled(running);
     ui->importImagesButton->setEnabled(!running);
     ui->importVideoButton->setEnabled(!running);
@@ -1885,7 +1979,18 @@ void MainWindow::convertAndLoadModel()
     QString libVar = "LD_LIBRARY_PATH";
 #endif
 
-#ifndef Q_OS_WIN
+#ifdef Q_OS_WIN
+    QString existingPath = env.value("PATH");
+    QStringList pathEntries;
+    const QString colmapDir = QFileInfo(m_colmapPath).absolutePath();
+    if (!colmapDir.isEmpty())
+        pathEntries << QDir::toNativeSeparators(colmapDir);
+    if (QDir(toolsBase).exists())
+        pathEntries << QDir::toNativeSeparators(toolsBase);
+    if (!existingPath.isEmpty())
+        pathEntries << existingPath;
+    env.insert("PATH", pathEntries.join(';'));
+#else
     QString libPath = toolsBase + "/lib";
     if (QDir(libPath).exists()) {
         QString existing = env.value(libVar);
@@ -1918,8 +2023,14 @@ void MainWindow::convertAndLoadModel()
                 }
             });
 
-    QString colmapPath = detectColmapPath();
-    converter->start(colmapPath,
+    if (m_colmapPath.isEmpty() || !QFileInfo::exists(m_colmapPath) || !isRealColmap(m_colmapPath)) {
+        converter->deleteLater();
+        ui->statusLabel->setText("COLMAP executable not found");
+        ui->logOutput->append("[ERROR] Cannot convert sparse model because COLMAP is not configured.");
+        return;
+    }
+
+    converter->start(m_colmapPath,
                      {"model_converter",
                       "--input_path",
                       sparsePath,
@@ -1937,8 +2048,19 @@ void MainWindow::convertAndLoadModel()
 void MainWindow::updateLiveDepthDisplay(double depth)
 {
     m_currentDepth = depth;
+    if (ui->lcdNumber)
+        ui->lcdNumber->display(depth);
     if (m_liveDepthLcd)
         m_liveDepthLcd->display(depth);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    if (m_manualKeelSpin)
+        m_manualKeelSpin->setValue(m_currentDepth);
+    ui->lcdNumber->display(m_currentDepth);
+    ui->latencyLabel->setText(QString("Stored keel depth: %1 m").arg(m_currentDepth, 0, 'f', 2));
+    updateIcebergAnalysis();
 }
 
 void MainWindow::updateIcebergAnalysis()

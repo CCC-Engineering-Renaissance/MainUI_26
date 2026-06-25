@@ -15,6 +15,7 @@ python/
 # Qt Creator user files
 *.user
 *.user.*
+*.autosave
 
 # COLMAP workspace data (generated at runtime)
 workspace/

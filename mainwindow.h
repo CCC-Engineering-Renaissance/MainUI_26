@@ -75,6 +75,7 @@ private slots:
     void on_pushButton_clicked();   // bottom-left settings → ROV Setup page
     void on_closeProgramButton_clicked();
     void on_pushButtonCalcPercent_clicked();
+    void on_pushButton_2_clicked();
 
     // ── Camera view buttons ───────────────────────────────────────────────
     void on_frontCamButton_clicked();
@@ -86,7 +87,7 @@ private slots:
     // ── Resolution / FPS mode toggle ──────────────────────────────────────
     void on_modeButton_clicked();
 
-    // ── Frame capture to photogram_images ────────────────────────────────
+    // ── Frame capture to photogrammetry workspace images ─────────────────
     void on_captureFramesButton_clicked();
 
     // ── Local webcam test toggle ──────────────────────────────────────────
@@ -166,6 +167,7 @@ private:
     // Helpers
     void setActiveCamButton(const QString &name);
     void updateModeButton();
+    void stopFrameCapture();
 
     // Float mission station
     struct FloatPacket {
@@ -234,6 +236,7 @@ private:
     ColmapRunner *m_runner = nullptr;
     QString m_workspacePath;
     QString m_imagePath;
+    QString m_colmapPath;
 
     // ROV setup submenu (settingsPage)
     RovSetupPage *m_rovSetup = nullptr;
@@ -242,7 +245,8 @@ private:
     bool m_capturingFrames = false;
     int m_frameCounter = 0;
     int m_captureCount = 0;
-    QString m_photogramPath;
+    QString m_currentCapturePath;
+    QString m_captureFilePrefix;
 
     // Crab detection keypress controls
     QVector<CrabDetector::Detection> m_lastDetections;

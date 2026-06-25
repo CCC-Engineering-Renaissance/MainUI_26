@@ -740,6 +740,21 @@ border: none;</string>
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QPushButton" name="webcamTestButton">
+             <property name="font">
+              <font>
+               <family>Aileron</family>
+              </font>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Webcam Test</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
