@@ -10,6 +10,7 @@
 #include <QFutureWatcher>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#include <QImage>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QLabel>
@@ -50,6 +51,7 @@ class MainWindow : public QMainWindow
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void closeEvent(QCloseEvent *event) override;
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -76,6 +78,7 @@ private slots:
     void on_closeProgramButton_clicked();
     void on_pushButtonCalcPercent_clicked();
     void on_pushButton_2_clicked();
+    void onMeasureKeelClicked();
 
     // ── Camera view buttons ───────────────────────────────────────────────
     void on_frontCamButton_clicked();
@@ -231,9 +234,12 @@ private:
     void setupEdnaPage();
     void setRunning(bool running);
     void refreshThumbnails();
+    void deleteSelectedImages();
     QString detectColmapPath();
     void convertAndLoadModel();
     void updateEdnaPercentages();
+    QString pythonProgram(QStringList *preArgs) const;
+    QString shipLengthDir() const;
 
     ColmapRunner *m_runner = nullptr;
     QString m_workspacePath;
@@ -244,6 +250,7 @@ private:
     RovSetupPage *m_rovSetup = nullptr;
 
     // Frame capture
+    QImage m_lastCameraFrame;
     bool m_capturingFrames = false;
     int m_frameCounter = 0;
     int m_captureCount = 0;

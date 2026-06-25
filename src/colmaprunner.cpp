@@ -204,7 +204,7 @@ void ColmapRunner::runFullPipeline()
                          "--output-file",
                          m_workspacePath + "/dense.mvs",
                          "--resolution-level",
-                         "1",
+                         "2",
                          "--working-folder",
                          m_workspacePath}});
     }
@@ -286,6 +286,19 @@ void ColmapRunner::startStep(const PipelineStep &step)
     m_process->setProcessEnvironment(env);
 
     QString exe = step.exe.isEmpty() ? m_colmapPath : step.exe;
+    // Pin OpenMVS tools to the bundled binary so they pair with the bundled libs
+    // on LD_LIBRARY_PATH; otherwise PATH may resolve a system binary built against a
+    // different OpenCV/libtiff ABI (LIBTIFF version clash).
+    static const QStringList kMvsTools = {"InterfaceCOLMAP",
+                                          "DensifyPointCloud",
+                                          "ReconstructMesh",
+                                          "RefineMesh",
+                                          "TextureMesh"};
+    if (kMvsTools.contains(exe)) {
+        const QString bundled = toolsBase + "/bin/" + exe;
+        if (QFileInfo::exists(bundled))
+            exe = bundled;
+    }
     emit progressOutput(QString("[cmd] %1 %2").arg(exe, step.args.join(' ')));
     m_process->start(exe, step.args);
 

@@ -110,6 +110,7 @@ target_link_libraries(GUI PRIVATE
 target_include_directories(GUI PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src
                                        ${OpenCV_INCLUDE_DIRS}
                                        ${ORT_INC})
+target_compile_definitions(GUI PRIVATE MAINUI_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 
 set_target_properties(GUI PROPERTIES
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
@@ -200,6 +201,17 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/scripts")
             "${CMAKE_CURRENT_SOURCE_DIR}/scripts"
             "$<TARGET_FILE_DIR:GUI>/scripts"
         COMMENT "Bundling control-systems scripts"
+    )
+endif()
+
+# Bundle keel-depth measurement Python script next to the binary so the camera
+# page can save pipe.jpg beside length.py and run it without a source checkout.
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ship_length")
+    add_custom_command(TARGET GUI POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/ship_length"
+            "$<TARGET_FILE_DIR:GUI>/ship_length"
+        COMMENT "Bundling keel-depth measurement script"
     )
 endif()
 

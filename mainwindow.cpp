@@ -195,10 +195,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_15->setText("Current Keel Depth");
     ui->lcdNumber->display(kFallbackKeelDepthMeters);
     ui->pushButton_2->setText("Store Value");
+    auto *measureKeelButton = new QPushButton("Measure Keel", ui->frame);
+    measureKeelButton->setFont(ui->pushButton_2->font());
+    measureKeelButton->setStyleSheet(ui->pushButton_2->styleSheet());
+    ui->gridLayout_5->addWidget(measureKeelButton, 4, 0);
+    connect(measureKeelButton, &QPushButton::clicked, this, &MainWindow::onMeasureKeelClicked);
+
     auto *manualCrabIncrementButton = new QPushButton("+1 Crab", ui->frame);
     manualCrabIncrementButton->setFont(ui->pushButton_2->font());
     manualCrabIncrementButton->setStyleSheet(ui->pushButton_2->styleSheet());
-    ui->gridLayout_5->addWidget(manualCrabIncrementButton, 4, 0);
+    ui->gridLayout_5->addWidget(manualCrabIncrementButton, 5, 0);
     connect(manualCrabIncrementButton, &QPushButton::clicked, this, [this]() {
         ++m_manualGreenCrabAdjustment;
         m_greenCrabCount = qMax(0, m_currentGreenCrabCount + m_manualGreenCrabAdjustment);
@@ -992,6 +998,8 @@ void MainWindow::onCameraFrame(const QImage &image)
     if (!m_pixmapItem)
         return;
 
+    m_lastCameraFrame = image.copy();
+
     //+
     // YOLOv8 crab detection — inference runs on a worker thread (never here on
     // the GUI thread). This frame is overlaid with the most recent results,
@@ -1096,6 +1104,7 @@ void MainWindow::onCameraDisconnected()
 {
     ui->latencyLabel->setText("Latency: disconnected");
     stopFrameCapture();
+    m_lastCameraFrame = QImage();
     if (m_pixmapItem)
         m_pixmapItem->setPixmap(QPixmap()); // clear stale frame
 }
@@ -1158,6 +1167,110 @@ void MainWindow::stopFrameCapture()
                                            "border-width: 3px;"
                                            "border-style: ridge;"
                                            "border-color: rgb(152,199,65);");
+}
+
+void MainWindow::onMeasureKeelClicked()
+{
+    if (m_lastCameraFrame.isNull()) {
+        ui->latencyLabel->setText("Measure keel: no camera frame");
+        QMessageBox::warning(this,
+                             "Measure Keel",
+                             "No camera frame is available yet. Start the camera feed first.");
+        return;
+    }
+
+    const QString scriptDir = shipLengthDir();
+    const QString scriptPath = QDir(scriptDir).filePath("length.py");
+    if (!QFileInfo::exists(scriptPath)) {
+        QMessageBox::warning(this,
+                             "Measure Keel",
+                             QString("Could not find the keel measurement script:\n%1")
+                                 .arg(scriptPath));
+        return;
+    }
+
+    const QString imagePath = QDir(scriptDir).filePath("pipe.jpg");
+    if (!m_lastCameraFrame.save(imagePath, "JPEG", 95)) {
+        ui->latencyLabel->setText("Measure keel: image save failed");
+        QMessageBox::warning(this,
+                             "Measure Keel",
+                             QString("Could not save the camera frame:\n%1").arg(imagePath));
+        return;
+    }
+
+    QStringList preArgs;
+    const QString python = pythonProgram(&preArgs);
+    if (python.isEmpty()) {
+        QMessageBox::warning(this,
+                             "Measure Keel",
+                             "No Python interpreter was found. Install Python 3 or bundle one "
+                             "next to the app.");
+        return;
+    }
+
+    QStringList args = preArgs;
+    args << "-u" << "length.py";
+    const bool started = QProcess::startDetached(python, args, scriptDir);
+    if (!started) {
+        ui->latencyLabel->setText("Measure keel: Python failed to start");
+        QMessageBox::warning(this,
+                             "Measure Keel",
+                             QString("Could not start Python:\n%1").arg(python));
+        return;
+    }
+
+    ui->latencyLabel->setText(QString("Measure keel: saved %1").arg(imagePath));
+}
+
+QString MainWindow::pythonProgram(QStringList *preArgs) const
+{
+    if (preArgs)
+        preArgs->clear();
+
+    const QString appDir = QCoreApplication::applicationDirPath();
+#if defined(Q_OS_WIN)
+    const QString bundledPy = QDir(appDir).filePath(QStringLiteral("python/python.exe"));
+#else
+    const QString bundledPy = QDir(appDir).filePath(QStringLiteral("python/bin/python3"));
+#endif
+    if (QFileInfo(bundledPy).isExecutable())
+        return bundledPy;
+
+#if defined(Q_OS_WIN)
+    const QString py = QStandardPaths::findExecutable(QStringLiteral("py"));
+    if (!py.isEmpty()) {
+        if (preArgs)
+            *preArgs << QStringLiteral("-3");
+        return py;
+    }
+    return QStandardPaths::findExecutable(QStringLiteral("python"));
+#else
+    const QString p3 = QStandardPaths::findExecutable(QStringLiteral("python3"));
+    if (!p3.isEmpty())
+        return p3;
+    return QStandardPaths::findExecutable(QStringLiteral("python"));
+#endif
+}
+
+QString MainWindow::shipLengthDir() const
+{
+    const QString appCandidate = QDir(QCoreApplication::applicationDirPath())
+                                     .filePath(QStringLiteral("ship_length"));
+    if (QFileInfo::exists(QDir(appCandidate).filePath(QStringLiteral("length.py"))))
+        return appCandidate;
+
+#ifdef MAINUI_SOURCE_DIR
+    const QString sourceCandidate = QDir(QStringLiteral(MAINUI_SOURCE_DIR))
+                                        .filePath(QStringLiteral("ship_length"));
+    if (QFileInfo::exists(QDir(sourceCandidate).filePath(QStringLiteral("length.py"))))
+        return sourceCandidate;
+#endif
+
+    const QString cwdCandidate = QDir(QDir::currentPath()).filePath(QStringLiteral("ship_length"));
+    if (QFileInfo::exists(QDir(cwdCandidate).filePath(QStringLiteral("length.py"))))
+        return cwdCandidate;
+
+    return appCandidate;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1264,6 +1377,7 @@ void MainWindow::stopWebcam()
 
     if (m_pixmapItem)
         m_pixmapItem->setPixmap(QPixmap()); // clear stale frame
+    m_lastCameraFrame = QImage();
     m_lastDetections.clear();
 
     ui->latencyLabel->setText("Webcam: off");
@@ -1541,6 +1655,11 @@ void MainWindow::setupPhotogrammetry()
                 ui->measureButton->setChecked(false);
             });
 
+    // Allow selecting one or more thumbnails and deleting them with the Delete key
+    ui->imageList->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    ui->imageList->installEventFilter(this);
+    ui->imageList->setToolTip("Click an image to select it, then press Delete to remove it");
+
     ui->scaleButton->setToolTip("Click two points of known distance to set real-world scale");
     ui->measureButton->setToolTip("Click two points to measure the distance between them");
 #if defined(Q_OS_WIN)
@@ -1746,6 +1865,41 @@ void MainWindow::on_clearButton_clicked()
     ui->statusLabel->setText("Workspace cleared");
     ui->logOutput->clear();
     ui->progressBar->setValue(0);
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == ui->imageList && event->type() == QEvent::KeyPress) {
+        auto *keyEvent = static_cast<QKeyEvent *>(event);
+        if (keyEvent->key() == Qt::Key_Delete || keyEvent->key() == Qt::Key_Backspace) {
+            deleteSelectedImages();
+            return true;
+        }
+    }
+    return QMainWindow::eventFilter(watched, event);
+}
+
+void MainWindow::deleteSelectedImages()
+{
+    QList<QListWidgetItem *> selected = ui->imageList->selectedItems();
+    if (selected.isEmpty())
+        return;
+
+    auto answer = QMessageBox::question(
+        this,
+        "Delete Images",
+        QString("Remove %1 selected image%2 from the workspace?")
+            .arg(selected.count())
+            .arg(selected.count() == 1 ? "" : "s"));
+
+    if (answer != QMessageBox::Yes)
+        return;
+
+    QDir imgDir(m_imagePath);
+    for (QListWidgetItem *item : selected)
+        imgDir.remove(item->text());
+
+    refreshThumbnails();
 }
 
 void MainWindow::refreshThumbnails()
