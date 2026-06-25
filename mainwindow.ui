@@ -1577,19 +1577,22 @@ font-weight: bold;</string>
              <item row="1" column="0" colspan="2">
               <widget class="QPushButton" name="btnRecordDepth">
                <property name="text">
-                <string>Record Keel Depth</string>
+                <string>Use Live Depth</string>
                </property>
               </widget>
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="labelFinalKeel">
                <property name="text">
-                <string>Final keel depth</string>
+                <string>Final/manual keel depth</string>
                </property>
               </widget>
              </item>
              <item row="2" column="1">
               <widget class="QDoubleSpinBox" name="spinFinalKeelDepth">
+               <property name="toolTip">
+                <string>Type a keel depth manually, or use the live depth button to copy the current sensor reading.</string>
+               </property>
                <property name="suffix">
                 <string> m</string>
                </property>
