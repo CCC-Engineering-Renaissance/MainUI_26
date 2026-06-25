@@ -228,10 +228,13 @@ private:
 
     // Photogrammetry
     void setupPhotogrammetry();
+    void setupEdnaPage();
     void setRunning(bool running);
     void refreshThumbnails();
     QString detectColmapPath();
     void convertAndLoadModel();
+    void updateEdnaPercentages();
+    void populateEdnaCountsFromDetections();
 
     ColmapRunner *m_runner = nullptr;
     QString m_workspacePath;

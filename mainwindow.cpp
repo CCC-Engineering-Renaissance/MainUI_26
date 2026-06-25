@@ -36,6 +36,7 @@
 #include <QRegularExpression>
 #include <QtConcurrent>
 #include <QScrollBar>
+#include <QSignalBlocker>
 #include <QSpinBox>
 #include <QSplitter>
 #include <QStandardPaths>
@@ -89,6 +90,7 @@ constexpr double kDepthHoldMinMeters = 2.27;
 constexpr double kDepthHoldMaxMeters = 2.83;
 constexpr double kShallowHoldMinMeters = 0.07;
 constexpr double kShallowHoldMaxMeters = 0.73;
+constexpr float kGreenCrabConfidenceThreshold = 0.87f;
 
 bool isFloatMeasurementUnit(const QString &token)
 {
@@ -263,6 +265,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // ── Float mission station ─────────────────────────────────────────────
     setupFloatMissionPage();
+    setupEdnaPage();
 
     // The local webcam test feed starts on demand via the Webcam Test button on
     // the camera page (see on_webcamTestButton_toggled / startWebcam).
@@ -315,7 +318,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         int greenCount = 0;
         for (const auto &det : m_lastDetections)
         {
-            if (det.species == "European-Green-Crabs")
+            if (det.species == "European-Green-Crabs"
+                && det.confidence >= kGreenCrabConfidenceThreshold)
                 greenCount++;
         }
         m_greenCrabCount += greenCount;
@@ -357,6 +361,8 @@ void MainWindow::on_icebergPushButton_clicked()
 }
 void MainWindow::on_ednaPushButton_clicked()
 {
+    populateEdnaCountsFromDetections();
+    updateEdnaPercentages();
     ui->stackedWidget->setCurrentIndex(4);
 }
 void MainWindow::on_floatPushButton_clicked()
@@ -987,6 +993,7 @@ void MainWindow::onCameraFrame(const QImage &image)
         m_lastDetections.clear();
     }
 
+    int currentGreenCrabCount = 0;
     QImage displayImage = image;   // shared; deep-copied only if we draw overlays
     if (m_detectionEnabled && !m_lastDetections.isEmpty()) {
         displayImage = image.copy();
@@ -996,31 +1003,16 @@ void MainWindow::onCameraFrame(const QImage &image)
         font.setBold(true);
         painter.setFont(font);
 
-        for (const auto &det : m_lastDetections)
-        {
-            float threshold = 0.70f;
-
-            if (det.species == "European-Green-Crabs")
-                threshold = 0.87f;
-            else if (det.species == "Atlantic-Rock-Crabs")
-                threshold = 0.72f;
-
-            if (det.confidence < threshold)
+        for (const auto &det : m_lastDetections) {
+            if (det.species != "European-Green-Crabs"
+                || det.confidence < kGreenCrabConfidenceThreshold)
                 continue;
 
-            // Color per species
-            if (det.species == "European-Green-Crabs")
-                painter.setPen(QPen(Qt::green, 2));
-            else if (det.species == "Atlantic-Rock-Crabs")
-                painter.setPen(QPen(Qt::red, 2));
-            else if (det.species == "Jonah-Crabs")
-                painter.setPen(QPen(Qt::yellow, 2));
-
+            ++currentGreenCrabCount;
+            painter.setPen(QPen(Qt::green, 2));
             painter.drawRect(det.box);
 
-            // Identify species + confidence
-            QString label = QString("%1  %2%")
-                                .arg(det.species)
+            QString label = QString("European Green Crab  %1%")
                                 .arg(static_cast<int>(det.confidence * 100));
 
             // Text background
@@ -1031,6 +1023,8 @@ void MainWindow::onCameraFrame(const QImage &image)
             painter.drawText(textRect.bottomLeft(), label);
         }
     }
+    m_greenCrabCount = currentGreenCrabCount;
+    ui->lcdNumber_3->display(m_greenCrabCount);
     //+
 
     QPixmap pm = QPixmap::fromImage(displayImage).scaled(ui->graphicsView->viewport()->size(),
@@ -1309,35 +1303,104 @@ void MainWindow::onTelemetryUpdated(double depth, double pressure)
 // eDNA percentage calculator
 // ─────────────────────────────────────────────────────────────────────────────
 
+void MainWindow::setupEdnaPage()
+{
+    const QList<QSpinBox *> inputs = {
+        ui->spinBoxSnow,   ui->spinBoxAcadian, ui->spinBoxWestern, ui->spinBoxUrchin,
+        ui->spinBoxRock,   ui->spinBoxJonah,   ui->spinBoxSunstar, ui->spinBoxGreen,
+        ui->spinBoxBoreal, ui->spinBoxBrittle,
+    };
+
+    const QList<QLCDNumber *> outputs = {
+        ui->snowCrabPercent, ui->acadianCrabPercent, ui->hairyCrabPercent,
+        ui->urchinPercent,   ui->rockCrabPercent,    ui->jonahCrabPercent,
+        ui->sunstarPercent,  ui->greenCrabPercent,   ui->borealPercent,
+        ui->brittlePercent,
+    };
+
+    for (QSpinBox *input : inputs) {
+        input->setMaximum(9999);
+        connect(input, qOverload<int>(&QSpinBox::valueChanged),
+                this, &MainWindow::updateEdnaPercentages);
+    }
+
+    for (QLCDNumber *output : outputs) {
+        output->setDigitCount(6);
+        output->display(0.0);
+    }
+}
+
 void MainWindow::on_pushButtonCalcPercent_clicked()
 {
-    int snowInput = ui->spinBoxSnow->value();
-    int acadianInput = ui->spinBoxAcadian->value();
-    int westernInput = ui->spinBoxWestern->value();
-    int urchinInput = ui->spinBoxUrchin->value();
-    int rockInput = ui->spinBoxRock->value();
-    int jonahInput = ui->spinBoxJonah->value();
-    int sunstarInput = ui->spinBoxSunstar->value();
-    int greenInput = ui->spinBoxGreen->value();
-    int borealInput = ui->spinBoxBoreal->value();
-    int brittleInput = ui->spinBoxBrittle->value();
+    updateEdnaPercentages();
+}
 
-    double sum = snowInput + acadianInput + westernInput + urchinInput + rockInput + jonahInput
-                 + sunstarInput + greenInput + borealInput + brittleInput;
+void MainWindow::updateEdnaPercentages()
+{
+    const QVector<int> counts = {
+        ui->spinBoxSnow->value(),   ui->spinBoxAcadian->value(), ui->spinBoxWestern->value(),
+        ui->spinBoxUrchin->value(), ui->spinBoxRock->value(),    ui->spinBoxJonah->value(),
+        ui->spinBoxSunstar->value(), ui->spinBoxGreen->value(),  ui->spinBoxBoreal->value(),
+        ui->spinBoxBrittle->value(),
+    };
 
-    if (sum == 0)
+    const QList<QLCDNumber *> outputs = {
+        ui->snowCrabPercent, ui->acadianCrabPercent, ui->hairyCrabPercent,
+        ui->urchinPercent,   ui->rockCrabPercent,    ui->jonahCrabPercent,
+        ui->sunstarPercent,  ui->greenCrabPercent,   ui->borealPercent,
+        ui->brittlePercent,
+    };
+
+    double total = 0.0;
+    for (int count : counts)
+        total += count;
+
+    if (total <= 0.0) {
+        for (QLCDNumber *output : outputs)
+            output->display(0.0);
+        return;
+    }
+
+    for (int i = 0; i < counts.size(); ++i)
+        outputs[i]->display((static_cast<double>(counts[i]) / total) * 100.0);
+}
+
+void MainWindow::populateEdnaCountsFromDetections()
+{
+    if (m_lastDetections.isEmpty())
         return;
 
-    ui->snowCrabPercent->display((snowInput / sum) * 100);
-    ui->acadianCrabPercent->display((acadianInput / sum) * 100);
-    ui->hairyCrabPercent->display((westernInput / sum) * 100);
-    ui->urchinPercent->display((urchinInput / sum) * 100);
-    ui->rockCrabPercent->display((rockInput / sum) * 100);
-    ui->jonahCrabPercent->display((jonahInput / sum) * 100);
-    ui->sunstarPercent->display((sunstarInput / sum) * 100);
-    ui->greenCrabPercent->display((greenInput / sum) * 100);
-    ui->borealPercent->display((borealInput / sum) * 100);
-    ui->brittlePercent->display((brittleInput / sum) * 100);
+    int rock = 0;
+    int green = 0;
+    int jonah = 0;
+
+    for (const auto &det : m_lastDetections) {
+        float threshold = 0.70f;
+        if (det.species == "European-Green-Crabs")
+            threshold = kGreenCrabConfidenceThreshold;
+        else if (det.species == "Atlantic-Rock-Crabs")
+            threshold = 0.72f;
+
+        if (det.confidence < threshold)
+            continue;
+
+        if (det.species == "Atlantic-Rock-Crabs")
+            ++rock;
+        else if (det.species == "European-Green-Crabs")
+            ++green;
+        else if (det.species == "Jonah-Crabs")
+            ++jonah;
+    }
+
+    if (rock == 0 && green == 0 && jonah == 0)
+        return;
+
+    QSignalBlocker blockRock(ui->spinBoxRock);
+    QSignalBlocker blockGreen(ui->spinBoxGreen);
+    QSignalBlocker blockJonah(ui->spinBoxJonah);
+    ui->spinBoxRock->setValue(rock);
+    ui->spinBoxGreen->setValue(green);
+    ui->spinBoxJonah->setValue(jonah);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
