@@ -234,7 +234,6 @@ private:
     QString detectColmapPath();
     void convertAndLoadModel();
     void updateEdnaPercentages();
-    void populateEdnaCountsFromDetections();
 
     ColmapRunner *m_runner = nullptr;
     QString m_workspacePath;
@@ -258,7 +257,10 @@ private:
   QFutureWatcher<QVector<CrabDetector::Detection>> m_detWatcher;
   bool m_detRunning = false;
   int  m_detDispatchCounter = 0;
+    int m_currentGreenCrabCount = 0;
+    int m_manualGreenCrabAdjustment = 0;
     int m_greenCrabCount = 0;
+    int m_storedGreenCrabCount = 0;
     bool m_detectionEnabled = true;
 };
 

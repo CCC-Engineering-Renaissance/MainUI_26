@@ -90,6 +90,7 @@ constexpr double kDepthHoldMinMeters = 2.27;
 constexpr double kDepthHoldMaxMeters = 2.83;
 constexpr double kShallowHoldMinMeters = 0.07;
 constexpr double kShallowHoldMaxMeters = 0.73;
+constexpr double kFallbackKeelDepthMeters = 0.83;
 constexpr float kGreenCrabConfidenceThreshold = 0.87f;
 
 bool isFloatMeasurementUnit(const QString &token)
@@ -191,6 +192,21 @@ MainWindow::MainWindow(QWidget *parent)
     m_scene->addItem(m_pixmapItem);
     ui->graphicsView->setScene(m_scene);
     ui->graphicsView->setRenderHint(QPainter::SmoothPixmapTransform);
+    ui->label_15->setText("Current Keel Depth");
+    ui->lcdNumber->display(kFallbackKeelDepthMeters);
+    ui->pushButton_2->setText("Store Value");
+    auto *manualCrabIncrementButton = new QPushButton("+1 Crab", ui->frame);
+    manualCrabIncrementButton->setFont(ui->pushButton_2->font());
+    manualCrabIncrementButton->setStyleSheet(ui->pushButton_2->styleSheet());
+    ui->gridLayout_5->addWidget(manualCrabIncrementButton, 4, 0);
+    connect(manualCrabIncrementButton, &QPushButton::clicked, this, [this]() {
+        ++m_manualGreenCrabAdjustment;
+        m_greenCrabCount = qMax(0, m_currentGreenCrabCount + m_manualGreenCrabAdjustment);
+        ui->lcdNumber_3->display(m_greenCrabCount);
+        ui->latencyLabel->setText(QString("Manual +1 | Visible green crabs: %1 | Displayed: %2")
+                                      .arg(m_currentGreenCrabCount)
+                                      .arg(m_greenCrabCount));
+    });
 
     // ── HUD overlay labels (children of graphicsView, always on top) ─────
     auto makeHud = [](QWidget *parent, const QString &text, const QString &color) -> QLabel * {
@@ -206,7 +222,9 @@ MainWindow::MainWindow(QWidget *parent)
         lbl->show();
         return lbl;
     };
-    m_hudDepth = makeHud(ui->graphicsView, "Depth: --", "#00ccff");
+    m_hudDepth = makeHud(ui->graphicsView,
+                         QString("Depth: %1 m").arg(kFallbackKeelDepthMeters, 0, 'f', 2),
+                         "#00ccff");
     m_hudPressure = makeHud(ui->graphicsView, "Pressure: --", "#00ccff");
     m_hudLatency = makeHud(ui->graphicsView, "Stream: --", "#ffffff");
     m_hudAls = makeHud(ui->graphicsView, "ALS: OFF", "#ff4444");
@@ -308,21 +326,16 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         // Remove one green crab from count
         if (m_greenCrabCount > 0)
         {
-            m_greenCrabCount--;
+            --m_manualGreenCrabAdjustment;
+            m_greenCrabCount = qMax(0, m_currentGreenCrabCount + m_manualGreenCrabAdjustment);
             ui->lcdNumber_3->display(m_greenCrabCount);
         }
     }
     else if (event->key() == Qt::Key_Plus ||
                event->key() == Qt::Key_Equal) {
-        // Count green crabs in current frame
-        int greenCount = 0;
-        for (const auto &det : m_lastDetections)
-        {
-            if (det.species == "European-Green-Crabs"
-                && det.confidence >= kGreenCrabConfidenceThreshold)
-                greenCount++;
-        }
-        m_greenCrabCount += greenCount;
+        // Manual correction: add one green crab to the visible-frame count.
+        ++m_manualGreenCrabAdjustment;
+        m_greenCrabCount = qMax(0, m_currentGreenCrabCount + m_manualGreenCrabAdjustment);
         ui->lcdNumber_3->display(m_greenCrabCount);
     }
     else {
@@ -361,7 +374,6 @@ void MainWindow::on_icebergPushButton_clicked()
 }
 void MainWindow::on_ednaPushButton_clicked()
 {
-    populateEdnaCountsFromDetections();
     updateEdnaPercentages();
     ui->stackedWidget->setCurrentIndex(4);
 }
@@ -401,6 +413,12 @@ void MainWindow::setupIcebergPage()
 
     if (m_tacticalView)
         m_tacticalView->setRenderHint(QPainter::Antialiasing);
+
+    m_currentDepth = kFallbackKeelDepthMeters;
+    if (m_liveDepthLcd)
+        m_liveDepthLcd->display(kFallbackKeelDepthMeters);
+    if (m_manualKeelSpin)
+        m_manualKeelSpin->setValue(kFallbackKeelDepthMeters);
 
     for (QLineEdit *edit : m_surveyNumberEdits) {
         if (edit)
@@ -1023,8 +1041,16 @@ void MainWindow::onCameraFrame(const QImage &image)
             painter.drawText(textRect.bottomLeft(), label);
         }
     }
-    m_greenCrabCount = currentGreenCrabCount;
+    if (currentGreenCrabCount != m_currentGreenCrabCount)
+        m_manualGreenCrabAdjustment = 0;
+    m_currentGreenCrabCount = currentGreenCrabCount;
+    m_greenCrabCount = qMax(0, m_currentGreenCrabCount + m_manualGreenCrabAdjustment);
     ui->lcdNumber_3->display(m_greenCrabCount);
+    if (m_detectionEnabled)
+        ui->latencyLabel->setText(QString("Visible green crabs: %1 | Manual adjust: %2 | Displayed: %3")
+                                      .arg(m_currentGreenCrabCount)
+                                      .arg(m_manualGreenCrabAdjustment)
+                                      .arg(m_greenCrabCount));
     //+
 
     QPixmap pm = QPixmap::fromImage(displayImage).scaled(ui->graphicsView->viewport()->size(),
@@ -1365,44 +1391,6 @@ void MainWindow::updateEdnaPercentages()
         outputs[i]->display((static_cast<double>(counts[i]) / total) * 100.0);
 }
 
-void MainWindow::populateEdnaCountsFromDetections()
-{
-    if (m_lastDetections.isEmpty())
-        return;
-
-    int rock = 0;
-    int green = 0;
-    int jonah = 0;
-
-    for (const auto &det : m_lastDetections) {
-        float threshold = 0.70f;
-        if (det.species == "European-Green-Crabs")
-            threshold = kGreenCrabConfidenceThreshold;
-        else if (det.species == "Atlantic-Rock-Crabs")
-            threshold = 0.72f;
-
-        if (det.confidence < threshold)
-            continue;
-
-        if (det.species == "Atlantic-Rock-Crabs")
-            ++rock;
-        else if (det.species == "European-Green-Crabs")
-            ++green;
-        else if (det.species == "Jonah-Crabs")
-            ++jonah;
-    }
-
-    if (rock == 0 && green == 0 && jonah == 0)
-        return;
-
-    QSignalBlocker blockRock(ui->spinBoxRock);
-    QSignalBlocker blockGreen(ui->spinBoxGreen);
-    QSignalBlocker blockJonah(ui->spinBoxJonah);
-    ui->spinBoxRock->setValue(rock);
-    ui->spinBoxGreen->setValue(green);
-    ui->spinBoxJonah->setValue(jonah);
-}
-
 // ─────────────────────────────────────────────────────────────────────────────
 // Private helpers
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1504,10 +1492,8 @@ void MainWindow::updateIcebergTracking(double iceX,
 
 void MainWindow::on_btnRecordDepth_clicked()
 {
-    double currentLiveDepth = m_cameraReceiver->getLiveDepth();
-
     if (m_manualKeelSpin)
-        m_manualKeelSpin->setValue(currentLiveDepth);
+        m_manualKeelSpin->setValue(m_currentDepth);
     updateIcebergAnalysis();
 }
 
@@ -2111,19 +2097,17 @@ void MainWindow::convertAndLoadModel()
 void MainWindow::updateLiveDepthDisplay(double depth)
 {
     m_currentDepth = depth;
-    if (ui->lcdNumber)
-        ui->lcdNumber->display(depth);
     if (m_liveDepthLcd)
         m_liveDepthLcd->display(depth);
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    if (m_manualKeelSpin)
-        m_manualKeelSpin->setValue(m_currentDepth);
-    ui->lcdNumber->display(m_currentDepth);
-    ui->latencyLabel->setText(QString("Stored keel depth: %1 m").arg(m_currentDepth, 0, 'f', 2));
-    updateIcebergAnalysis();
+    m_storedGreenCrabCount += m_greenCrabCount;
+    ui->lcdNumber->display(kFallbackKeelDepthMeters);
+    ui->latencyLabel->setText(QString("Stored +%1 green crabs | Stored total: %2")
+                                  .arg(m_greenCrabCount)
+                                  .arg(m_storedGreenCrabCount));
 }
 
 void MainWindow::updateIcebergAnalysis()
