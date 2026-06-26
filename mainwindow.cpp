@@ -100,6 +100,24 @@ bool isFloatMeasurementUnit(const QString &token)
            unit == "metres" || unit == "metre" || unit == "m" || unit == "cm";
 }
 
+QStringList splitFloatColumns(const QString &line)
+{
+    return line.split(QRegularExpression("[,;\\t\\s]+"), Qt::SkipEmptyParts);
+}
+
+bool looksLikeFloatHeader(const QStringList &tokens)
+{
+    bool hasTime = false;
+    bool hasDepth = false;
+    for (QString token : tokens) {
+        token = token.toLower();
+        hasTime = hasTime || token.contains("time") || token.contains("utc");
+        hasDepth = hasDepth || token.contains("depth") || token.contains("meter") ||
+                   token.contains("metre");
+    }
+    return hasTime && hasDepth;
+}
+
 } // namespace
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -484,7 +502,7 @@ void MainWindow::setupFloatMissionPage()
     });
     connect(ui->btnFloatImportPackets, &QPushButton::clicked, this, [this]() {
         const QString path = QFileDialog::getOpenFileName(this, "Import float packets", QString(),
-                                                          "Packet logs (*.txt *.csv *.log);;All files (*)");
+                                                          "Packet logs (*.txt *.csv *.tsv *.log);;All files (*)");
         if (path.isEmpty())
             return;
         QFile file(path);
@@ -493,6 +511,23 @@ void MainWindow::setupFloatMissionPage()
             return;
         }
         appendFloatPacketText(QString::fromUtf8(file.readAll()));
+    });
+    connect(ui->btnFloatManualAdd, &QPushButton::clicked, this, [this]() {
+        const QString company = ui->txtFloatManualCompany->text().trimmed().isEmpty()
+                                    ? QStringLiteral("MANUAL")
+                                    : ui->txtFloatManualCompany->text().trimmed();
+        const QString time = ui->txtFloatManualTime->text().trimmed();
+        if (time.isEmpty()) {
+            QMessageBox::warning(this, "Float packets", "Enter a packet time before adding the row.");
+            return;
+        }
+
+        const double depth = ui->spinFloatManualDepth->value();
+        const double pressure = ui->spinFloatManualPressure->value();
+        appendFloatPacketText(QString("%1 %2 %3 kpa %4 meters")
+                                  .arg(company, time)
+                                  .arg(pressure, 0, 'f', 2)
+                                  .arg(depth, 0, 'f', 2));
     });
     connect(ui->btnFloatLoadSample, &QPushButton::clicked, this, [this]() {
         m_floatPackets.clear();
@@ -541,7 +576,7 @@ void MainWindow::setupPressureChart()
     chart->setTheme(QChart::ChartThemeBlueCerulean);
     chart->legend()->setVisible(false);
     auto *axisX = new QValueAxis(chart);
-    axisX->setTitleText("Time (seconds)");
+    axisX->setTitleText("Time since first packet (seconds)");
     axisX->setTitleFont(QFont("Aileron", 11, QFont::Bold));
     axisX->setLabelsFont(QFont("Aileron", 10));
     axisX->setRange(0, 10);
@@ -573,7 +608,7 @@ void MainWindow::setupDepthChart()
     chart->setTheme(QChart::ChartThemeBlueCerulean);
     chart->legend()->setVisible(false);
     auto *axisX = new QValueAxis(chart);
-    axisX->setTitleText("Time (seconds)");
+    axisX->setTitleText("Time since first packet (seconds)");
     axisX->setTitleFont(QFont("Aileron", 11, QFont::Bold));
     axisX->setLabelsFont(QFont("Aileron", 10));
     axisX->setRange(0, 10);
@@ -607,22 +642,41 @@ void MainWindow::setupFloatDataTable()
 void MainWindow::appendFloatPacketText(const QString &text)
 {
     const QStringList lines = text.split(QRegularExpression("[\r\n]+"), Qt::SkipEmptyParts);
+    QStringList header;
+    int added = 0;
     for (const QString &line : lines) {
+        const QString trimmed = line.trimmed();
+        if (trimmed.isEmpty())
+            continue;
+
+        const QStringList columns = splitFloatColumns(trimmed);
+        if (looksLikeFloatHeader(columns)) {
+            header = columns;
+            continue;
+        }
+
         FloatPacket packet;
-        if (parseFloatPacket(line.trimmed(), &packet)) {
+        const bool parsed = !header.isEmpty() && columns.size() >= 2
+                                ? parseFloatPacketWithHeader(header, trimmed, &packet)
+                                : parseFloatPacket(trimmed, &packet);
+        if (parsed) {
             packet.afterDescent = packet.depthMeters > 0.05;
             auto existing = std::find_if(m_floatPackets.begin(), m_floatPackets.end(), [&packet](const FloatPacket &p) {
                 return p.company == packet.company && qAbs(p.timeSeconds - packet.timeSeconds) < 0.001;
             });
             if (existing != m_floatPackets.end())
                 *existing = packet;
-            else
+            else {
                 m_floatPackets.push_back(packet);
+                ++added;
+            }
         }
     }
     std::sort(m_floatPackets.begin(), m_floatPackets.end(), [](const FloatPacket &a, const FloatPacket &b) {
         return a.timeSeconds < b.timeSeconds;
     });
+    if (m_floatRxStatus && added > 0)
+        m_floatRxStatus->setText(QString("Parsed %1 packet%2").arg(added).arg(added == 1 ? "" : "s"));
     rebuildFloatTableAndCharts();
 }
 
@@ -633,8 +687,8 @@ bool MainWindow::parseFloatPacket(const QString &line, FloatPacket *packet) cons
 
     FloatPacket parsed;
     parsed.raw = line;
-    const QStringList tokens = line.split(QRegularExpression("[,\\s]+"), Qt::SkipEmptyParts);
-    if (!tokens.isEmpty())
+    const QStringList tokens = splitFloatColumns(line);
+    if (!tokens.isEmpty() && parseFloatTimeSeconds(tokens.first()) < 0.0)
         parsed.company = tokens.first();
 
     bool gotTime = false;
@@ -694,10 +748,64 @@ bool MainWindow::parseFloatPacket(const QString &line, FloatPacket *packet) cons
     return true;
 }
 
+bool MainWindow::parseFloatPacketWithHeader(const QStringList &header,
+                                            const QString &line,
+                                            FloatPacket *packet) const
+{
+    if (header.isEmpty() || line.isEmpty() || !packet)
+        return false;
+
+    const QStringList columns = splitFloatColumns(line);
+    FloatPacket parsed;
+    parsed.raw = line;
+    parsed.company = "MATE";
+
+    bool gotTime = false;
+    bool gotDepth = false;
+    for (int i = 0; i < header.size() && i < columns.size(); ++i) {
+        const QString key = header[i].toLower();
+        const QString value = columns[i].trimmed();
+        if ((key.contains("company") || key.contains("team") || key == "id") && !value.isEmpty()) {
+            parsed.company = value;
+        } else if ((key.contains("time") || key.contains("utc")) && !gotTime) {
+            const double seconds = parseFloatTimeSeconds(value);
+            if (seconds >= 0.0) {
+                parsed.timeSeconds = seconds;
+                gotTime = true;
+            }
+        } else if ((key.contains("depth") || key.contains("meter") || key.contains("metre")) && !gotDepth) {
+            bool ok = false;
+            parsed.depthMeters = value.toDouble(&ok);
+            if (ok) {
+                if (key.contains("cm") || key.contains("centimeter") || key.contains("centimetre"))
+                    parsed.depthMeters /= 100.0;
+                gotDepth = true;
+            }
+        } else if ((key.contains("pressure") || key.contains("kpa") || key.contains("pa")) && !parsed.hasPressure) {
+            bool ok = false;
+            parsed.pressureKpa = value.toDouble(&ok);
+            if (ok) {
+                if (key.contains("pa") && !key.contains("kpa"))
+                    parsed.pressureKpa /= 1000.0;
+                parsed.hasPressure = true;
+            }
+        }
+    }
+
+    if (!gotTime || !gotDepth)
+        return parseFloatPacket(line, packet);
+
+    *packet = parsed;
+    return true;
+}
+
 double MainWindow::parseFloatTimeSeconds(const QString &token)
 {
-    if (token.contains(':')) {
-        const QStringList parts = token.split(':');
+    QString cleaned = token.trimmed();
+    cleaned.remove(QRegularExpression("\\b(UTC|Z)\\b", QRegularExpression::CaseInsensitiveOption));
+    cleaned = cleaned.trimmed();
+    if (cleaned.contains(':')) {
+        const QStringList parts = cleaned.split(':');
         bool ok = false;
         double seconds = 0.0;
         if (parts.size() == 3) {
@@ -717,7 +825,7 @@ double MainWindow::parseFloatTimeSeconds(const QString &token)
     }
 
     bool ok = false;
-    const double value = token.toDouble(&ok);
+    const double value = cleaned.toDouble(&ok);
     return ok ? value : -1.0;
 }
 
@@ -757,12 +865,14 @@ void MainWindow::rebuildFloatTableAndCharts()
     double maxTime = 10.0;
     double maxDepth = 3.2;
     double maxPressure = 30.0;
+    const double firstTime = m_floatPackets.isEmpty() ? 0.0 : m_floatPackets.first().timeSeconds;
     for (const FloatPacket &p : m_floatPackets) {
+        const double graphTime = qMax(0.0, p.timeSeconds - firstTime);
         if (m_floatDepthSeries)
-            m_floatDepthSeries->append(p.timeSeconds, p.depthMeters);
+            m_floatDepthSeries->append(graphTime, p.depthMeters);
         if (p.hasPressure && m_floatPressureSeries)
-            m_floatPressureSeries->append(p.timeSeconds, p.pressureKpa);
-        maxTime = qMax(maxTime, p.timeSeconds);
+            m_floatPressureSeries->append(graphTime, p.pressureKpa);
+        maxTime = qMax(maxTime, graphTime);
         maxDepth = qMax(maxDepth, p.depthMeters + 0.25);
         if (p.hasPressure)
             maxPressure = qMax(maxPressure, p.pressureKpa + 5.0);

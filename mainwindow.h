@@ -189,6 +189,9 @@ private:
     void setupFloatDataTable();
     void appendFloatPacketText(const QString &text);
     bool parseFloatPacket(const QString &line, FloatPacket *packet) const;
+    bool parseFloatPacketWithHeader(const QStringList &header,
+                                    const QString &line,
+                                    FloatPacket *packet) const;
     void rebuildFloatTableAndCharts();
     int bestFloatProfileScore(int profileNumber, QStringList *evidence) const;
     bool hasConsecutiveHold(double minDepth, double maxDepth, int startIndex, int endIndex) const;
