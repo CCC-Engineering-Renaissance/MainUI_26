@@ -52,6 +52,7 @@ private:
   QByteArray  m_rx;
   QHash<QString, qint64> m_tailSeq;
   bool        m_online = false;
+  bool        m_errorLogged = false;  // throttle error spam during reconnect loop
 
   const QStringList m_tasks{QStringLiteral("oneservo"),
                             QStringLiteral("camera"),

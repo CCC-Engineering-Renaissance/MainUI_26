@@ -39,9 +39,13 @@ void PiLink::configure(const QString &host, quint16 port)
     m_pollTimer->stop();
     m_sock->abort();
     setOnline(false);
+    m_errorLogged = false;
 
-    if (!m_host.isEmpty())
+    if (!m_host.isEmpty()) {
+        emit commandFailed(QString(),
+                           QStringLiteral("connecting to %1:%2…").arg(m_host).arg(m_port));
         m_sock->connectToHost(m_host, m_port);
+    }
 }
 
 void PiLink::startTask(const QString &task)
@@ -67,6 +71,7 @@ void PiLink::stopTask(const QString &task)
 void PiLink::onConnected()
 {
     setOnline(true);
+    m_errorLogged = false;
     sendJson({{QStringLiteral("cmd"), QStringLiteral("status")}});
     m_pollTimer->start();
 }
@@ -80,6 +85,29 @@ void PiLink::onDisconnected()
 
 void PiLink::onSocketError(QAbstractSocket::SocketError)
 {
+    if (!m_errorLogged) {
+        m_errorLogged = true;
+        QString hint;
+        switch (m_sock->error()) {
+        case QAbstractSocket::ConnectionRefusedError:
+            hint = QStringLiteral(" — host is reachable but the daemon "
+                                  "(pi_launcher.py) is not running on port %1")
+                       .arg(m_port);
+            break;
+        case QAbstractSocket::SocketTimeoutError:
+        case QAbstractSocket::NetworkError:
+        case QAbstractSocket::HostNotFoundError:
+            hint = QStringLiteral(" — cannot reach %1; check the cable, the Pi's "
+                                  "IP, and that both ends share a subnet")
+                       .arg(m_host);
+            break;
+        default:
+            break;
+        }
+        emit commandFailed(QString(),
+                           QStringLiteral("connection failed: %1%2")
+                               .arg(m_sock->errorString(), hint));
+    }
     setOnline(false);
     m_pollTimer->stop();
     scheduleReconnect();
